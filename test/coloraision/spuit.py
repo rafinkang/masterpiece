@@ -26,13 +26,14 @@ def plot_colors(hist, centroids):
     bar = np.zeros((50, 300, 3), dtype="uint8")
     startX = 0
 
+    hist_zip = list(zip(hist, centroids))
+    hist_zip.sort(reverse=True)
     # loop over the percentage of each cluster and the color of
     # each cluster
-    for (percent, color) in zip(hist, centroids):
+    for (percent, color) in hist_zip:
         # plot the relative percentage of each cluster
         endX = startX + (percent * 300)
-        cv2.rectangle(bar, (int(startX), 0), (int(endX), 50),
-                      color.astype("uint8").tolist(), -1)
+        cv2.rectangle(bar, (int(startX), 0), (int(endX), 50), color.astype("uint8").tolist(), -1)
         startX = endX
 
     # return the bar chart
@@ -59,7 +60,7 @@ def image_color_cluster(image_path, k = 5):
     plt.imshow(bar)
     plt.show()
     
-image_path = "cacacat.png"
+image_path = "./test/images/jordy.jpg"
 
 #preview image
 image = mpimg.imread(image_path)
