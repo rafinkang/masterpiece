@@ -30,8 +30,8 @@ print("Eager execution: {}".format(tf.executing_eagerly()))
 
 
 # Set up some global values here
-content_path = 'C:\\Users\\kyd50\\dev\\finalPJ\\doggg.jpg'
-style_path = 'C:\\Users\\kyd50\\dev\\finalPJ\\spring.jpg'
+content_path = './test/images/cat.png'
+style_path = './test/images/sunflower.jpg'
 
 def load_img(path_to_img):
   max_dim = 512
