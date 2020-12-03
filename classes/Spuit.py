@@ -17,6 +17,7 @@ class Spuit:
         이미지를 넣어주쎄용
         """
         self.image_path = image_path
+        self.image = cv2.imread(image_path)
         self.n_clusters = n_clusters
         self.percent = []
         self.rgb = []
@@ -63,7 +64,7 @@ class Spuit:
         return bar
 
     def image_color_cluster(self):
-        image = cv2.imread(self.image_path)
+        image = self.image
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         image = image.reshape((image.shape[0] * image.shape[1], 3))
 
@@ -109,6 +110,8 @@ class Spuit:
         #     self.hsv_origin.append([hsv_origin[0], hsv_origin[1], hsv_origin[2]])
         #     self.hsv.append([hsv_origin[0]/2, hsv_origin[1], hsv_origin[2]])
         
+    def get_image(self):
+        return self.image
         
     def get_info(self):
         """
@@ -170,9 +173,9 @@ class Spuit:
 # image_path = "./test/images/jordy.jpg"
 # image_path = "./test/images/sunflower.jpg"
 
-#preview image
-# image = mpimg.imread(image_path)
-# plt.imshow(image)
+# #preview image
+# # image = mpimg.imread(image_path)
+# # plt.imshow(image)
 
 # spuit_image = Spuit(image_path)
 # print('get_info', spuit_image.get_info())
