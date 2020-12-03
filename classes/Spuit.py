@@ -24,6 +24,8 @@ class Spuit:
         self.hsv_origin = []
         self.hsv = []
         self.bar = []
+        self.labels = []
+        self.label_info = []
         self.image_color_cluster()
 
     def centroid_histogram(self, clt):
@@ -64,28 +66,62 @@ class Spuit:
         image = cv2.imread(self.image_path)
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         image = image.reshape((image.shape[0] * image.shape[1], 3))
-        
+
         clt = KMeans(n_clusters = self.n_clusters)
         clt.fit(image)
 
         hist = self.centroid_histogram(clt)
         bar = self.plot_colors(hist, clt.cluster_centers_)
         self.bar = bar
-        # bar 중복제거 & 정렬
-        _, indexes = np.unique(bar[0], axis=0, return_index=True)
-        unique_rows = [bar[0][i] for i in np.sort(indexes)]
-        # print(unique_rows)
-        # 1row hsv : 114, 25.0, 94.1
-        for i in range(len(unique_rows)):
-            self.rgb.append(unique_rows[i])
-            self.hex.append('#{:02x}{:02x}{:02x}'.format(unique_rows[i][0], unique_rows[i][1] , unique_rows[i][2]))
-            hsv_origin = colorsys.rgb_to_hsv(unique_rows[i][0]/255, unique_rows[i][1]/255 , unique_rows[i][2]/255)
-            self.hsv_origin.append([hsv_origin[0], hsv_origin[1], hsv_origin[2]])
-            self.hsv.append([hsv_origin[0]/2, hsv_origin[1], hsv_origin[2]])
-            # print(unique_rows[i], "--------------------------")
-            # print('hex code :', '#{:02x}{:02x}{:02x}'.format(unique_rows[i][0], unique_rows[i][1] , unique_rows[i][2]))
-            # print('hsv code :', colorsys.rgb_to_hsv(unique_rows[i][0]/255, unique_rows[i][1]/255 , unique_rows[i][2]/255))
         
+        self.labels = clt.labels_
+        
+        sort_zip = list(zip(hist, np.unique(self.labels), clt.cluster_centers_))
+        sort_zip.sort(reverse=True)
+        
+        for index, (percent, label, rgb) in enumerate(sort_zip):
+            hsv_origin = colorsys.rgb_to_hsv(rgb[0]/255, rgb[1]/255 , rgb[2]/255)
+            rgb = [int(rgb[0]), int(rgb[1]), int(rgb[2])]
+            
+            self.rgb.append(rgb)
+            self.hex.append('#{:02x}{:02x}{:02x}'.format(rgb[0], rgb[1] , rgb[2]))
+            self.hsv.append([hsv_origin[0]*180, hsv_origin[1], hsv_origin[2]])
+            self.hsv_origin.append([hsv_origin[0], hsv_origin[1], hsv_origin[2]])
+            
+            self.label_info.append({
+                'percent'   : percent,
+                'label'     : label,
+                'rgb'       : rgb,
+                'hex'       : '#{:02x}{:02x}{:02x}'.format(rgb[0], rgb[1] , rgb[2]),
+                'hsv'       : [hsv_origin[0]*180, hsv_origin[1], hsv_origin[2]],
+                'hsv_origin': [hsv_origin[0], hsv_origin[1], hsv_origin[2]]
+            })
+        
+        
+        # # bar 중복제거 & 정렬
+        # _, indexes = np.unique(bar[0], axis=0, return_index=True)
+        # unique_rows = [bar[0][i] for i in np.sort(indexes)]
+        # # 1row hsv : 114, 25.0, 94.1
+        # for i in range(len(unique_rows)):
+        #     self.rgb.append(unique_rows[i])
+        #     self.hex.append('#{:02x}{:02x}{:02x}'.format(unique_rows[i][0], unique_rows[i][1] , unique_rows[i][2]))
+        #     hsv_origin = colorsys.rgb_to_hsv(unique_rows[i][0]/255, unique_rows[i][1]/255 , unique_rows[i][2]/255)
+        #     self.hsv_origin.append([hsv_origin[0], hsv_origin[1], hsv_origin[2]])
+        #     self.hsv.append([hsv_origin[0]/2, hsv_origin[1], hsv_origin[2]])
+        
+        
+    def get_info(self):
+        """
+        이미지 전체 정보
+        퍼센트로 sort desc
+        """
+        return self.label_info
+    
+    def get_labels(self):
+        """
+        이미지 라벨(클러스터링 영역)
+        """
+        return self.labels
         
     def get_percent(self):
         """
@@ -127,6 +163,10 @@ class Spuit:
         plt.show()
 
 
+
+# End Class=====================================================================
+
+
 # image_path = "./test/images/jordy.jpg"
 # image_path = "./test/images/sunflower.jpg"
 
@@ -135,7 +175,8 @@ class Spuit:
 # plt.imshow(image)
 
 # spuit_image = Spuit(image_path)
-# spuit_image.image_color_cluster()
+# print('get_info', spuit_image.get_info())
+# print('get_label', spuit_image.get_labels())
 # print('get_percent', spuit_image.get_percent())
 # print('get_rgb', spuit_image.get_rgb())
 # print('get_hex', spuit_image.get_hex())
