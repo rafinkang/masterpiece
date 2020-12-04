@@ -12,7 +12,7 @@ class Spuit:
     """
     음 뭐랄까.. 색상을 스포이드로 뽑아 줌 ? ?
     """
-    def __init__(self, image_path, n_clusters = 5):
+    def __init__(self, image_path, n_clusters = 4):
         """
         이미지를 넣어주쎄용
         """
@@ -24,6 +24,7 @@ class Spuit:
         self.hex = []
         self.hsv_origin = []
         self.hsv = []
+        self.hsv360 = []
         self.bar = []
         self.labels = []
         self.label_info = []
@@ -86,7 +87,8 @@ class Spuit:
             
             self.rgb.append(rgb)
             self.hex.append('#{:02x}{:02x}{:02x}'.format(rgb[0], rgb[1] , rgb[2]))
-            self.hsv.append([hsv_origin[0]*180, hsv_origin[1], hsv_origin[2]])
+            self.hsv.append([int(round(hsv_origin[0]*180)), int(round(hsv_origin[1]*100)), int(round(hsv_origin[2]*100))])
+            self.hsv360.append([int(round(hsv_origin[0]*360)), int(round(hsv_origin[1]*100)), int(round(hsv_origin[2]*100))])
             self.hsv_origin.append([hsv_origin[0], hsv_origin[1], hsv_origin[2]])
             
             self.label_info.append({
@@ -94,7 +96,8 @@ class Spuit:
                 'label'     : label,
                 'rgb'       : rgb,
                 'hex'       : '#{:02x}{:02x}{:02x}'.format(rgb[0], rgb[1] , rgb[2]),
-                'hsv'       : [hsv_origin[0]*180, hsv_origin[1], hsv_origin[2]],
+                'hsv'       : [int(round(hsv_origin[0]*180)), int(round(hsv_origin[1]*100)), int(round(hsv_origin[2]*100))],
+                'hsv360'    : [int(round(hsv_origin[0]*360)), int(round(hsv_origin[1]*100)), int(round(hsv_origin[2]*100))],
                 'hsv_origin': [hsv_origin[0], hsv_origin[1], hsv_origin[2]]
             })
         
@@ -150,6 +153,12 @@ class Spuit:
         """
         return self.hsv
     
+    def get_hsv360(self):
+        """
+        return hsv360 array
+        """
+        return self.hsv360
+    
     def get_hsv_origin(self):
         """
         return hsv_origin array
@@ -184,5 +193,6 @@ class Spuit:
 # print('get_rgb', spuit_image.get_rgb())
 # print('get_hex', spuit_image.get_hex())
 # print('get_hsv', spuit_image.get_hsv())
+# print('get_hsv', spuit_image.get_hsv360())
 # print('get_hsv_origin', spuit_image.get_hsv_origin())
 # spuit_image.get_plt()

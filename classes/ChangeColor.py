@@ -17,7 +17,7 @@ class ChangeColor:
         self.input_img_path = input_img_path
         # self.change()
         
-    def change(self, n_cluster = 5, get_plt = False):
+    def change(self, n_cluster = 4, get_plt = False):
         """
         색상을 변경해 보자.
         """
@@ -28,6 +28,11 @@ class ChangeColor:
         input_img_bgr = input_img.get_image()
         input_img_labels = input_img.get_labels()
         
+        # print('color_img_info', color_img_info)
+        # print('input_img_info', input_img_info)
+        # print('input_img_bgr', input_img_bgr)
+        # print('input_img_labels', input_img_labels)
+        
         if get_plt :
             color_img.get_plt()
             input_img.get_plt()
@@ -36,9 +41,12 @@ class ChangeColor:
     
         # H값 차이 계산
         convert_label2h = {}
+        # for i in range(len(color_img_info)):
+        #     convert_label2h[input_img_info[i]['label']] = int(input_img_info[i]['hsv'][0] - color_img_info[i]['hsv'][0])
         for i in range(len(color_img_info)):
-            convert_label2h[input_img_info[i]['label']] = int(input_img_info[i]['hsv'][0] - color_img_info[i]['hsv'][0])
-        
+            convert_label2h[input_img_info[i]['label']] = int(color_img_info[i]['hsv'][0])
+            
+        # print(convert_label2h)
         shape = output_img.shape
 
         # print(convert_label2h)
@@ -52,14 +60,24 @@ class ChangeColor:
         for i in range(shape[0]):
             for j in range(shape[1]):
                 x = input_img_labels[tot]
-                output_img[i][j][0] = output_img[i][j][0] + int(convert_label2h[x])
+                output_img[i][j][0] = int(convert_label2h[x])
                 tot = tot + 1 
+                
+        
+        
+        # tot = 0
+        # for i in range(shape[0]):
+        #     for j in range(shape[1]):
+        #         x = input_img_labels[tot]
+        #         output_img[i][j][0] = output_img[i][j][0] + int(convert_label2h[x])
+        #         tot = tot + 1 
 
         # print(output_img)
         # print(type(output_img))
 
         output_img = cv2.cvtColor(output_img, cv2.COLOR_HSV2RGB)
         # blur = cv2.GaussianBlur(output_img, (5,5), 100)
+        # print('mmmmmm',np.unique(cv2.cvtColor(output_img, cv2.COLOR_RGB2HSV)[:,:,0]))
         
         plt.figure()
         # plt.axis("off")
@@ -73,12 +91,10 @@ class ChangeColor:
 
         return output_img
         
-# colorimg = "./test/images/cacacat.png"
-# inputimg = "./test/images/sunflower.jpg"
+# colorimg = "./test/images/4color.png"
+# inputimg = "./test/images/jordy.jpg"
 
 # change_color = ChangeColor(colorimg, inputimg)
-# output = change_color.change(n_cluster = 3, get_plt = False)
-
-
+# output = change_color.change(n_cluster = 4, get_plt = True)
 
 # plt.imshow(output)
