@@ -8,11 +8,13 @@ import colorsys
 
 # %matplotlib inline
 
+
 class Spuit:
     """
     음 뭐랄까.. 색상을 스포이드로 뽑아 줌 ? ?
     """
-    def __init__(self, image_path, n_clusters = 4):
+
+    def __init__(self, image_path, n_clusters=4):
         """
         이미지를 넣어주쎄용
         """
@@ -56,9 +58,10 @@ class Spuit:
         for (percent, color) in hist_zip:
             # plot the relative percentage of each cluster
             self.percent.append(percent)
-            
+
             endX = startX + (percent * 300)
-            cv2.rectangle(bar, (int(startX), 0), (int(endX), 50), color.astype("uint8").tolist(), -1)
+            cv2.rectangle(bar, (int(startX), 0), (int(endX), 50),
+                          color.astype("uint8").tolist(), -1)
             startX = endX
 
         # return the bar chart
@@ -69,39 +72,44 @@ class Spuit:
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         image = image.reshape((image.shape[0] * image.shape[1], 3))
 
-        clt = KMeans(n_clusters = self.n_clusters)
+        clt = KMeans(n_clusters=self.n_clusters)
         clt.fit(image)
 
         hist = self.centroid_histogram(clt)
         bar = self.plot_colors(hist, clt.cluster_centers_)
         self.bar = bar
-        
+
         self.labels = clt.labels_
-        
-        sort_zip = list(zip(hist, np.unique(self.labels), clt.cluster_centers_))
+
+        sort_zip = list(
+            zip(hist, np.unique(self.labels), clt.cluster_centers_))
         sort_zip.sort(reverse=True)
-        
+
         for index, (percent, label, rgb) in enumerate(sort_zip):
-            hsv_origin = colorsys.rgb_to_hsv(rgb[0]/255, rgb[1]/255 , rgb[2]/255)
+            hsv_origin = colorsys.rgb_to_hsv(
+                rgb[0]/255, rgb[1]/255, rgb[2]/255)
             rgb = [int(rgb[0]), int(rgb[1]), int(rgb[2])]
-            
+
             self.rgb.append(rgb)
-            self.hex.append('#{:02x}{:02x}{:02x}'.format(rgb[0], rgb[1] , rgb[2]))
-            self.hsv.append([int(round(hsv_origin[0]*180)), int(round(hsv_origin[1]*100)), int(round(hsv_origin[2]*100))])
-            self.hsv360.append([int(round(hsv_origin[0]*360)), int(round(hsv_origin[1]*100)), int(round(hsv_origin[2]*100))])
-            self.hsv_origin.append([hsv_origin[0], hsv_origin[1], hsv_origin[2]])
-            
+            self.hex.append('#{:02x}{:02x}{:02x}'.format(
+                rgb[0], rgb[1], rgb[2]))
+            self.hsv.append([int(round(hsv_origin[0]*180)),
+                             int(round(hsv_origin[1]*100)), int(round(hsv_origin[2]*100))])
+            self.hsv360.append([int(round(hsv_origin[0]*360)),
+                                int(round(hsv_origin[1]*100)), int(round(hsv_origin[2]*100))])
+            self.hsv_origin.append(
+                [hsv_origin[0], hsv_origin[1], hsv_origin[2]])
+
             self.label_info.append({
-                'percent'   : percent,
-                'label'     : label,
-                'rgb'       : rgb,
-                'hex'       : '#{:02x}{:02x}{:02x}'.format(rgb[0], rgb[1] , rgb[2]),
-                'hsv'       : [int(round(hsv_origin[0]*180)), int(round(hsv_origin[1]*100)), int(round(hsv_origin[2]*100))],
-                'hsv360'    : [int(round(hsv_origin[0]*360)), int(round(hsv_origin[1]*100)), int(round(hsv_origin[2]*100))],
+                'percent': percent,
+                'label': label,
+                'rgb': rgb,
+                'hex': '#{:02x}{:02x}{:02x}'.format(rgb[0], rgb[1], rgb[2]),
+                'hsv': [int(round(hsv_origin[0]*180)), int(round(hsv_origin[1]*100)), int(round(hsv_origin[2]*100))],
+                'hsv360': [int(round(hsv_origin[0]*360)), int(round(hsv_origin[1]*100)), int(round(hsv_origin[2]*100))],
                 'hsv_origin': [hsv_origin[0], hsv_origin[1], hsv_origin[2]]
             })
-        
-        
+
         # # bar 중복제거 & 정렬
         # _, indexes = np.unique(bar[0], axis=0, return_index=True)
         # unique_rows = [bar[0][i] for i in np.sort(indexes)]
@@ -112,59 +120,59 @@ class Spuit:
         #     hsv_origin = colorsys.rgb_to_hsv(unique_rows[i][0]/255, unique_rows[i][1]/255 , unique_rows[i][2]/255)
         #     self.hsv_origin.append([hsv_origin[0], hsv_origin[1], hsv_origin[2]])
         #     self.hsv.append([hsv_origin[0]/2, hsv_origin[1], hsv_origin[2]])
-        
+
     def get_image(self):
         return self.image
-        
+
     def get_info(self):
         """
         이미지 전체 정보
         퍼센트로 sort desc
         """
         return self.label_info
-    
+
     def get_labels(self):
         """
         이미지 라벨(클러스터링 영역)
         """
         return self.labels
-        
+
     def get_percent(self):
         """
         return percent array
         """
         return self.percent
-    
+
     def get_rgb(self):
         """
         return rgb array
         """
         return self.rgb
-    
+
     def get_hex(self):
         """
         return hex array
         """
         return self.hex
-    
+
     def get_hsv(self):
         """
         return hsv array
         """
         return self.hsv
-    
+
     def get_hsv360(self):
         """
         return hsv360 array
         """
         return self.hsv360
-    
+
     def get_hsv_origin(self):
         """
         return hsv_origin array
         """
         return self.hsv_origin
-    
+
     def get_plt(self):
         """
         get_plt
@@ -173,7 +181,6 @@ class Spuit:
         plt.axis("off")
         plt.imshow(self.bar)
         plt.show()
-
 
 
 # End Class=====================================================================
