@@ -193,6 +193,6 @@ class Spuit:
 # print('get_rgb', spuit_image.get_rgb())
 # print('get_hex', spuit_image.get_hex())
 # print('get_hsv', spuit_image.get_hsv())
-# print('get_hsv', spuit_image.get_hsv360())
+# print('get_hsv360', spuit_image.get_hsv360())
 # print('get_hsv_origin', spuit_image.get_hsv_origin())
 # spuit_image.get_plt()
