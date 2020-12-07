@@ -1,10 +1,11 @@
 
-import numpy as np
+import colorsys
+
 import cv2
 import matplotlib.image as mpimg
+import numpy as np
 from matplotlib import pyplot as plt
 from sklearn.cluster import KMeans
-import colorsys
 
 # %matplotlib inline
 
@@ -184,22 +185,22 @@ class Spuit:
 
 
 # End Class=====================================================================
+if __name__ == "__main__":
 
+    image_path = "./test/images/jordy.jpg"
+    # image_path = "./test/images/sunflower.jpg"
 
-# image_path = "./test/images/jordy.jpg"
-# image_path = "./test/images/sunflower.jpg"
+    #preview image
+    # image = mpimg.imread(image_path)
+    # plt.imshow(image)
 
-# #preview image
-# # image = mpimg.imread(image_path)
-# # plt.imshow(image)
-
-# spuit_image = Spuit(image_path)
-# print('get_info', spuit_image.get_info())
-# print('get_label', spuit_image.get_labels())
-# print('get_percent', spuit_image.get_percent())
-# print('get_rgb', spuit_image.get_rgb())
-# print('get_hex', spuit_image.get_hex())
-# print('get_hsv', spuit_image.get_hsv())
-# print('get_hsv360', spuit_image.get_hsv360())
-# print('get_hsv_origin', spuit_image.get_hsv_origin())
-# spuit_image.get_plt()
+    spuit_image = Spuit(image_path)
+    print('get_info', spuit_image.get_info())
+    print('get_label', spuit_image.get_labels())
+    print('get_percent', spuit_image.get_percent())
+    print('get_rgb', spuit_image.get_rgb())
+    print('get_hex', spuit_image.get_hex())
+    print('get_hsv', spuit_image.get_hsv())
+    print('get_hsv360', spuit_image.get_hsv360())
+    print('get_hsv_origin', spuit_image.get_hsv_origin())
+    spuit_image.get_plt()
