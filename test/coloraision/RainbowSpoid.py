@@ -183,7 +183,7 @@ class ColorTrade:
         
         # self.remaked_image = cv2.cvtColor(self.traded_hsv, cv2.COLOR_HSV2BGR) # hsv를 rgb로 바꾸기
         self.remaked_image = cv2.cvtColor(self.traded_hsv, cv2.COLOR_HSV2RGB) 
-        print(self.remaked_image)
+        # print(self.remaked_image)
         # self.remaked_image[:,:,0],self.remaked_image[:,:,1],self.remaked_image[:,:,2] = self.remaked_image[:,:,1],self.remaked_image[:,:,2],self.remaked_image[:,:,0]
         # self.remaked_image = self.remaked_image *255
         # self.remaked_image = list(map(int, self.remaked_image))
