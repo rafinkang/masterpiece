@@ -31,4 +31,9 @@ for folder in folder_list:
         hsv_list.append(filename)
         result_list.append(hsv_list)
         
-print(result_list)
+        del image
+
+        
+sql = "insert into croll_color(h1,s1,v1,h2,s2,v2,h3,s3,v3,h4,s4,v4,color,filename) values(%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%s,%s)"
+
+db.executemany(sql, result_list)
