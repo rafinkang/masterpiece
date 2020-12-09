@@ -75,7 +75,7 @@ class DbConn:
             
     def executemany(self, sql, args=None):
         """
-        단일 행 실행 
+        다중 행 실행 
         ex) data = [[1, 'test'],[2, 'test2'],[3, 'test3'],[4, 'test4']]
         executemany(sql, data)
         """
