@@ -2,7 +2,6 @@
 # tensorflow를 2버전으로 upgrade해줘야함
 
 import tensorflow as tf
-# from tensorflow_examples.models.pix2pix import pix2pix
 from tensorflow import keras
 
 import pix2pix
@@ -63,19 +62,6 @@ def preprocess_image_test(image, label):
   image = normalize(image)
   return image
 
-test_img = tf.keras.preprocessing.image.load_img('test/famous_painting/gan/test_img.jpg')
-
-test_img = tf.keras.preprocessing.image.img_to_array(
-    test_img, data_format=None, dtype=None
-)
-
-test_img.shape = tf.expand_dims(test_img, axis=0).shape.as_list()
-
-test_img = tf.convert_to_tensor(test_img)
-test_img = preprocess_image_test(test_img, '')
-test_img = tf.image.resize(test_img, [286, 286], method=tf.image.ResizeMethod.NEAREST_NEIGHBOR)
-test_img = tf.image.random_crop(test_img, size=[1, IMG_HEIGHT, IMG_WIDTH, 3])
-
 def generate_images(model, test_input):
   prediction = model(test_input)
     
@@ -91,5 +77,18 @@ def generate_images(model, test_input):
     plt.imshow(display_list[i] * 0.5 + 0.5)
     plt.axis('off')
   plt.show()
+
+test_img = tf.keras.preprocessing.image.load_img('test/famous_painting/gan/test_img.jpg')
+
+test_img = tf.keras.preprocessing.image.img_to_array(
+    test_img, data_format=None, dtype=None
+)
+
+test_img.shape = tf.expand_dims(test_img, axis=0).shape.as_list()
+
+test_img = tf.convert_to_tensor(test_img)
+test_img = preprocess_image_test(test_img, '')
+test_img = tf.image.resize(test_img, [286, 286], method=tf.image.ResizeMethod.NEAREST_NEIGHBOR)
+test_img = tf.image.random_crop(test_img, size=[1, IMG_HEIGHT, IMG_WIDTH, 3])
   
 generate_images(generator_g, test_img)
