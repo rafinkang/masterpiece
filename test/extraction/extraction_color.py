@@ -10,18 +10,18 @@ db = DbConn()
 images_dir = 'test\crawling\images'
 folder_list = os.listdir(images_dir)
 
-result_list = []
-
 for folder in folder_list:
     folder_dir = images_dir+'/'+folder
     file_list = os.listdir(folder_dir)
     
+    result_list = []
+    
     for filename in file_list:
         file_dir = images_dir+'/'+folder+'/'+filename
-
         image = Spuit(file_dir)
         hsv = image.get_hsv360()
         hsv_list = []
+        
         for i in hsv:
             hsv_list.append(i[0]) 
             hsv_list.append(i[1]) 
@@ -30,10 +30,16 @@ for folder in folder_list:
         hsv_list.append(folder)
         hsv_list.append(filename)
         result_list.append(hsv_list)
-        
         del image
 
-        
-sql = "insert into croll_color(h1,s1,v1,h2,s2,v2,h3,s3,v3,h4,s4,v4,color,filename) values(%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%s,%s)"
+    sql = "insert into croll_color(h1,s1,v1,h2,s2,v2,h3,s3,v3,h4,s4,v4,status,filename) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
 
-db.executemany(sql, result_list)
+    print(db.executemany(sql, result_list))
+    print('============================================================')
+    print(folder, ' 작업 완료==========================================')
+    print('============================================================')
+
+
+print('============================================================')
+print('==========전체 작업 완료=====================================')
+print('============================================================')
