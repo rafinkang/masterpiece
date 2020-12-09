@@ -9,28 +9,36 @@ db = DbConn()
 
 images_dir = 'test\crawling\images'
 folder_list = os.listdir(images_dir)
+# folder_list = ['blue', 'green', 'indigo', 'orange', 'purple', 'red', 'yellow']
+# folder_list = ['green', 'indigo', 'orange', 'purple', 'red', 'yellow']
 
 for folder in folder_list:
     folder_dir = images_dir+'/'+folder
     file_list = os.listdir(folder_dir)
+    length = len(file_list)
     
     result_list = []
-    
+    cnt = 0
     for filename in file_list:
-        file_dir = images_dir+'/'+folder+'/'+filename
-        image = Spuit(file_dir)
-        hsv = image.get_hsv360()
-        hsv_list = []
-        
-        for i in hsv:
-            hsv_list.append(i[0]) 
-            hsv_list.append(i[1]) 
-            hsv_list.append(i[2]) 
-        
-        hsv_list.append(folder)
-        hsv_list.append(filename)
-        result_list.append(hsv_list)
-        del image
+        cnt += 1
+        print(folder, cnt, '/', length, filename)
+        try:
+            file_dir = images_dir+'/'+folder+'/'+filename
+            image = Spuit(file_dir)
+            hsv = image.get_hsv360()
+            hsv_list = []
+            
+            for i in hsv:
+                hsv_list.append(i[0]) 
+                hsv_list.append(i[1]) 
+                hsv_list.append(i[2]) 
+            
+            hsv_list.append(folder)
+            hsv_list.append(filename)
+            result_list.append(hsv_list)
+            del image
+        except:
+            print('에러남 에러남 에러남')
 
     sql = "insert into croll_color(h1,s1,v1,h2,s2,v2,h3,s3,v3,h4,s4,v4,status,filename) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
 
