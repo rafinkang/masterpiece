@@ -98,13 +98,13 @@ class DbConn:
             conn.close()
             
             
-if __name__ == "__main__":
-    db = DbConn()
-    sql = 'select * from croll_color'
-    print(db.select(sql))
+# if __name__ == "__main__":
+#     db = DbConn()
+#     sql = 'select * from croll_color'
+#     print(db.select(sql))
     
-    # sql = "insert into croll_color(h1,s1,v1,h2,s2,v2,h3,s3,v3,h4,s4,v4,color,filename) values(2,2,2,2,2,2,3,3,3,4,4,4,'color','test.test')"
+#     # sql = "insert into croll_color(h1,s1,v1,h2,s2,v2,h3,s3,v3,h4,s4,v4,color,filename) values(2,2,2,2,2,2,3,3,3,4,4,4,'color','test.test')"
     
-    sql = "insert into test(test, test2, test3) values(%s, %s, %s);"
-    data = [['1','1','1'], ['2','2','2'], ['3','3','3']]
-    print(db.executemany(sql, data))
+#     sql = "insert into test(test, test2, test3) values(%s, %s, %s);"
+#     data = [['1','1','1'], ['2','2','2'], ['3','3','3']]
+#     print(db.executemany(sql, data))
