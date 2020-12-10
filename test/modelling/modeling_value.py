@@ -4,6 +4,8 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 import pandas as pd
 import numpy as np 
 from  classes.DbConn import DbConn
+import joblib  # 모델 저장 
+from sklearn import metrics
 
 import matplotlib.pyplot as plt 
 
@@ -56,6 +58,7 @@ print(conf_matrix)
 report= classification_report(value_y_test,value_y_pred)
 print(report)
 
+print('value(hight, low) 정확도 :', metrics.accuracy_score(value_y_test, value_y_pred))
 
 #모델 개선 
 # errors = []
@@ -72,3 +75,15 @@ print(report)
 # plt.xlabel('k-value')
 # plt.ylabel('mean error')
 # plt.show()
+
+
+
+# 모델 저장
+joblib.dump(value_knn, "test/modelling/model/value_knn.joblib")
+
+
+# 모델 로드
+loaded_value_knn = joblib.load("test/modelling/model/value_knn.joblib")
+
+load_value_pred = loaded_value_knn.predict(value_X_test)
+print('value(hight, low) 정확도 :', metrics.accuracy_score(value_y_test, value_y_pred))
