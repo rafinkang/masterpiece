@@ -56,10 +56,10 @@ for dir_name in dir_names:
     print('db insert len : ' + str(len(img_info_list)))
 
     if dir_name in ('contrasting', 'pastel') :
-        sql = "insert into croll_cp(h1,s1,v1,h2,s2,v2,h3,s3,v3,h4,s4,v4,status,filename) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        sql = "insert into crawl_cp(h1,s1,v1,h2,s2,v2,h3,s3,v3,h4,s4,v4,status,filename) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
         db.executemany(sql, hsv_list)
     else:
-        sql = "insert into croll_cw(h1,s1,v1,h2,s2,v2,h3,s3,v3,h4,s4,v4,status,filename) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        sql = "insert into crawl_cw(h1,s1,v1,h2,s2,v2,h3,s3,v3,h4,s4,v4,status,filename) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
         db.executemany(sql, hsv_list)
 
     hsv_list = []

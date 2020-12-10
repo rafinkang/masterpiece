@@ -12,9 +12,9 @@ from sklearn import metrics
 if __name__ == '__main__':
 
     db = DbConn()
-    sql_cp = 'select h1, s1, v1, h2, s2, v2, h3, s3, v3, h4, s4, v4, status from croll_cp'
+    sql_cp = 'select h1, s1, v1, h2, s2, v2, h3, s3, v3, h4, s4, v4, status from crawl_cp'
     cp_list = list(db.select(sql_cp))
-    sql_cw = 'select h1, s1, v1, h2, s2, v2, h3, s3, v3, h4, s4, v4, status from croll_cw'
+    sql_cw = 'select h1, s1, v1, h2, s2, v2, h3, s3, v3, h4, s4, v4, status from crawl_cw'
     cw_list = list(db.select(sql_cw))
 
     cp_dp = pd.DataFrame(list(cp_list), columns=['h1','s1','v1','h2','s2','v2','h3','s3','v3','h4','s4','v4','status'])
