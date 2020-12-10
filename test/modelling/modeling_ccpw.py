@@ -2,6 +2,7 @@ import os, sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 
 import pandas as pd
+import joblib
 
 from  classes.DbConn import DbConn
 from sklearn.model_selection import train_test_split
@@ -42,3 +43,16 @@ if __name__ == '__main__':
     # 정확도 확인
     print('CP(contrasting, pastel) 정확도 :', metrics.accuracy_score(cp_y_test, cp_y_pred))
     print('CW(cool, warm) 정확도 :', metrics.accuracy_score(cw_y_test, cw_y_pred))
+
+    # 모델 저장
+    joblib.dump(cp_forest, "test/modelling/model/cp_forest.joblib")
+    joblib.dump(cw_forest, "test/modelling/model/cw_forest.joblib")
+
+    # 모델 로드
+    loaded_cp_rf = joblib.load("test/modelling/model/cp_forest.joblib")
+    loaded_cw_rf = joblib.load("test/modelling/model/cw_forest.joblib")
+
+    load_cp_pred = loaded_cp_rf.predict(cp_X_test)
+    load_cw_pred = loaded_cw_rf.predict(cw_X_test)
+    print('LOAD CP(contrasting, pastel) 정확도 :', metrics.accuracy_score(cp_y_test, load_cp_pred))
+    print('LOAD CW(cool, warm) 정확도 :', metrics.accuracy_score(cw_y_test, load_cw_pred))
