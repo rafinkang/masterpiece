@@ -10,8 +10,8 @@ from  classes.DbConn import DbConn
 if __name__ == '__main__':
 
     db = DbConn()
+    # sql = 'select h1, s1, v1, h2, s2, v2, h3, s3, v3, h4, s4, v4 from stack_img limit 119, 5783'
     sql = 'select h1, s1, v1, h2, s2, v2, h3, s3, v3, h4, s4, v4 from stack_img'
-    # sql = 'select h1, s1, v1, h2, s2, v2, h3, s3, v3, h4, s4, v4 from stack_img LIMIT 10'
     pallate_list = list(db.select(sql))
 
     pallate_dp = pd.DataFrame(list(pallate_list), columns=['h1','s1','v1','h2','s2','v2','h3','s3','v3','h4','s4','v4'])
@@ -40,10 +40,10 @@ if __name__ == '__main__':
     
     length = len(pallate_list)
     for i, pallate in enumerate(pallate_list):
-        hex1 = hsv_to_hex((pallate[0]/360,pallate[1]/100,pallate[2]/100))
-        hex2 = hsv_to_hex((pallate[3]/360,pallate[4]/100,pallate[5]/100))
-        hex3 = hsv_to_hex((pallate[6]/360,pallate[7]/100,pallate[8]/100))
-        hex4 = hsv_to_hex((pallate[9]/360,pallate[10]/100,pallate[11]/100))
+        hex1 = hsv_to_hex((pallate[0],pallate[1]/100,pallate[2]/100))
+        hex2 = hsv_to_hex((pallate[3],pallate[4]/100,pallate[5]/100))
+        hex3 = hsv_to_hex((pallate[6],pallate[7]/100,pallate[8]/100))
+        hex4 = hsv_to_hex((pallate[9],pallate[10]/100,pallate[11]/100))
         
         try:
             sql = """
