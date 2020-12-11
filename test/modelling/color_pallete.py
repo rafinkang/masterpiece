@@ -10,8 +10,8 @@ from  classes.DbConn import DbConn
 if __name__ == '__main__':
 
     db = DbConn()
-    # sql = 'select h1, s1, v1, h2, s2, v2, h3, s3, v3, h4, s4, v4 from stack_img'
-    sql = 'select h1, s1, v1, h2, s2, v2, h3, s3, v3, h4, s4, v4 from stack_img LIMIT 10'
+    sql = 'select h1, s1, v1, h2, s2, v2, h3, s3, v3, h4, s4, v4 from stack_img'
+    # sql = 'select h1, s1, v1, h2, s2, v2, h3, s3, v3, h4, s4, v4 from stack_img LIMIT 10'
     pallate_list = list(db.select(sql))
 
     pallate_dp = pd.DataFrame(list(pallate_list), columns=['h1','s1','v1','h2','s2','v2','h3','s3','v3','h4','s4','v4'])
