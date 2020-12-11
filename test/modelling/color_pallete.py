@@ -27,7 +27,7 @@ if __name__ == '__main__':
     # 시즌 모델 로드
     season_model = joblib.load("test/modelling/model/seasons_forest.joblib")
     # 명암 모델 로드
-    value_model = joblib.load("test/modelling/model/value_knn.joblib")
+    value_model = joblib.load("test/modelling/model/value_forest.joblib")
 
     # 모델 실행
     color_pred = color_model.predict(color_x)
