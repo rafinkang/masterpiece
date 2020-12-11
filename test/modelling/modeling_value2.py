@@ -29,8 +29,9 @@ if __name__ == '__main__':
 
 
     value_x = value_dp[['h1','s1','v1','h2','s2','v2','h3','s3','v3','h4','s4','v4']]
-    value_y = value_dp['status'] # contrasting, pastel
+    value_y = value_dp['status'] 
 
+   
     value_X_train, value_X_test, value_y_train, value_y_test = train_test_split(value_x, value_y, test_size=0.3, random_state=999)
 
 
@@ -40,12 +41,11 @@ if __name__ == '__main__':
     value_forest.fit(value_X_train, value_y_train)
 
     # 예측
-    # result : contrasting /  pastel /  cool /  warm
     value_y_pred = value_forest.predict(value_X_test)
-
+    # print(value_y_pred)
  
     # 정확도 확인
-    print('value(contrasting, pastel) 정확도 :', metrics.accuracy_score(value_y_test, value_y_pred))
+    print('value(high,low) 정확도 :', metrics.accuracy_score(value_y_test, value_y_pred))
 
 
     # 모델 저장
@@ -58,5 +58,5 @@ if __name__ == '__main__':
 
     load_value_pred = loaded_value_rf.predict(value_X_test)
 
-    print('LOAD value(contrasting, pastel) 정확도 :', metrics.accuracy_score(value_y_test, load_value_pred))
+    print('LOAD value(high, low) 정확도 :', metrics.accuracy_score(value_y_test, load_value_pred))
 

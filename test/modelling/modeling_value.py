@@ -25,6 +25,10 @@ value_dp = pd.DataFrame(list(value_list), columns=['h1','s1','v1','h2','s2','v2'
 value_x = value_dp[['h1','s1','v1','h2','s2','v2','h3','s3','v3','h4','s4','v4']]
 value_y = value_dp['status']
 
+
+
+
+
 value_X_train, value_X_test, value_y_train, value_y_test = train_test_split(value_x, value_y, test_size=0.3, random_state=999)
 # 거리 계산을 위한 표준화 작업 Z-score 
 
