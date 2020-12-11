@@ -32,7 +32,7 @@ def post_res(request):
 # DB select
 def select_res(request):
     db = DbConn()
-    sql = 'select * from test'
+    sql = 'select * from color_pallete limit 100'
     test_list = db.select(sql) # return type : dictionary
 
     return render(request, 'masterpiece/select_res.html', {'test_list': test_list})
