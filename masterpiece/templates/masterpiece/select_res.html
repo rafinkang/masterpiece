@@ -6,6 +6,22 @@
     <title>select_res</title>
 </head>
 <body>
-    {{test_list}}
+    <table>
+        <tr>
+            <td>test</td><td>test2</td><td>test3</td><td>기능</td>
+        </tr>
+        
+        {% for value in test_list %}
+        <tr>
+            <td>{{ value.test }}</td>
+            <td>{{ value.test2 }}</td>
+            <td>{{ value.test3 }}</td>
+            <td>
+                <a href="{% url 'update_res'  %}?data1={{value.test}}&data2=111&data3=111">수정(귀찮으니까 그냥 test2, test3 111로 일괄 수정)</a><br>
+                <a href="{% url 'delete_res'  %}?data1={{value.test}}&data2={{value.test2}}&data3={{value.test3}}">삭제</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
 </body>
 </html>

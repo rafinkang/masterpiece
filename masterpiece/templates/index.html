@@ -7,68 +7,46 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <!-- <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     <script src='main.js'></script> -->
-    <script src="https://unpkg.com/vue"></script>
 </head>
 <body>
     <div>HELLO DJANGO~~</div>
     <div>
         <h2>단순 이동</h1>
-        <a href="{% url 'normal_res' %}"> info </a><br>
-        페이지 단순 이동 (parameter x) : views.py 등록 -> urls.py등록<br>
+        <a href="{% url 'normal_res' %}"> info</a><br>
+        parameter 없음<br>
+        순서: views.py 등록 -> urls.py등록<br>
     </div>
-
+    <br/>
     <hr>
-
     <div>
-        <h2>GET 방식 이동</h1>
+        <h2>GET 방식</h1>
         <h4>1. form 이용</h4>
         <form action="/get_res", method="get">
             <input type="text" name="get_message1"/>
             <input type="text" name="get_message2"/>
             <input type="submit" value="GET방식"/>
         </form>
+        순서: views.py 등록 -> urls.py등록<br>
+        <br/>
         <h4>2. url 이용</h4>
-        <a href="{% url 'get_res'  %}?get_message1={{'ccc'}}&get_message2={{'ddd'}}"> info </a><br>
-        GET 방식 이동 : views.py 등록 -> urls.py등록<br>
+        <a href="{% url 'get_res'  %}?get_message1={{'ccc'}}&get_message2={{'ddd'}}"> info('ccc', 'ddd' parameter 생성) </a><br>
+        순서: views.py 등록 -> urls.py등록<br>
     </div>
-
+    <br/>
     <hr>
-    
     <div>
         <h2>POST 방식 이동</h1>
         <h4>form 이용</h4>
-        <a href="{% url 'post_res' %}">form 생성</a>
+        <a href="{% url 'post_res' %}">form 생성하기</a>
     </div>
-
     <hr>
-    
     <div>
         <h2>mysql</h1>
         <h4>select</h4>
-        <a href="{% url 'select_res' %}">select</a>
-    </div>
-
-    <hr>
-    <hr>
-
-    <div id="vue_test"> 
-        <h2>VUE 2</h1>
-        <p> [[ title ]] </p> 
-        <ul> 
-            <li v-for="day in days"> 
-                <h4> Day [[ day ]]</h4> 
-            </li> 
-        </ul> 
+        <a href="{% url 'select_res' %}">select</a><br/>
+        순서: views.py 등록 -> Dbconn생성
     </div>
 </body>
-<script> 
-    new Vue({ 
-        delimiters: ['[[', ']]'], 
-        el: '#vue_test', 
-        data: { 
-            title: 'Welcome to My Journal',
-            days: [1, 2, 3]
-        } 
-    })
+<script>
 </script>
 </html>

@@ -18,7 +18,7 @@ class DbConn:
                 result = curs.execute(sql, args)
                 
             if result:
-                return curs.fetchall()
+                return self.dictfetchall(curs) # dictionary로 return
             
         except Exception as e:
             return e    
@@ -72,3 +72,10 @@ class DbConn:
         finally:
             connection.commit()
             connection.close()
+
+    def dictfetchall(self, cursor):
+        desc = cursor.description
+        return [
+            dict(zip([col[0] for col in desc], row))
+            for row in cursor.fetchall()
+        ]
