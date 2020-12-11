@@ -12,7 +12,7 @@ from sklearn import metrics
 if __name__ == '__main__':
 
     db = DbConn()
-    sql = 'select h1, status from croll_color'
+    sql = 'select h1, status from crawl_color'
     color_list = list(db.select(sql))
 
     color_dp = pd.DataFrame(list(color_list), columns=['h1','status'])
@@ -45,16 +45,16 @@ if __name__ == '__main__':
 """
 color 분류
 
-UPDATE croll_color SET STATUS = 'red' WHERE h1 > 345 OR h1 <= 15;
-UPDATE croll_color SET STATUS = 'orange' WHERE h1 > 15 and h1 <= 45;
-UPDATE croll_color SET STATUS = 'yellow' WHERE h1 > 45 and h1 <= 75;
-UPDATE croll_color SET STATUS = 'chartreuse green' WHERE h1 > 75 and h1 <= 105;
-UPDATE croll_color SET STATUS = 'green' WHERE h1 > 105 and h1 <= 135;
-UPDATE croll_color SET STATUS = 'spring green' WHERE h1 > 135 and h1 <= 165;
-UPDATE croll_color SET STATUS = 'cyan' WHERE h1 > 165 and h1 <= 195;
-UPDATE croll_color SET STATUS = 'azure' WHERE h1 > 195 and h1 <= 225;
-UPDATE croll_color SET STATUS = 'blue' WHERE h1 > 225 and h1 <= 255;
-UPDATE croll_color SET STATUS = 'violet' WHERE h1 > 255 and h1 <= 285;
-UPDATE croll_color SET STATUS = 'magenta' WHERE h1 > 285 and h1 <= 315;
-UPDATE croll_color SET STATUS = 'rose' WHERE h1 > 315 and h1 <= 345;
+UPDATE crawl_color SET STATUS = 'red' WHERE h1 > 345 OR h1 <= 15;
+UPDATE crawl_color SET STATUS = 'orange' WHERE h1 > 15 and h1 <= 45;
+UPDATE crawl_color SET STATUS = 'yellow' WHERE h1 > 45 and h1 <= 75;
+UPDATE crawl_color SET STATUS = 'chartreuse green' WHERE h1 > 75 and h1 <= 105;
+UPDATE crawl_color SET STATUS = 'green' WHERE h1 > 105 and h1 <= 135;
+UPDATE crawl_color SET STATUS = 'spring green' WHERE h1 > 135 and h1 <= 165;
+UPDATE crawl_color SET STATUS = 'cyan' WHERE h1 > 165 and h1 <= 195;
+UPDATE crawl_color SET STATUS = 'azure' WHERE h1 > 195 and h1 <= 225;
+UPDATE crawl_color SET STATUS = 'blue' WHERE h1 > 225 and h1 <= 255;
+UPDATE crawl_color SET STATUS = 'violet' WHERE h1 > 255 and h1 <= 285;
+UPDATE crawl_color SET STATUS = 'magenta' WHERE h1 > 285 and h1 <= 315;
+UPDATE crawl_color SET STATUS = 'rose' WHERE h1 > 315 and h1 <= 345;
 """

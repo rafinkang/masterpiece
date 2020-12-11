@@ -38,8 +38,8 @@ def get_images(folder_name, keyword, range_num):
 
     # 저장 디렉토리 생성
     print("폴더 생성")
-    if not os.path.isdir("./test/crolling/images/{}".format(folder_name)):
-        os.makedirs("./test/crolling/images/{}".format(folder_name))
+    if not os.path.isdir("./test/crawling/images/{}".format(folder_name)):
+        os.makedirs("./test/crawling/images/{}".format(folder_name))
 
     # 다운로드
     print("다운로드 시작")
@@ -52,7 +52,7 @@ def get_images(folder_name, keyword, range_num):
         filename = link[start+1:]
 
         # 저장위치, 파일명까지
-        urlretrieve(link, './test/crolling/images/{}/{}'.format(folder_name, filename))
+        urlretrieve(link, './test/crawling/images/{}/{}'.format(folder_name, filename))
 
 
 if __name__ == "__main__":

@@ -38,7 +38,7 @@ for folder in folder_list:
         except:
             print("Error!!!!!!!!!!!!!!!!!!!!!!")
 
-    sql = "insert into croll_seasons(h1,s1,v1,h2,s2,v2,h3,s3,v3,h4,s4,v4,status,filename) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+    sql = "insert into crawl_seasons(h1,s1,v1,h2,s2,v2,h3,s3,v3,h4,s4,v4,status,filename) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
 
     print(db.executemany(sql, result_list))
     print('============================================================')
