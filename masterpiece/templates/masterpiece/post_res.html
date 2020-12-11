@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POST_info</title>
+</head>
+<body>
+    message1 : {{ post_message1 }}<br>
+    message2 : {{ post_message2 }}<br>
+    message3 : {{ post_message3 }}<br>
+
+    <a href="{% url 'delete_res'  %}?post_message1={{post_message1}}&post_message2={{'post_message2'}}&post_message3={{'post_message3'}}"> 삭제 </a><br>
+</body>
+</html>
