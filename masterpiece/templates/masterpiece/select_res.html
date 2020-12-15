@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>select_res</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>idx</td><td>color</td><td>cp</td><td>cw</td><td>season</td><td>value</td><td>작성자</td><td>hex1</td><td>hex2</td><td>hex3</td><td>hex4</td>
+            {% comment %} <td>삭제</td> {% endcomment %}
+        </tr>
+        
+        {% for value in test_list %}
+        <tr>
+            {% comment %} <td>{{ value.test }}</td>
+            <td>{{ value.test2 }}</td>
+            <td>{{ value.test3 }}</td>
+            <td>
+                <a href="{% url 'update_res'  %}?data1={{value.test}}&data2=111&data3=111">수정(귀찮으니까 그냥 test2, test3 111로 일괄 수정)</a><br>
+                <a href="{% url 'delete_res'  %}?data1={{value.test}}&data2={{value.test2}}&data3={{value.test3}}">삭제</a>
+            </td> {% endcomment %}
+            <td>{{value.idx}}</td>
+            <td>{{value.color}}</td>
+            <td>{{value.cp}}</td>
+            <td>{{value.cw}}</td>
+            <td>{{value.season}}</td>
+            <td>{{value.value}}</td>
+            <td>{{value.made}}</td>
+            <td><div style="background-color: {{ value.hex1 }}; width: 100px; height: 50px;">{{ value.hex1 }}</div></td>
+            <td><div style="background-color: {{ value.hex2 }}; width: 100px; height: 50px;">{{ value.hex2 }}</div></td>
+            <td><div style="background-color: {{ value.hex3 }}; width: 100px; height: 50px;">{{ value.hex3 }}</div></td>
+            <td><div style="background-color: {{ value.hex4 }}; width: 100px; height: 50px;">{{ value.hex4 }}</div></td>
+            {% comment %} <td>
+                <a href="{% url 'delete_res'  %}?idx={{value.idx}}">삭제</a>
+            </td> {% endcomment %}
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
