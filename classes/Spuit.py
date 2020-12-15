@@ -53,7 +53,7 @@ class Spuit:
         startX = 0
 
         hist_zip = list(zip(hist, centroids))
-        hist_zip.sort(reverse=True)
+        hist_zip.sort(reverse=True, key=lambda x: x[0])
         # loop over the percentage of each cluster and the color of
         # each cluster
         for (percent, color) in hist_zip:
