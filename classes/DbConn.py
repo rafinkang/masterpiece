@@ -49,6 +49,31 @@ class DbConn:
             conn.commit()
             conn.close()
             
+    def selectdict(self, sql, args=None):
+        """
+        단일 행 select 실행 return dictionary
+        ex) data = (1, 'test') 
+        execute(sql, data)
+        """
+        conn = pymysql.connect(
+            host=self.host, user=self.user, password=self.password, db=self.db, charset=self.charset)
+        try:
+            curs = conn.cursor()
+            if args == None:
+                result = curs.execute(sql)
+            else:
+                result = curs.execute(sql, args)
+                
+            if result:
+                return self.dictfetchall(curs)
+            
+        except Exception as e:
+            return e    
+        
+        finally:
+            conn.commit()
+            conn.close()
+            
     def execute(self, sql, args=None):
         """
         단일 행 실행 
@@ -96,6 +121,13 @@ class DbConn:
         finally:
             conn.commit()
             conn.close()
+            
+    def dictfetchall(self, cursor):
+        desc = cursor.description
+        return [
+            dict(zip([col[0] for col in desc], row))
+            for row in cursor.fetchall()
+        ]
             
             
 # if __name__ == "__main__":
