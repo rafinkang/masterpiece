@@ -30,7 +30,10 @@ if __name__ == '__main__':
         cnt = cnt + 1
 
         for i in hsv:
-            img_info_list.append(i[0])
+            if i[0] == 360 :
+                img_info_list.append(0)
+            else:
+                img_info_list.append(i[0])
             img_info_list.append(i[1])
             img_info_list.append(i[2])
 
@@ -95,9 +98,9 @@ if __name__ == '__main__':
                 pallate[6],pallate[7],pallate[8],
                 pallate[9],pallate[10],pallate[11],
                 color_pred[i],cp_pred[i],cw_pred[i],season_pred[i],value_pred[i],
-                hex1, hex2, hex3, hex4,made_name,
+                hex1, hex2, hex3, hex4, made_name,
                 color_pred[i],cp_pred[i],cw_pred[i],season_pred[i],value_pred[i],
-                hex1, hex2, hex3, hex4,made_name
+                hex1, hex2, hex3, hex4, made_name
                 )
             # print(sql)
             result = db.execute(sql)
