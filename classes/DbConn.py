@@ -49,6 +49,31 @@ class DbConn:
             conn.commit()
             conn.close()
             
+    def selectdict(self, sql, args=None):
+        """
+        단일 행 select 실행 return dictionary
+        ex) data = (1, 'test') 
+        execute(sql, data)
+        """
+        conn = pymysql.connect(
+            host=self.host, user=self.user, password=self.password, db=self.db, charset=self.charset)
+        try:
+            curs = conn.cursor()
+            if args == None:
+                result = curs.execute(sql)
+            else:
+                result = curs.execute(sql, args)
+                
+            if result:
+                return self.dictfetchall(curs)
+            
+        except Exception as e:
+            return e    
+        
+        finally:
+            conn.commit()
+            conn.close()
+            
     def execute(self, sql, args=None):
         """
         단일 행 실행 
@@ -97,13 +122,20 @@ class DbConn:
             conn.commit()
             conn.close()
             
+    def dictfetchall(self, cursor):
+        desc = cursor.description
+        return [
+            dict(zip([col[0] for col in desc], row))
+            for row in cursor.fetchall()
+        ]
+            
             
 # if __name__ == "__main__":
 #     db = DbConn()
-#     sql = 'select * from croll_color'
+#     sql = 'select * from crawl_color'
 #     print(db.select(sql))
     
-#     # sql = "insert into croll_color(h1,s1,v1,h2,s2,v2,h3,s3,v3,h4,s4,v4,color,filename) values(2,2,2,2,2,2,3,3,3,4,4,4,'color','test.test')"
+#     # sql = "insert into crawl_color(h1,s1,v1,h2,s2,v2,h3,s3,v3,h4,s4,v4,color,filename) values(2,2,2,2,2,2,3,3,3,4,4,4,'color','test.test')"
     
 #     sql = "insert into test(test, test2, test3) values(%s, %s, %s);"
 #     data = [['1','1','1'], ['2','2','2'], ['3','3','3']]

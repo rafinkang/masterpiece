@@ -49,7 +49,7 @@ for folder in folder_list:
             
         
   
-    sql = "insert into croll_value(h1,s1,v1,h2,s2,v2,h3,s3,v3,h4,s4,v4,status,filename) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+    sql = "insert into crawl_value(h1,s1,v1,h2,s2,v2,h3,s3,v3,h4,s4,v4,status,filename) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
 
     print(db.executemany(sql, result_list))
     print('============================================================')

@@ -1,3 +1,13 @@
+'''
+비비드, 파스텔, 웜톤, 쿨톤 make and load model
+
+비비드 : contrasting
+파스텔 : pastel
+웜톤 : cool
+쿨톤 : warm
+
+'''
+
 import os, sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 
@@ -21,10 +31,10 @@ if __name__ == '__main__':
     cw_dp = pd.DataFrame(list(cw_list), columns=['h1','s1','v1','h2','s2','v2','h3','s3','v3','h4','s4','v4','status'])
 
     cp_x = cp_dp[['h1','s1','v1','h2','s2','v2','h3','s3','v3','h4','s4','v4']]
-    cp_y = cp_dp['status']
+    cp_y = cp_dp['status'] # contrasting, pastel
 
     cw_x = cw_dp[['h1','s1','v1','h2','s2','v2','h3','s3','v3','h4','s4','v4']]
-    cw_y = cw_dp['status']
+    cw_y = cw_dp['status'] #  cool, warm
 
     cp_X_train, cp_X_test, cp_y_train, cp_y_test = train_test_split(cp_x, cp_y, test_size=0.3, random_state=999)
     cw_X_train, cw_X_test, cw_y_train, cw_y_test = train_test_split(cw_x, cw_y, test_size=0.3, random_state=999)
@@ -37,6 +47,7 @@ if __name__ == '__main__':
     cw_forest.fit(cw_X_train, cw_y_train)
  
     # 예측
+    # result : contrasting /  pastel /  cool /  warm
     cp_y_pred = cp_forest.predict(cp_X_test)
     cw_y_pred = cw_forest.predict(cw_X_test)
  

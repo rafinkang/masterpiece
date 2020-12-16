@@ -37,6 +37,7 @@ class CycleganLoadWeight:
       
     plt.figure(figsize=(12, 12))
 
+    # TO-DO
     # 이미지 저장? 보여주기?
     display_list = [test_input[0], prediction[0]]
     title = ['Input Image', 'Predicted Image']

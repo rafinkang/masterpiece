@@ -43,7 +43,7 @@ def post_res(request):
 # DB select
 def select_res(request):
     db = DbConn()
-    sql = 'select * from color_pallete limit 200'
+    sql = 'select * from color_pallete'
     test_list = db.select(sql) # return type : dictionary
 
     return render(request, 'example/select_res.html', {'test_list': test_list})
@@ -67,8 +67,8 @@ def delete_res(request): # 원래 GET으로 하면 안됨, POST로 바꿔야함
     del_dict = request.GET.dict()
     db = DbConn()
     
-    sql = 'delete from test where test = %s and test2 = %s and test3 = %s'
-    data = [del_dict['data1'], del_dict['data2'], del_dict['data3']]
+    sql = 'delete from color_pallete where idx = %s'
+    data = [del_dict['idx']]
 
     db.execute(sql, data)
 
