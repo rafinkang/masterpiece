@@ -5,16 +5,27 @@ from masterpiece.example_class.DbConn import *
 
 # Create your views here.
 
+# 메인 페이지 이동
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'main.html')
+
+def ch_style(request):
+    return render(request, 'function/ch_style.html')
+
+
+######################################## example ########################################
+
+# 예제 페이지 이동
+def example_index(request):
+    return render(request, 'example/example_index.html')
 
 # 단순 페이지 이동
 def normal_res(request):
-    return render(request, 'masterpiece/normal_res.html')
+    return render(request, 'example/normal_res.html')
 
 # GET방식
 def get_res(request):
-    return  render(request, 'masterpiece/get_res.html', context=request.GET.dict()) # context=request.GET.dict() : reqeust의 get으로 받은 parameter를 dictionary형태로 넘김
+    return  render(request, 'example/get_res.html', context=request.GET.dict()) # context=request.GET.dict() : reqeust의 get으로 받은 parameter를 dictionary형태로 넘김
 
 # POST방식
 def post_res(request):
@@ -23,11 +34,11 @@ def post_res(request):
 
         if form.is_valid(): # 유효성 검사
             form.save(request.POST.dict()) # DB저장 (insert)
-        return render(request, 'masterpiece/post_res.html', context=request.POST.dict()) # 결과화면으로 이동
+        return render(request, 'example/post_res.html', context=request.POST.dict()) # 결과화면으로 이동
     else: # form 생성하기, create_post_frm.html에서 submit할 때 해당 post_res function을 다시 call
         form = post_frm()
     
-    return render(request, 'masterpiece/create_post_frm.html', {'form': form})
+    return render(request, 'example/create_post_frm.html', {'form': form})
 
 # DB select
 def select_res(request):
@@ -35,7 +46,7 @@ def select_res(request):
     sql = 'select * from color_pallete limit 200'
     test_list = db.select(sql) # return type : dictionary
 
-    return render(request, 'masterpiece/select_res.html', {'test_list': test_list})
+    return render(request, 'example/select_res.html', {'test_list': test_list})
 
 # DB update
 def update_res(request): # 원래 GET으로 하면 안됨, POST로 바꿔야함
