@@ -9,8 +9,7 @@ from masterpiece.example_class.DbConn import *
 def index(request):
     return render(request, 'main.html')
 
-def ch_style(request):
-    return render(request, 'function/ch_style.html')
+
 
 
 ######################################## example ########################################

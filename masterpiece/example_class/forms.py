@@ -1,10 +1,10 @@
 from django.forms import ModelForm
-from masterpiece.models import test_frm
+from masterpiece.models.Test import Test
 from masterpiece.example_class.DbConn import *
 
 class post_frm(ModelForm):
     class Meta:
-        model = test_frm
+        model = Test
         fields = ['post_message1', 'post_message2', 'post_message3'] # form field 정의
 
     # form 내용 저장
