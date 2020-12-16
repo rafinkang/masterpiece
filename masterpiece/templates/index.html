@@ -40,7 +40,7 @@
 </head>
 
 <body>
-  {% if request.path != '/' %}
+  {% if request.path != '/' and request.path != '/main/' %}
     {% include 'frame/header.html' %}
   {% endif %}
 
