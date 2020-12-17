@@ -1,13 +1,6 @@
 {% extends 'index.html' %}
-
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>로그인 페이지 </title>
-
+<section id="user_login">
 
 <script>
     function go_res(x){
@@ -22,9 +15,12 @@
         x.form.method="post"; 
         x.form.submit();
 
+    }
 
-</head>
-<body>
+
+
+</script>
+
     <div class="main"> 
         <div class="body">
         <form action="" method="POST">
@@ -46,7 +42,6 @@
         </div>
         <br>
 
-
         <input type="submit" value="로그인"> <input type="button" value="회원가입" onclick="go_res(this)">
         <input type="button" value="비밀번호 찾기" onclick="go_findpw(this)">
 
@@ -54,7 +49,6 @@
     </div>
     </div>
 
-
-</body>
-</html>
+</section>
+{% endblock %}
 
