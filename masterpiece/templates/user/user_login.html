@@ -9,6 +9,14 @@
         x.form.method="post"; 
         x.form.submit();
     }
+    function go_findpw(x){
+        console.log("눌리는지 확인")
+        x.form.action="user_findpw.html"
+        x.form.method="post"; 
+        x.form.submit();
+
+    }
+
 
 
 </script>
@@ -35,7 +43,7 @@
         <br>
 
         <input type="submit" value="로그인"> <input type="button" value="회원가입" onclick="go_res(this)">
-        <input type="button" value="비밀번호 찾기" onclick="location.href='아직안만듬'">
+        <input type="button" value="비밀번호 찾기" onclick="go_findpw(this)">
 
     </form>
     </div>
