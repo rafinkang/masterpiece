@@ -1,6 +1,6 @@
-<!-- {% extends 'index.html' %}
-
-{% block content %} -->
+{% extends 'index.html' %}
+{% block content %}
+<section id="user_register">
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,8 +9,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입 화면</title>
 <script>
-    function check_form(x){
-        var 
+    function id_overlap_check(x){
+        var user_id = x.form[0].value;
+        console.log(user_id)
+        console.log("눌렸나 확인용")
+       
+        if 
+        (user_id ==''){
+            alert("아이디를 입력하세요");
+            x.form[0].focus();
+            return;
+        }
+        else if
+        (user_id.indexOf("@")==-1){
+            alert("이메일 형식으로 입력 바랍니다.");
+            x.form[0].value='';
+            x.form[0].focus();
+            return;
+        }
+        else if 
+        (user_id in "select user_id from user"){
+            alert("아이디가 중복 입니다.");
+            x.form[0].focus();
+            return;
+        }
+    <!-- db랑 연결하는 방법을 찾아야함 -->
+    
+
     }
 
     
@@ -19,15 +44,15 @@
 
 </head>
 <body>
-    <form name="registerform" action="" method="post" enctype="multipart/form-data">
-    <div class="fieldlabel"><label for="user_id">아이디(email 형식)</label></div>   
-    <div class="formfield"><input type="text" name="user_id" id="user_id"maxlength="20" value="" placeholder="이메일아이디 입력"></div>
+<form name="registerform" action="" method="post" enctype="multipart/form-data">
+    <div class="fieldlabel"><label for="user_id">아이디 입력</label></div>   
+    <div class="formfield"><input type="text" name="user_id" id="user_id" maxlength="20" value="" placeholder="이메일아이디 입력"></div>
 
     <div class="btnfield">
-        <input type="button" value="아이디 중복확인" onclick="id_overlap_Check()">
+        <input type="button" value="아이디 중복확인" onclick="id_overlap_check(this);">
     </div>
     
-    <div class="fieldlabel"><label for="user_pw">비밀번호</label></div>
+    <div class="fieldlabel"><label for="user_pw">비밀번호 입력</label></div>
     <div class="formfield">
         <input type="password" name="user_pw" id="user_pw" maxlength="20" autocomplete="off" placeholder="비밀번호 입력">
         </div>
@@ -77,9 +102,11 @@
         <input type="submit" value="회원가입">
     </div>
 
-    </form>
+</form>
 
 
 
 </body>
 </html>
+</section>
+{% endblock %}
