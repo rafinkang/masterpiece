@@ -3,14 +3,11 @@ from masterpiece.models import *
 from masterpiece.example_class.forms import post_frm
 from masterpiece.example_class.DbConn import *
 
-# 회원가입 
-from django.contrib.auth.models import User
-from django.contrib import auth
 # Create your views here.
 
 # 메인 페이지 이동
 def index(request):
-    return render(request, 'main.html')
+    return render(request, 'templates/main.html')
 
 def ch_style(request):
     return render(request, 'function/ch_style.html')
@@ -78,12 +75,4 @@ def delete_res(request): # 원래 GET으로 하면 안됨, POST로 바꿔야함
     return redirect('/select_res')
 
 
-# 아이디 중복확인 함수 
-
-
-def id_overlap_check(request):
-    user_id = request.GET.get('user_id')
-    try:
-        #중복 검사 실패
-        user = User
 

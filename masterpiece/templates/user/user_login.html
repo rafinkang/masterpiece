@@ -1,18 +1,18 @@
 {% extends 'index.html' %}
-
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>로그인 페이지 </title>
+<section id="user_login">
+
+<script>
+    function go_res(x){
+        console.log("눌리는지 확인")
+        x.form.action="user_register.html"
+        x.form.method="post"; 
+        x.form.submit();
+    }
 
 
+</script>
 
-
-</head>
-<body>
     <div class="main"> 
         <div class="body">
         <form action="" method="POST"></form>
@@ -34,14 +34,13 @@
         </div>
         <br>
 
-        <input type="submit" value="로그인"> <input type="button" value="회원가입" onclick="location.href='masterpiece\templates\user\user_register.html'">
+        <input type="submit" value="로그인"> <input type="button" value="회원가입" onclick="go_res(this)">
         <input type="button" value="비밀번호 찾기" onclick="location.href='아직안만듬'">
 
     </form>
     </div>
     </div>
 
-
-</body>
-</html>
+</section>
+{% endblock %}
 

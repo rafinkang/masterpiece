@@ -2,12 +2,7 @@
 {% block content %}
 <section id="user_register">
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회원가입 화면</title>
+
 <script>
     function id_overlap_check(x){
         var user_id = x.form[0].value;
@@ -33,17 +28,16 @@
             x.form[0].focus();
             return;
         }
+
+    <a href="{% url 'select_res' %}">select</a><br/>
     <!-- db랑 연결하는 방법을 찾아야함 -->
     
 
     }
-
-    
 </script>
 
 
-</head>
-<body>
+
 <form name="registerform" action="" method="post" enctype="multipart/form-data">
     <div class="fieldlabel"><label for="user_id">아이디 입력</label></div>   
     <div class="formfield"><input type="text" name="user_id" id="user_id" maxlength="20" value="" placeholder="이메일아이디 입력"></div>
@@ -105,8 +99,5 @@
 </form>
 
 
-
-</body>
-</html>
 </section>
 {% endblock %}
