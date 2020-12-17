@@ -2,7 +2,7 @@
 
 from django.contrib import admin
 from django.urls import path, include
-from .views import main, pallate, user, gallery
+from .views import main, pallate, user, gallery, color_dress
 
 urlpatterns = [
     path('', main.index, name='main'),
@@ -20,6 +20,9 @@ urlpatterns = [
     # gallery
     path('gallery/color_gallery/', gallery.color_gallery, name='color_gallery'),
     path('gallery/color_gallery_detail/', gallery.color_gallery_detail, name='color_gallery_detail'),
+
+    # color_dress
+    path('color_dress/color_dress/', color_dress.color_dress, name='color_dress'),
 
     ######################################## example ########################################
 
