@@ -9,10 +9,10 @@
         <nav class="nav-menu d-none d-lg-block">
         <ul>
             {% if request.path != '/' and request.path != '/main/' %}
-                <li {% if request.path == '/pallate/colorpick/'%} class="active" {% endif %}><a href="{% url 'colorpick' %}">색상뽑기</a></li>
+                <li {% if request.path == '/pallate/color_pick/'%} class="active" {% endif %}><a href="{% url 'color_pick' %}">색상뽑기</a></li>
                 <li><a href="{% url 'ch_style' %}">감성분석</a></li>
                 <li><a href="{% url 'ch_style' %}">색상입히기</a></li>
-                <li {% if request.path == '/pallate/ch-style/'%} class="active" {% endif %}><a href="{% url 'ch_style' %}">명화화</a></li>
+                <li {% if request.path == '/pallate/ch_style/'%} class="active" {% endif %}><a href="{% url 'ch_style' %}">명화화</a></li>
                 <li><a href="{% url 'ch_style' %}">색상</a></li>
                 <li><a href="{% url 'ch_style' %}">이미지</a></li>
             {% endif %}
