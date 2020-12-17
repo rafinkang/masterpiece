@@ -1,0 +1,70 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<section id="user_findpw">
+<script>
+    function find_pw(x){
+        var search_id = x.form[0].value;
+        var search_name = x.form[1].value;
+        console.log(search_id);
+        console.log(search_name);
+        console.log("눌렸나 확인용");
+
+        if (!(search_id in "select user_id from user")){
+            alert("아이디가 없습니다.");
+            x.form[0].focus();
+            return
+        }
+        else if (!(search_name in "select user_name from user")){
+            alert("이름이 없습니다.");
+            x.form[1].focus();
+            return
+        }
+
+        x.form.action="select password from user";
+        x.form.method="post";
+        x.form.submit();
+        
+
+    }
+
+
+
+
+
+</script>
+
+
+
+<h1>비밀번호 찾기</h1> <br>
+
+<div class="main"> 
+    <div class="body">
+    <form action="" method="POST">
+
+        <div class = "text">
+            아이디를 입력하세요 : 
+        </div>
+        <div class="c_box">
+            <input type="text" id ="search_id" name="search_id"><br>
+        </div>
+
+        <div class ="text">
+            이름을 입력하세요 :
+        </div>
+        <div class="c_box">
+            <input type="password" id="search_name" name="search_name">
+        </div>
+        <br>
+
+        <input type="button" value="비밀번호 찾기" onclick="find_pw(this)">
+        
+
+    </form>
+    </div>
+    </div>
+
+
+
+</section>
+{% endblock %}
