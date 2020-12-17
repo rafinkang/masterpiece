@@ -91,11 +91,11 @@ class ChangeColor:
         return output_img
 
 
-if __name__ == "__main__":
-    colorimg = "./test/images/4color.png"
-    inputimg = "./test/images/jordy.jpg"
+# if __name__ == "__main__":
+#     colorimg = "./test/images/4color.png"
+#     inputimg = "./test/images/jordy.jpg"
 
-    change_color = ChangeColor(colorimg, inputimg)
-    output = change_color.change(n_cluster = 4, get_plt = True)
+#     change_color = ChangeColor(colorimg, inputimg)
+#     output = change_color.change(n_cluster = 4, get_plt = True)
 
-    plt.imshow(output)
+#     plt.imshow(output)
