@@ -1,0 +1,21 @@
+/* common style */
+.pallate-container  {
+    margin-top: 10px;
+}
+
+.pallate {
+    height: 200px; 
+    background-color: blueviolet;
+}
+
+.pallate-container .content{
+    min-height: 600px;
+}
+
+#colorpick .content {
+    background-color: coral;
+}
+
+#ch-style .content {
+    background-color: cornflowerblue;
+}

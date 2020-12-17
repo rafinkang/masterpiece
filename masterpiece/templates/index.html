@@ -35,22 +35,20 @@
   <script src="{% static 'assets/vendor/venobox/venobox.min.js' %}"></script>
   <script src="{% static 'assets/vendor/owl.carousel/owl.carousel.min.js' %}"></script>
 
-  <!-- Template Main JS File -->
-  <script src="{% static 'assets/js/main.js' %}"></script>
-
   <!-- Custom CSS File -->
   <link href="{% static 'css/main_style.css' %}" rel="stylesheet">
+  <link href="{% static 'css/pallate_style.css' %}" rel="stylesheet">
 </head>
 
 <body>
-  {% comment %} {% if request.path != '/' and request.path != '/main/' %} {% endcomment %}
-    {% include 'frame/header.html' %}
-  {% comment %} {% endif %} {% endcomment %}
+
+  {% include 'frame/header.html' %}
 
   {% block content %} {% endblock %}
 
   {% include 'frame/footer.html' %}
   
 </body>
-
+<!-- Template Main JS File -->
+<script src="{% static 'assets/js/main.js' %}"></script>
 </html>
