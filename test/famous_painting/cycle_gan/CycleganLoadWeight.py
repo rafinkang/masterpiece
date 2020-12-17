@@ -68,7 +68,8 @@ class CycleganLoadWeight:
 
     self.__generate_images(self.generator_g, chn_style_img)
 
-# if __name__ == "__main__":  
-#     clw = CycleganLoadWeight()
-#     clw.change_style('test/famous_painting/cycle_gan/test_img.jpg')
+if __name__ == "__main__":  
+    clw = CycleganLoadWeight()
+    clw.change_style('test/famous_painting/cycle_gan/test_img7.png')
+    clw.change_style('test/famous_painting/cycle_gan/test_img8.png')
     
