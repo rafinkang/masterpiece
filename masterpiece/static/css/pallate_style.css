@@ -1,0 +1,11 @@
+.pallate {
+    position: fixed;
+    top: 65px;
+    right: 0;
+    width: 35%;
+    background-color: #d7ffff;
+    height: 93%;
+    z-index: -999;
+    border: 1px solid #000;
+    border-radius: 5px;
+}
