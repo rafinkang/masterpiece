@@ -43,9 +43,8 @@
 </head>
 
 <body>
-  {% comment %} {% if request.path != '/' and request.path != '/main/' %} {% endcomment %}
-    {% include 'frame/header.html' %}
-  {% comment %} {% endif %} {% endcomment %}
+
+  {% include 'frame/header.html' %}
 
   {% block content %} {% endblock %}
 
