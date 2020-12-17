@@ -3,10 +3,27 @@
     margin-top: 10px;
 }
 
+
+/* 상단 팔레트 영역 */
 .pallate {
     height: 200px; 
+    padding: 10px;
     background-color: blueviolet;
 }
+.pallate .origin_thumbnail {
+    height: 150px;
+    width: 150px;
+}
+
+
+
+
+
+
+
+
+
+/* 각자 컨텐츠 영역 */
 
 .pallate-container .content{
     min-height: 600px;
