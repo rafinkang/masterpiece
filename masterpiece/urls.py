@@ -16,9 +16,11 @@ urlpatterns = [
     path('pallate/', pallate.index, name='pallate'),
     path('pallate/colorpick/', pallate.colorpick, name='colorpick'),
     path('pallate/ch-style/', pallate.ch_style, name='ch_style'),
+    path('pallate/color_dress/', pallate.color_dress, name='color_dress'),
 
     # gallery
     path('gallery/color_gallery/', gallery.color_gallery, name='color_gallery'),
+    path('gallery/color_gallery_detail/', gallery.color_gallery_detail, name='color_gallery_detail'),
 
     ######################################## example ########################################
 
