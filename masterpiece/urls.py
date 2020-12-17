@@ -2,11 +2,14 @@
 
 from django.contrib import admin
 from django.urls import path, include
-from .views import main, pallate
+from .views import main, pallate, user
 
 urlpatterns = [
     path('', main.index, name='main'),
     path('main/', main.index, name='main'),
+
+    path('login/', user.login, name='login'),
+    path('register/', user.register, name='register'),
 
     
     # pallate 

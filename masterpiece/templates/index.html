@@ -37,12 +37,15 @@
 
   <!-- Template Main JS File -->
   <script src="{% static 'assets/js/main.js' %}"></script>
+
+  <!-- Custom CSS File -->
+  <link href="{% static 'css/main_style.css' %}" rel="stylesheet">
 </head>
 
 <body>
-  {% if request.path != '/' and request.path != '/main/' %}
+  {% comment %} {% if request.path != '/' and request.path != '/main/' %} {% endcomment %}
     {% include 'frame/header.html' %}
-  {% endif %}
+  {% comment %} {% endif %} {% endcomment %}
 
   {% block content %} {% endblock %}
 
