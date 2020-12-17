@@ -3,10 +3,20 @@
     margin-top: 10px;
 }
 
+
+/* 상단 팔레트 영역 */
 .pallate {
-    height: 200px; 
-    background-color: blueviolet;
+    height: 200px;
+    border: 5px dashed #93b3b7;
+    border-radius: 10px;
+    margin-bottom: 15px;
 }
+.pallate .origin_thumbnail {
+    height: 150px;
+    width: 150px;
+}
+
+/* 각자 컨텐츠 영역 */
 
 .pallate-container .content{
     min-height: 600px;
@@ -16,10 +26,6 @@
     background-color: coral;
 }
 
-#ch-style .content {
+/* #ch-style .content {
     background-color: cornflowerblue;
-}
-
-#color_dress .content {
-    background-color: rgb(235, 237, 100);
-}
+} */

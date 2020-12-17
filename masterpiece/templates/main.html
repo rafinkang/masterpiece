@@ -5,7 +5,7 @@
 <!-- ======= Hero Section ======= -->
 <section id="hero">
     <div class="hero-container">
-        <h3><strong>그림이나그리조</strong></h3>
+        <h3><strong>GRIM INA GRI JO</strong></h3>
         <h1>너의 그림을 명화화 하고 싶은가?</h1>
         <h2>그럼 해봐</h2>
     </div>
@@ -22,7 +22,7 @@
     <main id="main">
 
     <!-- ======= Services Section ======= -->
-    <section id="services" class="services">
+    {% comment %} <section id="services" class="services">
         <div class="container">
 
         <div class="section-title">
@@ -149,7 +149,7 @@
         </div>
 
         </div>
-    </section><!-- End Features Section -->
+    </section><!-- End Features Section --> {% endcomment %}
 
     <!-- ======= Portfolio Section ======= -->
     <section id="portfolio" class="portfolio">
@@ -157,17 +157,20 @@
 
         <div class="section-title">
             <h2>Portfolio</h2>
-            <h3>Check our <span>Portfolio</span></h3>
-            <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+            <h3>당신의 그림을 <span>변화시켜 보세요!</span></h3>
+            <p>
+                원하는 이미지에서 색상을 추출하고 변경하고 싶은 이미지에 입혀보세요.<br/>
+                원하는 이미지를 유명한 화가의 그림으로 바꿔보세요.
+            </p>
         </div>
 
         <div class="row">
             <div class="col-lg-12 d-flex justify-content-center">
             <ul id="portfolio-flters">
-                <li data-filter="*" class="filter-active">All</li>
-                <li data-filter=".filter-app">App</li>
-                <li data-filter=".filter-card">Card</li>
-                <li data-filter=".filter-web">Web</li>
+                <li data-filter="*" class="filter-active">전체</li>
+                <li data-filter=".filter-app">반고흐</li>
+                <li data-filter=".filter-card">모네</li>
+                <li data-filter=".filter-web">세잔</li>
             </ul>
             </div>
         </div>
@@ -275,8 +278,8 @@
 
         <div class="section-title">
             <h2>Team</h2>
-            <h3>Our Hardworking <span>Team</span></h3>
-            <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+            <h3>GRIM <span>INA</span> GRI <span>JO</span></h3>
+            <p>함께 만든 'GRIM INA GRI JO'의 팀원을 소개합니다.</p>
         </div>
 
         <div class="row">
@@ -284,7 +287,7 @@
             <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
             <div class="member">
                 <div class="member-img">
-                <img src="{% static 'assets/img/team/team-1.jpg' %}" class="img-fluid" alt="">
+                <img src="{% static 'image/GRIM_CANDY.png' %}" class="img-fluid" alt="">
                 <div class="social">
                     <a href=""><i class="icofont-twitter"></i></a>
                     <a href=""><i class="icofont-facebook"></i></a>
@@ -293,8 +296,9 @@
                 </div>
                 </div>
                 <div class="member-info">
-                <h4>Walter White</h4>
-                <span>Chief Executive Officer</span>
+                <h4>KANG TAE UK</h4>
+                <span>GRIM</span>
+                <span>조장</span>
                 </div>
             </div>
             </div>
@@ -302,7 +306,7 @@
             <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
             <div class="member">
                 <div class="member-img">
-                <img src="{% static 'assets/img/team/team-2.jpg' %}" class="img-fluid" alt="">
+                <img src="{% static 'image/INA_BREAD_H.png' %}" class="img-fluid" alt="">
                 <div class="social">
                     <a href=""><i class="icofont-twitter"></i></a>
                     <a href=""><i class="icofont-facebook"></i></a>
@@ -311,8 +315,9 @@
                 </div>
                 </div>
                 <div class="member-info">
-                <h4>Sarah Jhonson</h4>
-                <span>Product Manager</span>
+                <h4>PARK JI YEON</h4>
+                <span>INA</span>
+                <span>팀원</span>
                 </div>
             </div>
             </div>
@@ -320,7 +325,7 @@
             <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
             <div class="member">
                 <div class="member-img">
-                <img src="{% static 'assets/img/team/team-3.jpg' %}" class="img-fluid" alt="">
+                <img src="{% static 'image/GRI_B.png' %}" class="img-fluid" alt="">
                 <div class="social">
                     <a href=""><i class="icofont-twitter"></i></a>
                     <a href=""><i class="icofont-facebook"></i></a>
@@ -329,8 +334,9 @@
                 </div>
                 </div>
                 <div class="member-info">
-                <h4>William Anderson</h4>
-                <span>CTO</span>
+                <h4>KIM MIN SU</h4>
+                <span>GRI</span>
+                <span>팀원</span>
                 </div>
             </div>
             </div>
@@ -338,7 +344,7 @@
             <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
             <div class="member">
                 <div class="member-img">
-                <img src="{% static 'assets/img/team/team-4.jpg' %}" class="img-fluid" alt="">
+                <img src="{% static 'image/JO_SUL.png' %}" class="img-fluid" alt="">
                 <div class="social">
                     <a href=""><i class="icofont-twitter"></i></a>
                     <a href=""><i class="icofont-facebook"></i></a>
@@ -347,8 +353,9 @@
                 </div>
                 </div>
                 <div class="member-info">
-                <h4>Amanda Jepson</h4>
-                <span>Accountant</span>
+                <h4>KIM YEONG DON</h4>
+                <span>JO</span>
+                <span>팀원</span>
                 </div>
             </div>
             </div>
