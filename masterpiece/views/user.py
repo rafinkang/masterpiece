@@ -20,8 +20,9 @@ def idcheck(request):
     result = user.idcheck(req['user_id'])
     
     if result == None:
-        return HttpResponse("0")
-    else:
+        print(result,"참이다!!!!!!!")
         return HttpResponse("1")
-    
+    else:
+        print(result,"거짓이다!!!!!!!")
+        return HttpResponse("0")
     # return True or False

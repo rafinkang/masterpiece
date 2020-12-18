@@ -24,6 +24,6 @@ class User():
         return self.db.execute(sql)
     
     def idcheck(self, user_id):
-        sql = f"select * from user where user_id = {user_id}"
+        sql = f"select * from user where user_id = '{user_id}'"
         return self.db.select(sql)
 

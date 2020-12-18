@@ -3,7 +3,6 @@
 <section id="user_register">
 
     <form name="registerform" action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
         <h1>회원가입 하기 </h1> <br>
         <div class="fieldlabel"><label for="user_id">아이디 입력</label></div>
         <div class="formfield"><input type="text" name="user_id" id="user_id" maxlength="20" value=""
@@ -76,6 +75,9 @@
         $("#testbtn").click(function () {
             // 실행문
             var user_id = $("#user_id");
+            var user_pw = $("#user_pw");
+
+            console.log(user_pw);
             if (user_id.val() == "") {
                 alert("아이디를 입력하세요");
                 user_id.focus();
@@ -91,12 +93,13 @@
                 dataType: 'text',
                 success: function (data) {
                     console.log('탓타 시부레', data);
-                    if (data) {
+                    if (data != 0) {
                         alert("사용하실 수 있는 아이디 입니다.");
+                        user_pw.focus();
                     } else {
                         alert("사용중인 아이디 입니다.");
-                        user_id.val() = '';
                         user_id.focus();
+               
                     }
                 },
                 error: function (data) {
