@@ -22,4 +22,8 @@ class User():
         VALUES ('{user_id}', '{password}', '{user_name}', {sex}, STR_TO_DATE('{birth}', '%Y-%m-%d'), '{job}', '{company}')
         """
         return self.db.execute(sql)
+    
+    def idcheck(self, user_id):
+        sql = f"select * from user where user_id = {user_id}"
+        return self.db.select(sql)
 

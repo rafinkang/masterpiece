@@ -11,6 +11,7 @@ urlpatterns = [
 
     path('login', user.login, name='login'),
     path('register', user.register, name='register'),
+    path('register/idcheck', user.idcheck, name='register/idcheck'),
 
     
     # pallate 

@@ -2,101 +2,109 @@
 {% block content %}
 <section id="user_register">
 
+    <form name="registerform" action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h1>회원가입 하기 </h1> <br>
+        <div class="fieldlabel"><label for="user_id">아이디 입력</label></div>
+        <div class="formfield"><input type="text" name="user_id" id="user_id" maxlength="20" value=""
+                placeholder="이메일아이디 입력"></div>
 
-<script>
-    function id_overlap_check(x){
-        var user_id = x.form[0].value;
-        console.log(user_id)
-        console.log("눌렸나 확인용")
-       
-        if 
-        (user_id ==''){
-            alert("아이디를 입력하세요");
-            x.form[0].focus();
-            return;
-        }
-        else if
-        (user_id.indexOf("@")==-1){
-            alert("이메일 형식으로 입력 바랍니다.");
-            x.form[0].value='';
-            x.form[0].focus();
-            return;
-        }
-        else if 
-        (user_id in "select user_id from user"){
-            alert("아이디가 중복 입니다.");
-            x.form[0].focus();
-            return;
-        }
-
- 
-
-    }
-</script>
-
-
-
-<form name="registerform" action="" method="post" enctype="multipart/form-data">
-    <h1>회원가입 하기 </h1> <br>
-    <div class="fieldlabel"><label for="user_id">아이디 입력</label></div>   
-    <div class="formfield"><input type="text" name="user_id" id="user_id" maxlength="20" value="" placeholder="이메일아이디 입력"></div>
-
-    <div class="btnfield">
-        <input type="button" value="아이디 중복확인" onclick="id_overlap_check(this);">
-    </div>
-    
-    <div class="fieldlabel"><label for="user_pw">비밀번호 입력</label></div>
-    <div class="formfield">
-        <input type="password" name="user_pw" id="user_pw" maxlength="20" autocomplete="off" placeholder="비밀번호 입력">
+        <div class="btnfield">
+            <input type="button" value="아이디 중복확인" id="testbtn">
         </div>
-    <div class="fieldlabel"><label for="user_pw_check">비밀번호 확인</label></div>
-    <div class="formfield">
-        <input type="password" name="user_pw_check" id="user_pw_check" maxlength="20" autocomplete="off" placeholder="비밀번호 재입력">
+
+        <div class="fieldlabel"><label for="user_pw">비밀번호 입력</label></div>
+        <div class="formfield">
+            <input type="password" name="user_pw" id="user_pw" maxlength="20" autocomplete="off" placeholder="비밀번호 입력">
         </div>
-    
-    <div class="fieldlabel"><label for="user_name">이름</label></div>
-    <div class="formfield"><input type="text" id="user_name" name="user_name" maxlength="20" value="" placeholder="이름 입력"></div>
-    
-    <div class="fieldlabel"><label>성별</label></div>
-    <div class="formfield">
-        <input type="radio" name="sex" id="sex" value="남" alt="남" >남자
-        <input type="radio" name="sex" id="sex" value="여" alt="여" >여자
-        
-    </div>
+        <div class="fieldlabel"><label for="user_pw_check">비밀번호 확인</label></div>
+        <div class="formfield">
+            <input type="password" name="user_pw_check" id="user_pw_check" maxlength="20" autocomplete="off"
+                placeholder="비밀번호 재입력">
+        </div>
 
-    <div class="fieldlabel"><label>생년월일</label></div>
-    <div class="formfield">
-        <input type="date" name="birthday" id="birthday">
-    
+        <div class="fieldlabel"><label for="user_name">이름</label></div>
+        <div class="formfield"><input type="text" id="user_name" name="user_name" maxlength="20" value=""
+                placeholder="이름 입력"></div>
 
-    </div>
-    
-    <div class="fieldlabel"><label for="user_job">직업</label></div>
-    <div class="formfield">
-        <select name="user_job">
-            <option value="student">학생</option>
-            <option value="something">퍼블리셔</option>
-            <option value="developer">개발자</option>
-            <option value="publisher">퍼블리셔</option>
-            <option value="something">추가하자</option>
-            <option value="something">직업을</option>
-            <option value="something">무직</option>
-        </select>
+        <div class="fieldlabel"><label>성별</label></div>
+        <div class="formfield">
+            <input type="radio" name="sex" id="sex" value="남" alt="남">남자
+            <input type="radio" name="sex" id="sex" value="여" alt="여">여자
+
+        </div>
+
+        <div class="fieldlabel"><label>생년월일</label></div>
+        <div class="formfield">
+            <input type="date" name="birthday" id="birthday">
 
 
+        </div>
 
-    </div>
+        <div class="fieldlabel"><label for="user_job">직업</label></div>
+        <div class="formfield">
+            <select name="user_job">
+                <option value="student">학생</option>
+                <option value="something">퍼블리셔</option>
+                <option value="developer">개발자</option>
+                <option value="publisher">퍼블리셔</option>
+                <option value="something">추가하자</option>
+                <option value="something">직업을</option>
+                <option value="something">무직</option>
+            </select>
 
 
-    <div class="fieldlabel"><label for="user_company">회사</label></div>
-    <div class="formfield"><input type="text" id="user_company" name="user_company" maxlength="20" value=""></div><br>
 
-    <div class="btnfield">
-        <input type="submit" value="회원가입">
-    </div>
+        </div>
 
-</form>
+
+        <div class="fieldlabel"><label for="user_company">회사</label></div>
+        <div class="formfield"><input type="text" id="user_company" name="user_company" maxlength="20" value=""></div>
+        <br>
+
+        <div class="btnfield">
+            <input type="submit" value="회원가입">
+        </div>
+
+    </form>
 
 
 </section>
+
+<script>
+    $(document).ready(function () {
+        $("#testbtn").click(function () {
+            // 실행문
+            var user_id = $("#user_id");
+            if (user_id.val() == "") {
+                alert("아이디를 입력하세요");
+                user_id.focus();
+                return;
+            }
+
+            $.ajax({
+                url: "{% url 'register/idcheck' %}",
+                method: "post",
+                data: {
+                    'user_id': user_id.val(),
+                },
+                dataType: 'text',
+                success: function (data) {
+                    console.log('탓타 시부레', data);
+                    if (data) {
+                        alert("사용하실 수 있는 아이디 입니다.");
+                    } else {
+                        alert("사용중인 아이디 입니다.");
+                        user_id.val() = '';
+                        user_id.focus();
+                    }
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+        });
+    });
+</script>
+
 {% endblock %}
