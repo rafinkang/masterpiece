@@ -2,24 +2,8 @@
 {% block content %}
 <section id="user_login">
 
-<script>
-    function go_res(x){
-        console.log("눌리는지 확인")
-        x.form.action="user_register.html"
-        x.form.method="post"; 
-        x.form.submit();
-    }
-    function go_findpw(x){
-        console.log("눌리는지 확인")
-        x.form.action="user_findpw.html"
-        x.form.method="post"; 
-        x.form.submit();
+<div class="container container_user">
 
-    }
-
-
-
-</script>
 
     <div class="main"> 
         <div class="body">
@@ -48,6 +32,29 @@
     </form>
     </div>
     </div>
+    </div>
+
+
+<script>
+    function go_res(x){
+        console.log("눌리는지 확인")
+        x.form.action="user_register.html"
+        x.form.method="post"; 
+        x.form.submit();
+    }
+    function go_findpw(x){
+        console.log("눌리는지 확인")
+        x.form.action="user_findpw.html"
+        x.form.method="post"; 
+        x.form.submit();
+
+    }
+
+
+
+</script>
+
+
 
 </section>
 {% endblock %}
