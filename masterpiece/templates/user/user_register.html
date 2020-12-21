@@ -10,7 +10,7 @@
 
 
             <div class="fieldlabel"><label for="user_id" aria-describedby="inputSuccess2Status">아이디 입력</label></div>
-            <div class="formfield"><input type="email" name="user_id" id="user_id" maxlength="20" value="" placeholder="이메일아이디 입력"></div>
+            <div class="formfield"><input type="email" name="user_id" id="user_id" maxlength="45" value="" placeholder="이메일아이디 입력"></div>
 
             <div class="btnfield">
                 <input type="button" value="아이디 중복확인" id="testbtn">
@@ -37,11 +37,16 @@
 
             <div class="fieldlabel"><label>성별</label></div>
             <div class="formfield">
+<<<<<<< HEAD
 
                 <input type="radio" name="sex" id="sex_m" value="1" alt="1">남자
                 <input type="radio" name="sex" id="sex_w" value="2" alt="2">여자
 
 
+=======
+                <input type="radio" name="sex" id="sex_m" value="1" alt="1">남자
+                <input type="radio" name="sex" id="sex_w" value="2" alt="2">여자
+>>>>>>> 6fe3dfd3e5fa6fd9243ae3f76c7000614a62275f
             </div>
 
             <div class="fieldlabel"><label>생년월일</label></div>
@@ -71,10 +76,14 @@
             <br>
 
             <div class="btnfield">
+<<<<<<< HEAD
 
                 <button type="button" class="btn btn-primary btn-lg active" name="user_reg_submit" id="user_reg_submit">회원가입</button>
 
 
+=======
+                <input type="button" value="회원가입" id="registbtn">
+>>>>>>> 6fe3dfd3e5fa6fd9243ae3f76c7000614a62275f
             </div>
 
         </form>
@@ -139,7 +148,13 @@
 
             console.log('pw:', user_pw_value);
             console.log('pw_check', user_pw_check_value);
+<<<<<<< HEAD
 
+=======
+
+
+
+>>>>>>> 6fe3dfd3e5fa6fd9243ae3f76c7000614a62275f
             if (user_pw_value == user_pw_check_value) {
                 //console.log(user_pw_value);
                 //console.log(user_pw_check_value);
@@ -155,6 +170,7 @@
                 warning.text("비밀번호가 다릅니다."); // 빨강색으로 변경 
             };
         });
+<<<<<<< HEAD
 
 
 
@@ -245,6 +261,84 @@
         });
 
     });
+=======
+        
+        $("#registbtn").click(function () {
+            // 실행문
+            var user_id = $("#user_id").val();
+            var user_pw = $("#user_pw").val();
+            var user_pw_check = $("#user_pw_check").val();
+            var user_name = $("#user_name").val();
+            var sex = $('input[name="sex"]:checked').val();
+            var sex_check = $('input[name="sex"]:checked').is(':checked');
+            var birthday = $("#birthday").val();
+            var user_job = $("select[name='user_job']").val();
+            var user_company = $("#user_company").val();
+            var email_re = /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;
+            
+            console.log("user_id",user_id); 
+            console.log("user_pw",user_pw); 
+            console.log("user_pw_check",user_pw_check); 
+            console.log("user_name",user_name); 
+            console.log("sex",sex); 
+            console.log("sex_check",sex_check); 
+            console.log("birthday",birthday); 
+            console.log("user_job",user_job); 
+            console.log("user_company",user_company); 
+            
+            if (user_id == "") {
+                alert("아이디를 입력하세요");
+                return;
+            }else if (!email_re.test(user_id)) {
+                alert("이메일 형식으로 입력하세요");
+                return;
+            } else if (user_pw == "") {
+                alert("비밀번호를 입력하세요");
+                return;
+            }else if (user_pw != user_pw_check) {
+                alert("비밀번호를 확인하세요");
+                return;
+            }else if (user_name == "") {
+                alert("이름을 입력하세요");
+                return;
+            }else if (sex_check == false) {
+                alert("성별을 선택하세요");
+                return;
+            }else if (birthday == "") {
+                alert("생년월일을 선택하세요");
+                return;
+            }else {
+                $.ajax({
+                    url: "{% url 'register/insert_user' %}",
+                    method: "post",
+                    data: {
+                        'user_id': user_id,
+                        'password': user_pw,
+                        'user_name': user_name,
+                        'sex': sex,
+                        'birth': birthday,
+                        'job': user_job,
+                        'company': user_company,
+                        
+                    },
+                    dataType: 'text',
+                    success: function (data) {
+                        console.log('탓타 시부레', data);
+                        
+                    },
+                    error: function (data) {
+                        console.log(data);
+                    }
+                });
+            }
+        });
+        
+        
+    });
+    
+    
+    
+>>>>>>> 6fe3dfd3e5fa6fd9243ae3f76c7000614a62275f
 </script>
 
 {% endblock %}

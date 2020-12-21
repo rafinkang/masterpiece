@@ -41,4 +41,7 @@ def insert_user(request):
         print(result,"회원가입했다!!!!!!!")
         return HttpResponse("1")
     # return True or False
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6fe3dfd3e5fa6fd9243ae3f76c7000614a62275f
