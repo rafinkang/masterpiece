@@ -168,7 +168,6 @@
             var job = $('select[name="user_job"]').val();
             var company = $("#user_company").val();
             var user_id = $("#user_id");
-            var user_pw = $("#user_pw");
             var user_id_value = user_id.val()
             var email_re = /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;
             var user_pw = $("#user_pw");
@@ -220,12 +219,12 @@
                 method: "post",
                 data: {
                     'user_id': user_id,
-                    'password': user_pw,
+                    'password': user_pw_value,
                     'user_name': user_name,
                     'sex': sex,
                     'birth': birthday,
-                    'job': user_job,
-                    'company': user_company,
+                    'job': job,
+                    'company': company,
 
                 },
                 dataType: 'text',
