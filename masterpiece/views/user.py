@@ -26,3 +26,18 @@ def idcheck(request):
         print(result,"거짓이다!!!!!!!")
         return HttpResponse("0")
     # return True or False
+
+    
+# 회원가입, db입력
+def insert_user(request):
+    req = request.POST.dict()
+    user = User()
+    result = user.insert_user(req['user_id'],req['password'],req['user_name'],req['sex'],req['birth'],req['job'],req['company'] )
+
+    if result == None:
+        print(result,"회원가입 못했다!!!!!!!")
+        return HttpResponse("0")
+    else:
+        print(result,"회원가입했다!!!!!!!")
+        return HttpResponse("1")
+    # return True or False

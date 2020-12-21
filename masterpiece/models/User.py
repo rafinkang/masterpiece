@@ -26,4 +26,4 @@ class User():
     def idcheck(self, user_id):
         sql = f"select * from user where user_id = '{user_id}'"
         return self.db.select(sql)
-
+    

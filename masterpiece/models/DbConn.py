@@ -32,7 +32,7 @@ class DbConn:
         ex) data = (1, 'test') 
         execute(sql, data)
         """
-
+        print(sql)
         try:
             curs = connection.cursor()
             if args == None:
