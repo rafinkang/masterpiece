@@ -14,12 +14,13 @@
 }
 .pallate .origin_thumbnail {
     height: 150px;
-    width: 150px;
+    /* width: 150px; */
 }
 
 .pallate .final_thumbnail {
     height: 150px;
-    width: 150px;
+    /* width: 150px; */
+    float: right;
 }
 
 .pallate .pallate-list {
