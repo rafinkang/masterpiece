@@ -37,8 +37,11 @@
 
             <div class="fieldlabel"><label>성별</label></div>
             <div class="formfield">
+
                 <input type="radio" name="sex" id="sex_m" value="1" alt="1">남자
                 <input type="radio" name="sex" id="sex_w" value="2" alt="2">여자
+
+
             </div>
 
             <div class="fieldlabel"><label>생년월일</label></div>
@@ -68,7 +71,10 @@
             <br>
 
             <div class="btnfield">
+
                 <button type="button" class="btn btn-primary btn-lg active" name="user_reg_submit" id="user_reg_submit">회원가입</button>
+
+
             </div>
 
         </form>
@@ -134,8 +140,6 @@
             console.log('pw:', user_pw_value);
             console.log('pw_check', user_pw_check_value);
 
-
-
             if (user_pw_value == user_pw_check_value) {
                 //console.log(user_pw_value);
                 //console.log(user_pw_check_value);
@@ -151,6 +155,7 @@
                 warning.text("비밀번호가 다릅니다."); // 빨강색으로 변경 
             };
         });
+
 
 
 
@@ -214,25 +219,19 @@
                 url: "{% url 'register/insert_user' %}",
                 method: "post",
                 data: {
-                    'user_id': user_id_value,
-                    'password': user_pw_value,
+                    'user_id': user_id,
+                    'password': user_pw,
                     'user_name': user_name,
-                    'sex': sex_val,
+                    'sex': sex,
                     'birth': birthday,
-                    'job': job,
-                    'company': company,
+                    'job': user_job,
+                    'company': user_company,
+
                 },
                 dataType: 'text',
                 success: function(data) {
+                    console.log('탓타 시부레', data);
 
-                    if (data != 0) {
-                        alert("회원가입 실패.");
-                        user_pw.focus();
-                    } else {
-                        alert("회원가입 성공 .");
-                        user_id.focus();
-
-                    };
                 },
                 error: function(data) {
                     console.log(data);
