@@ -3,7 +3,7 @@
 from masterpiece.views.color_dress import color_dress
 from django.contrib import admin
 from django.urls import path, include
-from .views import main, color_pick, ch_style, user, gallery, color_dress
+from .views import main, pallate2, color_pick, ch_style, user, gallery, color_dress
 
 urlpatterns = [
     path('', main.index, name='main'),
@@ -15,6 +15,7 @@ urlpatterns = [
 
     
     # pallate 
+    path('pallate2', pallate2.pallate2, name='pallate2'),
     path('pallate', color_pick.color_pick, name='color_pick'),
     path('pallate/color_pick', color_pick.color_pick, name='color_pick'),
     path('pallate/ch_style', ch_style.ch_style, name='ch_style'),

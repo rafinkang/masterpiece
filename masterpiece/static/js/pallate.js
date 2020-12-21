@@ -1,16 +1,15 @@
 
 $(document).ready(function(){
 
-    local_origin_image = localStorage.getItem("origin_image")
+    local_origin_image = localStorage.getItem("origin_image");
     if(local_origin_image != null) {
-        $('img.origin_thumbnail')[0].src = local_origin_image
+        $('img.origin-thumbnail')[0].src = local_origin_image;
     }
 
-    var origin_image_file = document.querySelector('.origin_image_file');
+    var origin_image_file = document.querySelector('.origin-image-file');
 
     origin_image_file.onchange = function () { 
         var fileList = origin_image_file.files ;
-        
         // 읽기
         var reader = new FileReader();
         reader.readAsDataURL(fileList[0]);
@@ -45,7 +44,7 @@ $(document).ready(function(){
                 localStorage.setItem("origin_image", dataURI)
 
                 //썸네일 이미지 보여주기
-                document.querySelector('img.origin_thumbnail').src = dataURI;
+                document.querySelector('img.origin-thumbnail').src = dataURI;
                 
                 //썸네일 이미지를 다운로드할 수 있도록 링크 설정
                 //document.querySelector('#download').href = dataURI;
