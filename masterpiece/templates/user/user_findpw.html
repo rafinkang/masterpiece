@@ -2,7 +2,35 @@
 
 {% block content %}
 <section id="user_findpw">
-<script>
+
+<h1>비밀번호 찾기</h1> <br>
+
+<div class="main"> 
+    <div class="body">
+    <form action="" method="POST">
+
+        <div class = "text">
+            아이디를 입력하세요 : 
+        </div>
+        <div class="c_box">
+            <input type="text" id ="search_id" name="search_id"><br>
+        </div>
+
+        <div class ="text">
+            이름을 입력하세요 :
+        </div>
+        <div class="c_box">
+            <input type="password" id="search_name" name="search_name">
+        </div>
+        <br>
+
+        <input type="button" value="비밀번호 찾기" onclick="find_pw(this)">
+        
+
+    </form>
+    </div>
+    </div>
+    <script>
     function find_pw(x){
         var search_id = x.form[0].value;
         var search_name = x.form[1].value;
@@ -34,35 +62,6 @@
 
 </script>
 
-
-
-<h1>비밀번호 찾기</h1> <br>
-
-<div class="main"> 
-    <div class="body">
-    <form action="" method="POST">
-
-        <div class = "text">
-            아이디를 입력하세요 : 
-        </div>
-        <div class="c_box">
-            <input type="text" id ="search_id" name="search_id"><br>
-        </div>
-
-        <div class ="text">
-            이름을 입력하세요 :
-        </div>
-        <div class="c_box">
-            <input type="password" id="search_name" name="search_name">
-        </div>
-        <br>
-
-        <input type="button" value="비밀번호 찾기" onclick="find_pw(this)">
-        
-
-    </form>
-    </div>
-    </div>
 
 
 

@@ -14,8 +14,38 @@
 }
 .pallate .origin_thumbnail {
     height: 150px;
-    width: 150px;
+    /* width: 150px; */
 }
+
+.pallate .final_thumbnail {
+    height: 150px;
+    /* width: 150px; */
+    float: right;
+}
+
+.pallate .pallate-list {
+    display: inline-block;
+}
+.pallate .color-outer-box{
+    border: 1px solid #000;
+    margin-bottom: 10px;
+}
+.pallate .color-box {
+    height: 100px;
+}
+.pallate .color-box.color1{background-color: red;}
+.pallate .color-box.color2{background-color: yellow;}
+.pallate .color-box.color3{background-color: green;}
+.pallate .color-box.color4{background-color: blue;}
+.pallate .color-hsv {
+    margin-bottom: 10px;
+    text-align: center;
+}
+.pallate .color-hex {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
 
 /* 각자 컨텐츠 영역 */
 

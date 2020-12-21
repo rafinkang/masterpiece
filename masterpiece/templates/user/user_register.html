@@ -1,5 +1,4 @@
-{% extends 'index.html' %}
-{% block content %}
+{% extends 'index.html' %} {% block content %}
 
 
 
@@ -7,12 +6,11 @@
     <div class="container container_user"> //이걸로 틀을 잡야함
         <form name="registerform" action="" method="post" enctype="multipart/form-data">
             <h1>회원가입 하기 </h1> <br>
-            
-            
-            
-            <div class="fieldlabel"><label for="user_id">아이디 입력</label></div>
-            <div class="formfield"><input type="text" name="user_id" id="user_id" maxlength="20" value=""
-                    placeholder="이메일아이디 입력"></div>
+
+
+
+            <div class="fieldlabel"><label for="user_id" aria-describedby="inputSuccess2Status">아이디 입력</label></div>
+            <div class="formfield"><input type="email" name="user_id" id="user_id" maxlength="20" value="" placeholder="이메일아이디 입력"></div>
 
             <div class="btnfield">
                 <input type="button" value="아이디 중복확인" id="testbtn">
@@ -22,32 +20,29 @@
 
             <div class="fieldlabel"><label for="user_pw">비밀번호 입력</label></div>
             <div class="formfield">
-                <input type="password" name="user_pw" id="user_pw" maxlength="20" autocomplete="off"
-                    placeholder="비밀번호 입력">
+                <input type="password" name="user_pw" id="user_pw" maxlength="20" autocomplete="off" placeholder="비밀번호 입력">
             </div>
             <div class="fieldlabel"><label for="user_pw_check">비밀번호 확인</label></div>
             <div class="formfield">
-                <input type="password" name="user_pw_check" id="user_pw_check" maxlength="20" autocomplete="off"
-                    placeholder="비밀번호 재입력">
-            </div>
+                <input type="password" name="user_pw_check" id="user_pw_check" maxlength="20" autocomplete="off" placeholder="비밀번호 재입력">
 
-            <div class="fieldlabel"><label id="user_pw_warning"> </label> </div>
+            </div>
+            <div class="user_pw_warning"><label id="user_pw_warning"> </label> </div>
 
 
 
 
             <div class="fieldlabel"><label for="user_name">이름</label></div>
-            <div class="formfield"><input type="text" id="user_name" name="user_name" maxlength="20" value=""
-                    placeholder="이름 입력"></div>
+            <div class="formfield"><input type="text" id="user_name" name="user_name" maxlength="20" value="" placeholder="이름 입력"></div>
 
             <div class="fieldlabel"><label>성별</label></div>
             <div class="formfield">
-                <input type="radio" name="sex" id="male" value="1" alt="남">남자
-                <input type="radio" name="sex" id="female" value="2" alt="여">여자
+                <input type="radio" name="sex" id="sex_m" value="1" alt="1">남자
+                <input type="radio" name="sex" id="sex_w" value="2" alt="2">여자
             </div>
 
             <div class="fieldlabel"><label>생년월일</label></div>
-           
+
             <div class="formfield">
                 <input type="date" name="birthday" id="birthday">
             </div>
@@ -55,6 +50,7 @@
             <div class="fieldlabel"><label for="user_job">직업</label></div>
             <div class="formfield">
                 <select name="user_job">
+                    <option value="noselect">직업을 선택해주세요</option>
                     <option value="student">학생</option>
                     <option value="something">퍼블리셔</option>
                     <option value="developer">개발자</option>
@@ -67,7 +63,7 @@
 
 
             <div class="fieldlabel"><label for="user_company">회사</label></div>
-            <div class="formfield"><input type="text" id="user_company" name="user_company" maxlength="20" value="">
+            <div class="formfield"><input type="text" id="user_company" name="user_company" maxlength="20" value="" placeholder="회사이름 입력">
             </div>
             <br>
 
@@ -81,27 +77,34 @@
 </section>
 
 <script>
+    $(document).ready(function() {
 
-    $(document).ready(function () {
-        $("#testbtn").click(function () {
+        $("#testbtn").click(function() {
             // 실행문
             var user_id = $("#user_id");
             var user_pw = $("#user_pw");
-            console.log(user_pw);
+            var user_id_value = user_id.val()
+            var email_re = /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;
+            //console.log(user_pw);
             if (user_id.val() == "") {
                 alert("아이디를 입력하세요");
                 user_id.focus();
                 return;
+            } else if (!email_re.test(user_id_value)) {
+                alert("이메일 형식으로 입력하세요");
+                user_id.focus();
+                return;
             }
+
             $.ajax({
                 url: "{% url 'register/idcheck' %}",
                 method: "post",
                 data: {
-                    'user_id': user_id.val(),
+                    'user_id': user_id_value,
                 },
                 dataType: 'text',
-                success: function (data) {
-                    console.log('탓타 시부레', data);
+                success: function(data) {
+
                     if (data != 0) {
                         alert("사용하실 수 있는 아이디 입니다.");
                         user_pw.focus();
@@ -111,13 +114,14 @@
 
                     };
                 },
-                error: function (data) {
+                error: function(data) {
                     console.log(data);
                 }
             });
         });
 
-        $("#user_pw_check").keyup(function () {
+
+        $("#user_pw_check").keyup(function() {
             //비밀번호 비교
             var user_pw = $("#user_pw");
             var user_pw_value = user_pw.val();
@@ -129,18 +133,21 @@
             
             console.log('pw:', user_pw_value);
             console.log('pw_check', user_pw_check_value);
-            
-            
+
+
+
             if (user_pw_value == user_pw_check_value) {
-                console.log(user_pw_value);
-                console.log(user_pw_check_value);
-                console.log("!!!!!!!!!");
+                //console.log(user_pw_value);
+                //console.log(user_pw_check_value);
+                //console.log("!!!!!!!!!");
+
                 warning.text("사용하셔도 됩니다."); // 파랑색으로 변경
-            }
-            else {
-                console.log(user_pw_value);
-                console.log(user_pw_check_value);
-                console.log("@@@@@@");
+
+            } else {
+                //console.log(user_pw_value);
+                //console.log(user_pw_check_value);
+                //console.log("@@@@@@");
+
                 warning.text("비밀번호가 다릅니다."); // 빨강색으로 변경 
             };
         });
@@ -156,6 +163,7 @@
             var birthday = $("#birthday").val();
             var user_job = $("select[name='user_job']").val();
             var user_company = $("#user_company").val();
+            var email_re = /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;
             
             console.log("user_id",user_id); 
             console.log("user_pw",user_pw); 
@@ -170,7 +178,10 @@
             if (user_id == "") {
                 alert("아이디를 입력하세요");
                 return;
-            }else if (user_pw == "") {
+            }else if (!email_re.test(user_id)) {
+                alert("이메일 형식으로 입력하세요");
+                return;
+            } else if (user_pw == "") {
                 alert("비밀번호를 입력하세요");
                 return;
             }else if (user_pw != user_pw_check) {
