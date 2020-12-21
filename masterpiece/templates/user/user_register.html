@@ -37,8 +37,8 @@
 
             <div class="fieldlabel"><label>성별</label></div>
             <div class="formfield">
-                <input type="radio" name="sex" id="sex_m" value="남" alt="남">남자
-                <input type="radio" name="sex" id="sex_w" value="여" alt="여">여자
+                <input type="radio" name="sex" id="sex_m" value="1" alt="1">남자
+                <input type="radio" name="sex" id="sex_w" value="2" alt="2">여자
             </div>
 
             <div class="fieldlabel"><label>생년월일</label></div>
@@ -63,7 +63,7 @@
 
 
             <div class="fieldlabel"><label for="user_company">회사</label></div>
-            <div class="formfield"><input type="text" id="user_company" name="user_company" maxlength="20" value="">
+            <div class="formfield"><input type="text" id="user_company" name="user_company" maxlength="20" value="" placeholder="회사이름 입력">
             </div>
             <br>
 
@@ -156,6 +156,7 @@
 
         $("#user_reg_submit").click(function() {
             //다 입력 되었으면 db에 insert 
+
             var user_name = $("#user_name").val();
             var sex_val = $('input[name="sex"]:checked').val();
             var birthday = $("#birthday").val();
@@ -171,8 +172,6 @@
             var user_pw_check_value = user_pw_check.val();
 
 
-
-
             if (user_id.val() == "") {
                 alert("아이디를 입력하세요");
                 user_id.focus();
@@ -183,8 +182,10 @@
                 return;
             } else if (user_pw_value != user_pw_check_value) {
                 alert("입력하신 비밀번호가 다릅니다."); // 파랑색으로 변경
+                return;
             } else if (user_pw_value == "") {
                 alert("비밀번호를 입력해주세요."); // 빨강색으로 변경 
+                return;
             } else if (user_name == "") {
                 alert("이름을 입력하세요");
                 $("#user_name").focus();
@@ -192,40 +193,58 @@
             } else if ($('input[name="sex"]:checked').length == 0) {
                 console.log(sex_val)
                 alert("성별을 입력하세요")
-                sex_val.focus();
+                $('input[name="sex"]:checked').focus();
+                return;
             } else if (birthday == "") {
                 alert("생년월일을 입력하세요")
-                birthday.focus();
+                $("#birthday").focus();
+                return;
             } else if (job == "noselect") {
                 alert("직업을 입력하세요")
-                job.focus();
+                $('select[name="user_job"]').focus();
+                return;
             } else if (company == "") {
                 alert("회사를 입력하세요")
-                company.focus();
+                $("#user_company").focus();
+                return;
             }
 
 
+            $.ajax({
+                url: "{% url 'register/insert_user' %}",
+                method: "post",
+                data: {
+                    'user_id': user_id_value,
+                    'password': user_pw_value,
+                    'user_name': user_name,
+                    'sex': sex_val,
+                    'birth': birthday,
+                    'job': job,
+                    'company': company,
+                },
+                dataType: 'text',
+                success: function(data) {
+
+                    if (data != 0) {
+                        alert("회원가입 실패.");
+                        user_pw.focus();
+                    } else {
+                        alert("회원가입 성공 .");
+                        user_id.focus();
+
+                    };
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            });
+
+
+
+
+
+
         });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     });
 </script>
