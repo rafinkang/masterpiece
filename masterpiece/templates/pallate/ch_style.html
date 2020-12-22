@@ -1,9 +1,11 @@
 <div class="row" style="margin-top:200px;">
     <div id="ch_image_container" style="width: 400px; height: 300px;"></div>
+
     <form id="ch_upload_image" method="POST" action="" enctype="multipart/form-data">
         <input type="hidden" id="original_name" name="original_name"/>
         <input type="file" id="ch_image" name="origin_img" accept="image/*" onchange="setImage(this);"/>
     </form>
-    {% comment %} <input type="file" id="ch_image" accept="image/*" onchange="setImage(this);"/> {% endcomment %}
+
+    <div id="mp_image_container" style="width: 400px; height: 300px;"></div>
 </div>
 <script src="/masterpiece/static/js/ch-style.js"></script>

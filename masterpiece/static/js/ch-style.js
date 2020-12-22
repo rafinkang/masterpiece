@@ -16,7 +16,7 @@ $(document).ready(function(){
 
             // 파일 읽기가 완료되었을때 실행
             reader.onload = function(rst){
-                image_container.append('<img src="' + rst.target.result + '">');
+                image_container.append('<img src="' + rst.target.result + '" width="400">');
             }
             // 파일을 읽는다
             reader.readAsDataURL(file);
@@ -60,7 +60,7 @@ $(document).ready(function(){
             },
             dataType: 'text',
             success: function(res) {
-                console.log('success', res);
+                origin_to_masterpiece(res);
             },
             error: function(error) {
                 console.log('error', error);
@@ -68,8 +68,23 @@ $(document).ready(function(){
         });
     }
 
-    origin_to_masterpiece = function(dataURI) {
+    origin_to_masterpiece = function(img_name) {
         // TO-DO : 명화화
+        $.ajax({
+            url: "pallate/ch_style/change_masterpiece",
+            type: 'post',
+            data: {
+                'img_name': img_name
+            },
+            dataType: 'text',
+            success: function(res) {
+                const mp_image_container = $("#mp_image_container");
+                mp_image_container.append('<img src="' + res + '" width="400" height="400">');
+            },
+            error: function(error) {
+                console.log('error', error);
+            }
+        });
         return;
     }
 });
