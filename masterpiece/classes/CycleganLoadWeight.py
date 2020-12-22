@@ -34,24 +34,25 @@ class CycleganLoadWeight:
   # 훈련된 모델에 이미지 삽입, 출력 (private function)
   def __generate_images(self, model, test_input):
     prediction = model(test_input)
-      
-    plt.figure(figsize=(12, 12))
 
-    # TO-DO
-    # 이미지 저장? 보여주기?
-    display_list = [test_input[0], prediction[0]]
-    title = ['Input Image', 'Predicted Image']
+    fig = plt.figure(figsize=(12, 12))
 
-    for i in range(2):
-      plt.subplot(1, 2, i+1)
-      plt.title(title[i])
-      # getting the pixel values between [0, 1] to plot it.
-      plt.imshow(display_list[i] * 0.5 + 0.5)
-      plt.axis('off')
-    plt.show()
+    ax = plt.Axes(fig, [0., 0., 1., 1.])
+    ax.set_axis_off()
+    fig.add_axes(ax)
+
+    ax.imshow(prediction[0] * 0.5 + 0.5, aspect='auto')
+
+    save_img_name = 'masterpiece/images/tmp/' + self.img_name + '_to_masterpiece' + '.jpg'
+
+    plt.savefig(save_img_name)
+
+    return save_img_name
 
   
-  def change_style(self, img_path):
+  def change_style(self, img_path, img_name):
+        
+    self.img_name = img_name.split('.')[0]
 
     chn_style_img = tf.keras.preprocessing.image.load_img(img_path)
 
@@ -66,10 +67,5 @@ class CycleganLoadWeight:
     chn_style_img = tf.image.resize(chn_style_img, [286, 286], method=tf.image.ResizeMethod.NEAREST_NEIGHBOR)
     chn_style_img = tf.image.random_crop(chn_style_img, size=[1, self.__IMG_HEIGHT, self.__IMG_WIDTH, 3])
 
-    self.__generate_images(self.generator_g, chn_style_img)
-
-# if __name__ == "__main__":  
-#     clw = CycleganLoadWeight()
-#     clw.change_style('test/famous_painting/cycle_gan/test_img7.png')
-#     clw.change_style('test/famous_painting/cycle_gan/test_img8.png')
+    return self.__generate_images(self.generator_g, chn_style_img)
     

@@ -19,19 +19,19 @@ def temp_img_upload(request):
     filename = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S') + '.jpg'
     path = temp_img_path + '/' + filename
 
-    img_str = dataURI.split(';base64,')[1]
-    imgdata = base64.b64decode(img_str)
+    imgdata = base64_decode(dataURI)
 
     with open(path, 'wb') as f:
         f.write(imgdata)
 
-    return HttpResponse("0")
+    return HttpResponse(filename)
 
 def change_masterpiece(request):
-    # clw = CycleganLoadWeight()
-    # clw.change_style(file_content)
+    img_name = request.POST.dict()['img_name']
+    img_path = 'masterpiece/images/tmp/' + img_name
 
-    return 'ok'
+    clw = CycleganLoadWeight()
+    return HttpResponse(clw.change_style(img_path, img_name))
 
 # color_pick
 def color_pick(request):

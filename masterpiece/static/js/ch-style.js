@@ -61,6 +61,7 @@ $(document).ready(function(){
             dataType: 'text',
             success: function(res) {
                 console.log('success', res);
+                origin_to_masterpiece(res);
             },
             error: function(error) {
                 console.log('error', error);
@@ -68,8 +69,23 @@ $(document).ready(function(){
         });
     }
 
-    origin_to_masterpiece = function(dataURI) {
+    origin_to_masterpiece = function(img_name) {
         // TO-DO : 명화화
+        $.ajax({
+            url: "pallate/ch_style/change_masterpiece",
+            type: 'post',
+            data: {
+                'img_name': img_name
+            },
+            dataType: 'text',
+            success: function(res) {
+                const mp_image_container = $("#mp_image_container");
+                mp_image_container.append('<img src="' + res + '">');
+            },
+            error: function(error) {
+                console.log('error', error);
+            }
+        });
         return;
     }
 });
