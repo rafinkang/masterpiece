@@ -30,8 +30,8 @@ urlpatterns = [
     path('gallery/color_gallery_detail', gallery.color_gallery_detail, name='color_gallery_detail'),
 
     # ch_style(change_style)
-    path('pallate/ch_style/change_masterpiece', ch_style.change_masterpiece, name='ch_style/change_masterpiece'),
-    path('pallate/ch_style/temp_img_upload', ch_style.temp_img_upload, name='ch_style/temp_img_upload'),
+    path('pallate2/ch_style/change_masterpiece', ch_style.change_masterpiece, name='pallate2/ch_style/change_masterpiece'),
+    path('pallate2/ch_style/temp_img_upload', ch_style.temp_img_upload, name='pallate2/ch_style/temp_img_upload'),
 
     ######################################## example ########################################
 

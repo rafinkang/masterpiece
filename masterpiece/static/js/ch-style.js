@@ -20,62 +20,40 @@ $(document).ready(function(){
             }
             // 파일을 읽는다
             reader.readAsDataURL(file);
+                
+            // 읽기
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+        
+            //로드 한 후
+            reader.onload = function() {
+                //썸네일 이미지 생성
+                var tempImage = new Image(); //drawImage 메서드에 넣기 위해 이미지 객체화
+                tempImage.src = reader.result; //data-uri를 이미지 객체에 주입
+    
+    
+                tempImage.onload = function() {
+                    //리사이즈를 위해 캔버스 객체 생성
+                    var canvas = document.createElement('canvas');
+                    var canvasContext = canvas.getContext("2d");
 
-            // temp_img_upload(file);
+                    canvas.width = tempImage.width;
+                    canvas.height = tempImage.height;
+                    
+                    //이미지를 캔버스에 그리기
+                    canvasContext.drawImage(this, 0, 0);
+                    //캔버스에 그린 이미지를 다시 data-uri 형태로 변환
+                    var dataURI = canvas.toDataURL("image/jpg");
+    
+                    temp_img_upload(dataURI);
+                };
+            };
         }
     }
 
-    temp_img_upload = function(img_f) {
-        // var original_name = img_f.name.split(".")[0];
-        // var img_extension = img_f.name.split(".")[1];
-
-        var data = new FormData($('ch_upload_image'));
-        console.log(data);
+    temp_img_upload = function(dataURI) {
         $.ajax({
-            url: 'ch_style/temp_img_upload',
-            type: 'post',
-            data: data,
-            cache: false,
-            processData: false,
-            contentType: false,
-            success: function(res) {
-                console.log(res)
-            },
-            error: function(msg) {
-                console.log(msg)
-            }
-        });
-        return false;
-
-
-
-        
-        $("#original_name").val(img_f.name);
-
-        // console.log($("#original_name").val());
-
-        $.ajax({
-            url: "ch_style/temp_img_upload",
-            type: 'post',
-            // data: {
-            //     'img_f': img_f,
-            //     'original_name' : original_name,
-            //     'img_extension' : img_extension
-            // },
-            data: {'img_f':img_f},
-            dataType: 'text',
-            success: function(res) {
-                console.log('success', res);
-            },
-            error: function(error) {
-                console.log('error');
-            }
-        });
-    }
-
-    origin_to_masterpiece = function(dataURI) {
-        $.ajax({
-            url: "ch_style/change_masterpiece",
+            url: "pallate2/ch_style/temp_img_upload",
             type: 'post',
             data: {
                 'dataURI': dataURI
@@ -85,8 +63,13 @@ $(document).ready(function(){
                 console.log('success', res);
             },
             error: function(error) {
-                console.log('error');
+                console.log('error', error);
             }
         });
+    }
+
+    origin_to_masterpiece = function(dataURI) {
+        // TO-DO : 명화화
+        return;
     }
 });
