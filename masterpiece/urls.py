@@ -1,9 +1,7 @@
 # 서브앱 urls
-
-from masterpiece.views.color_dress import color_dress
 from django.contrib import admin
 from django.urls import path, include
-from .views import main, pallate2, color_pick, ch_style, user, gallery, color_dress
+from .views import main, pallate, ch_style, user, gallery
 
 urlpatterns = [
     path('', main.index, name='main'),
@@ -19,19 +17,15 @@ urlpatterns = [
 
     
     # pallate 
-    path('pallate2', pallate2.pallate2, name='pallate2'),
-    path('pallate', color_pick.color_pick, name='color_pick'),
-    path('pallate/color_pick', color_pick.color_pick, name='color_pick'),
-    path('pallate/ch_style', ch_style.ch_style, name='ch_style'),
-    path('pallate/color_dress', color_dress.color_dress, name='color_dress'),
-
-    # gallery
-    path('gallery/color_gallery', gallery.color_gallery, name='color_gallery'),
-    path('gallery/color_gallery_detail', gallery.color_gallery_detail, name='color_gallery_detail'),
+    path('pallate', pallate.pallate, name='pallate'),
 
     # ch_style(change_style)
     path('pallate2/ch_style/change_masterpiece', ch_style.change_masterpiece, name='pallate2/ch_style/change_masterpiece'),
     path('pallate2/ch_style/temp_img_upload', ch_style.temp_img_upload, name='pallate2/ch_style/temp_img_upload'),
+    
+    # gallery
+    path('gallery/color_gallery', gallery.color_gallery, name='color_gallery'),
+    path('gallery/color_gallery_detail', gallery.color_gallery_detail, name='color_gallery_detail'),
 
     ######################################## example ########################################
 
