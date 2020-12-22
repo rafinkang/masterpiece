@@ -37,8 +37,11 @@
 
             <div class="fieldlabel"><label>성별</label></div>
             <div class="formfield">
+
                 <input type="radio" name="sex" id="sex_m" value="1" alt="1">남자
                 <input type="radio" name="sex" id="sex_w" value="2" alt="2">여자
+
+
             </div>
 
             <div class="fieldlabel"><label>생년월일</label></div>
@@ -52,11 +55,10 @@
                 <select name="user_job">
                     <option value="noselect">직업을 선택해주세요</option>
                     <option value="student">학생</option>
-                    <option value="something">퍼블리셔</option>
-                    <option value="developer">개발자</option>
                     <option value="publisher">퍼블리셔</option>
-                    <option value="something">추가하자</option>
-                    <option value="something">직업을</option>
+                    <option value="developer">개발자</option>
+                    <option value="product manager">기획자</option>
+                    <option value="admin">관리자</option>
                     <option value="something">무직</option>
                 </select>
             </div>
@@ -68,7 +70,12 @@
             <br>
 
             <div class="btnfield">
-                <input type="button" value="회원가입" id="registbtn">
+
+
+                <button type="button" class="btn btn-primary btn-lg active" name="user_reg_submit" id="user_reg_submit">회원가입</button>
+
+
+
             </div>
 
         </form>
@@ -128,13 +135,11 @@
 
             var user_pw_check = $("#user_pw_check");
             var user_pw_check_value = user_pw_check.val();
-            
+
             var warning = $("#user_pw_warning");
-            
+
             console.log('pw:', user_pw_value);
             console.log('pw_check', user_pw_check_value);
-
-
 
             if (user_pw_value == user_pw_check_value) {
                 //console.log(user_pw_value);
@@ -151,82 +156,101 @@
                 warning.text("비밀번호가 다릅니다."); // 빨강색으로 변경 
             };
         });
-        
-        $("#registbtn").click(function () {
-            // 실행문
-            var user_id = $("#user_id").val();
-            var user_pw = $("#user_pw").val();
-            var user_pw_check = $("#user_pw_check").val();
+
+
+
+
+
+        $("#user_reg_submit").click(function() {
+            //다 입력 되었으면 db에 insert 
+
             var user_name = $("#user_name").val();
-            var sex = $('input[name="sex"]:checked').val();
-            var sex_check = $('input[name="sex"]:checked').is(':checked');
+            var sex_val = $('input[name="sex"]:checked').val();
             var birthday = $("#birthday").val();
-            var user_job = $("select[name='user_job']").val();
-            var user_company = $("#user_company").val();
+            var job = $('select[name="user_job"]').val();
+            var company = $("#user_company").val();
+            var user_id = $("#user_id");
+            var user_id_value = user_id.val()
             var email_re = /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;
-            
-            console.log("user_id",user_id); 
-            console.log("user_pw",user_pw); 
-            console.log("user_pw_check",user_pw_check); 
-            console.log("user_name",user_name); 
-            console.log("sex",sex); 
-            console.log("sex_check",sex_check); 
-            console.log("birthday",birthday); 
-            console.log("user_job",user_job); 
-            console.log("user_company",user_company); 
-            
-            if (user_id == "") {
+            var user_pw = $("#user_pw");
+            var user_pw_value = user_pw.val();
+            var user_pw_check = $("#user_pw_check");
+            var user_pw_check_value = user_pw_check.val();
+
+
+            if (user_id.val() == "") {
                 alert("아이디를 입력하세요");
+                user_id.focus();
                 return;
-            }else if (!email_re.test(user_id)) {
+            } else if (!email_re.test(user_id_value)) {
                 alert("이메일 형식으로 입력하세요");
+                user_id.focus();
                 return;
-            } else if (user_pw == "") {
-                alert("비밀번호를 입력하세요");
+            } else if (user_pw_value != user_pw_check_value) {
+                alert("입력하신 비밀번호가 다릅니다."); // 파랑색으로 변경
                 return;
-            }else if (user_pw != user_pw_check) {
-                alert("비밀번호를 확인하세요");
+            } else if (user_pw_value == "") {
+                alert("비밀번호를 입력해주세요."); // 빨강색으로 변경 
                 return;
-            }else if (user_name == "") {
+            } else if (user_name == "") {
                 alert("이름을 입력하세요");
+                $("#user_name").focus();
                 return;
-            }else if (sex_check == false) {
-                alert("성별을 선택하세요");
+            } else if ($('input[name="sex"]:checked').length == 0) {
+                console.log(sex_val)
+                alert("성별을 입력하세요")
+                $('input[name="sex"]:checked').focus();
                 return;
-            }else if (birthday == "") {
-                alert("생년월일을 선택하세요");
+            } else if (birthday == "") {
+                alert("생년월일을 입력하세요")
+                $("#birthday").focus();
                 return;
-            }else {
-                $.ajax({
-                    url: "{% url 'register/insert_user' %}",
-                    method: "post",
-                    data: {
-                        'user_id': user_id,
-                        'password': user_pw,
-                        'user_name': user_name,
-                        'sex': sex,
-                        'birth': birthday,
-                        'job': user_job,
-                        'company': user_company,
-                        
-                    },
-                    dataType: 'text',
-                    success: function (data) {
-                        console.log('탓타 시부레', data);
-                        
-                    },
-                    error: function (data) {
-                        console.log(data);
-                    }
-                });
+            } else if (job == "noselect") {
+                alert("직업을 입력하세요")
+                $('select[name="user_job"]').focus();
+                return;
+            } else if (company == "") {
+                alert("회사를 입력하세요")
+                $("#user_company").focus();
+                return;
             }
+
+
+            $.ajax({
+                url: "{% url 'register/insert_user' %}",
+                method: "post",
+                data: {
+                    'user_id': user_id_value,
+                    'password': user_pw_value,
+                    'user_name': user_name,
+                    'sex': sex_val,
+                    'birth': birthday,
+                    'job': job,
+                    'company': company,
+
+                },
+                dataType: 'text',
+                success: function(data) {
+                    console.log('탓타 시부레', data);
+
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            });
+
+
+
+
+
+
         });
-        
-        
-    });
+
+    });     
+
     
     
-    
+
 </script>
 
 {% endblock %}

@@ -1,14 +1,2 @@
-{% extends 'index.html' %}
-
-{% block content %}
-<section id="color_pick">
-    <div class="container pallate-container">
-{% include 'pallate/pallate.html'%}        
-        <div class="row">
-            <div class="content col-md-12">팔레트/color_pick  @_@
-                
-            </div>
-        </div>
-    </div>
-</section>
-{% endblock %}
+<input type="file" class="origin-image-file" accept=".jpg,.jpeg,.png" onchange="origin_thumbnail(this)">
+<button onclick="color_pick()">색상 뽑기</button>
