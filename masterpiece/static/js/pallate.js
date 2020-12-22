@@ -42,8 +42,7 @@ function origin_thumbnail(obj) {
     }; 
 }
 
-function color_pick(params) {
-    console.log("색상뽑기이이~~")
+function color_pick() {
     $.ajax({
         url: "pallate/color_pick",
         method: "post",
@@ -53,21 +52,44 @@ function color_pick(params) {
         dataType: 'json',
         success: function (data) {
             console.log('return data : ', data);
+            localStorage.setItem("color_pick", JSON.stringify(data));
             
         },
         error: function (data) {
             console.log('error :', data);
         }
     });
+}
+
+function load_localstorage() {
     
+    if(local_origin_image = localStorage.getItem("origin_image")) {
+        $('img.origin-thumbnail')[0].src = local_origin_image;
+    }
+    
+    if(color_pick_data = localStorage.getItem('color_pick')){
+        data = JSON.parse(color_pick_data)
+        $('.pallate .pallate-list .color1').css('background-color', data['hex1'])
+        $('.pallate .pallate-list .color2').css('background-color', data['hex2'])
+        $('.pallate .pallate-list .color3').css('background-color', data['hex3'])
+        $('.pallate .pallate-list .color4').css('background-color', data['hex4'])
+        
+        $('.pallate .pallate-list .hsv1').text('('+data['h1']+','+data['s1']+','+data['v1']+')')
+        $('.pallate .pallate-list .hsv2').text('('+data['h2']+','+data['s2']+','+data['v2']+')')
+        $('.pallate .pallate-list .hsv3').text('('+data['h3']+','+data['s3']+','+data['v3']+')')
+        $('.pallate .pallate-list .hsv4').text('('+data['h4']+','+data['s4']+','+data['v4']+')')
+
+        $('.pallate .pallate-list .hex1').text(data['hex1'])
+        $('.pallate .pallate-list .hex2').text(data['hex2'])
+        $('.pallate .pallate-list .hex3').text(data['hex3'])
+        $('.pallate .pallate-list .hex4').text(data['hex4'])
+    }
+
 }
 
 $(document).ready(function(){
+    load_localstorage()
     // onload
-    local_origin_image = localStorage.getItem("origin_image");
-    if(local_origin_image != null) {
-        $('img.origin-thumbnail')[0].src = local_origin_image;
-    }
 
     // 탭메뉴 컨트롤
     $('ul.pallate-nav li').click(function(){
