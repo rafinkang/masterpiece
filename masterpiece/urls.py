@@ -20,8 +20,8 @@ urlpatterns = [
     path('pallate', pallate.pallate, name='pallate'),
 
     # ch_style(change_style)
-    path('pallate2/ch_style/change_masterpiece', ch_style.change_masterpiece, name='pallate2/ch_style/change_masterpiece'),
-    path('pallate2/ch_style/temp_img_upload', ch_style.temp_img_upload, name='pallate2/ch_style/temp_img_upload'),
+    path('pallate/ch_style/change_masterpiece', ch_style.change_masterpiece, name='pallate/ch_style/change_masterpiece'),
+    path('pallate/ch_style/temp_img_upload', ch_style.temp_img_upload, name='pallate/ch_style/temp_img_upload'),
     
     # gallery
     path('gallery/color_gallery', gallery.color_gallery, name='color_gallery'),

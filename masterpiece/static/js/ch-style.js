@@ -53,7 +53,7 @@ $(document).ready(function(){
 
     temp_img_upload = function(dataURI) {
         $.ajax({
-            url: "pallate2/ch_style/temp_img_upload",
+            url: "pallate/ch_style/temp_img_upload",
             type: 'post',
             data: {
                 'dataURI': dataURI
