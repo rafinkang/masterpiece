@@ -21,7 +21,7 @@ $(document).ready(function(){
             // 파일을 읽는다
             reader.readAsDataURL(file);
 
-            temp_img_upload(file);
+            // temp_img_upload(file);
         }
     }
 

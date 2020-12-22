@@ -8,13 +8,7 @@ def ch_style(request):
     return render(request, 'pallate/ch_style.html')
 
 def temp_img_upload(request):
-    print("inininininininininininininininininininininininininininininininininininininininin")
     req = request.POST.dict()
-
-    print("reqreqreqreqreqreqreqreqreqreqreq :::::::::::::: ", request)
-    print("reqreqreqreqreqreqreqreqreqreqreq :::::::::::::: ", request.FILE)
-    print("reqreqreqreqreqreqreqreqreqreqreq :::::::::::::: ", request.POST)
-    print("reqreqreqreqreqreqreqreqreqreqreq :::::::::::::: ", request.POST.dict())
 
     img_f = req['img_f']
     original_name = req['original_name']
