@@ -10,8 +10,12 @@ urlpatterns = [
     path('main', main.index, name='main'),
 
     path('login', user.login, name='login'),
+    path('login/login_go', user.login_go, name='login/login_go'),
+
     path('register', user.register, name='register'),
     path('register/idcheck', user.idcheck, name='register/idcheck'),
+    path('register/insert_user', user.insert_user, name='register/insert_user'),
+    
 
     
     # pallate 
