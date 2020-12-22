@@ -53,7 +53,7 @@ function color_pick() {
         success: function (data) {
             console.log('return data : ', data);
             localStorage.setItem("color_pick", JSON.stringify(data));
-            
+            load_localstorage();
         },
         error: function (data) {
             console.log('error :', data);
