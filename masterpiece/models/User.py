@@ -27,3 +27,7 @@ class User():
         sql = f"select * from user where user_id = '{user_id}'"
         return self.db.select(sql)
 
+
+    def login_go(self,user_id,password):
+        sql = f"select * from user where user_id ='{user_id}' and password='{password}'"
+        return self.db.select(sql)

@@ -3,18 +3,23 @@
 from masterpiece.views.color_dress import color_dress
 from django.contrib import admin
 from django.urls import path, include
-from .views import main, color_pick, ch_style, user, gallery, color_dress
+from .views import main, pallate2, color_pick, ch_style, user, gallery, color_dress
 
 urlpatterns = [
     path('', main.index, name='main'),
     path('main', main.index, name='main'),
 
     path('login', user.login, name='login'),
+    path('login/login_go', user.login_go, name='login/login_go'),
+
     path('register', user.register, name='register'),
     path('register/idcheck', user.idcheck, name='register/idcheck'),
+    path('register/insert_user', user.insert_user, name='register/insert_user'),
+    
 
     
     # pallate 
+    path('pallate2', pallate2.pallate2, name='pallate2'),
     path('pallate', color_pick.color_pick, name='color_pick'),
     path('pallate/color_pick', color_pick.color_pick, name='color_pick'),
     path('pallate/ch_style', ch_style.ch_style, name='ch_style'),
