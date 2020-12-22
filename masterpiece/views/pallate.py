@@ -22,7 +22,7 @@ def pallate(request):
 # ch_style
 def temp_img_upload(request):
     dataURI = request.POST.dict()['dataURI']
-    temp_img_path = 'masterpiece/images/tmp'
+    temp_img_path = 'masterpiece/static/upload_images/temp_images/'
 
     filename = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S') + '.jpg'
     path = temp_img_path + '/' + filename
@@ -36,7 +36,7 @@ def temp_img_upload(request):
 
 def change_masterpiece(request):
     img_name = request.POST.dict()['img_name']
-    img_path = 'masterpiece/images/tmp/' + img_name
+    img_path = 'masterpiece/static/upload_images/temp_images/' + img_name
 
     clw = CycleganLoadWeight()
     return HttpResponse(clw.change_style(img_path, img_name))

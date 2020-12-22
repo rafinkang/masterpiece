@@ -43,7 +43,7 @@ class CycleganLoadWeight:
 
     ax.imshow(prediction[0] * 0.5 + 0.5, aspect='auto')
 
-    save_img_name = 'masterpiece/images/tmp/' + self.img_name + '_to_masterpiece' + '.jpg'
+    save_img_name = 'masterpiece/static/upload_images/temp_images/' + self.img_name + '_to_masterpiece' + '.jpg'
 
     plt.savefig(save_img_name)
 
