@@ -1,7 +1,7 @@
 # 서브앱 urls
 from django.contrib import admin
 from django.urls import path, include
-from .views import main, pallate2, ch_style, user, gallery
+from .views import main, pallate, ch_style, user, gallery
 
 urlpatterns = [
     path('', main.index, name='main'),
@@ -17,7 +17,7 @@ urlpatterns = [
 
     
     # pallate 
-    path('pallate2', pallate2.pallate2, name='pallate2'),
+    path('pallate', pallate.pallate, name='pallate'),
 
     # ch_style(change_style)
     path('pallate/ch_style/change_masterpiece', ch_style.change_masterpiece, name='ch_style/change_masterpiece'),
