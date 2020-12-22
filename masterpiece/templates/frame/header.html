@@ -12,8 +12,8 @@
         <ul>
             {% if request.path != '/' and request.path != '/main' %}
                 <li {% if request.path == '/pallate2'%} class="active" {% endif %}><a href="{% url 'pallate2' %}">기능</a></li>
-                <li><a href="{% url 'ch_style' %}">색상</a></li>
-                <li><a href="{% url 'ch_style' %}">이미지</a></li>
+                <li><a href="{% url 'pallate2' %}">색상</a></li>
+                <li><a href="{% url 'pallate2' %}">이미지</a></li>
             {% endif %}
 
             {% if request.session.user_id %}
