@@ -48,9 +48,9 @@ function color_pick(params) {
         url: "pallate/color_pick",
         method: "post",
         data: {
-            'data_uri': localStorage.getItem("origin_image"),
+            'dataURI': localStorage.getItem("origin_image"),
         },
-        dataType: 'text',
+        dataType: 'json',
         success: function (data) {
             console.log('return data : ', data);
             
