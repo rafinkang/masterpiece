@@ -24,7 +24,6 @@ class Spuit:
             self.image = cv2.imread(image_path)
         else:
             self.image = image
-            print(self.image)
             
         self.n_clusters = n_clusters
         self.percent = []

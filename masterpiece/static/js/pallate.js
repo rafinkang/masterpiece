@@ -30,7 +30,7 @@ function origin_thumbnail(obj) {
             canvasContext.drawImage(this, 0, 0);
             //캔버스에 그린 이미지를 다시 data-uri 형태로 변환
             var dataURI = canvas.toDataURL("image/jpg");
-            console.log(dataURI)
+            // console.log(dataURI)
             localStorage.setItem("origin_image", dataURI)
 
             //썸네일 이미지 보여주기
