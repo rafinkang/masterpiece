@@ -8,9 +8,6 @@ import base64
 def pallate(request):
     return render(request, 'pallate/pallate.html')
 
-def ch_style(request):
-    return render(request, 'pallate/ch_style.html')
-
 def temp_img_upload(request):
     dataURI = request.POST.dict()['dataURI']
     temp_img_path = 'masterpiece/images/tmp'
