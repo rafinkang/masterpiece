@@ -12,12 +12,13 @@
     margin-bottom: 15px;
     padding: 5px;;
 }
-.pallate .origin_thumbnail {
+.pallate .origin-thumbnail {
     height: 150px;
     /* width: 150px; */
+    margin: auto;
 }
 
-.pallate .final_thumbnail {
+.pallate .final-thumbnail {
     height: 150px;
     /* width: 150px; */
     float: right;
@@ -48,9 +49,30 @@
 
 
 /* 각자 컨텐츠 영역 */
+.pallate-nav {
+    display: flex;
+    float: left;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+.pallate-nav li{
+    min-width: 100px;
+    text-align: center;
+}
+.pallate-nav li:hover, .pallate-nav li.active{
+    border: 1px solid #e43c5c;
+    border-radius: 8px 8px 0px 0px;
+    cursor: pointer;
+}
 
-.pallate-container .content{
-    min-height: 600px;
+.pallate-content .pallate-tab {
+    display: none;
+    border: 1px solid #000;
+}
+
+.pallate-content .pallate-tab.active {
+    display: block;
 }
 
 #color_pick .content {
