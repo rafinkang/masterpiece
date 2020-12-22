@@ -10,9 +10,9 @@
                     <div class="row">
                         <img src="/masterpiece/static/image/grim.png" alt="썸네일" class="origin-thumbnail">
                     </div>
-                    <div class="row">
+                    <!-- <div class="row">
                         <input type="file" class="origin-image-file" accept=".jpg,.jpeg,.png">
-                    </div>
+                    </div> -->
                 </div><div class="pallate-list col-md-9">
                     <div class="row color-outer-box">
                         <div class="col-md-3 color-box color1"></div>
@@ -46,20 +46,19 @@
             </ul>
         </div>
 
-        <div class="row">
-            <div class="pallate-content col-md-12">
+        <div class="pallate-content row">
                 <!-- 색상뽑기 -->
-                <div class="pallate-tab active" data-page="1">
-                    팔레트/color_pick  @_@
-                
-                </div>
-                <!-- 감성분석 -->
-                <div class="pallate-tab" data-page="2">감성분석</div>
-                <!-- 색상 입히기 -->
-                <div class="pallate-tab" data-page="3">색상입히기</div>
-                <!-- 명화화 -->
-                <div class="pallate-tab" data-page="4">명화화</div>
+            <div class="pallate-tab col-md-12 active" data-page="1">
+
+                <input type="file" class="origin-image-file" accept=".jpg,.jpeg,.png" onchange="origin_thumbnail(this)">
+                <button onclick="color_pick()">색상 뽑기</button>
             </div>
+            <!-- 감성분석 -->
+            <div class="pallate-tab col-md-12" data-page="2">감성분석</div>
+            <!-- 색상 입히기 -->
+            <div class="pallate-tab col-md-12" data-page="3">색상입히기</div>
+            <!-- 명화화 -->
+            <div class="pallate-tab col-md-12" data-page="4">명화화</div>
         </div>
     </div>
 </section>
