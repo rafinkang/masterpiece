@@ -54,6 +54,14 @@ function color_pick() {
             console.log('return data : ', data);
             localStorage.setItem("color_pick", JSON.stringify(data));
             load_localstorage();
+            $('.pallate .color-pick .heart.color1:before').css('background', data['hex1'])
+            $('.pallate .color-pick .heart.color1:after').css('background', data['hex1'])
+            $('.pallate .color-pick .heart.color2:before').css('background', data['hex2'])
+            $('.pallate .color-pick .heart.color2:after').css('background', data['hex2'])
+            $('.pallate .color-pick .heart.color3:before').css('background', data['hex3'])
+            $('.pallate .color-pick .heart.color3:after').css('background', data['hex3'])
+            $('.pallate .color-pick .heart.color4:before').css('background', data['hex4'])
+            $('.pallate .color-pick .heart.color4:after').css('background', data['hex4'])
         },
         error: function (data) {
             console.log('error :', data);
@@ -73,6 +81,11 @@ function load_localstorage() {
         $('.pallate .pallate-list .color2').css('background-color', data['hex2'])
         $('.pallate .pallate-list .color3').css('background-color', data['hex3'])
         $('.pallate .pallate-list .color4').css('background-color', data['hex4'])
+
+        $('.pallate .pallate-list .color1').width(data['percent1']+'%')
+        $('.pallate .pallate-list .color2').width(data['percent2']+'%')
+        $('.pallate .pallate-list .color3').width(data['percent3']+'%')
+        $('.pallate .pallate-list .color4').width(data['percent4']+'%')
         
         $('.pallate .pallate-list .hsv1').text('('+data['h1']+','+data['s1']+','+data['v1']+')')
         $('.pallate .pallate-list .hsv2').text('('+data['h2']+','+data['s2']+','+data['v2']+')')

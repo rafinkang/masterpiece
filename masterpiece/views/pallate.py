@@ -48,6 +48,7 @@ def color_pick(request):
 
     image = Spuit(image=img)
     hsv = image.get_hsv360()
+    percent = image.get_percent()
 
     pallate_list = np.array(hsv).reshape(1,12)
     pallate_dp =  pd.DataFrame(pallate_list, columns=['h1','s1','v1','h2','s2','v2','h3','s3','v3','h4','s4','v4'])
@@ -92,6 +93,10 @@ def color_pick(request):
         'h4'    : str(pallate[9]),
         's4'    : str(pallate[10]),
         'v4'    : str(pallate[11]),
+        "percent1" : str(round(percent[0]*100)),
+        "percent2" : str(round(percent[1]*100)),
+        "percent3" : str(round(percent[2]*100)),
+        "percent4" : str(round(percent[3]*100)),
         "hex1"  : str(hex1),
         "hex2"  : str(hex2),
         "hex3"  : str(hex3),
