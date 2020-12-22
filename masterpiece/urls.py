@@ -24,6 +24,10 @@ urlpatterns = [
     path('gallery/color_gallery', gallery.color_gallery, name='color_gallery'),
     path('gallery/color_gallery_detail', gallery.color_gallery_detail, name='color_gallery_detail'),
 
+    # ch_style(change_style)
+    path('pallate/ch_style/change_masterpiece', ch_style.change_masterpiece, name='ch_style/change_masterpiece'),
+    path('pallate/ch_style/temp_img_upload', ch_style.temp_img_upload, name='ch_style/temp_img_upload'),
+
     ######################################## example ########################################
 
     path('example_index', main.example_index, name='example_index'),

@@ -1,7 +1,7 @@
 # !pip install git+https://github.com/tensorflow/examples.git : 설치
 # tensorflow를 2버전으로 upgrade
 import tensorflow as tf
-import pix2pix
+import masterpiece.classes.pix2pix as pix2pix
 import matplotlib.pyplot as plt
 
 from tensorflow import keras
@@ -23,7 +23,7 @@ class CycleganLoadWeight:
   def __init__(self):
     # G(X -> Y) generators생성
     self.generator_g = pix2pix.unet_generator(self.__OUTPUT_CHANNELS, norm_type='instancenorm')
-    self.generator_g.load_weights("test/famous_painting/cycle_gan/vangogh.h5")
+    self.generator_g.load_weights("C:/Users/jypar/finalproject/style/vangogh.h5")
     
   # 이미지를 normalize하여 return (private function)
   def __preprocess_image_test(self, image, label):
