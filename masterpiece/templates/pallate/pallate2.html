@@ -39,22 +39,31 @@
 
         <div class="row">
             <ul class="pallate-nav">
-                <li class="active">색상뽑기</li>
-                <li>감성분석</li>
-                <li>색상입히기</li>
-                <li>명화화</li>
+                <li class="active" data-page="1">색상뽑기</li>
+                <li data-page="2">감성분석</li>
+                <li data-page="3">색상입히기</li>
+                <li data-page="4">명화화</li>
             </ul>
         </div>
 
         <div class="row">
-            <div class="pallate-content">
-                <div>팔레트/color_pick  @_@</div>
-                <div>감성분석</div>
-                <div>색상입히기</div>
-                <div>명화화</div>
+            <div class="pallate-content col-md-12">
+                <!-- 색상뽑기 -->
+                <div class="pallate-tab active" data-page="1">
+                    팔레트/color_pick  @_@
+                
+                </div>
+                <!-- 감성분석 -->
+                <div class="pallate-tab" data-page="2">감성분석</div>
+                <!-- 색상 입히기 -->
+                <div class="pallate-tab" data-page="3">색상입히기</div>
+                <!-- 명화화 -->
+                <div class="pallate-tab" data-page="4">명화화</div>
             </div>
         </div>
     </div>
 </section>
+
 <script src="/masterpiece/static/js/pallate.js"></script>
+
 {% endblock %}

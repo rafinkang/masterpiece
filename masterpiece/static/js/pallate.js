@@ -52,4 +52,15 @@ $(document).ready(function(){
         }; 
     }; 
 
+    // 탭메뉴 컨트롤
+    $('ul.pallate-nav li').click(function(){
+        self = $(this);
+        
+        $('ul.pallate-nav li').removeClass("active");
+        self.addClass("active");
+        
+        $('.pallate-content .pallate-tab').hide();
+        $('.pallate-content .pallate-tab').filter('[data-page="'+self.attr('data-page')+'"]').show();
+    });
+
 });

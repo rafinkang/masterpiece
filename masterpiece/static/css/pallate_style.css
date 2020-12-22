@@ -66,8 +66,13 @@
     cursor: pointer;
 }
 
-.pallate-container .content{
-    min-height: 600px;
+.pallate-content .pallate-tab {
+    display: none;
+    border: 1px solid #000;
+}
+
+.pallate-content .pallate-tab.active {
+    display: block;
 }
 
 #color_pick .content {
