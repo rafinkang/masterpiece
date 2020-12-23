@@ -108,6 +108,8 @@
 .color-pick .origin-thumbnail{
     width: 100%;
 }
+
+
 .color-pick .color-pick-outer-box{
     /* border: 1px solid #000; */
     padding: 0;
@@ -329,4 +331,131 @@
 
 .ch-image-btn {
     margin: auto;
+}
+
+/* 색상 입히기 영역 */
+
+/* @-webkit-keyframes bounceIn {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale(.3);
+    }
+    50% {
+        opacity: 1;
+        -webkit-transform: scale(1.05);
+    }
+    70% {
+        -webkit-transform: scale(.9);
+    }
+    100% {
+        -webkit-transform: scale(1);
+    }
+} */
+ 
+
+@keyframes bounceIn {
+    0%, 20%, 40%, 60%, 80%, 100% {
+        -webkit-animation-timing-function: cubic-bezier(.215,.61,.355,1);
+        animation-timing-function: cubic-bezier(.215,.61,.355,1);
+    }
+
+    0% {
+        opacity: 0;
+        -webkit-transform: scale3d(.3,.3,.3);
+        transform: scale3d(.3,.3,.3);
+    }
+    20% {
+        -webkit-transform: scale3d(1.1,1.1,1.1);
+        transform: scale3d(1.1,1.1,1.1);
+    }
+    40% {
+        -webkit-transform: scale3d(.9,.9,.9);
+        transform: scale3d(.9,.9,.9);
+    }
+    60% {
+        opacity: 1;
+        -webkit-transform: scale3d(1.03,1.03,1.03);
+        transform: scale3d(1.03,1.03,1.03);
+    }
+    80% {
+        -webkit-transform: scale3d(.97,.97,.97);
+        transform: scale3d(.97,.97,.97);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: scale3d(1,1,1);
+        transform: scale3d(1,1,1);
+    }
+}
+ 
+.lol_palette .droplet:hover {
+    z-index: 5!important;
+    transform: scale(1.15);
+}
+
+
+
+.color-dress{
+    padding: 10px;
+}
+
+.color-dress-image {
+    display: inline-block;
+    max-height: 250px;
+    max-width: 450px;
+    margin: auto;
+}
+
+
+.droplet_1 {
+    z-index: 4;
+}
+.droplet_2 {
+    z-index: 3;
+}
+.droplet_3 {
+    z-index: 2;
+}
+.droplet_4 {
+    z-index: 1;
+}
+.droplet {
+    display: block;
+    width: 50px;
+    margin: -3rem auto 1rem;
+    position: relative;
+    transition: all .2s ease-in-out;
+}
+
+.bounceIn {
+    -webkit-animation-name: bounceIn;
+    animation-name: bounceIn;
+}
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+.lol_palette {
+    float: left;
+    width: 225px;
+    height: 250px;
+    text-align: center;
+    margin: 0 0 4rem;
+    -moz-transition: all .5s linear;
+    -webkit-transition: all .5s linear;
+    transition: all .5s linear;
+}
+
+.tooltip {
+    position: relative;
+    text-decoration: none;
+    background-color: transparent;
+    box-sizing: border-box;
+}
+
+.animated.flipOutX, .animated.flipOutY, .animated.bounceIn, .animated.bounceOut {
+    -webkit-animation-duration: .75s;
+    animation-duration: .75s;
 }
