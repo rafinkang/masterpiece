@@ -1,11 +1,22 @@
 <div class="row color-dress">
-    <div class="content col-md-12">
-        색상입히기<br>
-        이미지 업로드 기능 (드래그할지, 파일 첨부할지?)<br>
-        색상 4가지 (팔레트에서 가져온 색상)<br>
-        색상 치환된 new 이미지<br>
-        다운로드 버튼 누르면 이미지 다운로드 되면서 자동으로 이미지가 갤러리(DB) 저장
-
-
+    <div class="col-md-5">
+        <p>색상을 변화시킬 이미지 파일을 선택해 주세요.</p>
+        <input type="file" class="origin-image-file" accept=".jpg,.jpeg,.png" onchange="origin_thumbnail(this)">
+        <button onclick="color_pick()">색상 뽑기</button>
     </div>
+    
+    <div class="col-md-2">
+        <p>색상 4가지 보여줄곳</p>
+        <div class="color1 diamond-shield"></div>
+        <div class="color2 diamond-shield"></div>
+        <div class="color3 diamond-shield"></div>
+        <div class="color4 diamond-shield"></div>
+    </div>
+
+    <div class="col-md-5">
+        <p>결과이미지 나오는곳</p>
+        이미지 다운로드 버튼 만들기<br>
+        다운로드 버튼 누르면 이미지 다운로드 되고, 자동으로 DB 및 갤러리 저장하기
+    </div>
+
 </div>
