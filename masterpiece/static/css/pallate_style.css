@@ -115,8 +115,8 @@
 
 .color-dress-image {
     display: inline-block;
-    height: 200px;
-    /* width: 200px; */
+    max-height: 250px;
+    max-width: 450px;
     margin: auto;
 }
 
