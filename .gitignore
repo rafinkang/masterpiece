@@ -133,3 +133,6 @@ dmypy.json
 
 # crawling images
 test/crawling/images/*
+
+masterpiece/static/upload_images/*.jpg
+masterpiece/static/upload_images/temp_images/*.jpg

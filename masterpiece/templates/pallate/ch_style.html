@@ -1,12 +1,11 @@
-{% extends 'index.html' %}
+<div class="row" style="margin-top:200px;">
+    <div id="ch_image_container" style="width: 400px; height: 300px;"></div>
 
-{% block content %}
-<section id="ch_style">
-    <div class="container pallate-container">
-{% include 'pallate/pallate.html'%}        
-        <div class="row">
-            <div class="content col-md-12">팔레트/여기는 명화화</div>
-        </div>
-    </div>
-</section>
-{% endblock %}
+    <form id="ch_upload_image" method="POST" action="" enctype="multipart/form-data">
+        <input type="hidden" id="original_name" name="original_name"/>
+        <input type="file" id="ch_image" name="origin_img" accept="image/*" onchange="setImage(this);"/>
+    </form>
+
+    <div id="mp_image_container" style="width: 400px; height: 300px;"></div>
+</div>
+<script src="/masterpiece/static/js/ch-style.js"></script>

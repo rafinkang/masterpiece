@@ -1,23 +1,27 @@
 /* common style */
-.pallate-container  {
+
+.pallate-container {
     margin-top: 10px;
 }
 
 
 /* 상단 팔레트 영역 */
+
 .pallate {
-    height: 200px;
     border: 5px dashed #93b3b7;
     border-radius: 10px;
     margin-bottom: 15px;
-    padding: 5px;;
-}
-.pallate .origin_thumbnail {
-    height: 150px;
-    /* width: 150px; */
+    padding: 5px;
+    ;
 }
 
-.pallate .final_thumbnail {
+.pallate .origin-thumbnail {
+    height: 150px;
+    /* width: 150px; */
+    margin: auto;
+}
+
+.pallate .final-thumbnail {
     height: 150px;
     /* width: 150px; */
     float: right;
@@ -26,37 +30,131 @@
 .pallate .pallate-list {
     display: inline-block;
 }
-.pallate .color-outer-box{
-    border: 1px solid #000;
-    margin-bottom: 10px;
+
+.pallate .color-outer-box {
+    padding: 0 10%;
 }
+
 .pallate .color-box {
     height: 100px;
 }
-.pallate .color-box.color1{background-color: red;}
-.pallate .color-box.color2{background-color: yellow;}
-.pallate .color-box.color3{background-color: green;}
-.pallate .color-box.color4{background-color: blue;}
+
+.pallate .color-box.color1 {
+    width: 50%;
+    background-color: red;
+}
+
+.pallate .color-box.color2 {
+    width: 30%;
+    background-color: yellow;
+}
+
+.pallate .color-box.color3 {
+    width: 15%;
+    background-color: green;
+}
+
+.pallate .color-box.color4 {
+    width: 5%;
+    background-color: blue;
+}
+
 .pallate .color-hsv {
     margin-bottom: 10px;
     text-align: center;
 }
+
 .pallate .color-hex {
     margin-bottom: 10px;
     text-align: center;
 }
 
 
+/* 기능페이지 탭 부분 */
+.pallate-nav {
+    display: flex;
+    float: left;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.pallate-nav li {
+    min-width: 100px;
+    text-align: center;
+}
+
+.pallate-nav li:hover,
+.pallate-nav li.active {
+    border: 1px solid #e43c5c;
+    border-radius: 8px 8px 0px 0px;
+    cursor: pointer;
+}
+
+.pallate-content .pallate-tab {
+    display: none;
+    border: 1px solid #000;
+}
+
+.pallate-content .pallate-tab.active {
+    display: block;
+}
+
 /* 각자 컨텐츠 영역 */
-
-.pallate-container .content{
-    min-height: 600px;
+.color-pick{
+    padding: 10px;
 }
 
-#color_pick .content {
-    background-color: coral;
+.color-pick .heart {
+    margin-bottom: -20px;
 }
 
-/* #ch_style .content {
-    background-color: cornflowerblue;
-} */
+/* 이거슨 이쁜 div 스타일이여라 */
+.heart {
+    position: relative;
+    width: 100px;
+    height: 90px;
+}
+
+.heart:before,
+.heart:after {
+    position: absolute;
+    content: "";
+    left: 50px;
+    top: 0;
+    width: 50px;
+    height: 80px;
+    background: pink;
+    border-radius: 50px 50px 0 0;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+}
+
+.heart:after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+}
+
+.parallelogram {
+    transform: skew(-15deg);
+}
+
+.diamond-shield {
+    width: 0;
+    height: 0;
+    border: 50px solid transparent;
+    border-bottom: 20px solid red;
+    position: relative;
+    top: -50px;
+}
+.diamond-shield:after {
+    content: '';
+    position: absolute;
+    left: -50px;
+    top: 20px;
+    width: 0;
+    height: 0;
+    border: 50px solid transparent;
+    border-top: 70px solid red;
+}
