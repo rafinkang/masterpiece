@@ -152,6 +152,7 @@
     transform: skew(-15deg);
 }
 
+/* 감성분석 탭 */
 
 .emotion .db_filter{
     position: relative;
@@ -244,4 +245,88 @@
     background: #ea7596;
     color: #fff;
     font-weight: bold;
+}
+/* 명화화 영역 */
+
+.ch-wrap {
+    height: 67vh;
+}
+
+.ch-inout-box {
+    margin: auto;
+    text-align: center;
+    height: 95%;
+}
+
+.ch-image-box {
+    width: 100%;
+}
+
+.ch-image {
+    max-width: 95%;
+    margin: auto;
+}
+
+.ch-image-icon {
+    width: 200px;
+    opacity: 0.3;
+    margin: auto;
+}
+
+.ch-image-wrap {
+    border: 3px solid #93b3b7;
+    border-radius: 20px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.ch-image-upload-wrap:hover {
+    background-color: #6e87a7;
+    border: 3px solid #fff;
+    color: #fff;
+}
+
+.ch-image-upload-wrap:hover > .ch-image-plus {
+    color: #fff;
+}
+
+.ch-file-upload-input {
+    position: absolute;
+    width: 95%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.ch-image-plus{
+    color: #6e87a7;
+    font-size:80px;
+    margin: auto;
+    padding-bottom: 15px;
+}
+
+.ch-file-upload-content {
+    display: none;
+    text-align: center;
+    border: 3px solid #93b3b7;
+    border-radius: 20px;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+}
+
+.ch-file-upload-box {
+    height: 90%;
+}
+
+.ch-image-title-wrap {
+    padding: 0 15px 15px 15px;
+    color: #222;
+    height: 10%;
+}
+
+.ch-image-btn {
+    margin: auto;
 }
