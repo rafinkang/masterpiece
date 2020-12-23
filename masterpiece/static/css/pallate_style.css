@@ -34,38 +34,39 @@
 .pallate .color-outer-box {
     padding: 0 10%;
 }
+.pallate .color-outer-box .row{
+    margin: 5px 0;
+}
 
 .pallate .color-box {
     height: 100px;
 }
 
 .pallate .color-box.color1 {
-    width: 50%;
-    background-color: red;
+    width: 25%;
+    background-color: #637fa0;
 }
 
 .pallate .color-box.color2 {
-    width: 30%;
-    background-color: yellow;
+    width: 25%;
+    background-color: #394d77;
 }
 
 .pallate .color-box.color3 {
-    width: 15%;
-    background-color: green;
+    width: 25%;
+    background-color: #20262b;
 }
 
 .pallate .color-box.color4 {
-    width: 5%;
-    background-color: blue;
+    width: 25%;
+    background-color: #a8b5a1;
 }
 
 .pallate .color-hsv {
-    margin-bottom: 10px;
     text-align: center;
 }
 
 .pallate .color-hex {
-    margin-bottom: 10px;
     text-align: center;
 }
 
@@ -104,10 +105,295 @@
 .color-pick{
     padding: 10px;
 }
-
-.color-pick .heart {
-    margin-bottom: -20px;
+.color-pick .origin-thumbnail{
+    width: 100%;
 }
+
+
+.color-pick .color-pick-outer-box{
+    /* border: 1px solid #000; */
+    padding: 0;
+}
+.color-pick .color-pick-box{
+    width: 100%;
+    height: 25%;
+}
+.color-pick .color-pick-box.color1{
+    background-color: #637fa0;
+}
+.color-pick .color-pick-box.color2{
+    background-color: #394d77;
+}
+.color-pick .color-pick-box.color3{
+    background-color: #20262b;
+}
+.color-pick .color-pick-box.color4{
+    background-color: #a8b5a1;
+}
+
+.color-pick-box span {
+    position: absolute;
+    text-align: center;
+    transition: all .2s;
+    /* bottom: 0; */
+    color: #fff;
+    /* opacity: 0; */
+    text-transform: uppercase;
+    background-color: rgba(0,0,0,.1);
+    padding: 3px 6px;
+    border-radius: 0 3px 0 0;
+    cursor: pointer;
+    letter-spacing: 1px;
+}
+
+.color-pick table.color-pick-emotion{
+    width: 100%;
+}
+
+.parallelogram {
+    transform: skew(-15deg);
+}
+
+/* 감성분석 탭 */
+
+.emotion .db_filter{
+    position: relative;
+    width: 100%;
+    padding: 4px;
+    background: #ea7596;
+}
+
+.emotion .db_filter::before {
+    display: block;
+    content: '';
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    right: 1px;
+    bottom: 1px;
+    border: 1px solid #797c81;
+}
+.emotion ul.emotion_filter {
+    position: relative;
+    padding: 0 1px;
+    background: #fff;
+    overflow: hidden;
+    margin: 0;
+}
+
+.emotion .emotion_filter .filter-row {
+    position: relative;
+    float: left;
+    width: 100%;
+    padding: 1px 0;
+    border-bottom: 1px solid #dcdcdc;
+}
+
+.emotion .emotion_filter .filter-row .title {
+    position: absolute;
+    top: 1px;
+    left: 0;
+    bottom: 1px;
+    width: 99px;
+    background: #e8e8e8;
+}
+
+.emotion .emotion_filter .filter-row .title span {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    color: #464646;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.emotion .emotion_filter .filter-row .value {
+    padding-left: 110px;
+}
+
+.emotion .emotion_filter .checkbox {
+    display: block;
+    float: left;
+    margin: 10px 10px 10px 0;
+    cursor: pointer;
+}
+
+.emotion .emotion_filter .checkbox input {
+    display: none;
+}
+
+.emotion .emotion_filter .checkbox span {
+    display: block;
+    min-width: 50px;
+    height: 40px;
+    padding: 10px 10px;
+    background: #e6e6f4;
+    color: #464646;
+    border-radius: 5px;
+    font-size: 12px;
+    text-align: center;
+    line-height: 20px;
+    box-sizing: border-box;
+}
+
+.emotion .emotion_filter .checkbox input:checked + span {
+    background: #ea7596;
+    color: #fff;
+    font-weight: bold;
+}
+/* 명화화 영역 */
+
+.ch-wrap {
+    height: 67vh;
+}
+
+.ch-inout-box {
+    margin: auto;
+    text-align: center;
+    height: 95%;
+}
+
+.ch-image-box {
+    width: 100%;
+}
+
+.ch-image {
+    max-width: 95%;
+    margin: auto;
+}
+
+.ch-image-icon {
+    width: 200px;
+    opacity: 0.3;
+    margin: auto;
+}
+
+.ch-image-wrap {
+    border: 3px solid #93b3b7;
+    border-radius: 20px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.ch-image-upload-wrap:hover {
+    background-color: #6e87a7;
+    border: 3px solid #fff;
+    color: #fff;
+}
+
+.ch-image-upload-wrap:hover > .ch-image-plus {
+    color: #fff;
+}
+
+.ch-file-upload-input {
+    position: absolute;
+    width: 95%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.ch-image-plus{
+    color: #6e87a7;
+    font-size:80px;
+    margin: auto;
+    padding-bottom: 15px;
+}
+
+.ch-file-upload-content {
+    display: none;
+    text-align: center;
+    border: 3px solid #93b3b7;
+    border-radius: 20px;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+}
+
+.ch-file-upload-box {
+    height: 90%;
+}
+
+.ch-image-title-wrap {
+    padding: 0 15px 15px 15px;
+    color: #222;
+    height: 10%;
+}
+
+.ch-image-btn {
+    margin: auto;
+}
+
+/* 색상 입히기 영역 */
+
+/* @-webkit-keyframes bounceIn {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale(.3);
+    }
+    50% {
+        opacity: 1;
+        -webkit-transform: scale(1.05);
+    }
+    70% {
+        -webkit-transform: scale(.9);
+    }
+    100% {
+        -webkit-transform: scale(1);
+    }
+} */
+ 
+
+@keyframes bounceIn {
+    0%, 20%, 40%, 60%, 80%, 100% {
+        -webkit-animation-timing-function: cubic-bezier(.215,.61,.355,1);
+        animation-timing-function: cubic-bezier(.215,.61,.355,1);
+    }
+
+    0% {
+        opacity: 0;
+        -webkit-transform: scale3d(.3,.3,.3);
+        transform: scale3d(.3,.3,.3);
+    }
+    20% {
+        -webkit-transform: scale3d(1.1,1.1,1.1);
+        transform: scale3d(1.1,1.1,1.1);
+    }
+    40% {
+        -webkit-transform: scale3d(.9,.9,.9);
+        transform: scale3d(.9,.9,.9);
+    }
+    60% {
+        opacity: 1;
+        -webkit-transform: scale3d(1.03,1.03,1.03);
+        transform: scale3d(1.03,1.03,1.03);
+    }
+    80% {
+        -webkit-transform: scale3d(.97,.97,.97);
+        transform: scale3d(.97,.97,.97);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: scale3d(1,1,1);
+        transform: scale3d(1,1,1);
+    }
+}
+ 
+.lol_palette .droplet:hover {
+    z-index: 5!important;
+    transform: scale(1.15);
+}
+
+
 
 .color-dress{
     padding: 10px;
@@ -172,113 +458,4 @@
 .animated.flipOutX, .animated.flipOutY, .animated.bounceIn, .animated.bounceOut {
     -webkit-animation-duration: .75s;
     animation-duration: .75s;
-}
-
-
-/* 이거슨 이쁜 div 스타일이여라 */
-.heart {
-    position: relative;
-    width: 100px;
-    height: 90px;
-}
-
-.heart:before,
-.heart:after {
-    position: absolute;
-    content: "";
-    left: 50px;
-    top: 0;
-    width: 50px;
-    height: 80px;
-    background: pink;
-    border-radius: 50px 50px 0 0;
-    transform: rotate(-45deg);
-    transform-origin: 0 100%;
-}
-
-.heart:after {
-    left: 0;
-    transform: rotate(45deg);
-    transform-origin: 100% 100%;
-}
-
-.parallelogram {
-    transform: skew(-15deg);
-}
-
-.diamond-shield {
-    width: 0;
-    height: 0;
-    border: 50px solid transparent;
-    border-bottom: 20px solid red;
-    position: relative;
-    top: -50px;
-}
-.diamond-shield:after {
-    content: '';
-    position: absolute;
-    left: -50px;
-    top: 20px;
-    width: 0;
-    height: 0;
-    border: 50px solid transparent;
-    border-top: 70px solid red;
-}
-
-/* @-webkit-keyframes bounceIn {
-    0% {
-        opacity: 0;
-        -webkit-transform: scale(.3);
-    }
-    50% {
-        opacity: 1;
-        -webkit-transform: scale(1.05);
-    }
-    70% {
-        -webkit-transform: scale(.9);
-    }
-    100% {
-        -webkit-transform: scale(1);
-    }
-} */
- 
-
- @keyframes bounceIn {
-    0%, 20%, 40%, 60%, 80%, 100% {
-        -webkit-animation-timing-function: cubic-bezier(.215,.61,.355,1);
-        animation-timing-function: cubic-bezier(.215,.61,.355,1);
-    }
-
-    0% {
-        opacity: 0;
-        -webkit-transform: scale3d(.3,.3,.3);
-        transform: scale3d(.3,.3,.3);
-    }
-    20% {
-        -webkit-transform: scale3d(1.1,1.1,1.1);
-        transform: scale3d(1.1,1.1,1.1);
-    }
-    40% {
-        -webkit-transform: scale3d(.9,.9,.9);
-        transform: scale3d(.9,.9,.9);
-    }
-    60% {
-        opacity: 1;
-        -webkit-transform: scale3d(1.03,1.03,1.03);
-        transform: scale3d(1.03,1.03,1.03);
-    }
-    80% {
-        -webkit-transform: scale3d(.97,.97,.97);
-        transform: scale3d(.97,.97,.97);
-    }
-    100% {
-        opacity: 1;
-        -webkit-transform: scale3d(1,1,1);
-        transform: scale3d(1,1,1);
-    }
-}
- 
-.lol_palette .droplet:hover {
-    z-index: 5!important;
-    transform: scale(1.15);
 }

@@ -1,11 +1,28 @@
-<div class="row" style="margin-top:200px;">
-    <div id="ch_image_container" style="width: 400px; height: 300px;"></div>
+<div class="row ch-wrap">
+    <div class="col-md-6 ch-inout-box">
+          
+        <div class="ch-image-upload-wrap ch-image-wrap">
+            <input class="ch-file-upload-input" id="ch_input_image" type='file' onchange="readURL(this);" accept="image/*" />
+            <div class="ch-image-plus"> + </div>
+        </div>
 
-    <form id="ch_upload_image" method="POST" action="" enctype="multipart/form-data">
-        <input type="hidden" id="original_name" name="original_name"/>
-        <input type="file" id="ch_image" name="origin_img" accept="image/*" onchange="setImage(this);"/>
-    </form>
+        <div class="ch-file-upload-content container">
+            <div class="row ch-file-upload-box">
+                <img class="ch-file-upload-image ch-image rounded" src="#" alt="your image" />
+            </div>
+            <div class="ch-image-title-wrap row">
+                <button type="button" class="btn btn-outline-danger col-md-5 ch-image-btn" onclick="removeUpload()">취소</button>
+                <button type="button" class="btn btn-outline-info col-md-6 ch-image-btn" onclick="setImage()">명화로 만들기</button>
+            </div>
+        </div>
 
-    <div id="mp_image_container" style="width: 400px; height: 300px;"></div>
+    </div>
+    <div class="col-md-6 ch-inout-box ch-image-box">
+        <div class="ch-image-wrap" id="ch_output_image_container">
+            <img src="masterpiece/static/image/image_icon.png" class="ch-image-icon rounded">
+        </div>
+    </div>
 </div>
 <script src="/masterpiece/static/js/ch-style.js"></script>
+
+
