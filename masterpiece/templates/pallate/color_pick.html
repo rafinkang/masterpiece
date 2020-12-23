@@ -1,9 +1,10 @@
 <div class="row color-pick">
     <div class="col-md-6">
-        <img src="/masterpiece/static/image/grim.png" alt="썸네일" class="origin-thumbnail">
+        <img src="/masterpiece/static/image/starlight.jpeg" alt="썸네일" class="origin-thumbnail">
         <p>색상을 추출하실 이미지 파일을 선택해 주세요.</p>
         <input type="file" class="origin-image-file" accept=".jpg,.jpeg,.png" onchange="origin_thumbnail(this)">
         <button onclick="color_pick()">색상 뽑기</button>
+        <button onclick="color_insert()">색상 저장</button>
     </div>
     <div class="col-md-2 color-pick-outer-box">
         <div class="color1 color-pick-box"></div>
@@ -22,23 +23,23 @@
             <tbody>
                 <tr>
                     <td>색상</td>
-                    <td class="color_pred"></td>
+                    <td class="color_pred">azure</td>
                 </tr>
                 <tr>
                     <td>계절</td>
-                    <td class="season_pred"></td>
+                    <td class="season_pred">winter</td>
                 </tr>
                 <tr>
                     <td>톤</td>
-                    <td class="cw_pred"></td>
+                    <td class="cw_pred">cool</td>
                 </tr>
                 <tr>
                     <td>채도</td>
-                    <td class="cp_pred"></td>
+                    <td class="cp_pred">pastel</td>
                 </tr>
                 <tr>
                     <td>명암</td>
-                    <td class="value_pred"></td>
+                    <td class="value_pred">low</td>
                 </tr>
             </tbody>
         </table>

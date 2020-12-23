@@ -40,23 +40,23 @@
 }
 
 .pallate .color-box.color1 {
-    width: 50%;
-    background-color: red;
+    width: 25%;
+    background-color: #637fa0;
 }
 
 .pallate .color-box.color2 {
-    width: 30%;
-    background-color: yellow;
+    width: 25%;
+    background-color: #394d77;
 }
 
 .pallate .color-box.color3 {
-    width: 15%;
-    background-color: green;
+    width: 25%;
+    background-color: #20262b;
 }
 
 .pallate .color-box.color4 {
-    width: 5%;
-    background-color: blue;
+    width: 25%;
+    background-color: #a8b5a1;
 }
 
 .pallate .color-hsv {
@@ -113,19 +113,19 @@
 }
 .color-pick .color-pick-box{
     width: 100%;
-    height: 100px;
+    height: 25%;
 }
 .color-pick .color-pick-box.color1{
-    background-color: red;
+    background-color: #637fa0;
 }
 .color-pick .color-pick-box.color2{
-    background-color: yellow;
+    background-color: #394d77;
 }
 .color-pick .color-pick-box.color3{
-    background-color: green;
+    background-color: #20262b;
 }
 .color-pick .color-pick-box.color4{
-    background-color: blue;
+    background-color: #a8b5a1;
 }
 
 .color-pick table.emotion{
