@@ -58,8 +58,12 @@ def login_go(request):
         
         print(result[0],"딕셔너리로나와라")
         print(result[0]['user_idx'],"유저 인덱스")
-            request.session['user'] = result.id
-        
+
+        # request.session['aa'] = 'aa11111'
+
+        # print(request.session.get('aa'))
+        # request.session['user'] = 'result[0]["user_id"]'
+        # print(request.session.get('user'))
         return HttpResponse("1")
 
     
