@@ -17,7 +17,9 @@
             {% endif %}
 
             {% if request.session.user_id %}
-                <li><a href="" >로그아웃</a></li>
+                <li><a href="{% url 'login' %}" >로그아웃</a></li>
+            
+            
             {% else %}
                 <li><a href="{% url 'register' %}" >회원가입</a></li>
                 <li><a href="{% url 'login' %}" >로그인</a></li>
