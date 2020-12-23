@@ -50,7 +50,16 @@ def login_go(request):
 
     if result == None:
         print(result,"로그인 실패")
+
+        
         return HttpResponse("0")
     else:
         print(result,"로그인 성공")
+        
+        print(result[0],"딕셔너리로나와라")
+        print(result[0]['user_idx'],"유저 인덱스")
+            request.session['user'] = result.id
+        
         return HttpResponse("1")
+
+    
