@@ -34,7 +34,10 @@ function origin_thumbnail(obj) {
             localStorage.setItem("origin_image", dataURI)
 
             //썸네일 이미지 보여주기
-            document.querySelector('img.origin-thumbnail').src = dataURI;
+            $('img.origin-thumbnail').each(function(){
+                $(this)[0].src = dataURI;
+            });
+            // document.querySelector('img.origin-thumbnail').src = dataURI;
             
             //썸네일 이미지를 다운로드할 수 있도록 링크 설정
             //document.querySelector('#download').href = dataURI;
@@ -43,25 +46,23 @@ function origin_thumbnail(obj) {
 }
 
 function color_pick() {
+    origin_image = sessionStorage.getItem("origin_image");
+    if(!origin_image) {
+        alert('파일을 선택해주세요.');
+        return;
+    }
     $.ajax({
         url: "pallate/color_pick",
         method: "post",
         data: {
-            'dataURI': localStorage.getItem("origin_image"),
+            'dataURI': origin_image,
         },
         dataType: 'json',
         success: function (data) {
-            console.log('return data : ', data);
-            localStorage.setItem("color_pick", JSON.stringify(data));
-            load_localstorage();
-            $('.pallate .color-pick .heart.color1:before').css('background', data['hex1'])
-            $('.pallate .color-pick .heart.color1:after').css('background', data['hex1'])
-            $('.pallate .color-pick .heart.color2:before').css('background', data['hex2'])
-            $('.pallate .color-pick .heart.color2:after').css('background', data['hex2'])
-            $('.pallate .color-pick .heart.color3:before').css('background', data['hex3'])
-            $('.pallate .color-pick .heart.color3:after').css('background', data['hex3'])
-            $('.pallate .color-pick .heart.color4:before').css('background', data['hex4'])
-            $('.pallate .color-pick .heart.color4:after').css('background', data['hex4'])
+            // console.log('return data : ', data);
+            sessionStorage.setItem("color_pick", JSON.stringify(data));
+            load_storage();
+            
         },
         error: function (data) {
             console.log('error :', data);
@@ -71,8 +72,11 @@ function color_pick() {
 
 function load_localstorage() {
     
-    if(local_origin_image = localStorage.getItem("origin_image")) {
-        $('img.origin-thumbnail')[0].src = local_origin_image;
+    if(local_origin_image = sessionStorage.getItem("origin_image")) {
+        // $('img.origin-thumbnail')[0].src = local_origin_image;
+        $('img.origin-thumbnail').each(function(){
+            $(this)[0].src = local_origin_image;
+        });
     }
     
     if(color_pick_data = localStorage.getItem('color_pick')){
@@ -96,13 +100,29 @@ function load_localstorage() {
         $('.pallate .pallate-list .hex2').text(data['hex2'])
         $('.pallate .pallate-list .hex3').text(data['hex3'])
         $('.pallate .pallate-list .hex4').text(data['hex4'])
+        // 색상뽑기 내부 컬러박스
+        $('#pallate .color-pick .color-pick-box.color1').css('background-color', data['hex1'])
+        $('#pallate .color-pick .color-pick-box.color2').css('background-color', data['hex2'])
+        $('#pallate .color-pick .color-pick-box.color3').css('background-color', data['hex3'])
+        $('#pallate .color-pick .color-pick-box.color4').css('background-color', data['hex4'])
+
+        $('#pallate .color-pick .color-pick-box.color1').height(data['percent1']+'%')
+        $('#pallate .color-pick .color-pick-box.color2').height(data['percent2']+'%')
+        $('#pallate .color-pick .color-pick-box.color3').height(data['percent3']+'%')
+        $('#pallate .color-pick .color-pick-box.color4').height(data['percent4']+'%')
+        // 감성분석 결과
+        $('#pallate table.emotion td.color_pred').text(data['color_pred'])
+        $('#pallate table.emotion td.season_pred').text(data['season_pred'])
+        $('#pallate table.emotion td.cw_pred').text(data['cw_pred'])
+        $('#pallate table.emotion td.cp_pred').text(data['cp_pred'])
+        $('#pallate table.emotion td.value_pred').text(data['value_pred'])
     }
 
 }
 
 $(document).ready(function(){
-    load_localstorage()
     // onload
+    load_storage()
 
     // 탭메뉴 컨트롤
     $('ul.pallate-nav li').click(function(){
