@@ -1,20 +1,48 @@
-{% extends 'index.html' %}
-
-{% block content %}
-<section id="color_dress">
-    <div class="container pallate-container">
-{% include 'pallate/pallate.html'%}        
+<div class="row color-dress">
+    <div class="col-md-5">
+        <p>색상을 입힐 이미지 파일을 업로드 해주세요.</p>
         <div class="row">
-            <div class="content col-md-12">
-                색상입히기<br>
-                이미지 업로드 기능 (드래그할지, 파일 첨부할지?)<br>
-                색상 4가지 (팔레트에서 가져온 색상)<br>
-                색상 치환된 new 이미지<br>
-                다운로드 버튼 누르면 이미지 다운로드 되면서 자동으로 이미지가 갤러리(DB) 저장
+            <img src="/masterpiece/static/image/grim.png" alt="색상입힐이미지" class="color-dress-image">
+        </div>
+        <br>
 
-
-            </div>
+        <input type="file"  accept=".jpg,.jpeg,.png" onchange="color_dress_image(this); origin_thumbnail(this)">
+        <br>
+        <br>
+        <button onclick="color_dress()">색상 입히기</button>
+    </div>
+    
+    <!-- <div class="col-md-2 palette cf animated bounceIn"> -->
+    <div class="col-md-2">
+        <p>색상 4가지 보여줄곳</p>
+        
+        <div class="lol_palette cf animated bounceIn">
+            <svg class="droplet droplet_1" width="50px" viewBox="0 0 51.8 74.3">
+                <path style="fill: #9DC8C8" d="M2.8,47.4c0.1,13.6,11.9,24.3,25.7,22.8c13.2-1.4,22.4-14.3,20.2-27.4C47,32.3,39.2,22.5,27.4,5c-0.9-1.4-2.9-1.3-3.8,0.1C11.8,25.1,2.7,35.2,2.8,47.4z"></path>
+            </svg>
+            <!-- <span>#9DC8C8</span> -->
+        
+            <svg class="droplet droplet_2" width="50px" viewBox="0 0 51.8 74.3">
+                <path style="fill: #58C9B9" d="M2.8,47.4c0.1,13.6,11.9,24.3,25.7,22.8c13.2-1.4,22.4-14.3,20.2-27.4C47,32.3,39.2,22.5,27.4,5c-0.9-1.4-2.9-1.3-3.8,0.1C11.8,25.1,2.7,35.2,2.8,47.4z"></path>
+            </svg>
+            <!-- <span>#58C9B9</span> -->
+        
+            <svg class="droplet droplet_3" width="50px" viewBox="0 0 51.8 74.3">
+                <path style="fill: #519D9E" d="M2.8,47.4c0.1,13.6,11.9,24.3,25.7,22.8c13.2-1.4,22.4-14.3,20.2-27.4C47,32.3,39.2,22.5,27.4,5c-0.9-1.4-2.9-1.3-3.8,0.1C11.8,25.1,2.7,35.2,2.8,47.4z"></path>
+            </svg>
+            <!-- <span>#519D9E</span> -->
+        
+            <svg class="droplet droplet_4" width="50px" viewBox="0 0 51.8 74.3">
+                <path style="fill: #D1B6E1" d="M2.8,47.4c0.1,13.6,11.9,24.3,25.7,22.8c13.2-1.4,22.4-14.3,20.2-27.4C47,32.3,39.2,22.5,27.4,5c-0.9-1.4-2.9-1.3-3.8,0.1C11.8,25.1,2.7,35.2,2.8,47.4z"></path>
+            </svg>
+            <!-- <span>#D1B6E1</span> -->
         </div>
     </div>
-</section>
-{% endblock %}
+
+    <div class="col-md-5">
+        <p>결과이미지 나오는곳</p>
+        이미지 다운로드 버튼 만들기<br>
+        다운로드 버튼 누르면 이미지 다운로드 되고, 자동으로 DB 및 갤러리 저장하기
+    </div>
+
+</div>

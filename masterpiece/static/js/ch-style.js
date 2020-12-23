@@ -1,7 +1,31 @@
 $(document).ready(function(){
+    readURL = function(input) {
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+      
+          reader.onload = function(e) {
+            $('.ch-image-upload-wrap').hide();
+            $('.ch-file-upload-image').attr('src', e.target.result);
+            $(".ch-file-upload-content").show();
+            // $('.image-title').html(input.files[0].name);
+          };
+      
+          reader.readAsDataURL(input.files[0]);
+      
+        } else {
+            removeUpload();
+        }
+      }
+      
+    removeUpload = function() {
+        $('.ch-file-upload-input').val("")
+        $(".ch-file-upload-content").hide();
+        $('.ch-image-upload-wrap').show();
+    }
+
     setImage = function(f) {
-        var file = f.files[0];
-        const image_container = $("#ch_image_container");
+        var file = $("#ch_input_image")[0].files[0];
+        const ch_input_image_container = $("#ch_input_image_container");
 
         // 확장자 체크
         if(!/\.(jpg|jpeg|png)$/i.test(file.name)){
@@ -9,15 +33,11 @@ $(document).ready(function(){
     
             // 선택한 파일 초기화
             f.outerHTML = f.outerHTML;
-            image_container.text("");
+            ch_input_image_container.text("");
         } else {
             // FileReader 객체 사용
             var reader = new FileReader();
 
-            // 파일 읽기가 완료되었을때 실행
-            reader.onload = function(rst){
-                image_container.append('<img src="' + rst.target.result + '" width="400">');
-            }
             // 파일을 읽는다
             reader.readAsDataURL(file);
                 
@@ -69,7 +89,6 @@ $(document).ready(function(){
     }
 
     origin_to_masterpiece = function(img_name) {
-        // TO-DO : 명화화
         $.ajax({
             url: "pallate/ch_style/change_masterpiece",
             type: 'post',
@@ -78,8 +97,10 @@ $(document).ready(function(){
             },
             dataType: 'text',
             success: function(res) {
-                const mp_image_container = $("#mp_image_container");
-                mp_image_container.append('<img src="' + res + '" width="400" height="400">');
+                const ch_output_image_container = $("#ch_output_image_container");
+                
+                ch_output_image_container.empty();
+                ch_output_image_container.append('<img src="' + res + '" class="ch-image rounded">');
             },
             error: function(error) {
                 console.log('error', error);
@@ -87,4 +108,5 @@ $(document).ready(function(){
         });
         return;
     }
+      
 });

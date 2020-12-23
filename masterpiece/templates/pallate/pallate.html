@@ -8,7 +8,7 @@
             <div class="pallate col-md-12">
                 <div class="pallate-list col-md-3">
                     <div class="row">
-                        <img src="/masterpiece/static/image/grim.png" alt="썸네일" class="origin-thumbnail">
+                        <img src="/masterpiece/static/image/starlight.jpeg" alt="썸네일" class="origin-thumbnail">
                     </div>
                     <!-- <div class="row">
                         <input type="file" class="origin-image-file" accept=".jpg,.jpeg,.png">
@@ -21,16 +21,16 @@
                         <div class="color-box color4 parallelogram"></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-3 color-hsv hsv1">(h,s,v)</div>
-                        <div class="col-md-3 color-hsv hsv2">(h,s,v)</div>
-                        <div class="col-md-3 color-hsv hsv3">(h,s,v)</div>
-                        <div class="col-md-3 color-hsv hsv4">(h,s,v)</div>
+                        <div class="col-md-3 color-hsv hsv1">(213,38,63)</div>
+                        <div class="col-md-3 color-hsv hsv2">(221,52,47)</div>
+                        <div class="col-md-3 color-hsv hsv3">(208,26,17)</div>
+                        <div class="col-md-3 color-hsv hsv4">(99,11,71)</div>
                     </div>
                     <div class="row">
-                        <div class="col-md-3 color-hex hex1">#000000</div>
-                        <div class="col-md-3 color-hex hex2">#000000</div>
-                        <div class="col-md-3 color-hex hex3">#000000</div>
-                        <div class="col-md-3 color-hex hex4">#000000</div>
+                        <div class="col-md-3 color-hex hex1">#637fa0</div>
+                        <div class="col-md-3 color-hex hex2">#394d77</div>
+                        <div class="col-md-3 color-hex hex3">#20262b</div>
+                        <div class="col-md-3 color-hex hex4">#a8b5a1</div>
                     </div>
                 </div>
             </div>
@@ -53,9 +53,9 @@
                 
             </div>
             <!-- 감성분석 -->
-            <div class="pallate-tab col-md-12" data-page="2">감성분석</div>
+            <div class="pallate-tab col-md-12" data-page="2"> {% include 'pallate/emotion.html'%} </div>
             <!-- 색상 입히기 -->
-            <div class="pallate-tab col-md-12" data-page="3">색상입히기</div>
+            <div class="pallate-tab col-md-12" data-page="3"> {% include 'pallate/color_dress.html'%} </div>
             <!-- 명화화 -->
             <div class="pallate-tab col-md-12" data-page="4"> {% include 'pallate/ch_style.html'%} </div>
         </div>
