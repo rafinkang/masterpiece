@@ -31,7 +31,7 @@ function origin_thumbnail(obj) {
             //캔버스에 그린 이미지를 다시 data-uri 형태로 변환
             var dataURI = canvas.toDataURL("image/jpg");
             // console.log(dataURI)
-            localStorage.setItem("origin_image", dataURI)
+            sessionStorage.setItem("origin_image", dataURI)
 
             //썸네일 이미지 보여주기
             $('img.origin-thumbnail').each(function(){
@@ -70,7 +70,7 @@ function color_pick() {
     });
 }
 
-function load_localstorage() {
+function load_storage() {
     
     if(local_origin_image = sessionStorage.getItem("origin_image")) {
         // $('img.origin-thumbnail')[0].src = local_origin_image;
@@ -79,7 +79,7 @@ function load_localstorage() {
         });
     }
     
-    if(color_pick_data = localStorage.getItem('color_pick')){
+    if(color_pick_data = sessionStorage.getItem('color_pick')){
         data = JSON.parse(color_pick_data)
         $('.pallate .pallate-list .color1').css('background-color', data['hex1'])
         $('.pallate .pallate-list .color2').css('background-color', data['hex2'])
