@@ -131,3 +131,7 @@
 .color-pick table.emotion{
     width: 100%;
 }
+
+.parallelogram {
+    transform: skew(-15deg);
+}
