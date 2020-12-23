@@ -164,7 +164,7 @@
 }
 
 .ch-image-wrap {
-    border: 4px dashed #93b3b7;
+    border: 3px solid #93b3b7;
     border-radius: 20px;
     height: 100%;
     width: 100%;
@@ -174,7 +174,7 @@
 
 .ch-image-upload-wrap:hover {
     background-color: #6e87a7;
-    border: 4px dashed #fff;
+    border: 3px solid #fff;
     color: #fff;
 }
 
@@ -200,7 +200,7 @@
 .ch-file-upload-content {
     display: none;
     text-align: center;
-    border: 4px dashed #93b3b7;
+    border: 3px solid #93b3b7;
     border-radius: 20px;
     height: 100%;
     width: 100%;
