@@ -1,7 +1,15 @@
 <div class="row color-dress">
     <div class="col-md-5">
-        <p>색상을 변화시킬 이미지 파일을 선택해 주세요.</p>
-        <input type="file" class="origin-image-file" accept=".jpg,.jpeg,.png" onchange="origin_thumbnail(this)">
+        <p>색상을 입힐 이미지 파일을 업로드 해주세요.</p>
+        <div class="row">
+            <img src="/masterpiece/static/image/grim.png" alt="색상입힐이미지" class="color-dress-image">
+        </div>
+        <br>
+
+        <!-- <input type="file" class="origin-image-file" accept=".jpg,.jpeg,.png" onchange="origin_thumbnail(this)"> -->
+        <input type="file"  accept=".jpg,.jpeg,.png" onchange="color_dress_image(this); origin_thumbnail(this)">
+        <br>
+        <br>
         <button onclick="color_pick()">색상 뽑기</button>
     </div>
     

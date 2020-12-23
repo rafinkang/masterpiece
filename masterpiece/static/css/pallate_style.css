@@ -109,6 +109,18 @@
     margin-bottom: -20px;
 }
 
+.color-dress{
+    padding: 10px;
+}
+
+.color-dress-image {
+    display: inline-block;
+    height: 200px;
+    /* width: 200px; */
+    margin: auto;
+}
+
+
 /* 이거슨 이쁜 div 스타일이여라 */
 .heart {
     position: relative;
