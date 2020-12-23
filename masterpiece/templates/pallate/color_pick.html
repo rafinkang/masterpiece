@@ -1,2 +1,16 @@
-<input type="file" class="origin-image-file" accept=".jpg,.jpeg,.png" onchange="origin_thumbnail(this)">
-<button onclick="color_pick()">색상 뽑기</button>
+<div class="row color-pick">
+    <div class="col-md-4">
+        <p>색상을 추출하실 이미지 파일을 선택해 주세요.</p>
+        <input type="file" class="origin-image-file" accept=".jpg,.jpeg,.png" onchange="origin_thumbnail(this)">
+        <button onclick="color_pick()">색상 뽑기</button>
+    </div>
+    <div class="col-md-2">
+        <div class="color1 diamond-shield"></div>
+        <div class="color2 diamond-shield"></div>
+        <div class="color3 diamond-shield"></div>
+        <div class="color4 diamond-shield"></div>
+    </div>
+    <div class="col-md-6">
+        여기는 감성 분석이다
+    </div>
+</div>

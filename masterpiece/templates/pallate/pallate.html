@@ -13,12 +13,12 @@
                     <!-- <div class="row">
                         <input type="file" class="origin-image-file" accept=".jpg,.jpeg,.png">
                     </div> -->
-                </div><div class="pallate-list col-md-9">
-                    <div class="row color-outer-box">
-                        <div class="col-md-3 color-box color1"></div>
-                        <div class="col-md-3 color-box color2"></div>
-                        <div class="col-md-3 color-box color3"></div>
-                        <div class="col-md-3 color-box color4"></div>
+                </div><div class="pallate-list color-outer-box col-md-9">
+                    <div class="row">
+                        <div class="color-box color1 parallelogram"></div>
+                        <div class="color-box color2 parallelogram"></div>
+                        <div class="color-box color3 parallelogram"></div>
+                        <div class="color-box color4 parallelogram"></div>
                     </div>
                     <div class="row">
                         <div class="col-md-3 color-hsv hsv1">(h,s,v)</div>
@@ -55,7 +55,7 @@
             <!-- 감성분석 -->
             <div class="pallate-tab col-md-12" data-page="2">감성분석</div>
             <!-- 색상 입히기 -->
-            <div class="pallate-tab col-md-12" data-page="3">색상입히기</div>
+            <div class="pallate-tab col-md-12" data-page="3"> {% include 'pallate/color_dress.html'%} </div>
             <!-- 명화화 -->
             <div class="pallate-tab col-md-12" data-page="4"> {% include 'pallate/ch_style.html'%} </div>
         </div>
