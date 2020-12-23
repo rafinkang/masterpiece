@@ -81,44 +81,49 @@ function load_storage() {
     
     if(color_pick_data = sessionStorage.getItem('color_pick')){
         data = JSON.parse(color_pick_data)
-        $('.pallate .pallate-list .color1').css('background-color', data['hex1'])
-        $('.pallate .pallate-list .color2').css('background-color', data['hex2'])
-        $('.pallate .pallate-list .color3').css('background-color', data['hex3'])
-        $('.pallate .pallate-list .color4').css('background-color', data['hex4'])
+        $('.pallate .pallate-list .color1').css('background-color', data['hex1']);
+        $('.pallate .pallate-list .color2').css('background-color', data['hex2']);
+        $('.pallate .pallate-list .color3').css('background-color', data['hex3']);
+        $('.pallate .pallate-list .color4').css('background-color', data['hex4']);
 
-        $('.pallate .pallate-list .color1').width(data['percent1']+'%')
-        $('.pallate .pallate-list .color2').width(data['percent2']+'%')
-        $('.pallate .pallate-list .color3').width(data['percent3']+'%')
-        $('.pallate .pallate-list .color4').width(data['percent4']+'%')
+        $('.pallate .pallate-list .color1').width(data['percent1']+'%');
+        $('.pallate .pallate-list .color2').width(data['percent2']+'%');
+        $('.pallate .pallate-list .color3').width(data['percent3']+'%');
+        $('.pallate .pallate-list .color4').width(data['percent4']+'%');
         
-        $('.pallate .pallate-list .hsv1').text('('+data['h1']+','+data['s1']+','+data['v1']+')')
-        $('.pallate .pallate-list .hsv2').text('('+data['h2']+','+data['s2']+','+data['v2']+')')
-        $('.pallate .pallate-list .hsv3').text('('+data['h3']+','+data['s3']+','+data['v3']+')')
-        $('.pallate .pallate-list .hsv4').text('('+data['h4']+','+data['s4']+','+data['v4']+')')
+        $('.pallate .pallate-list .hsv1').text('('+data['h1']+','+data['s1']+','+data['v1']+')');
+        $('.pallate .pallate-list .hsv2').text('('+data['h2']+','+data['s2']+','+data['v2']+')');
+        $('.pallate .pallate-list .hsv3').text('('+data['h3']+','+data['s3']+','+data['v3']+')');
+        $('.pallate .pallate-list .hsv4').text('('+data['h4']+','+data['s4']+','+data['v4']+')');
 
-        $('.pallate .pallate-list .hex1').text(data['hex1'])
-        $('.pallate .pallate-list .hex2').text(data['hex2'])
-        $('.pallate .pallate-list .hex3').text(data['hex3'])
-        $('.pallate .pallate-list .hex4').text(data['hex4'])
+        $('.pallate .pallate-list .hex1').text(data['hex1']);
+        $('.pallate .pallate-list .hex2').text(data['hex2']);
+        $('.pallate .pallate-list .hex3').text(data['hex3']);
+        $('.pallate .pallate-list .hex4').text(data['hex4']);
         // 색상뽑기 내부 컬러박스
-        $('#pallate .color-pick .color-pick-box.color1').css('background-color', data['hex1'])
-        $('#pallate .color-pick .color-pick-box.color2').css('background-color', data['hex2'])
-        $('#pallate .color-pick .color-pick-box.color3').css('background-color', data['hex3'])
-        $('#pallate .color-pick .color-pick-box.color4').css('background-color', data['hex4'])
+        $('#pallate .color-pick .color-pick-box.color1').css('background-color', data['hex1']);
+        $('#pallate .color-pick .color-pick-box.color2').css('background-color', data['hex2']);
+        $('#pallate .color-pick .color-pick-box.color3').css('background-color', data['hex3']);
+        $('#pallate .color-pick .color-pick-box.color4').css('background-color', data['hex4']);
 
-        $('#pallate .color-pick .color-pick-box.color1').height(data['percent1']+'%')
-        $('#pallate .color-pick .color-pick-box.color2').height(data['percent2']+'%')
-        $('#pallate .color-pick .color-pick-box.color3').height(data['percent3']+'%')
-        $('#pallate .color-pick .color-pick-box.color4').height(data['percent4']+'%')
+        $('#pallate .color-pick .color-pick-box span.hex1').text(data['hex1']);
+        $('#pallate .color-pick .color-pick-box span.hex2').text(data['hex2']);
+        $('#pallate .color-pick .color-pick-box span.hex3').text(data['hex3']);
+        $('#pallate .color-pick .color-pick-box span.hex4').text(data['hex4']);
+
+        $('#pallate .color-pick .color-pick-box.color1').height(data['percent1']+'%');
+        $('#pallate .color-pick .color-pick-box.color2').height(data['percent2']+'%');
+        $('#pallate .color-pick .color-pick-box.color3').height(data['percent3']+'%');
+        $('#pallate .color-pick .color-pick-box.color4').height(data['percent4']+'%');
         // 감성분석 결과
-        $('#pallate table.emotion td.color_pred').text(data['color_pred'])
-        $('#pallate table.emotion td.season_pred').text(data['season_pred'])
-        $('#pallate table.emotion td.cw_pred').text(data['cw_pred'])
-        $('#pallate table.emotion td.cp_pred').text(data['cp_pred'])
-        $('#pallate table.emotion td.value_pred').text(data['value_pred'])
+        $('#pallate table.emotion td.color_pred').text(data['color_pred']);
+        $('#pallate table.emotion td.season_pred').text(data['season_pred']);
+        $('#pallate table.emotion td.cw_pred').text(data['cw_pred']);
+        $('#pallate table.emotion td.cp_pred').text(data['cp_pred']);
+        $('#pallate table.emotion td.value_pred').text(data['value_pred']);
     }
-
 }
+
 
 $(document).ready(function(){
     // onload
