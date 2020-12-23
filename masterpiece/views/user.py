@@ -50,7 +50,29 @@ def login_go(request):
 
     if result == None:
         print(result,"로그인 실패")
+
+        
         return HttpResponse("0")
     else:
         print(result,"로그인 성공")
+        # return JsonResponse(result)
+        
+        # print(result[0],"딕셔너리로나와라")
+        # print(result[0]['user_idx'],"유저 인덱스")
+
+        request.session['user_idx'] = 'result[0]["user_idx"]'
+        request.session['user_id'] = 'result[0]["user_id"]'
+        request.session['password'] = 'result[0]["password"]'
+        request.session['user_name'] = 'result[0]["user_name"]'
+        request.session['sex'] = 'result[0]["sex"]'
+        request.session['birth'] = 'result[0]["birth"]'
+        request.session['job'] = 'result[0]["job"]'
+        request.session['company'] = 'result[0]["company"]'
+
+        # print(request.session.get('user'))
         return HttpResponse("1")
+
+    #로그아웃 
+def logout(request):
+    request.session.clear()
+    return HttpResponse("1");
