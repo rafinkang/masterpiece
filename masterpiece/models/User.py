@@ -31,3 +31,9 @@ class User():
     def login_go(self,user_id,password):
         sql = f"select * from user where user_id ='{user_id}' and password='{password}'"
         return self.db.select(sql)
+
+    def logout(self):
+        self.session.clear()
+        SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+        return;
+
