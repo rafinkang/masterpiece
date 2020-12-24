@@ -1,5 +1,6 @@
 import base64
 import datetime
+import os
 from io import BytesIO
 
 import cv2
@@ -14,6 +15,7 @@ from django.shortcuts import redirect, render
 from masterpiece.classes.CycleganLoadWeight import CycleganLoadWeight
 from masterpiece.classes.Spuit import Spuit
 from PIL import Image
+from masterpiece.models.GallaryList import GallaryList
 
 
 def pallate(request):
@@ -22,9 +24,10 @@ def pallate(request):
 # ch_style
 def temp_img_upload(request):
     dataURI = request.POST.dict()['dataURI']
+    user_idx = request.POST.dict()['userIDX']
     temp_img_path = 'masterpiece/static/upload_images/temp_images/'
 
-    filename = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S') + '.jpg'
+    filename = user_idx + '_' + datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S') + '.jpg'
     path = temp_img_path + '/' + filename
 
     imgdata = base64_decode(dataURI)
@@ -36,10 +39,39 @@ def temp_img_upload(request):
 
 def change_masterpiece(request):
     img_name = request.POST.dict()['img_name']
-    img_path = 'masterpiece/static/upload_images/temp_images/' + img_name
+    temp_img_full_path = 'masterpiece/static/upload_images/temp_images/' + img_name
 
     clw = CycleganLoadWeight()
-    return HttpResponse(clw.change_style(img_path, img_name))
+    return HttpResponse(clw.change_style(temp_img_full_path, img_name))
+
+def download_img(request):
+    # 임시 저장 이미지 중 찾을 이미지 2개
+    user_idx = request.POST.dict()['userIDX']
+    masterpiece_img_name = request.POST.dict()['masterpieceImageName'] # 명화화 한 임시 저장 이미지 이름
+    img_name = masterpiece_img_name.replace('_masterpiece', '') # 명화화 하기 전 임시 저장 이미지 이름
+    
+    original_img_path = 'masterpiece/static/upload_images/original_images/'
+    masterpiece_img_path = 'masterpiece/static/upload_images/masterpiece_images/'
+    temp_img_path = 'masterpiece/static/upload_images/temp_images/'
+
+    # 원본 이미지 서버 저장
+    img = Image.open(temp_img_path + img_name)
+    img.save(original_img_path + img_name)
+
+    # 명화화 이미지 서버 저장
+    master_img = Image.open(temp_img_path + masterpiece_img_name)
+    master_img.save(masterpiece_img_path + masterpiece_img_name)
+
+    # DB저장
+    sql = "insert into gallary_list(user_idx, image_name, image_url, image_type) values(%s, %s, %s);"
+    data = [[user_idx, img_name, original_img_path + img_name], [user_idx, masterpiece_img_name, masterpiece_img_path + masterpiece_img_name]]
+    GallaryList.executemany(sql, data)
+
+    # 임시저장 이미지 삭제
+    os.remove(img_name + temp_img_path)
+    os.remove(temp_img_path + masterpiece_img_name)
+
+    return HttpResponse(masterpiece_img_path + masterpiece_img_name)
 
 # color_pick
 def color_pick(request):

@@ -254,13 +254,13 @@
     height: 67vh;
 }
 
-.ch-inout-box {
+.ch-wrap .ch-inout-box {
     margin: auto;
     text-align: center;
     height: 95%;
 }
 
-.ch-image-box {
+.ch-wrap .ch-image-box {
     width: 100%;
 }
 
@@ -269,8 +269,8 @@
     margin: auto;
 }
 
-.ch-image-icon {
-    width: 200px;
+.ch-wrap .ch-file-output-content .ch-image-icon {
+    max-width: 40%;
     opacity: 0.3;
     margin: auto;
 }
@@ -284,17 +284,17 @@
     justify-content: center;
 }
 
-.ch-image-upload-wrap:hover {
+.ch-wrap .ch-inout-box .ch-image-upload-wrap:hover {
     background-color: #6e87a7;
     border: 3px solid #fff;
     color: #fff;
 }
 
-.ch-image-upload-wrap:hover > .ch-image-plus {
+.ch-wrap .ch-inout-box .ch-image-upload-wrap:hover > .ch-image-plus {
     color: #fff;
 }
 
-.ch-file-upload-input {
+.ch-wrap .ch-inout-box .ch-image-upload-wrap .ch-file-upload-input {
     position: absolute;
     width: 95%;
     height: 100%;
@@ -302,14 +302,14 @@
     cursor: pointer;
 }
 
-.ch-image-plus{
+.ch-wrap .ch-inout-box .ch-image-upload-wrap .ch-image-plus{
     color: #6e87a7;
     font-size:80px;
     margin: auto;
     padding-bottom: 15px;
 }
 
-.ch-file-upload-content {
+.ch-wrap .ch-inout-box .ch-file-upload-content {
     display: none;
     text-align: center;
     border: 3px solid #93b3b7;
@@ -319,17 +319,33 @@
     justify-content: center;
 }
 
-.ch-file-upload-box {
+.ch-wrap .ch-inout-box .ch-file-output-content {
+    text-align: center;
+    border: 3px solid #93b3b7;
+    border-radius: 20px;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+}
+
+.ch-wrap .ch-inout-box .ch-file-upload-content .ch-file-upload-box,
+.ch-wrap .ch-inout-box .ch-file-output-content  .ch-file-upload-box {
     height: 90%;
 }
 
-.ch-image-title-wrap {
+.ch-wrap .ch-inout-box .ch-file-output-content  .ch-file-image-icon-box {
+    height: 100%;
+}
+
+.ch-wrap .ch-inout-box .ch-file-upload-content .ch-image-title-wrap,
+.ch-wrap .ch-inout-box .ch-file-output-content  .ch-image-title-wrap {
     padding: 0 15px 15px 15px;
     color: #222;
     height: 10%;
 }
 
-.ch-image-btn {
+.ch-wrap .ch-inout-box .ch-file-upload-content .ch-image-title-wrap .ch-image-btn,
+.ch-wrap .ch-inout-box .ch-file-output-content .ch-image-title-wrap .ch-image-btn {
     margin: auto;
 }
 
