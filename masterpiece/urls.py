@@ -12,12 +12,12 @@ urlpatterns = [
     path('login/logout', user.logout,name='login/logout'),
 
     
-
     path('register', user.register, name='register'),
     path('register/idcheck', user.idcheck, name='register/idcheck'),
     path('register/insert_user', user.insert_user, name='register/insert_user'),
 
-    # path('logout',user.logout,name ='logout'),
+    path('findpw', user.findpw , name='findpw'),
+    path('findpw/findpw_search', user.findpw_search , name='findpw/findpw_search'),
     
 
     

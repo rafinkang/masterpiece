@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from masterpiece.models.User import User
+from django.http.response import JsonResponse
 
 # Create your views here.
 # 컨트롤러 역할 비즈니스 로직 구현
@@ -12,6 +13,10 @@ def login(request):
 # 회원가입 페이지 이동
 def register(request):
     return render(request, 'user/user_register.html')
+
+# 비밀번호 찾기 페이지 이동 
+def findpw(request):
+    return render(request, 'user/user_findpw.html')
 
 # 아이디 중복 체크 
 def idcheck(request):
@@ -51,7 +56,6 @@ def login_go(request):
     if result == None:
         print(result,"로그인 실패")
 
-        
         return HttpResponse("0")
     else:
         print(result,"로그인 성공")
@@ -60,17 +64,17 @@ def login_go(request):
         # print(result[0],"딕셔너리로나와라")
         # print(result[0]['user_idx'],"유저 인덱스")
 
-        request.session['user_idx'] = 'result[0]["user_idx"]'
-        request.session['user_id'] = 'result[0]["user_id"]'
-        request.session['password'] = 'result[0]["password"]'
-        request.session['user_name'] = 'result[0]["user_name"]'
-        request.session['sex'] = 'result[0]["sex"]'
-        request.session['birth'] = 'result[0]["birth"]'
-        request.session['job'] = 'result[0]["job"]'
-        request.session['company'] = 'result[0]["company"]'
+        request.session['user_idx'] = str(result[0]["user_idx"])
+        request.session['user_id'] = str(result[0]["user_id"])
+        # request.session['password'] = str(result[0]["password"])
+        request.session['user_name'] = str(result[0]["user_name"])
+        request.session['sex'] = str(result[0]["sex"])
+        request.session['birth'] = str(result[0]["birth"])
+        request.session['job'] = str(result[0]["job"])
+        request.session['company'] = str(result[0]["company"])
 
-        # print(request.session.get('user'))
-        return HttpResponse("1")
+        print(request.session.get('user_id'))
+        return JsonResponse(result[0])
 
     #로그아웃 
 def logout(request):
@@ -78,3 +82,7 @@ def logout(request):
     request.session.clear()
     SESSION_EXPIRE_AT_BROWSER_CLOSE = True
     return HttpResponse("1");
+
+#비밀번호 찾기 비교 
+def findpw_search(request):
+    pass
