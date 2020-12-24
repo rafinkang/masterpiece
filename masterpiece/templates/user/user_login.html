@@ -47,16 +47,17 @@
                         'user_id': login_id,
                         'password': md5(login_pw),
                     },
-                    dataType: 'text',
+                    dataType: 'json',
+
                     success: function(data) {
-                        if (data == 1) {
+                        if (data['user_id'] == login_id) {
                             alert("로그인 성공 하였습니다.");
-                            console.log(md5(login_pw))
-                            sessionStorage.setItem('login_id', login_id);
-                            location.href = "{% url 'pallate' %}"
+                            console.log(data)
+                            sessionStorage.setItem('login_data', JSON.stringify(data));
+                            //location.href = "{% url 'pallate' %}"
                         } else {
                             alert("로그인 실패하였습니다.");
-                            console.log(md5(login_pw))
+
                         };
                     },
                     error: function(data) {}
@@ -73,11 +74,11 @@
                 success: function(url) {
                     console.log("로그아웃 눌리나 확인", url);
                     sessionStorage.removeItem("login_id");
-                    console.log("웹 색션 지워졌나 확인", sessionStorage.removeItem("login_id"));
+
 
                 },
                 error: function(url) {
-                    console.log(url);
+                    console.log("이미 지워져서 오류");
                 }
             });
         });
