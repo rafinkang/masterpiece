@@ -399,7 +399,7 @@
     padding: 10px;
 }
 
-.color-dress-image {
+.color-dress .color-dress-image {
     display: inline-block;
     max-height: 250px;
     max-width: 450px;
@@ -407,19 +407,24 @@
 }
 
 
-.droplet_1 {
+
+.color-dress .droplet_1 {
     z-index: 4;
+    fill: #637fa0;
 }
-.droplet_2 {
+.color-dress .droplet_2 {
     z-index: 3;
+    fill: #394d77;
 }
-.droplet_3 {
+.color-dress .droplet_3 {
     z-index: 2;
+    fill: #20262b;
 }
-.droplet_4 {
+.color-dress .droplet_4 {
     z-index: 1;
+    fill: #a8b5a1;
 }
-.droplet {
+.color-dress .droplet {
     display: block;
     width: 50px;
     margin: -3rem auto 1rem;
@@ -427,17 +432,17 @@
     transition: all .2s ease-in-out;
 }
 
-.bounceIn {
+.color-dress .bounceIn {
     -webkit-animation-name: bounceIn;
     animation-name: bounceIn;
 }
-.animated {
+.color-dress .animated {
     -webkit-animation-duration: 1s;
     animation-duration: 1s;
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
 }
-.lol_palette {
+.color-dress .lol_palette {
     float: left;
     width: 225px;
     height: 250px;
@@ -448,14 +453,14 @@
     transition: all .5s linear;
 }
 
-.tooltip {
+.color-dress .tooltip {
     position: relative;
     text-decoration: none;
     background-color: transparent;
     box-sizing: border-box;
 }
 
-.animated.flipOutX, .animated.flipOutY, .animated.bounceIn, .animated.bounceOut {
+.color-dress .animated.flipOutX, .color-dress .animated.flipOutY, .color-dress .animated.bounceIn, .color-dress .animated.bounceOut {
     -webkit-animation-duration: .75s;
     animation-duration: .75s;
 }
