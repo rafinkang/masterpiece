@@ -24,37 +24,40 @@
         </div>
         <br>
 
-        <input type="button" value="비밀번호 찾기" onclick="find_pw(this)">
+        <input type="button" value="비밀번호 찾기" id="find_pw">
         
 
     </form>
     </div>
     </div>
     <script>
-    function find_pw(x){
-        var search_id = x.form[0].value;
-        var search_name = x.form[1].value;
-        console.log(search_id);
-        console.log(search_name);
-        console.log("눌렸나 확인용");
+    $("#find_pw").click(function() {
+                console.log("클릭 확인")
+                var search_id = $("#search_id").val();
+                var search_name = $("#search_name").val();
+                $.ajax({
+                    url: "{% url 'findpw/findpw_search' %}",
+                    method: "post",
+                    data: {
+                        'user_id': search_id,
+                        'user_name': search_name,
+                    },
+                    dataType: 'json',
 
-        if (!(search_id in "select user_id from user")){
-            alert("아이디가 없습니다.");
-            x.form[0].focus();
-            return
-        }
-        else if (!(search_name in "select user_name from user")){
-            alert("이름이 없습니다.");
-            x.form[1].focus();
-            return
-        }
-        
-        x.form.action="select password from user";
-        x.form.method="post";
-        x.form.submit();
-        
+                    success: function(data) {
+                        if (data['user_id'] == login_id) {
+                            alert("로그인 성공 하였습니다.");
+                            console.log(data)
+                            sessionStorage.setItem('login_data', JSON.stringify(data));
+                            location.href = "{% url 'pallate' %}"
+                        } else {
+                            alert("로그인 실패하였습니다.");
 
-    }
+                        };
+                    },
+                    error: function(data) {}
+                });
+            });
 
 
 
