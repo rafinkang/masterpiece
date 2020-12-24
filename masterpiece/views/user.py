@@ -14,6 +14,10 @@ def login(request):
 def register(request):
     return render(request, 'user/user_register.html')
 
+# 비밀번호 찾기 페이지 이동 
+def findpw(request):
+    return render(request, 'user/user_findpw.html')
+
 # 아이디 중복 체크 
 def idcheck(request):
     req = request.POST.dict()
@@ -69,7 +73,7 @@ def login_go(request):
         request.session['job'] = str(result[0]["job"])
         request.session['company'] = str(result[0]["company"])
 
-        # print(request.session.get('user'))
+        print(request.session.get('user_id'))
         return JsonResponse(result[0])
 
     #로그아웃 
@@ -78,3 +82,7 @@ def logout(request):
     request.session.clear()
     SESSION_EXPIRE_AT_BROWSER_CLOSE = True
     return HttpResponse("1");
+
+#비밀번호 찾기 비교 
+def findpw_search(request):
+    pass

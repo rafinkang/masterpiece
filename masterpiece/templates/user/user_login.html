@@ -54,7 +54,7 @@
                             alert("로그인 성공 하였습니다.");
                             console.log(data)
                             sessionStorage.setItem('login_data', JSON.stringify(data));
-                            //location.href = "{% url 'pallate' %}"
+                            location.href = "{% url 'pallate' %}"
                         } else {
                             alert("로그인 실패하였습니다.");
 
@@ -68,14 +68,18 @@
                 location.href = "{% url 'register' %}"
             });
 
+            $("#findpw").click(function() {
+                console.log("비밀번호찾기 눌리나 확인")
+                location.href = "{% url 'findpw' %}"
+            });
+
+
 
             $.ajax({
                 url: "{% url 'login/logout' %}",
                 success: function(url) {
                     console.log("로그아웃 눌리나 확인", url);
-                    sessionStorage.removeItem("login_id");
-
-
+                    sessionStorage.removeItem("login_data");
                 },
                 error: function(url) {
                     console.log("이미 지워져서 오류");
