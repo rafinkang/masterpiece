@@ -27,7 +27,7 @@ def temp_img_upload(request):
     user_idx = request.POST.dict()['userIDX']
     temp_img_path = 'masterpiece/static/upload_images/temp_images/'
 
-    filename = user_idx + '_' + datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S') + '.jpg'
+    filename = user_idx + '_idx_' + datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S') + '.jpg'
     path = temp_img_path + '/' + filename
 
     imgdata = base64_decode(dataURI)
@@ -47,6 +47,7 @@ def change_masterpiece(request):
 def download_img(request):
     # 임시 저장 이미지 중 찾을 이미지 2개
     user_idx = request.POST.dict()['userIDX']
+    original_image_name = request.POST.dict()['originalImageName'] # 사용자가 입력한 원본 이미지 이름
     masterpiece_img_name = request.POST.dict()['masterpieceImageName'] # 명화화 한 임시 저장 이미지 이름
     img_name = masterpiece_img_name.replace('_masterpiece', '') # 명화화 하기 전 임시 저장 이미지 이름
     
@@ -54,24 +55,28 @@ def download_img(request):
     masterpiece_img_path = 'masterpiece/static/upload_images/masterpiece_images/'
     temp_img_path = 'masterpiece/static/upload_images/temp_images/'
 
+    origin_url = original_img_path + img_name
+    masterpiece_url = masterpiece_img_path + masterpiece_img_name
+
     # 원본 이미지 서버 저장
     img = Image.open(temp_img_path + img_name)
-    img.save(original_img_path + img_name)
+    img = img.convert("RGB")
+    img.save(origin_url)
 
     # 명화화 이미지 서버 저장
     master_img = Image.open(temp_img_path + masterpiece_img_name)
-    master_img.save(masterpiece_img_path + masterpiece_img_name)
+    master_img.save(masterpiece_url)
 
     # DB저장
-    sql = "insert into gallary_list(user_idx, image_name, image_url, image_type) values(%s, %s, %s);"
-    data = [[user_idx, img_name, original_img_path + img_name], [user_idx, masterpiece_img_name, masterpiece_img_path + masterpiece_img_name]]
-    GallaryList.executemany(sql, data)
+    gl = GallaryList()
+    sql = f"insert into gallary_list(user_idx, image_name, origin_url, masterpiece_url) values({user_idx}, '{original_image_name}', '{origin_url}', '{masterpiece_url}')"
+    gl.execute(sql)
 
     # 임시저장 이미지 삭제
-    os.remove(img_name + temp_img_path)
+    os.remove(temp_img_path + img_name)
     os.remove(temp_img_path + masterpiece_img_name)
 
-    return HttpResponse(masterpiece_img_path + masterpiece_img_name)
+    return HttpResponse(masterpiece_url)
 
 # color_pick
 def color_pick(request):

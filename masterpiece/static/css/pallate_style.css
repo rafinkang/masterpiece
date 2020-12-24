@@ -370,6 +370,12 @@
     margin: auto;
 }
 
+.ch-wrap .hidden-download {
+    display:none;
+    width: 0px;
+    height: 0px;
+}
+
 /* 색상 입히기 영역 */
 
 /* @-webkit-keyframes bounceIn {

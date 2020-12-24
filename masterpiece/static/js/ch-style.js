@@ -1,4 +1,7 @@
 $(document).ready(function(){
+    const USER_IDX = JSON.parse(sessionStorage.getItem('login_data'))['user_idx'];
+    let original_name;
+
     readURL = function(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -7,7 +10,6 @@ $(document).ready(function(){
                 $('.ch-image-upload-wrap').hide();
                 $('.ch-file-upload-image').attr('src', e.target.result);
                 $(".ch-file-upload-content").show();
-                // $('.image-title').html(input.files[0].name);
             };
       
           reader.readAsDataURL(input.files[0]);
@@ -26,6 +28,8 @@ $(document).ready(function(){
     setImage = function(f) {
         var file = $("#ch_input_image")[0].files[0];
         const ch_input_image_container = $("#ch_input_image_container");
+
+        original_name = file.name;
 
         // 확장자 체크
         if(!/\.(jpg|jpeg|png)$/i.test(file.name)){
@@ -66,6 +70,7 @@ $(document).ready(function(){
                     var dataURI = canvas.toDataURL("image/jpg");
 
                     sessionStorage.setItem("origin_image", dataURI);
+
                     $('img.origin-thumbnail').each(function(){
                         $(this)[0].src = dataURI;
                     });
@@ -77,16 +82,12 @@ $(document).ready(function(){
     }
 
     temp_img_upload = function(dataURI) {
-        let userID = sessionStorage.getItem('login_id');
-        userID = userID.replace("@", "__");
-        userID = userID.replace(".", "__");
-        
         $.ajax({
             url: "pallate/ch_style/temp_img_upload",
             type: 'post',
             data: {
                 'dataURI' : dataURI,
-                'userID' : userID
+                'userIDX' : USER_IDX
             },
             dataType: 'text',
             success: function(res) {
@@ -99,16 +100,12 @@ $(document).ready(function(){
     }
 
     origin_to_masterpiece = function(img_name) {
-        let userID = sessionStorage.getItem('login_id');
-        userID = userID.replace("@", "__");
-        userID = userID.replace(".", "__");
-
         $.ajax({
             url: "pallate/ch_style/change_masterpiece",
             type: 'post',
             data: {
                 'img_name': img_name,
-                'userID' : userID
+                'userIDX' : USER_IDX
             },
             dataType: 'text',
             success: function(res) {
@@ -117,9 +114,10 @@ $(document).ready(function(){
                 const master_name = res_list[res_list.length - 1];
 
                 tg_str = '<div class="row ch-file-upload-box">' +
-                            '<img src="' + res + '" class="ch-file-upload-image ch-image rounded">' +
+                            '<img src="' + res + '" class="ch-file-output-image ch-image rounded">' +
                         '</div>' +
                         '<div class="ch-image-title-wrap row">' +
+                            '<a class="hidden-download" id="download_link" href="#" download="#"></a>' +
                             '<button type="button" class="btn btn-outline-success col-md-6 ch-image-btn" onclick="download_image(\'' + master_name + '\')">다운로드</button>' +
                         '</div>';
                 
@@ -133,22 +131,32 @@ $(document).ready(function(){
     }
 
     download_image = function(master_name) {
-        console.log(master_name);
-        // $.ajax({
-        //     url: "pallate/ch_style/download_img",
-        //     type: 'post',
-        //     data: {
-        //         'dataURI' : dataURI,
-        //         'userID' : userID
-        //     },
-        //     dataType: 'text',
-        //     success: function(res) {
-        //         origin_to_masterpiece(res);
-        //     },
-        //     error: function(error) {
-        //         console.log('error', error);
-        //     }
-        // });
+        download_href = $('#download_link').attr('href');
+
+        if(download_href != "#") {
+            $('#download_link')[0].click();
+        } else {
+            $.ajax({
+                url: "pallate/ch_style/download_img",
+                type: 'post',
+                data: {
+                    'userIDX' : USER_IDX,
+                    'masterpieceImageName' : master_name,
+                    'originalImageName' : original_name
+                },
+                dataType: 'text',
+                success: function(res) {
+                    $('#download_link').prop('href', res); 
+                    $('#download_link').prop('download', 'GIGJ_masterpiece.jpg');
+                    $('#download_link')[0].click();
+                },
+                error: function(error) {
+                    console.log('error', error);
+                }
+            });
+        }
+
+        
     }
       
 });
