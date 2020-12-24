@@ -19,7 +19,7 @@ class User():
     def insert_user(self, user_id, password, user_name, sex, birth, job, company):
         sql = f"""
         INSERT INTO user (user_id, password, user_name, sex, birth, job, company) 
-        VALUES ('{user_id}', md5('{password}'), '{user_name}', {sex}, STR_TO_DATE('{birth}', '%Y-%m-%d'), '{job}', '{company}')
+        VALUES ('{user_id}', '{password}', '{user_name}', {sex}, STR_TO_DATE('{birth}', '%Y-%m-%d'), '{job}', '{company}')
         """
         return self.db.execute(sql)
     
@@ -37,3 +37,7 @@ class User():
         SESSION_EXPIRE_AT_BROWSER_CLOSE = True
         return;
 
+
+    def findpw(self,user_id,user_name):
+        sql = f"select password from user where user_id = '{user_id}' and user_name='{user_name}'"   
+        return self.db.select(sql)

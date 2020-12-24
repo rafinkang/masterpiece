@@ -51,10 +51,12 @@
                     success: function(data) {
                         if (data == 1) {
                             alert("로그인 성공 하였습니다.");
+                            console.log(md5(login_pw))
                             sessionStorage.setItem('login_id', login_id);
                             location.href = "{% url 'pallate' %}"
                         } else {
                             alert("로그인 실패하였습니다.");
+                            console.log(md5(login_pw))
                         };
                     },
                     error: function(data) {}
