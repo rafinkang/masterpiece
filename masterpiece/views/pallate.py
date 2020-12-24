@@ -5,6 +5,7 @@ from io import BytesIO
 import cv2
 import joblib
 import numpy as np
+from numpy.lib.shape_base import split
 import pandas as pd
 from colorutils.convert import hsv_to_hex
 from django.core.files.base import ContentFile
@@ -13,6 +14,7 @@ from django.http.response import JsonResponse
 from django.shortcuts import redirect, render
 from masterpiece.classes.CycleganLoadWeight import CycleganLoadWeight
 from masterpiece.classes.Spuit import Spuit
+from masterpiece.models.ColorPallate import ColorPallate
 from PIL import Image
 
 
@@ -124,3 +126,12 @@ def base64_to_cv2(base64_str):
     im_arr = np.frombuffer(im_bytes, dtype=np.uint8)  # im_arr is one-dim Numpy array
     img = cv2.imdecode(im_arr, flags=cv2.IMREAD_COLOR)
     return img
+
+def emotion_filter(request):
+    request_dict = request.POST.dict()    
+    color_pallate = ColorPallate()
+    res = color_pallate.emotion_filter(request_dict['color_type'], request_dict['season_type'], request_dict['cw_type'], request_dict['cp_type'], request_dict['value_type'])
+
+    return render(request, 'pallate/emotion_list.html', {
+        'res': res
+    })
