@@ -18,6 +18,10 @@ def register(request):
 def findpw(request):
     return render(request, 'user/user_findpw.html')
 
+# 비밀번호 변경 페이지 이동 
+def modifypw(request):
+    return render(request, 'user/user_modifypw.html')
+
 # 아이디 중복 체크 
 def idcheck(request):
     req = request.POST.dict()
@@ -85,4 +89,27 @@ def logout(request):
 
 #비밀번호 찾기 비교 
 def findpw_search(request):
-    pass
+    req = request.POST.dict()
+    user = User()
+    result = user.findpw(req['user_id'],req['user_name'])
+    
+    if result == None:
+        print(result,"아이디 못찾았다")
+        return HttpResponse("1")
+    else:
+        print(result,"아이디 찾았다!!!!!!!")
+        return HttpResponse("0")
+
+#비밀번호 변경 
+
+def modifypw_go(request):
+    req = request.POST.dict()
+    user = User()
+    result = user.modifypw_go(req['user_id'],req['user_name'],req['password'])
+    
+    if result == None:
+        print(result,"비밀번호 변경 실패")
+        return HttpResponse("1")
+    else:
+        print(result,"비밀번호 변경 성공")
+        return HttpResponse("0")

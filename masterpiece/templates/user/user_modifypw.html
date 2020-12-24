@@ -1,0 +1,89 @@
+{% extends 'index.html' %} {% block content %}
+
+
+<section id="user_modifypw">
+    <div class="container container_user">
+        <h1>비밀번호 변경</h1> <br>
+
+        <div class="main">
+            <div class="body">
+                <form action="" method="POST">
+
+
+
+                    <div class="text">
+                        새로운 비밀번호 입력
+                    </div>
+                    <div class="c_box">
+                        <input type="password" id="new_pw" name="new_pw"><br>
+                    </div>
+
+                    <div class="text">
+                        새로운 비밀번호 확인
+                    </div>
+                    <div class="c_box">
+                        <input type="password" id="new_pw_re" name="new_pw_re">
+                    </div>
+                    <br>
+
+                    <input type="button" value="비밀번호 변경" id="modify_pw">
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="//cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.10.0/js/md5.min.js"></script>
+
+
+<script>
+    $("#modify_pw").click(function() {
+        var new_pw = $("#new_pw").val();
+        var new_pw_re = $("#new_pw_re").val();
+        var password_re = /^[a-zA-z0-9]{4,12}$/;
+
+        console.log("클릭 확인")
+        if (new_pw != new_pw_re) {
+            alert("입력하신 비밀번호가 다릅니다."); // 파랑색으로 변경
+            return;
+        } else if (new_pw_re == "") {
+            alert("비밀번호를 입력해주세요."); // 빨강색으로 변경 
+            return;
+        } else if (!password_re.test(new_pw_re)) {
+            alert("비밀번호는 영문 대소문자와 숫자 4~12로 입력 해야합니다.");
+            return;
+        }
+
+        var user_id = sessionStorage.getItem("user_id");
+        var user_name = sessionStorage.getItem("user_name");
+        var password = new_pw
+        console.log(user_id);
+        console.log(user_name);
+
+        $.ajax({
+            url: "{% url 'modifypw/modifypw_go' %}",
+            method: "post",
+            data: {
+                'user_id': user_id,
+                'user_name': user_name,
+                'password': md5(password),
+            },
+            dataType: 'text',
+            success: function(data) {
+                console.log('비밀번호 변경 성공', data);
+                alert("비밀번호가 변경 되었습니다.")
+                sessionStorage.clear();
+                //location.href = "{% url 'login' %}"
+
+            },
+            error: function(data) {
+                console.log(data);
+            }
+
+
+        });
+    });
+</script>
+
+{% endblock %}

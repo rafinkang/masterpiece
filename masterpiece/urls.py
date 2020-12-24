@@ -19,6 +19,8 @@ urlpatterns = [
     path('findpw', user.findpw , name='findpw'),
     path('findpw/findpw_search', user.findpw_search , name='findpw/findpw_search'),
     
+    path('modifypw',user.modifypw,name='modifypw'),
+    path('modifypw/modifypw_go',user.modifypw_go, name='modifypw/modifypw_go'),
 
     
     # pallate 

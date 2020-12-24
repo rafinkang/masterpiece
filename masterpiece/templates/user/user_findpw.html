@@ -1,72 +1,72 @@
-{% extends 'index.html' %}
+{% extends 'index.html' %} {% block content %}
 
-{% block content %}
+
 <section id="user_findpw">
+    <div class="container container_user">
+        <h1>회원가입 확인</h1> <br>
 
-<h1>비밀번호 찾기</h1> <br>
+        <div class="main">
+            <div class="body">
+                <form action="" method="POST">
 
-<div class="main"> 
-    <div class="body">
-    <form action="" method="POST">
+                    <div class="text">
+                        아이디를 입력하세요
+                    </div>
+                    <div class="c_box">
+                        <input type="text" id="search_id" name="search_id"><br>
+                    </div>
 
-        <div class = "text">
-            아이디를 입력하세요 : 
+                    <div class="text">
+                        이름을 입력하세요
+                    </div>
+                    <div class="c_box">
+                        <input type="text" id="search_name" name="search_name">
+                    </div>
+                    <br>
+
+                    <input type="button" value="회원가입 확인" id="find_pw">
+
+
+                </form>
+            </div>
         </div>
-        <div class="c_box">
-            <input type="text" id ="search_id" name="search_id"><br>
-        </div>
-
-        <div class ="text">
-            이름을 입력하세요 :
-        </div>
-        <div class="c_box">
-            <input type="password" id="search_name" name="search_name">
-        </div>
-        <br>
-
-        <input type="button" value="비밀번호 찾기" id="find_pw">
-        
-
-    </form>
     </div>
-    </div>
-    <script>
+</section>
+<script>
     $("#find_pw").click(function() {
-                console.log("클릭 확인")
-                var search_id = $("#search_id").val();
-                var search_name = $("#search_name").val();
-                $.ajax({
-                    url: "{% url 'findpw/findpw_search' %}",
-                    method: "post",
-                    data: {
-                        'user_id': search_id,
-                        'user_name': search_name,
-                    },
-                    dataType: 'json',
+        console.log("클릭 확인")
+        var search_id = $("#search_id").val();
+        var search_name = $("#search_name").val();
+        $.ajax({
+            url: "{% url 'findpw/findpw_search' %}",
+            method: "post",
+            data: {
+                'user_id': search_id,
+                'user_name': search_name,
+            },
+            dataType: 'text',
+            success: function(data) {
+                if (data != 1) {
+                    alert("비밀번호 변경하세요");
+                    sessionStorage.setItem('user_id', search_id);
+                    sessionStorage.setItem('user_name', search_name);
+                    location.href = "{% url 'modifypw' %}"
 
-                    success: function(data) {
-                        if (data['user_id'] == login_id) {
-                            alert("로그인 성공 하였습니다.");
-                            console.log(data)
-                            sessionStorage.setItem('login_data', JSON.stringify(data));
-                            location.href = "{% url 'pallate' %}"
-                        } else {
-                            alert("로그인 실패하였습니다.");
+                } else {
+                    alert("아이디 또는 이름이 없습니다.");
 
-                        };
-                    },
-                    error: function(data) {}
-                });
-            });
+                };
+            },
+            error: function(data) {
+                console.log(data);
+            }
+        });
 
-
-
-
-
+    });
 </script>
 
 
 
 
-</section>
+
 {% endblock %}

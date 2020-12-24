@@ -41,5 +41,9 @@ class User():
 
 
     def findpw(self,user_id,user_name):
-        sql = f"select password from user where user_id = '{user_id}' and user_name='{user_name}'"   
+        sql = f"select * from user where user_id = '{user_id}' and user_name='{user_name}'"   
         return self.db.select(sql)
+
+    def modifypw_go(self,password,user_id,user_name):
+        sql =f"update user set password = '{password}' where user_id='{user_id}' and user_name='{user_name}'"
+        return self.db.execute(sql)

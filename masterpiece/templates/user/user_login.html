@@ -26,67 +26,67 @@
 
                     <input type="button" id="go_login" value="로그인">
                     <input type="button" id="go_reg" value="회원가입">
-                    <input type="button" id="findpw" value="비밀번호 찾기">
+                    <input type="button" id="findpw" value="비밀번호 변경">
 
                 </form>
             </div>
         </div>
     </div>
-
-    <script src="//cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.10.0/js/md5.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $("#go_login").click(function() {
-                console.log("클릭 확인")
-                var login_id = $("#login_id").val();
-                var login_pw = $("#login_pw").val();
-                $.ajax({
-                    url: "{% url 'login/login_go' %}",
-                    method: "post",
-                    data: {
-                        'user_id': login_id,
-                        'password': md5(login_pw),
-                    },
-                    dataType: 'json',
-
-                    success: function(data) {
-                        if (data['user_id'] == login_id) {
-                            alert("로그인 성공 하였습니다.");
-                            console.log(data)
-                            sessionStorage.setItem('login_data', JSON.stringify(data));
-                            location.href = "{% url 'pallate' %}"
-                        } else {
-                            alert("로그인 실패하였습니다.");
-
-                        };
-                    },
-                    error: function(data) {}
-                });
-            });
-            $("#go_reg").click(function() {
-                console.log("회원가입 눌리나 확인")
-                location.href = "{% url 'register' %}"
-            });
-
-            $("#findpw").click(function() {
-                console.log("비밀번호찾기 눌리나 확인")
-                location.href = "{% url 'findpw' %}"
-            });
-
-
-
+</section>
+<script src="//cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#go_login").click(function() {
+            console.log("클릭 확인")
+            var login_id = $("#login_id").val();
+            var login_pw = $("#login_pw").val();
             $.ajax({
-                url: "{% url 'login/logout' %}",
-                success: function(url) {
-                    console.log("로그아웃 눌리나 확인", url);
-                    sessionStorage.removeItem("login_data");
+                url: "{% url 'login/login_go' %}",
+                method: "post",
+                data: {
+                    'user_id': login_id,
+                    'password': md5(login_pw),
                 },
-                error: function(url) {
-                    console.log("이미 지워져서 오류");
-                }
+                dataType: 'json',
+                success: function(data) {
+                    if (data['user_id'] == login_id) {
+                        alert("로그인 성공 하였습니다.");
+                        console.log(data)
+                        sessionStorage.setItem('login_data', JSON.stringify(data));
+                        location.href = "{% url 'pallate' %}"
+                    } else {
+                        alert("로그인 실패하였습니다.");
+
+                    };
+                },
+                error: function(data) {}
             });
         });
-    </script>
+        $("#go_reg").click(function() {
+            console.log("회원가입 눌리나 확인")
+            location.href = "{% url 'register' %}"
+        });
 
-</section>
+        $("#findpw").click(function() {
+            console.log("비밀번호찾기 눌리나 확인")
+            location.href = "{% url 'findpw' %}"
+        });
+
+
+
+        $.ajax({
+            url: "{% url 'login/logout' %}",
+            success: function(url) {
+                console.log("로그아웃 눌리나 확인", url);
+                sessionStorage.removeItem("login_data");
+
+            },
+            error: function(url) {
+                console.log("이미 지워져서 오류");
+            }
+        });
+    });
+</script>
+
+
 {% endblock %}
