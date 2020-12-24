@@ -1,0 +1,33 @@
+<table>
+    <thead>
+        <td>idx</td>
+        <td>hex1</td>
+        <td>hex2</td>
+        <td>hex3</td>
+        <td>hex4</td>
+        <td>color</td>
+        <td>cp</td>
+        <td>cw</td>
+        <td>season</td>
+        <td>value</td>
+        <td>made</td>
+    </thead>
+    <tbody>
+    {% for data in res %}
+        <tr>
+            <td>{{ data.idx }}</td>
+            <td>{{ data.hex1 }}</td>
+            <td>{{ data.hex2 }}</td>
+            <td>{{ data.hex3 }}</td>
+            <td>{{ data.hex4 }}</td>
+            <td>{{ data.color }}</td>
+            <td>{{ data.cp }}</td>
+            <td>{{ data.cw }}</td>
+            <td>{{ data.season }}</td>
+            <td>{{ data.value }}</td>
+            <td>{{ data.made }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+
+</table>

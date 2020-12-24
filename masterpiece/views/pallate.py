@@ -1,10 +1,12 @@
 import base64
 import datetime
+import os
 from io import BytesIO
 
 import cv2
 import joblib
 import numpy as np
+from numpy.lib.shape_base import split
 import pandas as pd
 from colorutils.convert import hsv_to_hex
 from django.core.files.base import ContentFile
@@ -13,7 +15,9 @@ from django.http.response import JsonResponse
 from django.shortcuts import redirect, render
 from masterpiece.classes.CycleganLoadWeight import CycleganLoadWeight
 from masterpiece.classes.Spuit import Spuit
+from masterpiece.models.ColorPallate import ColorPallate
 from PIL import Image
+from masterpiece.models.GallaryList import GallaryList
 
 
 def pallate(request):
@@ -22,9 +26,10 @@ def pallate(request):
 # ch_style
 def temp_img_upload(request):
     dataURI = request.POST.dict()['dataURI']
+    user_idx = request.POST.dict()['userIDX']
     temp_img_path = 'masterpiece/static/upload_images/temp_images/'
 
-    filename = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S') + '.jpg'
+    filename = user_idx + '_idx_' + datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S') + '.jpg'
     path = temp_img_path + '/' + filename
 
     imgdata = base64_decode(dataURI)
@@ -36,10 +41,44 @@ def temp_img_upload(request):
 
 def change_masterpiece(request):
     img_name = request.POST.dict()['img_name']
-    img_path = 'masterpiece/static/upload_images/temp_images/' + img_name
+    temp_img_full_path = 'masterpiece/static/upload_images/temp_images/' + img_name
 
     clw = CycleganLoadWeight()
-    return HttpResponse(clw.change_style(img_path, img_name))
+    return HttpResponse(clw.change_style(temp_img_full_path, img_name))
+
+def download_img(request):
+    # 임시 저장 이미지 중 찾을 이미지 2개
+    user_idx = request.POST.dict()['userIDX']
+    original_image_name = request.POST.dict()['originalImageName'] # 사용자가 입력한 원본 이미지 이름
+    masterpiece_img_name = request.POST.dict()['masterpieceImageName'] # 명화화 한 임시 저장 이미지 이름
+    img_name = masterpiece_img_name.replace('_masterpiece', '') # 명화화 하기 전 임시 저장 이미지 이름
+    
+    original_img_path = 'masterpiece/static/upload_images/original_images/'
+    masterpiece_img_path = 'masterpiece/static/upload_images/masterpiece_images/'
+    temp_img_path = 'masterpiece/static/upload_images/temp_images/'
+
+    origin_url = original_img_path + img_name
+    masterpiece_url = masterpiece_img_path + masterpiece_img_name
+
+    # 원본 이미지 서버 저장
+    img = Image.open(temp_img_path + img_name)
+    img = img.convert("RGB")
+    img.save(origin_url)
+
+    # 명화화 이미지 서버 저장
+    master_img = Image.open(temp_img_path + masterpiece_img_name)
+    master_img.save(masterpiece_url)
+
+    # DB저장
+    gl = GallaryList()
+    sql = f"insert into gallary_list(user_idx, image_name, origin_url, masterpiece_url) values({user_idx}, '{original_image_name}', '{origin_url}', '{masterpiece_url}')"
+    gl.execute(sql)
+
+    # 임시저장 이미지 삭제
+    os.remove(temp_img_path + img_name)
+    os.remove(temp_img_path + masterpiece_img_name)
+
+    return HttpResponse(masterpiece_url)
 
 # color_pick
 def color_pick(request):
@@ -124,3 +163,12 @@ def base64_to_cv2(base64_str):
     im_arr = np.frombuffer(im_bytes, dtype=np.uint8)  # im_arr is one-dim Numpy array
     img = cv2.imdecode(im_arr, flags=cv2.IMREAD_COLOR)
     return img
+
+def emotion_filter(request):
+    request_dict = request.POST.dict()    
+    color_pallate = ColorPallate()
+    res = color_pallate.emotion_filter(request_dict['color_type'], request_dict['season_type'], request_dict['cw_type'], request_dict['cp_type'], request_dict['value_type'])
+
+    return render(request, 'pallate/emotion_list.html', {
+        'res': res
+    })

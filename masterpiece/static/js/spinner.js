@@ -5,7 +5,7 @@ $(document).ready(function(){
          
         var spinner =  '<div id="spinner" style="position:absolute; z-index:999; display:none; left:0; top:0; text-align: center; margin: auto; background-color: rgba( 0, 0, 0, 0.5 ); display: flex;">' +
                             '<div style = "width: 120px; height: 120px; border-radius: 60px; background-color: #fff; display:inline-block; margin: auto; display: flex;">' +
-                                '<svg width="80px"  height="80px"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="lds-bucket" style="background: none; margin: auto;">' +
+                                '<svg width="80px" height="80px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="lds-bucket" style="background: none; margin: auto;">' +
                                     '<defs>' +
                                         '<clipPath id="lds-cp-bucket">' +
                                             '<path d="M57.6,64.3c6.1,5.4,9.9,13.2,9.9,22c0,0.2,0,0.5,0,0.7h44c0-0.2,0-0.5,0-0.7c0-40.3-32.5-73-72.7-73.3v20.1 l9.5,25.6C48.4,58.8,54.9,61.9,57.6,64.3"></path>' +
