@@ -34,5 +34,6 @@ class User():
 
     def logout(self):
         self.session.clear()
+        SESSION_EXPIRE_AT_BROWSER_CLOSE = True
         return;
 

@@ -11,6 +11,8 @@ urlpatterns = [
     path('login/login_go', user.login_go, name='login/login_go'),
     path('login/logout', user.logout,name='login/logout'),
 
+    
+
     path('register', user.register, name='register'),
     path('register/idcheck', user.idcheck, name='register/idcheck'),
     path('register/insert_user', user.insert_user, name='register/insert_user'),

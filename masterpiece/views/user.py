@@ -74,5 +74,7 @@ def login_go(request):
 
     #로그아웃 
 def logout(request):
+    # del request.session['user_idx'] 시도하였으나 실패 
     request.session.clear()
+    SESSION_EXPIRE_AT_BROWSER_CLOSE = True
     return HttpResponse("1");
