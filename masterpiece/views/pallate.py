@@ -13,6 +13,7 @@ from django.http.response import JsonResponse
 from django.shortcuts import redirect, render
 from masterpiece.classes.CycleganLoadWeight import CycleganLoadWeight
 from masterpiece.classes.Spuit import Spuit
+from masterpiece.classes.ChangeColor_minsu import ChangeColor_minsu
 from PIL import Image
 
 
@@ -124,3 +125,52 @@ def base64_to_cv2(base64_str):
     im_arr = np.frombuffer(im_bytes, dtype=np.uint8)  # im_arr is one-dim Numpy array
     img = cv2.imdecode(im_arr, flags=cv2.IMREAD_COLOR)
     return img
+
+# color_dress
+def color_dress(request):
+    request_dict = request.POST.dict()
+    img = base64_to_cv2(request_dict['dataURI'])
+
+    image = ChangeColor_minsu(image=img)
+    hsv = image.get_hsv360()
+    percent = image.get_percent()
+
+    pallate_list = np.array(hsv).reshape(1,12)
+    pallate_dp =  pd.DataFrame(pallate_list, columns=['h1','s1','v1','h2','s2','v2','h3','s3','v3','h4','s4','v4'])
+    pallate_x = pallate_dp[['h1','s1','v1','h2','s2','v2','h3','s3','v3','h4','s4','v4']]
+    color_x = pallate_dp[['h1']]
+    
+    pallate = pallate_list[0]
+    hex1 = hsv_to_hex((pallate[0],pallate[1]/100,pallate[2]/100))
+    hex2 = hsv_to_hex((pallate[3],pallate[4]/100,pallate[5]/100))
+    hex3 = hsv_to_hex((pallate[6],pallate[7]/100,pallate[8]/100))
+    hex4 = hsv_to_hex((pallate[9],pallate[10]/100,pallate[11]/100))
+    
+    result = {
+        'h1'    : str(pallate[0]),
+        's1'    : str(pallate[1]),
+        'v1'    : str(pallate[2]),
+        'h2'    : str(pallate[3]),
+        's2'    : str(pallate[4]),
+        'v2'    : str(pallate[5]),
+        'h3'    : str(pallate[6]),
+        's3'    : str(pallate[7]),
+        'v3'    : str(pallate[8]),
+        'h4'    : str(pallate[9]),
+        's4'    : str(pallate[10]),
+        'v4'    : str(pallate[11]),
+        "percent1" : str(round(percent[0]*100, 1)),
+        "percent2" : str(round(percent[1]*100, 1)),
+        "percent3" : str(round(percent[2]*100, 1)),
+        "percent4" : str(round(percent[3]*100, 1)),
+        "hex1"  : str(hex1),
+        "hex2"  : str(hex2),
+        "hex3"  : str(hex3),
+        "hex4"  : str(hex4),
+        "color_pred" : str(color_pred[0]),
+        "cp_pred" : str(cp_pred[0]),
+        "cw_pred" : str(cw_pred[0]),
+        "season_pred" : str(season_pred[0]),
+        "value_pred" : str(value_pred[0])
+    }
+    return JsonResponse(result)

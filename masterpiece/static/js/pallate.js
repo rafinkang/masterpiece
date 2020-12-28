@@ -168,6 +168,33 @@ function color_dress_image(obj) {
     }; 
 }
 
+
+function color_dress() {
+    color_dress_image = sessionStorage.getItem("color-dress-image");
+    if(!color_dress_image) {
+        alert('파일을 선택해주세요.');
+        return;
+    }
+    $.ajax({
+        url: "pallate/color_dress",
+        method: "post",
+        data: {
+            'dataURI': color_dress_image,
+        },
+        dataType: 'json',
+        success: function (data) {
+            // console.log('return data : ', data);
+            sessionStorage.setItem("color_pick", JSON.stringify(data));
+            load_storage();
+            
+        },
+        error: function (data) {
+            console.log('error :', data);
+        }
+    });
+}
+
+
 $(document).ready(function(){
     // onload
     load_storage()
