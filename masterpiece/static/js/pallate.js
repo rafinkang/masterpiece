@@ -169,6 +169,11 @@ function emotion_filter() {
     });
 }
 
+function picktostorage(data) {
+    sessionStorage.setItem("color_pick", JSON.stringify(data));
+    load_storage();
+}
+
 function copy(target) {
     setTimeout(function() {
         $('#copied_tip').remove();

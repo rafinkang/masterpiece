@@ -15,6 +15,9 @@
             <span class="emotion-tag">#{{ data.cp }}</span>
             <span class="emotion-tag">#{{ data.value }}</span>
         </div>
+        <div>
+            <button onclick="picktostorage({{ data }})">팔레트로 가져가기</button>
+        </div>
     </div>
 
     {% endfor %}
