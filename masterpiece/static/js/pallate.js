@@ -226,6 +226,16 @@ $(document).ready(function(){
         
         $('.pallate-content .pallate-tab').hide();
         $('.pallate-content .pallate-tab').filter('[data-page="'+self.attr('data-page')+'"]').show();
+
+            
+        // 색상입히기용, 민수 추가함
+        color_pick_data = sessionStorage.getItem('color_pick')
+        data = JSON.parse(color_pick_data)
+
+        $('.color-dress .droplet_1').css('fill', data['hex1']);
+        $('.color-dress .droplet_2').css('fill', data['hex2']);
+        $('.color-dress .droplet_3').css('fill', data['hex3']);
+        $('.color-dress .droplet_4').css('fill', data['hex4']);
     });
 
 });
