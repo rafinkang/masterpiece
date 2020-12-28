@@ -105,7 +105,7 @@ def findpw_search(request):
 def modifypw_go(request):
     req = request.POST.dict()
     user = User()
-    result = user.modifypw_go(req['user_id'],req['user_name'],req['password'])
+    result = user.modifypw_go(req['password'],req['user_id'],req['user_name'])
     
     if result == None:
         print(result,"비밀번호 변경 실패")

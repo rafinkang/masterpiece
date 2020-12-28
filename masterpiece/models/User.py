@@ -46,4 +46,5 @@ class User():
 
     def modifypw_go(self,password,user_id,user_name):
         sql =f"update user set password = '{password}' where user_id='{user_id}' and user_name='{user_name}'"
+        print(sql)
         return self.db.execute(sql)
