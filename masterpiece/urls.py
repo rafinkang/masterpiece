@@ -12,22 +12,27 @@ urlpatterns = [
     path('login/logout', user.logout,name='login/logout'),
 
     
-
     path('register', user.register, name='register'),
     path('register/idcheck', user.idcheck, name='register/idcheck'),
     path('register/insert_user', user.insert_user, name='register/insert_user'),
 
-    # path('logout',user.logout,name ='logout'),
+    path('findpw', user.findpw , name='findpw'),
+    path('findpw/findpw_search', user.findpw_search , name='findpw/findpw_search'),
     
+    path('modifypw',user.modifypw,name='modifypw'),
+    path('modifypw/modifypw_go',user.modifypw_go, name='modifypw/modifypw_go'),
 
     
     # pallate 
     path('pallate', pallate.pallate, name='pallate'),
     # color_pick
     path('pallate/color_pick', pallate.color_pick, name='pallate/color_pick'),
+    # emotion
+    path('pallate/emotion_filter', pallate.emotion_filter, name='pallate/emotion_filter'),
     # ch_style(change_style)
     path('pallate/ch_style/change_masterpiece', pallate.change_masterpiece, name='pallate/ch_style/change_masterpiece'),
     path('pallate/ch_style/temp_img_upload', pallate.temp_img_upload, name='pallate/ch_style/temp_img_upload'),
+    path('pallate/ch_style/download_img', pallate.download_img, name='pallate/ch_style/download_img'),
     
     # gallery
     path('gallery/color_gallery', gallery.color_gallery, name='color_gallery'),
