@@ -82,6 +82,7 @@
 
 .pallate .color-hex {
     text-align: center;
+    text-transform: uppercase;
 }
 
 
@@ -338,12 +339,13 @@
 
 .emotion span.emotion-tag {
     display: inline-block;
-    padding: 5px 10px;
+    padding: 1px 10px;
     margin-top: 10px;
-    border: 1px solid #393e46;
+    /* border: 1px solid #393e46;
     border-radius: 5px;
-    background-color: #393e46;
-    color: #eeeeee;
+    background-color: #393e46; */
+    color: #393e46;
+    font-size: 12px;
 }
 
 
