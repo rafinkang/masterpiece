@@ -1,9 +1,14 @@
 $(document).ready(function(){
     const USER_IDX = JSON.parse(sessionStorage.getItem('login_data'))['user_idx'];
     let original_name;
+    let style_type;
 
     readURL = function(input) {
-        if (input.files && input.files[0]) {
+        if(!/\.(jpg|jpeg|png)$/i.test(input.files[0].name)){
+
+            alert('이미지파일만 선택해 주세요.\n\n현재 파일 : ' + input.files[0].name);
+
+        } else if (input.files && input.files[0]) {
             var reader = new FileReader();
       
             reader.onload = function(e) {
@@ -17,7 +22,15 @@ $(document).ready(function(){
         } else {
             removeUpload();
         }
-      }
+    }
+
+    imageCopy = function() {
+        var imgData = [{"imgURL" : sessionStorage.getItem("origin_image")}];
+        
+        $('.ch-image-upload-wrap').hide();
+        $('.ch-file-upload-image').attr('src', imgData[0].imgURL);
+        $(".ch-file-upload-content").show();
+    }
       
     removeUpload = function() {
         $('.ch-file-upload-input').val("")
@@ -25,23 +38,20 @@ $(document).ready(function(){
         $('.ch-image-upload-wrap').show();
     }
 
-    setImage = function(f) {
+    setImage = function(type) {
         var file = $("#ch_input_image")[0].files[0];
+        var dataURI;
         const ch_input_image_container = $("#ch_input_image_container");
 
-        original_name = file.name;
+        console.log("file", file);
 
-        // 확장자 체크
-        if(!/\.(jpg|jpeg|png)$/i.test(file.name)){
-            alert('이미지파일만 선택해 주세요.\n\n현재 파일 : ' + file.name);
+        if (file) { // 이미지 파일을 선택한 경우
+
+            original_name = file.name;
     
-            // 선택한 파일 초기화
-            f.outerHTML = f.outerHTML;
-            ch_input_image_container.text("");
-        } else {
             // FileReader 객체 사용
             var reader = new FileReader();
-
+    
             // 파일을 읽는다
             reader.readAsDataURL(file);
                 
@@ -60,28 +70,52 @@ $(document).ready(function(){
                     //리사이즈를 위해 캔버스 객체 생성
                     var canvas = document.createElement('canvas');
                     var canvasContext = canvas.getContext("2d");
-
+    
                     canvas.width = tempImage.width;
                     canvas.height = tempImage.height;
                     
                     //이미지를 캔버스에 그리기
                     canvasContext.drawImage(this, 0, 0);
                     //캔버스에 그린 이미지를 다시 data-uri 형태로 변환
-                    var dataURI = canvas.toDataURL("image/jpg");
-
+                    dataURI = canvas.toDataURL("image/jpg");
+    
+                    /*
+                        TO-DO pallate.py와 합칠 때 "origin_iamge" json형태로 바꿔서 저장하기
+                    */
                     sessionStorage.setItem("origin_image", dataURI);
-
+                    sessionStorage.setItem("origin_image_name", original_name);
+    
                     $('img.origin-thumbnail').each(function(){
                         $(this)[0].src = dataURI;
                     });
-
-                    temp_img_upload(dataURI);
+            
+                    style_type = type
+            
+                    tempImgUpload(dataURI);
                 };
             };
+
+        } else { // 이미지 파일을 팔렛트에서 가져온 경우
+            original_name = sessionStorage.getItem("origin_image_name");
+            dataURI = $('.ch-file-upload-image').attr('src');
+            
+            if (!original_name) { // original image의 이름이 없을 경우 "Untitiled.확장자"로 저장
+                // data:image/png;
+                ets = dataURI.split(";")[0].split("/")[1];
+                original_name = "Untitled." + ets;
+            }
+    
+            $('img.origin-thumbnail').each(function(){
+                $(this)[0].src = dataURI;
+            });
+    
+            style_type = type
+    
+            tempImgUpload(dataURI);
         }
     }
 
-    temp_img_upload = function(dataURI) {
+    tempImgUpload = function(dataURI) {
         $.ajax({
             url: "pallate/ch_style/temp_img_upload",
             type: 'post',
@@ -91,7 +125,7 @@ $(document).ready(function(){
             },
             dataType: 'text',
             success: function(res) {
-                origin_to_masterpiece(res);
+                originToMasterpiece(res);
             },
             error: function(error) {
                 console.log('error', error);
@@ -99,13 +133,14 @@ $(document).ready(function(){
         });
     }
 
-    origin_to_masterpiece = function(img_name) {
+    originToMasterpiece = function(img_name) {
         $.ajax({
             url: "pallate/ch_style/change_masterpiece",
             type: 'post',
             data: {
                 'img_name': img_name,
-                'userIDX' : USER_IDX
+                'userIDX' : USER_IDX,
+                'styleType' : style_type
             },
             dataType: 'text',
             success: function(res) {
@@ -118,7 +153,7 @@ $(document).ready(function(){
                         '</div>' +
                         '<div class="ch-image-title-wrap row">' +
                             '<a class="hidden-download" id="download_link" href="#" download="#"></a>' +
-                            '<button type="button" class="btn btn-outline-success col-md-6 ch-image-btn" onclick="download_image(\'' + master_name + '\')">다운로드</button>' +
+                            '<button type="button" class="btn btn-custom-2 col-md-6 ch-image-btn" onclick="downloadImage(\'' + master_name + '\')">다운로드</button>' +
                         '</div>';
                 
                 ch_output_image_container.empty();
@@ -130,7 +165,7 @@ $(document).ready(function(){
         });
     }
 
-    download_image = function(master_name) {
+    downloadImage = function(master_name) {
         download_href = $('#download_link').attr('href');
 
         if(download_href != "#") {
@@ -141,6 +176,7 @@ $(document).ready(function(){
                 type: 'post',
                 data: {
                     'userIDX' : USER_IDX,
+                    'styleType' : style_type,
                     'masterpieceImageName' : master_name,
                     'originalImageName' : original_name
                 },

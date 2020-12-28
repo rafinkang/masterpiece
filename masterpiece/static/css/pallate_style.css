@@ -269,6 +269,7 @@
     background: #ffd369;
     color: #222831;
 }
+
 /* 명화화 영역 */
 
 .ch-wrap {
@@ -297,7 +298,7 @@
 }
 
 .ch-image-wrap {
-    border: 3px solid #93b3b7;
+    border: 3px solid #222831;
     border-radius: 20px;
     height: 100%;
     width: 100%;
@@ -306,7 +307,7 @@
 }
 
 .ch-wrap .ch-inout-box .ch-image-upload-wrap:hover {
-    background-color: #6e87a7;
+    background-color: #222831;
     border: 3px solid #fff;
     color: #fff;
 }
@@ -323,17 +324,38 @@
     cursor: pointer;
 }
 
-.ch-wrap .ch-inout-box .ch-image-upload-wrap .ch-image-plus{
-    color: #6e87a7;
+.ch-wrap .ch-inout-box .ch-image-upload-wrap .ch-image-plus {
+    color: #222831;
     font-size:80px;
     margin: auto;
     padding-bottom: 15px;
 }
 
+.ch-wrap .ch-inout-box .ch-image-upload-wrap .ch-image-copy {
+    position: absolute;
+    background-color: #393e46;
+    color: #fff;
+    z-index: 100;
+    border-radius: 50px;
+    width: 100px;
+    height: 100px;
+    bottom: 10px;
+    right: 25px;
+    text-align: center;
+    padding-top: 28px;
+    cursor: pointer;
+}
+
+.ch-wrap .ch-inout-box .ch-image-upload-wrap .ch-image-copy:hover {
+    background-color: #ffd369;
+    color: #393e46;
+    font-weight: bold;
+}
+
 .ch-wrap .ch-inout-box .ch-file-upload-content {
     display: none;
     text-align: center;
-    border: 3px solid #93b3b7;
+    border: 3px solid #222831;
     border-radius: 20px;
     height: 100%;
     width: 100%;
@@ -342,7 +364,7 @@
 
 .ch-wrap .ch-inout-box .ch-file-output-content {
     text-align: center;
-    border: 3px solid #93b3b7;
+    border: 3px solid #222831;
     border-radius: 20px;
     height: 100%;
     width: 100%;
@@ -361,7 +383,6 @@
 .ch-wrap .ch-inout-box .ch-file-upload-content .ch-image-title-wrap,
 .ch-wrap .ch-inout-box .ch-file-output-content  .ch-image-title-wrap {
     padding: 0 15px 15px 15px;
-    color: #222;
     height: 10%;
 }
 
@@ -374,6 +395,27 @@
     display:none;
     width: 0px;
     height: 0px;
+}
+
+/* 커스텀 버튼 영역 */
+.btn-custom-2 {
+    color: #fff;
+    background-color: #666f7d;
+}
+
+.btn-custom-2:hover {
+    color: #fff;
+    background-color: #393e46;
+}
+
+.btn-custom-5 {
+    color: #393e46;
+    background-color: #eeeeee;
+}
+
+.btn-custom-5:hover {
+    color: #393e46;
+    background-color: #dbdbdb;
 }
 
 /* 색상 입히기 영역 */

@@ -50,7 +50,7 @@ class CycleganLoadWeight:
     return save_img_name
 
   
-  def change_style(self, img_path, img_name):
+  def change_style(self, style_type, img_path, img_name):
         
     self.img_name = img_name.split('.')[0]
 
@@ -66,6 +66,10 @@ class CycleganLoadWeight:
     chn_style_img = self.__preprocess_image_test(chn_style_img, '')
     chn_style_img = tf.image.resize(chn_style_img, [286, 286], method=tf.image.ResizeMethod.NEAREST_NEIGHBOR)
     chn_style_img = tf.image.random_crop(chn_style_img, size=[1, self.__IMG_HEIGHT, self.__IMG_WIDTH, 3])
+
+     # 기본 스타일 셋팅 : 고흐
+    if style_type == "mon" : # 모네
+      self.generator_g.load_weights("C:/Users/jypar/finalproject/style/monet.h5")
 
     return self.__generate_images(self.generator_g, chn_style_img)
     
