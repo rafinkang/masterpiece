@@ -82,6 +82,7 @@
 
 .pallate .color-hex {
     text-align: center;
+    text-transform: uppercase;
 }
 
 
@@ -269,6 +270,118 @@
     background: #ffd369;
     color: #222831;
 }
+
+.emotion .content-item {
+    width: 260px;
+    margin: 8px;
+    border-radius: 6px;
+    padding: 15px;
+    box-sizing: border-box;
+    position: relative;
+    animation-name: item;
+    animation-duration: .4s;
+    display: inline-block;
+    text-align: left;
+    animation-fill-mode: backwards;
+    box-shadow: 0 10px 40px -10px rgba(0,64,128,.2);
+    transition: box-shadow .3s;
+    background-color: #fff;
+}
+.emotion .palette {
+    max-width: 100%;
+    padding-bottom: 100%;
+    border-radius: 6px;
+    position: relative;
+    display: block;
+}
+.emotion .place {
+    position: absolute;
+    width: 100%;
+    border-radius: 20px 20px 0 0;
+    animation-name: place;
+    transform-origin: top;
+}
+.emotion .c4 {
+    padding-bottom: 100%;
+    border-radius: 20px 20px 4px 4px;
+    animation-duration: 0s;
+}
+.emotion .c3 {
+    padding-bottom: 85%;
+    animation-duration: .2s;
+}
+.emotion .c2 {
+    padding-bottom: 67%;
+    animation-duration: .6s;
+}
+.emotion .c1 {
+    padding-bottom: 41%;
+    border-radius: 4px 4px 0 0;
+    animation-duration: 1s;
+}
+.emotion .place span {
+    position: absolute;
+    text-align: center;
+    transition: all .2s;
+    bottom: 0;
+    color: #fff;
+    opacity: 0;
+    text-transform: uppercase;
+    background-color: rgba(0,0,0,.1);
+    padding: 3px 6px;
+    border-radius: 0 3px 0 0;
+    cursor: pointer;
+    letter-spacing: 1px;
+}
+.emotion .place:hover span {
+    opacity: 1;
+}
+
+.emotion span.emotion-tag {
+    display: inline-block;
+    padding: 1px 10px;
+    margin-top: 10px;
+    /* border: 1px solid #393e46;
+    border-radius: 5px;
+    background-color: #393e46; */
+    color: #393e46;
+    font-size: 12px;
+}
+
+
+#copied_tip{
+    animation-name:come_and_leave;
+    animation-duration:1s;
+    animation-fill-mode:both;
+    bottom:-40px;
+    left: 30px
+}
+
+.tip {
+    background-color: #263646;
+    padding: 0 14px;
+    line-height: 30px;
+    position: absolute;
+    border-radius: 4px;
+    z-index: 100;
+    color: #fff;
+    font-size: 12px;
+    animation-name: tip;
+    animation-duration: .6s;
+    animation-fill-mode: both;
+}
+.tip:before {
+    content: "";
+    background-color: #263646;
+    height: 10px;
+    width: 10px;
+    display: block;
+    position: absolute;
+    transform: rotate(45deg);
+    top: -4px;
+    left: 17px;
+}
+
 /* 명화화 영역 */
 
 .ch-wrap {
@@ -297,7 +410,7 @@
 }
 
 .ch-image-wrap {
-    border: 3px solid #93b3b7;
+    border: 3px solid #222831;
     border-radius: 20px;
     height: 100%;
     width: 100%;
@@ -306,7 +419,7 @@
 }
 
 .ch-wrap .ch-inout-box .ch-image-upload-wrap:hover {
-    background-color: #6e87a7;
+    background-color: #222831;
     border: 3px solid #fff;
     color: #fff;
 }
@@ -323,17 +436,38 @@
     cursor: pointer;
 }
 
-.ch-wrap .ch-inout-box .ch-image-upload-wrap .ch-image-plus{
-    color: #6e87a7;
+.ch-wrap .ch-inout-box .ch-image-upload-wrap .ch-image-plus {
+    color: #222831;
     font-size:80px;
     margin: auto;
     padding-bottom: 15px;
 }
 
+.ch-wrap .ch-inout-box .ch-image-upload-wrap .ch-image-copy {
+    position: absolute;
+    background-color: #393e46;
+    color: #fff;
+    z-index: 100;
+    border-radius: 50px;
+    width: 100px;
+    height: 100px;
+    bottom: 10px;
+    right: 25px;
+    text-align: center;
+    padding-top: 28px;
+    cursor: pointer;
+}
+
+.ch-wrap .ch-inout-box .ch-image-upload-wrap .ch-image-copy:hover {
+    background-color: #ffd369;
+    color: #393e46;
+    font-weight: bold;
+}
+
 .ch-wrap .ch-inout-box .ch-file-upload-content {
     display: none;
     text-align: center;
-    border: 3px solid #93b3b7;
+    border: 3px solid #222831;
     border-radius: 20px;
     height: 100%;
     width: 100%;
@@ -342,7 +476,7 @@
 
 .ch-wrap .ch-inout-box .ch-file-output-content {
     text-align: center;
-    border: 3px solid #93b3b7;
+    border: 3px solid #222831;
     border-radius: 20px;
     height: 100%;
     width: 100%;
@@ -361,7 +495,6 @@
 .ch-wrap .ch-inout-box .ch-file-upload-content .ch-image-title-wrap,
 .ch-wrap .ch-inout-box .ch-file-output-content  .ch-image-title-wrap {
     padding: 0 15px 15px 15px;
-    color: #222;
     height: 10%;
 }
 
@@ -374,6 +507,27 @@
     display:none;
     width: 0px;
     height: 0px;
+}
+
+/* 커스텀 버튼 영역 */
+.btn-custom-2 {
+    color: #fff;
+    background-color: #666f7d;
+}
+
+.btn-custom-2:hover {
+    color: #fff;
+    background-color: #393e46;
+}
+
+.btn-custom-5 {
+    color: #393e46;
+    background-color: #eeeeee;
+}
+
+.btn-custom-5:hover {
+    color: #393e46;
+    background-color: #dbdbdb;
 }
 
 /* 색상 입히기 영역 */

@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -125,3 +127,10 @@ USE_TZ = True
 STATIC_URL = 'masterpiece/static/'
 
 DATA_UPLOAD_MAX_MEMORY_SIZE = 5242880
+
+
+#웹종료하면 섹션 삭제
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True 
+
+#쿠키 시간 제한 설정 (10분있으면 자동삭제)
+SESSION_COOKIE_AGE = 10*60

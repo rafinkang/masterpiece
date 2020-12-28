@@ -18,7 +18,8 @@ a {
 }
 
 a:hover {
-  color: #ea6981;
+  color: #ffd369;
+  border: 2px solid #ffd369;
   text-decoration: none;
 }
 
@@ -46,7 +47,7 @@ h1, h2, h3, h4, h5, h6 {
   width: 40px;
   height: 40px;
   border-radius: 50px;
-  background: #e43c5c;
+  background: #ffd369;
   color: #fff;
   transition: all 0.4s;
 }
@@ -136,7 +137,7 @@ h1, h2, h3, h4, h5, h6 {
   height: 2px;
   bottom: -6px;
   left: 0;
-  background-color: #e43c5c;
+  background-color: #ffd369;
   visibility: hidden;
   transform: scaleX(0);
   transition: all 0.3s ease-in-out 0s;
@@ -759,6 +760,7 @@ section {
 .portfolio .portfolio-item img {
   position: relative;
   top: 0;
+  width: 100%;
   transition: all 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 

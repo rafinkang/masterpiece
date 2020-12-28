@@ -43,7 +43,7 @@
         var new_pw_re = $("#new_pw_re").val();
         var password_re = /^[a-zA-z0-9]{4,12}$/;
 
-        console.log("클릭 확인")
+        //console.log("클릭 확인")
         if (new_pw != new_pw_re) {
             alert("입력하신 비밀번호가 다릅니다."); // 파랑색으로 변경
             return;
@@ -58,8 +58,8 @@
         var user_id = sessionStorage.getItem("user_id");
         var user_name = sessionStorage.getItem("user_name");
         var password = new_pw
-        console.log(user_id);
-        console.log(user_name);
+            //console.log(user_id);
+            //console.log(user_name);
 
         $.ajax({
             url: "{% url 'modifypw/modifypw_go' %}",
@@ -71,10 +71,10 @@
             },
             dataType: 'text',
             success: function(data) {
-                console.log('비밀번호 변경 성공', data);
+                //    console.log('비밀번호 변경 성공', data);
                 alert("비밀번호가 변경 되었습니다.")
                 sessionStorage.clear();
-                //location.href = "{% url 'login' %}"
+                location.href = "{% url 'login' %}"
 
             },
             error: function(data) {

@@ -41,14 +41,16 @@ def temp_img_upload(request):
 
 def change_masterpiece(request):
     img_name = request.POST.dict()['img_name']
+    style_type = request.POST.dict()['styleType']
     temp_img_full_path = 'masterpiece/static/upload_images/temp_images/' + img_name
 
     clw = CycleganLoadWeight()
-    return HttpResponse(clw.change_style(temp_img_full_path, img_name))
+    return HttpResponse(clw.change_style(style_type, temp_img_full_path, img_name))
 
 def download_img(request):
     # 임시 저장 이미지 중 찾을 이미지 2개
     user_idx = request.POST.dict()['userIDX']
+    style_type = request.POST.dict()['styleType']
     original_image_name = request.POST.dict()['originalImageName'] # 사용자가 입력한 원본 이미지 이름
     masterpiece_img_name = request.POST.dict()['masterpieceImageName'] # 명화화 한 임시 저장 이미지 이름
     img_name = masterpiece_img_name.replace('_masterpiece', '') # 명화화 하기 전 임시 저장 이미지 이름
@@ -71,7 +73,7 @@ def download_img(request):
 
     # DB저장
     gl = GallaryList()
-    sql = f"insert into gallary_list(user_idx, image_name, origin_url, masterpiece_url) values({user_idx}, '{original_image_name}', '{origin_url}', '{masterpiece_url}')"
+    sql = f"insert into gallary_list(user_idx, image_name, origin_url, masterpiece_url, artist) values({user_idx}, '{original_image_name}', '{origin_url}', '{masterpiece_url}', '{style_type}')"
     gl.execute(sql)
 
     # 임시저장 이미지 삭제

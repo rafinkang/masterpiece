@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from masterpiece.models.User import User
 from django.http.response import JsonResponse
+from django.contrib.auth import logout as auth_logout
+
 
 # Create your views here.
 # 컨트롤러 역할 비즈니스 로직 구현
@@ -29,10 +31,10 @@ def idcheck(request):
     result = user.idcheck(req['user_id'])
     
     if result == None:
-        print(result,"참이다!!!!!!!")
+        # print(result,"참이다!!!!!!!")
         return HttpResponse("1")
     else:
-        print(result,"거짓이다!!!!!!!")
+        # print(result,"거짓이다!!!!!!!")
         return HttpResponse("0")
     # return True or False
 
@@ -44,10 +46,10 @@ def insert_user(request):
     result = user.insert_user(req['user_id'],req['password'],req['user_name'],req['sex'],req['birth'],req['job'],req['company'] )
 
     if result == None:
-        print(result,"회원가입 못했다!!!!!!!")
+        # print(result,"회원가입 못했다!!!!!!!")
         return HttpResponse("0")
     else:
-        print(result,"회원가입했다!!!!!!!")
+        # print(result,"회원가입했다!!!!!!!")
         return HttpResponse("1")
     # return True or False
 
@@ -58,15 +60,18 @@ def login_go(request):
     result = user.login_go(req['user_id'],req['password'])
 
     if result == None:
-        print(result,"로그인 실패")
+        # print(result,"로그인 실패")
 
         return HttpResponse("0")
     else:
-        print(result,"로그인 성공")
+        # print(result,"로그인 성공")
         # return JsonResponse(result)
         
         # print(result[0],"딕셔너리로나와라")
         # print(result[0]['user_idx'],"유저 인덱스")
+
+
+
 
         request.session['user_idx'] = str(result[0]["user_idx"])
         request.session['user_id'] = str(result[0]["user_id"])
@@ -77,15 +82,17 @@ def login_go(request):
         request.session['job'] = str(result[0]["job"])
         request.session['company'] = str(result[0]["company"])
 
-        print(request.session.get('user_id'))
+        # print(request.session.get('user_id'))
         return JsonResponse(result[0])
 
     #로그아웃 
 def logout(request):
-    # del request.session['user_idx'] 시도하였으나 실패 
-    request.session.clear()
-    SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-    return HttpResponse("1");
+
+    # request.session.clear()
+    auth_logout(request)
+
+    return redirect("/main")
+    # return HttpResponse("1");
 
 #비밀번호 찾기 비교 
 def findpw_search(request):
@@ -94,10 +101,10 @@ def findpw_search(request):
     result = user.findpw(req['user_id'],req['user_name'])
     
     if result == None:
-        print(result,"아이디 못찾았다")
+        # print(result,"아이디 못찾았다")
         return HttpResponse("1")
     else:
-        print(result,"아이디 찾았다!!!!!!!")
+        # print(result,"아이디 찾았다!!!!!!!")
         return HttpResponse("0")
 
 #비밀번호 변경 
@@ -108,8 +115,8 @@ def modifypw_go(request):
     result = user.modifypw_go(req['password'],req['user_id'],req['user_name'])
     
     if result == None:
-        print(result,"비밀번호 변경 실패")
+        # print(result,"비밀번호 변경 실패")
         return HttpResponse("1")
     else:
-        print(result,"비밀번호 변경 성공")
+        # print(result,"비밀번호 변경 성공")
         return HttpResponse("0")
