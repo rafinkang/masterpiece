@@ -169,13 +169,18 @@ function emotion_filter() {
     });
 }
 
+function picktostorage(data) {
+    sessionStorage.setItem("color_pick", JSON.stringify(data));
+    load_storage();
+}
+
 function copy(target) {
     setTimeout(function() {
         $('#copied_tip').remove();
     }, 1000);
     // $(target).parent('.place').append("<div class='tip' id='copied_tip'>Copied!</div>");
-    $(target).append("<div class='tip' id='copied_tip'>Copied!</div>");
     var text = target.textContent;
+    $(target).append("<div class='tip' id='copied_tip'>Copied!</div>");
     var input = document.createElement('input');
     input.setAttribute('value', text);
     document.body.appendChild(input);
