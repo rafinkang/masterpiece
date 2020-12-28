@@ -32,12 +32,9 @@ class User():
         sql = f"select user_idx,user_id,user_name,sex,birth,job,company from user where user_id ='{user_id}' and password='{password}'"
         return self.db.select(sql)
 
-    def logout(self):
-        self.session.clear()
-        SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-        # request.session.clear()
-        # del request.session['user_id']
-        return;
+    # def logout(self,sessionid):
+    #     sql =f"delet from django_session where session_key='{sessionid}'"
+    #     return self.db.execute(sql)
 
 
     def findpw(self,user_id,user_name):
@@ -46,5 +43,5 @@ class User():
 
     def modifypw_go(self,password,user_id,user_name):
         sql =f"update user set password = '{password}' where user_id='{user_id}' and user_name='{user_name}'"
-        print(sql)
+        # print(sql)
         return self.db.execute(sql)

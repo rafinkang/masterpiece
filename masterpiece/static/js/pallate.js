@@ -96,10 +96,10 @@ function load_storage() {
         $('.pallate .pallate-list .hsv3').text('('+data['h3']+','+data['s3']+','+data['v3']+')');
         $('.pallate .pallate-list .hsv4').text('('+data['h4']+','+data['s4']+','+data['v4']+')');
 
-        $('.pallate .pallate-list .hex1').text(data['hex1']);
-        $('.pallate .pallate-list .hex2').text(data['hex2']);
-        $('.pallate .pallate-list .hex3').text(data['hex3']);
-        $('.pallate .pallate-list .hex4').text(data['hex4']);
+        $('.pallate .pallate-list .hex1 span').text(data['hex1']);
+        $('.pallate .pallate-list .hex2 span').text(data['hex2']);
+        $('.pallate .pallate-list .hex3 span').text(data['hex3']);
+        $('.pallate .pallate-list .hex4 span').text(data['hex4']);
         // 색상뽑기 내부 컬러박스
         $('#pallate .color-pick .color-pick-box.color1').css('background-color', data['hex1']);
         $('#pallate .color-pick .color-pick-box.color2').css('background-color', data['hex2']);
@@ -169,6 +169,27 @@ function emotion_filter() {
     });
 }
 
+function picktostorage(data) {
+    sessionStorage.setItem("color_pick", JSON.stringify(data));
+    load_storage();
+}
+
+function copy(target) {
+    setTimeout(function() {
+        $('#copied_tip').remove();
+    }, 1000);
+    // $(target).parent('.place').append("<div class='tip' id='copied_tip'>Copied!</div>");
+    var text = target.textContent;
+    $(target).append("<div class='tip' id='copied_tip'>Copied!</div>");
+    var input = document.createElement('input');
+    input.setAttribute('value', text);
+    document.body.appendChild(input);
+    input.select();
+    var result = document.execCommand('copy');
+    document.body.removeChild(input)
+    return result;
+}
+
 function color_dress_image(obj) {
     var fileList = obj.files ;
     // 읽기
@@ -216,7 +237,7 @@ function color_dress_image(obj) {
 $(document).ready(function(){
     // onload
     load_storage()
-
+    emotion_filter()
     // 탭메뉴 컨트롤
     $('ul.pallate-nav li').click(function(){
         self = $(this);
