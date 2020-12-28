@@ -452,15 +452,19 @@
 
 .droplet_1 {
     z-index: 4;
+    fill: #637fa0;
 }
 .droplet_2 {
     z-index: 3;
+    fill: #394d77;
 }
 .droplet_3 {
     z-index: 2;
+    fill: #20262b;
 }
 .droplet_4 {
     z-index: 1;
+    fill: #a8b5a1;
 }
 .droplet {
     display: block;
