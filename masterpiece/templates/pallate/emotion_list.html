@@ -1,33 +1,23 @@
-<table>
-    <thead>
-        <td>idx</td>
-        <td>hex1</td>
-        <td>hex2</td>
-        <td>hex3</td>
-        <td>hex4</td>
-        <td>color</td>
-        <td>cp</td>
-        <td>cw</td>
-        <td>season</td>
-        <td>value</td>
-        <td>made</td>
-    </thead>
-    <tbody>
+{% if res|length > 0 %}
     {% for data in res %}
-        <tr>
-            <td>{{ data.idx }}</td>
-            <td>{{ data.hex1 }}</td>
-            <td>{{ data.hex2 }}</td>
-            <td>{{ data.hex3 }}</td>
-            <td>{{ data.hex4 }}</td>
-            <td>{{ data.color }}</td>
-            <td>{{ data.cp }}</td>
-            <td>{{ data.cw }}</td>
-            <td>{{ data.season }}</td>
-            <td>{{ data.value }}</td>
-            <td>{{ data.made }}</td>
-        </tr>
-    {% endfor %}
-    </tbody>
+    <div class="content-item" style="animation-delay: 0ms;">
+        <div class="palette">
+            <div class="place c4" style="background-color: {{ data.hex4 }};"><span onclick="copy(this)">{{ data.hex4 }}</span></div>
+            <div class="place c3" style="background-color: {{ data.hex3 }};"><span onclick="copy(this)">{{ data.hex3 }}</span></div>
+            <div class="place c2" style="background-color: {{ data.hex2 }};"><span onclick="copy(this)">{{ data.hex2 }}</span></div>
+            <div class="place c1" style="background-color: {{ data.hex1 }};"><span onclick="copy(this)">{{ data.hex1 }}</span></div>
+        </div>
 
-</table>
+        <div>
+            <span class="emotion-tag">{{ data.color }}</span>
+            <span class="emotion-tag">{{ data.season }}</span>
+            <span class="emotion-tag">{{ data.cw }}</span>
+            <span class="emotion-tag">{{ data.cp }}</span>
+            <span class="emotion-tag">{{ data.value }}</span>
+        </div>
+    </div>
+
+    {% endfor %}
+{% else %}
+<p>해당하는 데이터가 없습니다.</p>
+{% endif %}

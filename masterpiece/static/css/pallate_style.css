@@ -269,6 +269,117 @@
     background: #ffd369;
     color: #222831;
 }
+
+.emotion .content-item {
+    width: 260px;
+    margin: 8px;
+    border-radius: 6px;
+    padding: 15px;
+    box-sizing: border-box;
+    position: relative;
+    animation-name: item;
+    animation-duration: .4s;
+    display: inline-block;
+    text-align: left;
+    animation-fill-mode: backwards;
+    box-shadow: 0 10px 40px -10px rgba(0,64,128,.2);
+    transition: box-shadow .3s;
+    background-color: #fff;
+}
+.emotion .palette {
+    max-width: 100%;
+    padding-bottom: 100%;
+    border-radius: 6px;
+    position: relative;
+    display: block;
+}
+.emotion .place {
+    position: absolute;
+    width: 100%;
+    border-radius: 20px 20px 0 0;
+    animation-name: place;
+    transform-origin: top;
+}
+.emotion .c4 {
+    padding-bottom: 100%;
+    border-radius: 20px 20px 4px 4px;
+    animation-duration: 0s;
+}
+.emotion .c3 {
+    padding-bottom: 85%;
+    animation-duration: .2s;
+}
+.emotion .c2 {
+    padding-bottom: 67%;
+    animation-duration: .6s;
+}
+.emotion .c1 {
+    padding-bottom: 41%;
+    border-radius: 4px 4px 0 0;
+    animation-duration: 1s;
+}
+.emotion .place span {
+    position: absolute;
+    text-align: center;
+    transition: all .2s;
+    bottom: 0;
+    color: #fff;
+    opacity: 0;
+    text-transform: uppercase;
+    background-color: rgba(0,0,0,.1);
+    padding: 3px 6px;
+    border-radius: 0 3px 0 0;
+    cursor: pointer;
+    letter-spacing: 1px;
+}
+.emotion .place:hover span {
+    opacity: 1;
+}
+
+.emotion span.emotion-tag {
+    display: inline-block;
+    padding: 5px 10px;
+    margin-top: 10px;
+    border: 1px solid #393e46;
+    border-radius: 5px;
+    background-color: #393e46;
+    color: #eeeeee;
+}
+
+
+#copied_tip{
+    animation-name:come_and_leave;
+    animation-duration:1s;
+    animation-fill-mode:both;
+    bottom:-40px;
+    left: 30px
+}
+
+.tip {
+    background-color: #263646;
+    padding: 0 14px;
+    line-height: 30px;
+    position: absolute;
+    border-radius: 4px;
+    z-index: 100;
+    color: #fff;
+    font-size: 12px;
+    animation-name: tip;
+    animation-duration: .6s;
+    animation-fill-mode: both;
+}
+.tip:before {
+    content: "";
+    background-color: #263646;
+    height: 10px;
+    width: 10px;
+    display: block;
+    position: absolute;
+    transform: rotate(45deg);
+    top: -4px;
+    left: 17px;
+}
+
 /* 명화화 영역 */
 
 .ch-wrap {
