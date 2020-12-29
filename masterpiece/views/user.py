@@ -24,6 +24,10 @@ def findpw(request):
 def modifypw(request):
     return render(request, 'user/user_modifypw.html')
 
+# 로그아웃 후 로그인 페이지 
+def logout_go(request):
+    return render(request, 'user/user_logout.html')
+
 # 아이디 중복 체크 
 def idcheck(request):
     req = request.POST.dict()
@@ -71,8 +75,6 @@ def login_go(request):
         # print(result[0]['user_idx'],"유저 인덱스")
 
 
-
-
         request.session['user_idx'] = str(result[0]["user_idx"])
         request.session['user_id'] = str(result[0]["user_id"])
         # request.session['password'] = str(result[0]["password"])
@@ -87,12 +89,11 @@ def login_go(request):
 
     #로그아웃 
 def logout(request):
-
-    # request.session.clear()
+    # request.session.clear() 
     auth_logout(request)
 
-    return redirect("/main")
-    # return HttpResponse("1");
+    # return redirect("/main")
+    return HttpResponse("1");
 
 #비밀번호 찾기 비교 
 def findpw_search(request):

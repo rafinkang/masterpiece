@@ -1,32 +1,25 @@
 {% extends 'index.html' %} {% block content %}
 <section id="user_login">
 
-    <div class="container container_user ">
+    <div class="container container_user_login">
 
         <div class="main">
             <div class="body">
-                <form action="" method="POST">
 
-                    <h1>로그인 하기 </h1> <br>
+                <h3>로그인 하기 </h3> <br>
 
-                    <div class="text">
-                        ID :
-                    </div>
-                    <div class="c_box">
+                <form action="#" method="POST">
+                    <div class="chk">
+                        <label for="loginid" class="lable_id"> ID :</label>
                         <input type="text" id="login_id" name="login_id"><br>
-                    </div>
-
-                    <div class="text">
-                        PASSWORD:
-                    </div>
-                    <div class="c_box">
+                        <label for="loginpw" class="lable_pw"> PASSWORD:</label>
                         <input type="password" id="login_pw" name="login_pw">
                     </div>
                     <br>
 
-                    <input type="button" id="go_login" value="로그인">
-                    <input type="button" id="go_reg" value="회원가입">
-                    <input type="button" id="findpw" value="비밀번호 변경">
+                    <input class="login_btn" type="button" id="go_login" value="로그인">
+                    <input class="login_btn" type="button" id="go_reg" value="회원가입">
+                    <input class="login_btn" type="button" id="findpw" value="비밀번호 변경">
                 </form>
             </div>
         </div>
@@ -58,7 +51,6 @@
                         location.href = "{% url 'pallate' %}"
                     } else {
                         alert("로그인 실패하였습니다.");
-
                     };
                 },
                 error: function(data) {}
@@ -80,22 +72,6 @@
 
 
 
-        $.ajax({
-            url: "{% url 'login/logout' %}",
-            success: function(url) {
-                //console.log("로그아웃 눌리나 확인", url);
-                //로그인 화면에서 세션제거
-                sessionStorage.removeItem("login_data");
-
-                //로그인 화면에서 쿠키제거
-
-
-
-            },
-            error: function(url) {
-                console.log("이미 지워져서 오류");
-            }
-        });
 
 
 
