@@ -10,14 +10,13 @@
 
         <nav class="nav-menu d-none d-lg-block">
         <ul>
-            {% if request.path != '/' and request.path != '/main' and request.session.user_id %}
+            {% if request.path != '/' and request.session.user_id %}
                 <li {% if request.path == '/pallate'%} class="active" {% endif %}><a href="{% url 'pallate' %}">기능</a></li>
                 <li><a href="{% url 'pallate' %}">색상</a></li>
                 <li><a href="{% url 'pallate' %}">이미지</a></li>
             {% endif %}
 
             {% if request.session.user_id %}
-               
                 <li><a href="{% url 'logout' %}" >로그아웃</a></li>
 
             {% else %}
