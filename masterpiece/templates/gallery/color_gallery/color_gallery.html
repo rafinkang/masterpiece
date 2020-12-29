@@ -1,0 +1,146 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<section id="color_gallery">
+    <div class="container gallery-container">
+        <div class="row emotion">
+            <div class="db-filter">
+                <ul class="emotion-filter clearfix">
+                    <li class="filter-row">
+                        <div class="title">
+                            <span>색상</span>
+                        </div>
+                        <div class="value">
+                            <label class="checkbox">
+                                <input type="checkbox" name="color" value="red">
+                                <span title="red">red</span>
+                            </label>
+                            <label class="checkbox">
+                                <input type="checkbox" name="color" value="orange">
+                                <span title="orange">orange</span>
+                            </label>
+                            <label class="checkbox">
+                                <input type="checkbox" name="color" value="yellow">
+                                <span title="yellow">yellow</span>
+                            </label>
+                            <label class="checkbox">
+                                <input type="checkbox" name="color" value="chartreuse green">
+                                <span title="chartreuse green">chartreuse green</span>
+                            </label>
+                            <label class="checkbox">
+                                <input type="checkbox" name="color" value="green">
+                                <span title="green">green</span>
+                            </label>
+                            <label class="checkbox">
+                                <input type="checkbox" name="color" value="spring green">
+                                <span title="spring green">spring green</span>
+                            </label>
+                            <label class="checkbox">
+                                <input type="checkbox" name="color" value="cyan">
+                                <span title="cyan">cyan</span>
+                            </label>
+                            <label class="checkbox">
+                                <input type="checkbox" name="color" value="azure">
+                                <span title="azure">azure</span>
+                            </label>
+                            <label class="checkbox">
+                                <input type="checkbox" name="color" value="blue">
+                                <span title="blue">blue</span>
+                            </label>
+                            <label class="checkbox">
+                                <input type="checkbox" name="color" value="violet">
+                                <span title="violet">violet</span>
+                            </label>
+                            <label class="checkbox">
+                                <input type="checkbox" name="color" value="magenta">
+                                <span title="magenta">magenta</span>
+                            </label>
+                            <label class="checkbox">
+                                <input type="checkbox" name="color" value="rose">
+                                <span title="rose">rose</span>
+                            </label>
+                        </div>
+                    </li>
+                    <li class="filter-row">
+                        <div class="title">
+                            <span>계절</span>
+                        </div>
+                        <div class="value">
+                            <label class="checkbox">
+                                <input type="checkbox" name="season" value="spring">
+                                <span title="spring">spring</span>
+                            </label>
+                            <label class="checkbox">
+                                <input type="checkbox" name="season" value="summer">
+                                <span title="summer">summer</span>
+                            </label>
+                            <label class="checkbox">
+                                <input type="checkbox" name="season" value="autumn">
+                                <span title="autumn">autumn</span>
+                            </label>
+                            <label class="checkbox">
+                                <input type="checkbox" name="season" value="winter">
+                                <span title="winter">winter</span>
+                            </label>
+                        </div>
+                    </li>
+                    <li class="filter-row">
+                        <div class="title">
+                            <span>톤</span>
+                        </div>
+                        <div class="value">
+                            <label class="checkbox">
+                                <input type="checkbox" name="cw" value="cool">
+                                <span title="cool">cool</span>
+                            </label>
+                            <label class="checkbox">
+                                <input type="checkbox" name="cw" value="warm">
+                                <span title="warm">warm</span>
+                            </label>
+                        </div>
+                    </li>
+                    <li class="filter-row">
+                        <div class="title">
+                            <span>채도</span>
+                        </div>
+                        <div class="value">
+                            <label class="checkbox">
+                                <input type="checkbox" name="cp" value="pastel">
+                                <span title="pastel">pastel</span>
+                            </label>
+                            <label class="checkbox">
+                                <input type="checkbox" name="cp" value="contrasting">
+                                <span title="contrasting">contrasting</span>
+                            </label>
+                        </div>
+                    </li>
+                    <li class="filter-row">
+                        <div class="title">
+                            <span>명암</span>
+                        </div>
+                        <div class="value">
+                            <label class="checkbox">
+                                <input type="checkbox" name="value" value="low">
+                                <span title="low">low</span>
+                            </label>
+                            <label class="checkbox">
+                                <input type="checkbox" name="value" value="high">
+                                <span title="high">high</span>
+                            </label>
+                        </div>
+                    </li>
+                    <li class="filter-row">
+                        <button onclick="list_filter()">검색</button>
+                    </li>
+                </ul>
+            </div>
+            <div class="content-list">
+            {% include 'gallery/color_gallery/color_list.html' %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="/masterpiece/static/js/color-list.js"></script>
+
+{% endblock %}

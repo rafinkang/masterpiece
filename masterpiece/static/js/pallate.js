@@ -70,6 +70,36 @@ function color_pick() {
     });
 }
 
+// 색상뽑기 후 저장
+function color_insert() {
+    origin_image = sessionStorage.getItem("origin_image");
+    color_pick = sessionStorage.getItem("color_pick");
+    if(!origin_image) {
+        alert('파일을 선택해주세요.');
+        return;
+    }
+    $.ajax({
+        url: "pallate/color_insert",
+        method: "post",
+        data: {
+            'dataURI': origin_image,
+            'color_pick': color_pick
+        },
+        dataType: 'text',
+        success: function (data) {
+            // console.log('return data : ', data);
+            if(data == 1) {
+                alert("색상이 저장 되었습니다.")
+            }else{
+                alert(data)
+            }
+        },
+        error: function (data) {
+            console.log('error :', data);
+        }
+    });
+}
+
 function load_storage() {
     
     if(local_origin_image = sessionStorage.getItem("origin_image")) {
@@ -116,11 +146,11 @@ function load_storage() {
         $('#pallate .color-pick .color-pick-box.color3').height(data['percent3']+'%');
         $('#pallate .color-pick .color-pick-box.color4').height(data['percent4']+'%');
         // 감성분석 결과
-        $('#pallate table.emotion td.color_pred').text(data['color_pred']);
-        $('#pallate table.emotion td.season_pred').text(data['season_pred']);
-        $('#pallate table.emotion td.cw_pred').text(data['cw_pred']);
-        $('#pallate table.emotion td.cp_pred').text(data['cp_pred']);
-        $('#pallate table.emotion td.value_pred').text(data['value_pred']);
+        $('#pallate table.emotion td.color_pred').text(data['color']);
+        $('#pallate table.emotion td.season_pred').text(data['season']);
+        $('#pallate table.emotion td.cw_pred').text(data['cw']);
+        $('#pallate table.emotion td.cp_pred').text(data['cp']);
+        $('#pallate table.emotion td.value_pred').text(data['value']);
     }
 }
 
@@ -160,7 +190,7 @@ function emotion_filter() {
         },
         dataType: 'html',
         success: function (data) {
-            console.log('return data : ', data);
+            // console.log('return data : ', data);
             $('.content-list').html(data);
         },
         error: function (data) {
@@ -170,6 +200,11 @@ function emotion_filter() {
 }
 
 function picktostorage(data) {
+    data.percent1 = 25;
+    data.percent2 = 25;
+    data.percent3 = 25;
+    data.percent4 = 25;
+
     sessionStorage.setItem("color_pick", JSON.stringify(data));
     load_storage();
 }
@@ -249,4 +284,6 @@ $(document).ready(function(){
         $('.pallate-content .pallate-tab').filter('[data-page="'+self.attr('data-page')+'"]').show();
     });
 
+    $('#color_pick').click(color_pick);
+    $('#color_insert').click(color_insert);
 });

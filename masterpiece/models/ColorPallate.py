@@ -29,7 +29,7 @@ class ColorPallate():
         
         return self.db.select(sql)
 
-    def emotion_filter(self, color_type, season_type, cw_type, cp_type, value_type):
+    def emotion_filter(self, color_type = None, season_type = None, cw_type = None, cp_type = None, value_type = None, limit_start = 0, limit_end = 100):
         sql = "select * from color_pallate"
         where = ""
         if color_type or season_type or cw_type or cp_type or value_type:
@@ -89,6 +89,5 @@ class ColorPallate():
                 
             where = where + where_value
             
-        sql = sql + where + " limit 100;"
-        print(sql)
+        sql = sql + where + f" limit {limit_start}, {limit_end};"
         return self.db.select(sql)
