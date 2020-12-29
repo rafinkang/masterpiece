@@ -1,6 +1,5 @@
 <!-- ======= Header ======= -->
 <header id="header" class="fixed-top ">
-    
     <div class="container d-flex align-items-center {% if request.path != '/' and request.path != '/main'%} header-scrolled {% endif %}">
 
         <h1 class="logo mr-auto">
@@ -19,8 +18,8 @@
 
             {% if request.session.user_id %}
                
-                <li><a href="{% url 'login' %}" >로그아웃</a></li>
-                
+                <li><a href="{% url 'logout' %}" >로그아웃</a></li>
+
             {% else %}
                 <li><a href="{% url 'register' %}" >회원가입</a></li>
                 <li><a href="{% url 'login' %}" >로그인</a></li>
@@ -30,9 +29,3 @@
         </nav><!-- .nav-menu -->
     </div>
 </header><!-- End Header -->
-
-<script>
-
-var user_id = sessionStorage.getItem("login_data");
-
-</script>

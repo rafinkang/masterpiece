@@ -58,7 +58,6 @@
                         location.href = "{% url 'pallate' %}"
                     } else {
                         alert("로그인 실패하였습니다.");
-
                     };
                 },
                 error: function(data) {}
@@ -80,22 +79,6 @@
 
 
 
-        $.ajax({
-            url: "{% url 'login/logout' %}",
-            success: function(url) {
-                //console.log("로그아웃 눌리나 확인", url);
-                //로그인 화면에서 세션제거
-                sessionStorage.removeItem("login_data");
-
-                //로그인 화면에서 쿠키제거
-
-
-
-            },
-            error: function(url) {
-                console.log("이미 지워져서 오류");
-            }
-        });
 
 
 
