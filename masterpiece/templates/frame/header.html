@@ -14,7 +14,7 @@
             {% if request.session.user_id %}
                 {% if request.path != '/' and request.path != '/main' %}
                     <li {% if request.path == '/pallate'%} class="active" {% endif %}><a href="{% url 'pallate' %}">기능</a></li>
-                    <li><a href="{% url 'pallate' %}">색상</a></li>
+                    <li><a href="{% url 'gallery/color_gallery' %}">색상</a></li>
                     <li><a href="{% url 'gallery/image_list' %}">이미지</a></li>
                 {% endif %}
                
@@ -22,8 +22,8 @@
 
             {% else %}
                 {% if request.path != '/' and request.path != '/main' %}
-                    <li><a href="{% url 'pallate' %}">색상</a></li>
-                    <li><a href="{% url 'pallate' %}">이미지</a></li>
+                    <li><a href="{% url 'gallery/color_gallery' %}">색상</a></li>
+                    <li><a href="{% url 'gallery/image_list' %}">이미지</a></li>
                 {% endif %}
                 <li><a href="{% url 'register' %}" >회원가입</a></li>
                 <li><a href="{% url 'login' %}" >로그인</a></li>
