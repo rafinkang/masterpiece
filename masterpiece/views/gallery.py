@@ -3,6 +3,7 @@ from masterpiece.models import *
 from masterpiece.example_class.forms import post_frm
 from masterpiece.example_class.DbConn import *
 from masterpiece.models.GallaryList import GallaryList
+from django.http import HttpResponse
 
 # Create your views here.
 
@@ -16,22 +17,34 @@ def color_gallery_detail(request):
 
 # 이미지 리스트 이동
 def image_list(request):
-    return render(request, 'gallery/imageGallery/image_list.html')
+    return render(request, 'gallery/image_gallery/image_list.html')
 
 # 이미지 검색
 def image_filter(request):
-    request_dict = request.POST.dict()
-    gl = GallaryList()
-    res = gl.select_all()
-
-    return render(request, 'gallery/imageGallery/image_content.html', {
-        'res': res
-    })
-
     request_dict = request.POST.dict()    
     gl = GallaryList()
-    res = gl.emotion_filter(request_dict['artist_type'], request_dict['style_type'])
 
-    return render(request, 'gallery/imageGallery/image_content.html', {
+    res = gl.image_filter(request_dict['opt_type'], request.session.get('user_idx'))
+
+    return render(request, 'gallery/image_gallery/image_content.html', {
         'res': res
     })
+
+# 좋아요 클릭
+def set_like(request) :
+    gl_idx = request.POST.dict()['gl_idx']
+    gl = GallaryList()
+    res = -1
+
+    if request.session.get('user_idx'): # 세션에 유저 정보가 있는 경우만
+
+        user_like_list = gl.get_user_like(gl_idx, request.session.get('user_idx'))
+
+        if user_like_list != None : # 해당 이미지는 사용자가 이미 좋아요 누름 -> 좋아요 취소
+            gl.drop_like(gl_idx, request.session.get('user_idx'))
+            res = 1
+        else: # 해당 이미지 사용자 좋아요 없음 -> 좋아요 등록
+            gl.set_like(gl_idx, request.session.get('user_idx'))
+            res = 0
+
+    return HttpResponse(res)

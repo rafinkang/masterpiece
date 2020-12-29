@@ -1,15 +1,16 @@
-{% if res2|length > 0 %}
-    {% for data in res2 %}
+{% if res|length > 0 %}
+    {% for data in res %}
             <div class="content-item" style="animation-delay: 0ms;">
             <div class="palette">
                 {% if data.masterpiece_url != None %}
-                    <div class="place c4"><img class="rounded" src="/{{data.masterpiece_url}}" style="width: 100%;"/></div>
+                    <div class="place c4" style="padding-bottom:0;"><img class="rounded" src="/{{data.masterpiece_url}}" style="width: 100%;"/></div>
                 {% else %}
                     {% comment %} 색상 입히기 이미지 {% endcomment %}
                 {% endif %}
             </div>
             <div>
                 <span class="emotion-tag">#{{ data.image_name }}</span>
+                <span class="emotion-tag" {% if data.mylike == "T"%} style="color:red;" {% endif %} onclick="set_like({{data.gl_idx}}, this)">❤<span>{{ data.cnt }}</span></span>
             </div>
         </div>
     {% endfor %}
