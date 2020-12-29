@@ -1,0 +1,26 @@
+{% if res|length > 0 %}
+    {% for data in res %}
+    <div class="content-item" style="animation-delay: 0ms;">
+        <div class="palette">
+            <div class="place c4" style="background-color: {{ data.hex4 }};"><span onclick="copy(this)">{{ data.hex4 }}</span></div>
+            <div class="place c3" style="background-color: {{ data.hex3 }};"><span onclick="copy(this)">{{ data.hex3 }}</span></div>
+            <div class="place c2" style="background-color: {{ data.hex2 }};"><span onclick="copy(this)">{{ data.hex2 }}</span></div>
+            <div class="place c1" style="background-color: {{ data.hex1 }};"><span onclick="copy(this)">{{ data.hex1 }}</span></div>
+        </div>
+
+        <div>
+            <span class="emotion-tag">#{{ data.color }}</span>
+            <span class="emotion-tag">#{{ data.season }}</span>
+            <span class="emotion-tag">#{{ data.cw }}</span>
+            <span class="emotion-tag">#{{ data.cp }}</span>
+            <span class="emotion-tag">#{{ data.value }}</span>
+        </div>
+        <div>
+            <button onclick="picktostorage({{ data }})">팔레트로 가져가기</button>
+        </div>
+    </div>
+
+    {% endfor %}
+{% else %}
+<p>해당하는 데이터가 없습니다.</p>
+{% endif %}

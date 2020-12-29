@@ -9,11 +9,22 @@
         <h1>너의 그림을 명화화 하고 싶은가?</h1>
         <h2>그럼 해봐</h2>
     </div>
+    {% if request.session.user_id %}
     <div class="hero-container-btn">
-        <a href="{% url 'pallate' %}" class="scrollto main-btn-menu">기능</a>
+        {% if request.session.user_id %}
+            <a href="{% url 'pallate' %}" class="scrollto main-btn-menu">기능</a>
+        {% endif %}
         <a href="{% url 'color_gallery' %}" class="scrollto main-btn-menu">색상 갤러리</a>
-        <a href="{% url 'pallate' %}" class="scrollto main-btn-menu">이미지 리스트</a>
+        <a href="{% url 'gallery/image_list' %}" class="scrollto main-btn-menu">이미지 리스트</a>
     </div>
+    {% else %}
+    <div class="hero-container-btn">
+        <a href="{% url 'login' %}" class="scrollto main-btn-menu">기능</a>
+        <a href="{% url 'login' %}" class="scrollto main-btn-menu">색상 갤러리</a>
+        <a href="{% url 'login' %}" class="scrollto main-btn-menu">이미지 리스트</a>
+    </div>
+    {% endif %}
+
     </section><!-- End Hero -->
 
     <main id="main">

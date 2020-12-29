@@ -1,6 +1,7 @@
 import base64
 import datetime
 import os
+import math
 from io import BytesIO
 
 import cv2
@@ -18,6 +19,7 @@ from masterpiece.classes.Spuit import Spuit
 from masterpiece.models.ColorPallate import ColorPallate
 from PIL import Image
 from masterpiece.models.GallaryList import GallaryList
+from masterpiece.models.ColorList import ColorList
 
 
 def pallate(request):
@@ -26,7 +28,7 @@ def pallate(request):
 # ch_style
 def temp_img_upload(request):
     dataURI = request.POST.dict()['dataURI']
-    user_idx = request.POST.dict()['userIDX']
+    user_idx = request.session.get('user_idx')
     temp_img_path = 'masterpiece/static/upload_images/temp_images/'
 
     filename = user_idx + '_idx_' + datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S') + '.jpg'
@@ -49,7 +51,7 @@ def change_masterpiece(request):
 
 def download_img(request):
     # 임시 저장 이미지 중 찾을 이미지 2개
-    user_idx = request.POST.dict()['userIDX']
+    user_idx = request.session.get('user_idx')
     style_type = request.POST.dict()['styleType']
     original_image_name = request.POST.dict()['originalImageName'] # 사용자가 입력한 원본 이미지 이름
     masterpiece_img_name = request.POST.dict()['masterpieceImageName'] # 명화화 한 임시 저장 이미지 이름
@@ -73,8 +75,7 @@ def download_img(request):
 
     # DB저장
     gl = GallaryList()
-    sql = f"insert into gallary_list(user_idx, image_name, origin_url, masterpiece_url, artist) values({user_idx}, '{original_image_name}', '{origin_url}', '{masterpiece_url}', '{style_type}')"
-    gl.execute(sql)
+    gl.insert_mp_info(user_idx, original_image_name, origin_url, masterpiece_url, style_type)
 
     # 임시저장 이미지 삭제
     os.remove(temp_img_path + img_name)
@@ -134,21 +135,40 @@ def color_pick(request):
         'h4'    : str(pallate[9]),
         's4'    : str(pallate[10]),
         'v4'    : str(pallate[11]),
-        "percent1" : str(round(percent[0]*100, 1)),
-        "percent2" : str(round(percent[1]*100, 1)),
-        "percent3" : str(round(percent[2]*100, 1)),
-        "percent4" : str(round(percent[3]*100, 1)),
+        "percent1" : str(math.floor(percent[0]*10000)/100),
+        "percent2" : str(math.floor(percent[1]*10000)/100),
+        "percent3" : str(math.floor(percent[2]*10000)/100),
+        "percent4" : str(math.floor(percent[3]*10000)/100),
         "hex1"  : str(hex1),
         "hex2"  : str(hex2),
         "hex3"  : str(hex3),
         "hex4"  : str(hex4),
-        "color_pred" : str(color_pred[0]),
-        "cp_pred" : str(cp_pred[0]),
-        "cw_pred" : str(cw_pred[0]),
-        "season_pred" : str(season_pred[0]),
-        "value_pred" : str(value_pred[0])
+        "color" : str(color_pred[0]),
+        "cp" : str(cp_pred[0]),
+        "cw" : str(cw_pred[0]),
+        "season" : str(season_pred[0]),
+        "value" : str(value_pred[0])
     }
     return JsonResponse(result)
+
+def color_insert(request):
+    request_dict = request.POST.dict()
+    img = base64_decode(request_dict['dataURI'])
+    color_pick = request_dict['color_pick']
+    
+    original_img_path = 'masterpiece/static/upload_images/original_images'
+    user_idx = str(request.session.get('user_idx'))
+
+    filename = user_idx + '_idx_' + datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S') + '.jpg'
+    path = original_img_path + '/' + filename
+
+    with open(path, 'wb') as f:
+        f.write(img)
+        
+    db = ColorList()
+    res = db.insert_color(user_idx, path, color_pick)
+
+    return HttpResponse(res)
 
 def base64_decode(base64_str):
     img_str = base64_str.split(';base64,')[1]

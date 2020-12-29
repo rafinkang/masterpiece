@@ -90,5 +90,4 @@ class ColorPallate():
             where = where + where_value
             
         sql = sql + where + " limit 100;"
-        print(sql)
         return self.db.select(sql)

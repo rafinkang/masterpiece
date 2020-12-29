@@ -29,6 +29,7 @@ urlpatterns = [
     path('pallate', pallate.pallate, name='pallate'),
     # color_pick
     path('pallate/color_pick', pallate.color_pick, name='pallate/color_pick'),
+    path('pallate/color_insert', pallate.color_insert, name='pallate/color_insert'),
     # emotion
     path('pallate/emotion_filter', pallate.emotion_filter, name='pallate/emotion_filter'),
     # ch_style(change_style)
@@ -39,6 +40,8 @@ urlpatterns = [
     # gallery
     path('gallery/color_gallery', gallery.color_gallery, name='color_gallery'),
     path('gallery/color_gallery_detail', gallery.color_gallery_detail, name='color_gallery_detail'),
+    path('gallery/image_list', gallery.image_list, name='gallery/image_list'),
+    path('gallery/image_filter', gallery.image_filter, name='gallery/image_filter'),
 
     ######################################## example ########################################
 
