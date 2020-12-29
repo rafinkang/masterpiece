@@ -23,7 +23,7 @@ function list_filter() {
     
 
     $.ajax({
-        url: "/gallery/color_gallery/color_list",
+        url: "/gallery/color_list",
         method: "post",
         data: {
             'color_type': color_type.join(),
