@@ -29,6 +29,7 @@ urlpatterns = [
     path('pallate', pallate.pallate, name='pallate'),
     # color_pick
     path('pallate/color_pick', pallate.color_pick, name='pallate/color_pick'),
+    path('pallate/color_insert', pallate.color_insert, name='pallate/color_insert'),
     # emotion
     path('pallate/emotion_filter', pallate.emotion_filter, name='pallate/emotion_filter'),
     # ch_style(change_style)

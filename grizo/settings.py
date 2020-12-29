@@ -138,3 +138,6 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 #쿠키 시간 제한 설정 (10분있으면 자동삭제)
 SESSION_COOKIE_AGE = 600
+
+#요청이 있을때마다 쿠키시간 갱신 
+SESSION_SAVE_EVERY_REQUEST = True
