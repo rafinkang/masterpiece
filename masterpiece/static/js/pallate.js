@@ -70,6 +70,11 @@ function color_pick() {
     });
 }
 
+// 색상뽑기 후 저장
+// function color_insert() {
+    
+// }
+
 function load_storage() {
     
     if(local_origin_image = sessionStorage.getItem("origin_image")) {
@@ -160,7 +165,7 @@ function emotion_filter() {
         },
         dataType: 'html',
         success: function (data) {
-            console.log('return data : ', data);
+            // console.log('return data : ', data);
             $('.content-list').html(data);
         },
         error: function (data) {
@@ -170,6 +175,11 @@ function emotion_filter() {
 }
 
 function picktostorage(data) {
+    data.percent1 = 25;
+    data.percent2 = 25;
+    data.percent3 = 25;
+    data.percent4 = 25;
+
     sessionStorage.setItem("color_pick", JSON.stringify(data));
     load_storage();
 }
