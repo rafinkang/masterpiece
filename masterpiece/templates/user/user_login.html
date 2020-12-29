@@ -48,7 +48,7 @@
                         alert("로그인 성공 하였습니다.");
                         //console.log(data)
                         sessionStorage.setItem('login_data', JSON.stringify(data));
-                        location.href = "{% url 'pallate' %}"
+                        location.href = "{% url 'main' %}"
                     } else {
                         alert("로그인 실패하였습니다.");
                     };
