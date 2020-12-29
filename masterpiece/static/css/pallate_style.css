@@ -592,11 +592,11 @@
 
 
 
-.color-dress{
+.cd-wrap{
     padding: 10px;
 }
 
-.color-dress-image {
+.cd-wrap-image {
     display: inline-block;
     max-height: 250px;
     max-width: 450px;
@@ -604,23 +604,23 @@
 }
 
 
-.droplet_1 {
+.cd-wrap .droplet_1 {
     z-index: 4;
     fill: #637fa0;
 }
-.droplet_2 {
+.cd-wrap .droplet_2 {
     z-index: 3;
     fill: #394d77;
 }
-.droplet_3 {
+.cd-wrap .droplet_3 {
     z-index: 2;
     fill: #20262b;
 }
-.droplet_4 {
+.cd-wrap .droplet_4 {
     z-index: 1;
     fill: #a8b5a1;
 }
-.droplet {
+.cd-wrap .droplet {
     display: block;
     width: 50px;
     margin: -3rem auto 1rem;
@@ -628,17 +628,17 @@
     transition: all .2s ease-in-out;
 }
 
-.bounceIn {
+.cd-wrap .bounceIn {
     -webkit-animation-name: bounceIn;
     animation-name: bounceIn;
 }
-.animated {
+.cd-wrap .animated {
     -webkit-animation-duration: 1s;
     animation-duration: 1s;
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
 }
-.lol_palette {
+.cd-wrap .lol_palette {
     float: left;
     width: 225px;
     height: 250px;
@@ -649,14 +649,154 @@
     transition: all .5s linear;
 }
 
-.tooltip {
+.cd-wrap .tooltip {
     position: relative;
     text-decoration: none;
     background-color: transparent;
     box-sizing: border-box;
 }
 
-.animated.flipOutX, .animated.flipOutY, .animated.bounceIn, .animated.bounceOut {
+.cd-wrap .animated.flipOutX, .cd-wrap .animated.flipOutY, .cd-wrap .animated.bounceIn,.cd-wrap  .animated.bounceOut {
     -webkit-animation-duration: .75s;
     animation-duration: .75s;
+}
+
+.cd-wrap .cd-wrap-output-content {
+    text-align: center;
+    border: 3px solid #222831;
+    border-radius: 20px;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+}
+
+.cd-wrap .cd-wrap-output-box {
+    opacity: 0.3;
+    margin: auto;
+    
+}
+
+.cd-wrap {
+    height: 67vh;
+}
+
+.cd-wrap .cd-inout-box {
+    margin: auto;
+    text-align: center;
+    height: 95%;
+}
+
+.cd-wrap .cd-image-box {
+    width: 100%;
+}
+
+.cd-image {
+    max-width: 95%;
+    margin: auto;
+}
+
+.cd-wrap .cd-file-output-content .cd-image-icon {
+    max-width: 40%;
+    opacity: 0.3;
+    margin: auto;
+}
+
+.cd-image-wrap {
+    border: 3px solid #222831;
+    border-radius: 20px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.cd-wrap .cd-inout-box .cd-image-upload-wrap:hover {
+    background-color: #222831;
+    border: 3px solid #fff;
+    color: #fff;
+}
+
+.cd-wrap .cd-inout-box .cd-image-upload-wrap:hover > .cd-image-plus {
+    color: #fff;
+}
+
+.cd-wrap .cd-inout-box .cd-image-upload-wrap .cd-file-upload-input {
+    position: absolute;
+    width: 95%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.cd-wrap .cd-inout-box .cd-image-upload-wrap .cd-image-plus {
+    color: #222831;
+    font-size:80px;
+    margin: auto;
+    padding-bottom: 15px;
+}
+
+.cd-wrap .cd-inout-box .cd-image-upload-wrap .cd-image-copy {
+    position: absolute;
+    background-color: #393e46;
+    color: #fff;
+    z-index: 100;
+    border-radius: 50px;
+    width: 100px;
+    height: 100px;
+    bottom: 10px;
+    right: 25px;
+    text-align: center;
+    padding-top: 28px;
+    cursor: pointer;
+}
+
+.cd-wrap .cd-inout-box .cd-image-upload-wrap .cd-image-copy:hover {
+    background-color: #ffd369;
+    color: #393e46;
+    font-weight: bold;
+}
+
+.cd-wrap .cd-inout-box .cd-file-upload-content {
+    display: none;
+    text-align: center;
+    border: 3px solid #222831;
+    border-radius: 20px;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+}
+
+.cd-wrap .cd-inout-box .cd-file-output-content {
+    text-align: center;
+    border: 3px solid #222831;
+    border-radius: 20px;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+}
+
+.cd-wrap .cd-inout-box .cd-file-upload-content .cd-file-upload-box,
+.cd-wrap .cd-inout-box .cd-file-output-content  .cd-file-upload-box {
+    height: 90%;
+}
+
+.cd-wrap .cd-inout-box .cd-file-output-content  .cd-file-image-icon-box {
+    height: 100%;
+}
+
+.cd-wrap .cd-inout-box .cd-file-upload-content .cd-image-title-wrap,
+.cd-wrap .cd-inout-box .cd-file-output-content  .cd-image-title-wrap {
+    padding: 0 15px 15px 15px;
+    height: 10%;
+}
+
+.cd-wrap .cd-inout-box .cd-file-upload-content .cd-image-title-wrap .cd-image-btn,
+.cd-wrap .cd-inout-box .cd-file-output-content .cd-image-title-wrap .cd-image-btn {
+    margin: auto;
+}
+
+.cd-wrap .hidden-download {
+    display:none;
+    width: 0px;
+    height: 0px;
 }

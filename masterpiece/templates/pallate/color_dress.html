@@ -1,15 +1,29 @@
-<div class="row color-dress">
-    <div class="col-md-5">
-        <p>색상을 입힐 이미지 파일을 업로드 해주세요.</p>
+<div class="row cd-wrap">
+    <div class="col-md-5 cd-inout-box">
+        <!-- <p>색상을 입힐 이미지 파일을 업로드 해주세요.</p>
         <div class="row">
-            <img src="/masterpiece/static/image/grim.png" alt="색상입힐이미지" class="color-dress-image">
+            <img src="/masterpiece/static/image/grim.png" type="file" alt="색상입힐이미지" class="color-dress-image" id="color_dress_input_image">
         </div>
-        <br>
+        <br> -->
 
-        <input type="file"  accept=".jpg,.jpeg,.png" onchange="color_dress_image(this); origin_thumbnail(this)">
+        <div class="cd-image-upload-wrap cd-image-wrap">
+            <input class="cd-file-upload-input" id="cd_input_image" type="file" onchange="readURL(this)" accept="image/*" />
+            <div class="cd-image-plus"> + </div>
+        </div>
+
+        <div class="cd-file-upload-content container">
+            <div class="row cd-file-upload-box">
+                <img class="cd-file-upload-image cd-image rounded" src="#"/>
+            </div>
+            <div class="cd-image-title-wrap row">
+                <button type="button" class="btn btn-custom-5 col-md-3 cd-image-btn" onclick="removeUpload()">취소</button>
+                <button type="button" class="btn btn-custom-2 col-md-4 cd-image-btn" onclick="setImage('goh')">고흐가 그리기</button>
+                <button type="button" class="btn btn-custom-2 col-md-4 cd-image-btn" onclick="setImage('mon')">모네가 그리기</button>
+            </div>
+        </div>
+        <!-- <br>
         <br>
-        <br>
-        <button onclick="color_dress()">색상 입히기</button>
+        <button onclick="color_dress()">색상 입히기</button> -->
     </div>
     
     <!-- <div class="col-md-2 palette cf animated bounceIn"> -->
@@ -39,10 +53,12 @@
         </div>
     </div>
 
-    <div class="col-md-5">
-        <p>결과이미지 나오는곳</p>
-        이미지 다운로드 버튼 만들기<br>
-        다운로드 버튼 누르면 이미지 다운로드 되고, 자동으로 DB 및 갤러리 저장하기
+    <div class="col-md-5 cd-inout-box">
+        <div class="cd-file-output-content container" id="cd_output_image_container">
+            <div class="row cd-file-image-icon-box">
+                <img src="masterpiece/static/image/image_icon.png" class="cd-image-icon">
+            </div>
+        </div>
     </div>
 
 </div>

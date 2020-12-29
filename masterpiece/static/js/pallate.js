@@ -288,10 +288,141 @@ $(document).ready(function(){
         color_pick_data = sessionStorage.getItem('color_pick')
         data = JSON.parse(color_pick_data)
 
-        $('.color-dress .droplet_1').css('fill', data['hex1']);
-        $('.color-dress .droplet_2').css('fill', data['hex2']);
-        $('.color-dress .droplet_3').css('fill', data['hex3']);
-        $('.color-dress .droplet_4').css('fill', data['hex4']);
+        $('.cd-wrap .droplet_1').css('fill', data['hex1']);
+        $('.cd-wrap .droplet_2').css('fill', data['hex2']);
+        $('.cd-wrap .droplet_3').css('fill', data['hex3']);
+        $('.cd-wrap .droplet_4').css('fill', data['hex4']);
     });
+
+    // 색상 입히기 버튼 클릭시, 민수 추가함
+    readURL = function(input) {
+        if(!/\.(jpg|jpeg|png)$/i.test(input.files[0].name)){
+
+            alert('이미지파일만 선택해 주세요.\n\n현재 파일 : ' + input.files[0].name);
+
+        } else if (input.files && input.files[0]) {
+            var reader = new FileReader();
+      
+            reader.onload = function(e) {
+                $('.cd-image-upload-wrap').hide();
+                $('.cd-file-upload-image').attr('src', e.target.result);
+                $(".cd-file-upload-content").show();
+            };
+      
+          reader.readAsDataURL(input.files[0]);
+      
+        } else {
+            removeUpload();
+        }
+    }
+
+    
+    imageCopy = function() {
+        var imgData = [{"imgURL" : sessionStorage.getItem("origin_image")}];
+        
+        $('.cd-image-upload-wrap').hide();
+        $('.cd-file-upload-image').attr('src', imgData[0].imgURL);
+        $(".cd-file-upload-content").show();
+    }
+      
+    removeUpload = function() {
+        $('.cd-file-upload-input').val("")
+        $(".cd-file-upload-content").hide();
+        $('.cd-image-upload-wrap').show();
+    }
+
+    setImage2 = function(type) {
+        var file = $("#cd_input_image")[0].files[0];
+        var dataURI;
+        const cd_input_image_container = $("#cd_input_image_container");
+
+        console.log("file", file);
+
+        if (file) { // 이미지 파일을 선택한 경우
+
+            original_name = file.name;
+    
+            // FileReader 객체 사용
+            var reader = new FileReader();
+    
+            // 파일을 읽는다
+            reader.readAsDataURL(file);
+                
+            // 읽기
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+        
+            //로드 한 후
+            reader.onload = function() {
+                //썸네일 이미지 생성
+                var tempImage = new Image(); //drawImage 메서드에 넣기 위해 이미지 객체화
+                tempImage.src = reader.result; //data-uri를 이미지 객체에 주입
+    
+    
+                tempImage.onload = function() {
+                    //리사이즈를 위해 캔버스 객체 생성
+                    var canvas = document.createElement('canvas');
+                    var canvasContext = canvas.getContext("2d");
+    
+                    canvas.width = tempImage.width;
+                    canvas.height = tempImage.height;
+                    
+                    //이미지를 캔버스에 그리기
+                    canvasContext.drawImage(this, 0, 0);
+                    //캔버스에 그린 이미지를 다시 data-uri 형태로 변환
+                    dataURI = canvas.toDataURL("image/jpg");
+    
+                    /*
+                        TO-DO pallate.py와 합칠 때 "origin_iamge" json형태로 바꿔서 저장하기
+                    */
+                    sessionStorage.setItem("origin_image", dataURI);
+                    sessionStorage.setItem("origin_image_name", original_name);
+    
+                    $('img.origin-thumbnail').each(function(){
+                        $(this)[0].src = dataURI;
+                    });
+            
+                    style_type = type
+            
+                    tempImgUpload(dataURI);
+                };
+            };
+
+        } else { // 이미지 파일을 팔렛트에서 가져온 경우
+            original_name = sessionStorage.getItem("origin_image_name");
+            dataURI = $('.cd-file-upload-image').attr('src');
+            
+            if (!original_name) { // original image의 이름이 없을 경우 "Untitiled.확장자"로 저장
+                // data:image/png;
+                ets = dataURI.split(";")[0].split("/")[1];
+                original_name = "Untitled." + ets;
+            }
+    
+            $('img.origin-thumbnail').each(function(){
+                $(this)[0].src = dataURI;
+            });
+    
+            style_type = type
+    
+            tempImgUpload(dataURI);
+        }
+    }
+
+    tempImgUpload = function(dataURI) {
+        $.ajax({
+            url: "pallate/cd_style/temp_img_upload2",
+            type: 'post',
+            data: {
+                'dataURI' : dataURI
+            },
+            dataType: 'text',
+            success: function(res) {
+                originToMasterpiece2(res);
+            },
+            error: function(error) {
+                console.log('error', error);
+            }
+        });
+    }
 
 });

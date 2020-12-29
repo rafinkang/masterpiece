@@ -8,7 +8,8 @@ from matplotlib import pyplot as plt
 from sklearn.cluster import KMeans
 
 # 색상 뽑기 클래스
-from Spuit import Spuit
+# from Spuit import Spuit
+from masterpiece.classes.Spuit import Spuit
 
 
 hex = '#f3f5f2'

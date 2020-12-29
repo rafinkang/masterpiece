@@ -37,6 +37,11 @@ urlpatterns = [
     path('pallate/ch_style/temp_img_upload', pallate.temp_img_upload, name='pallate/ch_style/temp_img_upload'),
     path('pallate/ch_style/download_img', pallate.download_img, name='pallate/ch_style/download_img'),
     
+    # cd_style(color_dress)
+    path('pallate/cd_style/change_masterpiece2', pallate.change_masterpiece2, name='pallate/cd_style/change_masterpiece2'),
+    path('pallate/cd_style/temp_img_upload2', pallate.temp_img_upload2, name='pallate/cd_style/temp_img_upload2'),
+    path('pallate/cd_style/download_img2', pallate.download_img2, name='pallate/cd_style/download_img2'),
+    
     # gallery
     path('gallery/color_gallery', gallery.color_gallery, name='color_gallery'),
     path('gallery/color_gallery_detail', gallery.color_gallery_detail, name='color_gallery_detail'),
