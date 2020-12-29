@@ -3,57 +3,45 @@
 
 
 <section id="user_register">
-    <div class="container container_user_reg">  
-        <form name="registerform" action="" method="post" enctype="multipart/form-data">
-           
-            <h3>회원가입 하기 </h3> <br>
+    <div class="container login-page">
+        <div class="login-page">
+            <div class="form">
 
+                <form name="registerform" action="" method="post" enctype="multipart/form-data">
 
-
-            <div class="fieldlabel"><label for="user_id" aria-describedby="inputSuccess2Status">아이디 입력</label></div>
-            <div class="formfield"><input type="email" name="user_id" id="user_id" maxlength="45" value="" placeholder="이메일아이디 입력"></div>
-
-            <div class="btnfield">
-                <input type="button" value="아이디 중복확인" id="testbtn">
-            </div>
-
-
-
-            <div class="fieldlabel"><label for="user_pw">비밀번호 입력</label></div>
-            <div class="formfield">
-                <input type="password" name="user_pw" id="user_pw" maxlength="20" autocomplete="off" placeholder="비밀번호 입력">
-            </div>
-            <div class="fieldlabel"><label for="user_pw_check">비밀번호 확인</label></div>
-            <div class="formfield">
-                <input type="password" name="user_pw_check" id="user_pw_check" maxlength="20" autocomplete="off" placeholder="비밀번호 재입력">
-
-            </div>
-            <div class="user_pw_warning"><label class="user_pw_warning" id="user_pw_warning"> </label> </div>
+                    <h3>회원가입</h3> <br>
 
 
 
 
-            <div class="fieldlabel"><label for="user_name">이름</label></div>
-            <div class="formfield"><input type="text" id="user_name" name="user_name" maxlength="20" value="" placeholder="이름 입력"></div>
+                    <input type="email" class="inputstyle" name="user_id" id="user_id" maxlength="45" value="" placeholder="이메일아이디 입력">
 
-            <div class="fieldlabel"><label>성별</label></div>
-            <div class="formfield">
+                    <input type="button" class="user_btn" value="아이디 중복확인" id="testbtn"> &nbsp;
+                    <input type="password" class="inputstyle" name="user_pw" id="user_pw" maxlength="20" autocomplete="off" placeholder="비밀번호 입력">
 
-                <input type="radio" name="sex" id="sex_m" value="1" alt="1">남자
-                <input type="radio" name="sex" id="sex_w" value="2" alt="2">여자
+                    <!-- <div class="fieldlabel"><label for="user_pw_check">비밀번호 확인</label></div> -->
+
+                    <input type="password" class="inputstyle" name="user_pw_check" id="user_pw_check" maxlength="20" autocomplete="off" placeholder="비밀번호 재입력">
+
+                    <div class="user_pw_warning"><label class="user_pw_warning" id="user_pw_warning"> </label> </div>
 
 
-            </div>
+                    <input type="text" class="inputstyle" id="user_name" name="user_name" maxlength="20" value="" placeholder="이름 입력">
+                    <label class="inputstyle">성별 선택해주세요</label>
+                    <div class="formfield" id="sex">
+                        <input type="radio" name="sex" id="sex_m" value="1" alt="1">남자
+                        <input type="radio" name="sex" id="sex_w" value="2" alt="2">여자
+                    </div>
 
-            <div class="fieldlabel"><label>생년월일</label></div>
+                    <label class="inputstyle">생년월일 선택해주세요</label>
 
-            <div class="formfield">
-                <input type="date" name="birthday" id="birthday">
-            </div>
+                    <div class="formfield">
+                        <input type="date" class="inputstyle" name="birthday" id="birthday">
+                    </div>
 
-            <div class="fieldlabel"><label for="user_job">직업</label></div>
-            <div class="formfield">
-                <select name="user_job">
+                    <!-- <div class="fieldlabel"><label for="user_job">직업</label></div> -->
+                    <div class="formfield">
+                        <select name="user_job" class="inputstyle">
                     <option value="noselect">직업을 선택해주세요</option>
                     <option value="student">학생</option>
                     <option value="publisher">퍼블리셔</option>
@@ -62,31 +50,32 @@
                     <option value="admin">관리자</option>
                     <option value="something">무직</option>
                 </select>
+                    </div>
+
+
+                    <!-- <div class="fieldlabel"><label for="user_company">회사</label></div> -->
+                    <input type="text" class="inputstyle" id="user_company" name="user_company" maxlength="20" value="" placeholder="회사이름 입력">
+
+                    <br>
+
+                    <div class="btnfield">
+
+
+                        <button type="button" class="user_btn" name="user_reg_submit" id="user_reg_submit">회원가입</button>
+
+
+
+                    </div>
+
+                </form>
+
             </div>
-
-
-            <div class="fieldlabel"><label for="user_company">회사</label></div>
-            <div class="formfield"><input type="text" id="user_company" name="user_company" maxlength="20" value="" placeholder="회사이름 입력">
-            </div>
-            <br>
-
-            <div class="btnfield">
-
-
-                <button type="button" class="btn btn-primary btn-lg active" name="user_reg_submit" id="user_reg_submit">회원가입</button>
-
-
-
-            </div>
-
-        </form>
-
+        </div>
     </div>
     <script src="//cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.10.0/js/md5.min.js"></script>
 </section>
 
 <script>
-
     $(document).ready(function() {
 
 
@@ -97,7 +86,7 @@
             var user_pw = $("#user_pw");
             var user_id_value = user_id.val()
             var email_re = /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;
-            
+
             //console.log(user_pw);
             if (user_id.val() == "") {
                 alert("아이디를 입력하세요");
@@ -108,7 +97,7 @@
                 user_id.focus();
                 return;
             }
-            
+
 
             $.ajax({
                 url: "{% url 'register/idcheck' %}",
@@ -143,30 +132,28 @@
             var user_pw_check = $("#user_pw_check");
             var user_pw_check_value = user_pw_check.val();
             var password_re = /^[a-zA-z0-9]{4,12}$/;
-            
+
             var warning = $("#user_pw_warning");
 
             console.log('pw:', user_pw_value);
             console.log('pw_check', user_pw_check_value);
 
-            if(!password_re.test(user_pw_check_value)){
+            if (!password_re.test(user_pw_check_value)) {
                 //console.log("유효성 비밀번호 확인")
                 //console.log(!password_re.test(user_pw_check_value))
                 warning.text("비밀번호는 영문 대소문자와 숫자 4~12로 입력 해야합니다.");
                 return;
-            }
-            else if (user_pw_value == user_pw_check_value) {
+            } else if (user_pw_value == user_pw_check_value) {
                 //console.log(user_pw_value);
                 //console.log(user_pw_check_value);
                 //console.log("!!!!!!!!!");
-                warning.text("사용하셔도 됩니다."); 
+                warning.text("사용하셔도 됩니다.");
                 return;
-            }
-            else if(user_pw_value != user_pw_check_value){
+            } else if (user_pw_value != user_pw_check_value) {
                 //console.log(user_pw_value);
                 //console.log(user_pw_check_value);
                 //console.log("@@@@@@");
-                warning.text("비밀번호가 다릅니다."); 
+                warning.text("비밀번호가 다릅니다.");
                 return;
             }
 
@@ -178,7 +165,7 @@
 
         $("#user_reg_submit").click(function() {
             //다 입력 되었으면 db에 insert 
-            
+
 
             var user_name = $("#user_name").val();
             var user_name_re = /^[가-힣]{2,4}$/;
@@ -213,17 +200,15 @@
             } else if (!password_re.test(user_pw_value)) {
                 alert("비밀번호는 영문 대소문자와 숫자 4~12로 입력 해야합니다.");
                 return;
-            }
-            else if (user_name == "") {
+            } else if (user_name == "") {
                 alert("이름을 입력하세요");
                 $("#user_name").focus();
                 return;
-            } 
-            else if (!user_name_re.test(user_name)) {
+            } else if (!user_name_re.test(user_name)) {
                 alert("한글이름을 입력하세요");
                 $("#user_name").focus();
                 return;
-            }else if ($('input[name="sex"]:checked').length == 0) {
+            } else if ($('input[name="sex"]:checked').length == 0) {
                 console.log(sex_val)
                 alert("성별을 입력하세요")
                 $('input[name="sex"]:checked').focus();
@@ -242,7 +227,7 @@
                 return;
             }
 
-                $.ajax({
+            $.ajax({
                 url: "{% url 'register/idcheck' %}",
                 method: "post",
                 data: {
@@ -301,11 +286,7 @@
 
         });
 
-    });     
-
-    
-    
-
+    });
 </script>
 
 {% endblock %}
