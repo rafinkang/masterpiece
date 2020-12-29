@@ -26,7 +26,7 @@ def pallate(request):
 # ch_style
 def temp_img_upload(request):
     dataURI = request.POST.dict()['dataURI']
-    user_idx = request.POST.dict()['userIDX']
+    user_idx = request.session.get('user_idx')
     temp_img_path = 'masterpiece/static/upload_images/temp_images/'
 
     filename = user_idx + '_idx_' + datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S') + '.jpg'
@@ -49,7 +49,7 @@ def change_masterpiece(request):
 
 def download_img(request):
     # 임시 저장 이미지 중 찾을 이미지 2개
-    user_idx = request.POST.dict()['userIDX']
+    user_idx = request.session.get('user_idx')
     style_type = request.POST.dict()['styleType']
     original_image_name = request.POST.dict()['originalImageName'] # 사용자가 입력한 원본 이미지 이름
     masterpiece_img_name = request.POST.dict()['masterpieceImageName'] # 명화화 한 임시 저장 이미지 이름
@@ -73,8 +73,7 @@ def download_img(request):
 
     # DB저장
     gl = GallaryList()
-    sql = f"insert into gallary_list(user_idx, image_name, origin_url, masterpiece_url, artist) values({user_idx}, '{original_image_name}', '{origin_url}', '{masterpiece_url}', '{style_type}')"
-    gl.execute(sql)
+    gl.insert_mp_info(user_idx, original_image_name, origin_url, masterpiece_url, style_type)
 
     # 임시저장 이미지 삭제
     os.remove(temp_img_path + img_name)

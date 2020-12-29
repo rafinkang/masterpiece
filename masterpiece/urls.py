@@ -39,6 +39,8 @@ urlpatterns = [
     # gallery
     path('gallery/color_gallery', gallery.color_gallery, name='color_gallery'),
     path('gallery/color_gallery_detail', gallery.color_gallery_detail, name='color_gallery_detail'),
+    path('gallery/image_list', gallery.image_list, name='gallery/image_list'),
+    path('gallery/image_filter', gallery.image_filter, name='gallery/image_filter'),
 
     ######################################## example ########################################
 

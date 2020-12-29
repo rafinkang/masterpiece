@@ -120,8 +120,7 @@ $(document).ready(function(){
             url: "pallate/ch_style/temp_img_upload",
             type: 'post',
             data: {
-                'dataURI' : dataURI,
-                'userIDX' : USER_IDX
+                'dataURI' : dataURI
             },
             dataType: 'text',
             success: function(res) {
@@ -139,7 +138,6 @@ $(document).ready(function(){
             type: 'post',
             data: {
                 'img_name': img_name,
-                'userIDX' : USER_IDX,
                 'styleType' : style_type
             },
             dataType: 'text',
@@ -175,7 +173,6 @@ $(document).ready(function(){
                 url: "pallate/ch_style/download_img",
                 type: 'post',
                 data: {
-                    'userIDX' : USER_IDX,
                     'styleType' : style_type,
                     'masterpieceImageName' : master_name,
                     'originalImageName' : original_name
