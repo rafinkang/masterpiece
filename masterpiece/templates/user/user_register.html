@@ -3,10 +3,10 @@
 
 
 <section id="user_register">
-    <div class="container container_user"> //이걸로 틀을 잡야함
+    <div class="container container_user_reg">  
         <form name="registerform" action="" method="post" enctype="multipart/form-data">
            
-            <h1>회원가입 하기 </h1> <br>
+            <h3>회원가입 하기 </h3> <br>
 
 
 
@@ -28,7 +28,7 @@
                 <input type="password" name="user_pw_check" id="user_pw_check" maxlength="20" autocomplete="off" placeholder="비밀번호 재입력">
 
             </div>
-            <div class="user_pw_warning"><label id="user_pw_warning"> </label> </div>
+            <div class="user_pw_warning"><label class="user_pw_warning" id="user_pw_warning"> </label> </div>
 
 
 
@@ -159,14 +159,14 @@
                 //console.log(user_pw_value);
                 //console.log(user_pw_check_value);
                 //console.log("!!!!!!!!!");
-                warning.text("사용하셔도 됩니다."); // 파랑색으로 변경
+                warning.text("사용하셔도 됩니다."); 
                 return;
             }
             else if(user_pw_value != user_pw_check_value){
                 //console.log(user_pw_value);
                 //console.log(user_pw_check_value);
                 //console.log("@@@@@@");
-                warning.text("비밀번호가 다릅니다."); // 빨강색으로 변경 
+                warning.text("비밀번호가 다릅니다."); 
                 return;
             }
 
