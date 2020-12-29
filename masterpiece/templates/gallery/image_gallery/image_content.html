@@ -10,7 +10,7 @@
             </div>
             <div>
                 <span class="emotion-tag">#{{ data.image_name }}</span>
-                <span class="emotion-tag" {% if data.mylike == "T"%} style="color:red;" {% endif %} onclick="set_like({{data.gl_idx}}, this)">❤<span>{{ data.cnt }}</span></span>
+                <span class="emotion-tag" style="{% if data.mylike == "T"%} color:red; {% endif %}cursor: pointer;" onclick="set_like({{data.gl_idx}}, this)">❤<span>{{ data.cnt }}</span></span>
             </div>
         </div>
     {% endfor %}

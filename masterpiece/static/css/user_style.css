@@ -1,105 +1,67 @@
-/* 로그인화면css */
-
-.container_user_login {
-    width: 330px;
-    height: 280px;
-    border-radius: 25px;
-    border: 1px double #ccc;
-    margin: 20px auto;
-    padding: 25px 15px;
-    box-sizing: border-box;
-    font-family: Dotum, '돋움', Helvetica, sans-serif;
-}
-
-.h3 {
-    margin: 19px 0 8px;
-    font-size: 14px;
-    font-weight: 700;
-}
-
-.login_btn {
-    height: 50px;
-    background: #ffd369;
-    border-radius: 5px;
-    border: none;
-    font-family: "맑은 고딕";
-}
-
-.chk {
-    width: 100%;
-    text-align: right;
-    padding-right: 13px;
-    box-sizing: border-box;
-}
-
-.chk label {
-    font-size: 12px;
-    color: #999;
-    position: relative;
-    top: -3px;
-}
-
-#login_id,
-#login_pw {
-    width: 200px;
-    height: 25px;
-    border: 1px solid #999;
-    box-sizing: border-box;
-    margin-bottom: 10px;
-}
-
-.lableid {
-    font-size: 14px;
-    color: #666;
-    margin-left: 1px;
-    margin-right: 22px;
-}
-
-.lablepw {
-    font-size: 14px;
-    color: #666;
-    margin-left: 10px;
-    margin-right: 1px;
-}
-
-
-/* 회원가입화면  */
-
-.container_user_reg {
-    width: 400px;
-    height: 740px;
-    border-radius: 25px;
-    border: 1px double #ccc;
-    margin: 20px auto;
-    padding: 25px 15px;
-    box-sizing: border-box;
-    font-family: Dotum, '돋움', Helvetica, sans-serif;
-}
-
-.formfield {
-    padding-right: 110px;
-}
-
-.user_pw_warning {
-    font-size: 15px;
-    color: red;
-}
-
-.btnfield {
-    border: none;
-    font-family: "맑은 고딕";
-}
-
-
-/* 회원가입확인 */
-
-.container_user_findpw {
-    width: 330px;
-    height: 280px;
-    border-radius: 25px;
-    border: 1px double #ccc;
-    margin: 20px auto;
-    padding: 25px 15px;
-    box-sizing: border-box;
-    font-family: Dotum, '돋움', Helvetica, sans-serif;
-}
+    /* 로그인화면css */
+    
+    @import url(https://fonts.googleapis.com/css?family=Roboto:300);
+    .login-page {
+        width: 360px;
+        padding: 8% 0 0;
+        margin: auto;
+    }
+    
+    .form {
+        position: relative;
+        z-index: 1;
+        background: #FFFFFF;
+        max-width: 360px;
+        margin: 0 auto 100px;
+        padding: 45px;
+        text-align: center;
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    }
+    
+    .inputstyle {
+        font-family: "Roboto", sans-serif;
+        outline: 0;
+        background: #f2f2f2;
+        width: 100%;
+        border: 0;
+        margin: 0 0 15px;
+        padding: 15px;
+        box-sizing: border-box;
+        font-size: 14px;
+    }
+    
+    .user_btn {
+        font-family: "Roboto", sans-serif;
+        text-transform: uppercase;
+        outline: 0;
+        background: #393e46;
+        width: 100%;
+        border: 0;
+        padding: 15px;
+        color: #ffd369;
+        font-size: 14px;
+        -webkit-transition: all 0.3 ease;
+        transition: all 0.3 ease;
+        cursor: pointer;
+    }
+    
+    .user_btn:hover,
+    .user_btn:active,
+    .user_btn:focus {
+        background: #eeeeee;
+    }
+    
+    .form .message {
+        margin: 15px 0 0;
+        color: #b3b3b3;
+        font-size: 12px;
+    }
+    
+    .form .message a {
+        color: #393e46;
+        text-decoration: none;
+    }
+    
+    .form .register-form {
+        display: none;
+    }

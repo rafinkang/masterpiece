@@ -87,7 +87,7 @@ function color_insert() {
         },
         dataType: 'text',
         success: function (data) {
-            console.log('return data : ', data);
+            // console.log('return data : ', data);
             if(data == 1) {
                 alert("색상이 저장 되었습니다.")
             }else{
@@ -284,4 +284,6 @@ $(document).ready(function(){
         $('.pallate-content .pallate-tab').filter('[data-page="'+self.attr('data-page')+'"]').show();
     });
 
+    $('#color_pick').click(color_pick);
+    $('#color_insert').click(color_insert);
 });
