@@ -46,8 +46,29 @@ class ColorList():
         return self.db.execute(sql)
         
         
-    def list_filter(self, color_type = None, season_type = None, cw_type = None, cp_type = None, value_type = None, limit_start = 0, limit_end = 100):
-        sql = "select * from color_list"
+    def list_filter(self, color_type = None, season_type = None, cw_type = None, cp_type = None, value_type = None, limit_start = 0, limit_end = 100, user_idx = None):
+        # sql = "select * from color_list"        
+        sql = '''
+        select a.*, (
+                select count(*) like_btn 
+                from like_btn 
+                where cl_idx = a.cl_idx
+            ) as cnt, (
+                select user_name from user where user_idx = a.user_idx
+            ) as user_name
+        '''
+
+        if user_idx != None: 
+            sql += f'''
+            , if(
+            (select count(*) from like_btn where user_idx = {user_idx} AND cl_idx = a.cl_idx) > 0, 
+            'T', 'F') as mylike
+            '''
+
+        sql += ''' from 
+            color_list as a'''
+        
+        
         where = ""
         if color_type or season_type or cw_type or cp_type or value_type:
             where += " where "
@@ -107,4 +128,15 @@ class ColorList():
             where = where + where_value
             
         sql = sql + where + f" limit {limit_start}, {limit_end};"
+        
         return self.db.select(sql)
+    
+    
+    def get_user_like(self, cl_idx, user_idx):
+        return self.db.select(f"select * from like_btn where cl_idx = {cl_idx} and user_idx = {user_idx};")
+
+    def set_like(self, cl_idx, user_idx):
+        return self.db.execute(f"insert into like_btn(cl_idx, user_idx) values({cl_idx}, {user_idx});")
+
+    def drop_like(self, cl_idx, user_idx):
+        return self.db.execute(f"delete from like_btn where cl_idx = {cl_idx} and user_idx = {user_idx};")
