@@ -11,7 +11,7 @@ from masterpiece.models.ColorList import ColorList
 # 색상갤러리 페이지 이동
 def color_gallery(request):
     cl = ColorList()
-    res = cl.list_filter()
+    res = cl.list_filter(user_idx=request.session.get('user_idx'))
     return render(request, 'gallery/color_gallery/color_gallery.html',{
         'res': res
     })
@@ -19,10 +19,27 @@ def color_gallery(request):
 def color_list(request):
     request_dict = request.POST.dict()    
     cl = ColorList()
-    res = cl.list_filter(request_dict['color_type'], request_dict['season_type'], request_dict['cw_type'], request_dict['cp_type'], request_dict['value_type'])
+    res = cl.list_filter(request_dict['color_type'], request_dict['season_type'], request_dict['cw_type'], request_dict['cp_type'], request_dict['value_type'], user_idx=request.session.get('user_idx'))
     return render(request, 'gallery/color_gallery/color_list.html',{
         'res': res
     })
+    
+# 색상갤러리 좋아요
+def color_like(request):
+    res = -1
+    if request.session.get('user_idx'): # 세션에 유저 정보가 있는 경우만
+        cl_idx = request.POST.dict()['cl_idx']
+        cl = ColorList()
+        user_like_list = cl.get_user_like(cl_idx, request.session.get('user_idx'))
+
+        if user_like_list != None : # 해당 이미지는 사용자가 이미 좋아요 누름 -> 좋아요 취소
+            cl.drop_like(cl_idx, request.session.get('user_idx'))
+            res = 1
+        else: # 해당 이미지 사용자 좋아요 없음 -> 좋아요 등록
+            cl.set_like(cl_idx, request.session.get('user_idx'))
+            res = 0
+
+    return HttpResponse(res)
 
 # 색상갤러리 디테일 페이지 이동
 def color_gallery_detail(request):
@@ -44,7 +61,7 @@ def image_filter(request):
     })
 
 # 좋아요 클릭
-def set_like(request) :
+def image_like(request) :
     gl_idx = request.POST.dict()['gl_idx']
     gl = GallaryList()
     res = -1

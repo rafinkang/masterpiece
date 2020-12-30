@@ -42,3 +42,45 @@ function list_filter() {
         }
     });
 }
+
+function copy(target) {
+    setTimeout(function() {
+        $('#copied_tip').remove();
+    }, 1000);
+    // $(target).parent('.place').append("<div class='tip' id='copied_tip'>Copied!</div>");
+    var text = target.textContent;
+    $(target).append("<div class='tip' id='copied_tip'>Copied!</div>");
+    var input = document.createElement('input');
+    input.setAttribute('value', text);
+    document.body.appendChild(input);
+    input.select();
+    var result = document.execCommand('copy');
+    document.body.removeChild(input)
+    return result;
+}
+
+function set_like(cl_idx, e) {
+    $.ajax({
+        url: "/gallery/color_like",
+        method: "post",
+        data: {
+            'cl_idx': cl_idx
+        },
+        dataType: 'text',
+        success: function(res) {
+            cnt = parseInt($(e).children(":first").text());
+
+            if (res == '0') { // 좋아요 등록
+                $(e).children(":first").text(cnt + 1);
+                $(e).css('color', '#ff0000');
+            } else if(res == '1') { // 좋아요 해제
+                $(e).children(":first").text(cnt - 1);
+                $(e).css('color', '#393e46');
+            }
+            // res = -1인 경우 세션에 유저 정보 없는 경우
+        },
+        error: function(msg) {
+            console.log('error :', msg);
+        }
+    });
+}
