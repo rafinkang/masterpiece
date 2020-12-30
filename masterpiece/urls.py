@@ -43,7 +43,7 @@ urlpatterns = [
     path('gallery/color_gallery_detail', gallery.color_gallery_detail, name='color_gallery_detail'),
     path('gallery/image_list', gallery.image_list, name='gallery/image_list'),
     path('gallery/image_filter', gallery.image_filter, name='gallery/image_filter'),
-    path('gallery/set_like', gallery.set_like, name='gallery/set_like'),
+    path('gallery/image_like', gallery.image_like, name='gallery/image_like'),
 
     ######################################## example ########################################
 

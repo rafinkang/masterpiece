@@ -19,7 +19,6 @@ a {
 
 a:hover {
   color: #ffd369;
-  border: 2px solid #ffd369;
   text-decoration: none;
 }
 
@@ -76,7 +75,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #header .logo a {
-  color: #FFF;
+  color: #ffd369;
 }
 
 #header .logo img {
@@ -477,8 +476,8 @@ section {
   padding: 8px 20px;
   line-height: 1;
   margin: 0;
-  background: #fdeff2;
-  color: #e43c5c;
+  background: #393e46;
+  color: #ffd369;
   display: inline-block;
   text-transform: uppercase;
   border-radius: 50px;
@@ -491,7 +490,7 @@ section {
 }
 
 .section-title h3 span {
-  color: #e43c5c;
+  border-bottom: 6px double #ffd369;
 }
 
 .section-title p {
@@ -745,7 +744,7 @@ section {
 
 .portfolio #portfolio-flters li:hover, .portfolio #portfolio-flters li.filter-active {
   color: #fff;
-  background: #e43c5c;
+  background: #393e46;
 }
 
 .portfolio #portfolio-flters li:last-child {
@@ -772,13 +771,13 @@ section {
   bottom: -50px;
   z-index: 3;
   transition: all ease-in-out 0.3s;
-  background: #e43c5c;
+  background: #ffd369;
   padding: 15px 20px;
 }
 
 .portfolio .portfolio-item .portfolio-info h4 {
   font-size: 18px;
-  color: #fff;
+  color: #393e4;
   font-weight: 600;
 }
 

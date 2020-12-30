@@ -44,7 +44,7 @@ def image_filter(request):
     })
 
 # 좋아요 클릭
-def set_like(request) :
+def image_like(request) :
     gl_idx = request.POST.dict()['gl_idx']
     gl = GallaryList()
     res = -1

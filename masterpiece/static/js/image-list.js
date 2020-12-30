@@ -6,7 +6,7 @@ function image_filter() {
     });
 
     $.ajax({
-        url: "image_filter",
+        url: "/gallery/image_filter",
         method: "post",
         data: {
             'opt_type' : opt_type.join()
@@ -21,14 +21,9 @@ function image_filter() {
     });
 }
 
-$(document).ready(function(){
-    // onload
-    image_filter();
-});
-
 function set_like(gl_idx, e) {
     $.ajax({
-        url: "set_like",
+        url: "/gallery/image_like",
         method: "post",
         data: {
             'gl_idx': gl_idx
@@ -51,3 +46,8 @@ function set_like(gl_idx, e) {
         }
     });
 }
+
+$(document).ready(function(){
+    // onload
+    image_filter();
+});
