@@ -1,25 +1,25 @@
 {% extends 'index.html' %} {% block content %}
 <section id="user_login">
 
-    <div class="container container_user_login">
+    <div class="container login-page">
 
-        <div class="main">
-            <div class="body">
+        <div class="login-page">
+            <div class="form">
+                <form action="#" method="POST" class="login-form" id="login-form">
+                    <h3>로그인 하기 </h3> <br>
 
-                <h3>로그인 하기 </h3> <br>
-
-                <form action="#" method="POST">
-                    <div class="chk">
-                        <label for="loginid" class="lable_id"> ID :</label>
-                        <input type="text" id="login_id" name="login_id"><br>
-                        <label for="loginpw" class="lable_pw"> PASSWORD:</label>
-                        <input type="password" id="login_pw" name="login_pw">
-                    </div>
+                    <input class="inputstyle" type="text" id="login_id" name="login_id" placeholder="아이디 입력"><br>
+                    <input class="inputstyle" type="password" id="login_pw" name="login_pw" placeholder="비밀번호 입력">
                     <br>
 
-                    <input class="login_btn" type="button" id="go_login" value="로그인">
-                    <input class="login_btn" type="button" id="go_reg" value="회원가입">
-                    <input class="login_btn" type="button" id="findpw" value="비밀번호 변경">
+
+                    <input class="user_btn" type="button" id="go_login" value="로그인">
+                    <p class="message"><a href="#" id="go_reg">회원가입</a></p>
+                    <p class="message"><a href="#" id="findpw">비밀번호변경</a></p>
+
+
+
+
                 </form>
             </div>
         </div>
@@ -31,6 +31,14 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.10.0/js/md5.min.js"></script>
 <script>
     $(document).ready(function() {
+
+        $(document).on('keypress', function(e) {
+            if (e.keyCode == '13') {
+                $('#go_login').click();
+            }
+        });
+
+
         $("#go_login").click(function() {
             //console.log("클릭 확인")
             var login_id = $("#login_id").val();

@@ -35,12 +35,10 @@ def idcheck(request):
     result = user.idcheck(req['user_id'])
     
     if result == None:
-        # print(result,"참이다!!!!!!!")
         return HttpResponse("1")
     else:
-        # print(result,"거짓이다!!!!!!!")
         return HttpResponse("0")
-    # return True or False
+
 
     
 # 회원가입, db입력
@@ -50,12 +48,10 @@ def insert_user(request):
     result = user.insert_user(req['user_id'],req['password'],req['user_name'],req['sex'],req['birth'],req['job'],req['company'] )
 
     if result == None:
-        # print(result,"회원가입 못했다!!!!!!!")
         return HttpResponse("0")
     else:
-        # print(result,"회원가입했다!!!!!!!")
         return HttpResponse("1")
-    # return True or False
+
 
 #로그인 
 def login_go(request):
@@ -64,17 +60,8 @@ def login_go(request):
     result = user.login_go(req['user_id'],req['password'])
 
     if result == None:
-        # print(result,"로그인 실패")
-
         return HttpResponse("0")
     else:
-        # print(result,"로그인 성공")
-        # return JsonResponse(result)
-        
-        # print(result[0],"딕셔너리로나와라")
-        # print(result[0]['user_idx'],"유저 인덱스")
-
-
         request.session['user_idx'] = str(result[0]["user_idx"])
         request.session['user_id'] = str(result[0]["user_id"])
         # request.session['password'] = str(result[0]["password"])
@@ -83,41 +70,30 @@ def login_go(request):
         request.session['birth'] = str(result[0]["birth"])
         request.session['job'] = str(result[0]["job"])
         request.session['company'] = str(result[0]["company"])
-
-        # print(request.session.get('user_id'))
         return JsonResponse(result[0])
 
     #로그아웃 
 def logout(request):
-    # request.session.clear() 
     auth_logout(request)
-
-    # return redirect("/main")
     return HttpResponse("1");
 
 #비밀번호 찾기 비교 
 def findpw_search(request):
     req = request.POST.dict()
     user = User()
-    result = user.findpw(req['user_id'],req['user_name'])
-    
+    result = user.findpw(req['user_id'],req['user_name'])    
     if result == None:
-        # print(result,"아이디 못찾았다")
         return HttpResponse("1")
     else:
-        # print(result,"아이디 찾았다!!!!!!!")
         return HttpResponse("0")
 
 #비밀번호 변경 
-
 def modifypw_go(request):
     req = request.POST.dict()
     user = User()
     result = user.modifypw_go(req['password'],req['user_id'],req['user_name'])
     
     if result == None:
-        # print(result,"비밀번호 변경 실패")
         return HttpResponse("1")
     else:
-        # print(result,"비밀번호 변경 성공")
         return HttpResponse("0")

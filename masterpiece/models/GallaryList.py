@@ -30,39 +30,55 @@ class GallaryList():
         return self.db.select(sql)
 
     def insert_mp_info(self, user_idx, image_name, origin_url, masterpiece_url, artist):
-        sql = f"insert into gallary_list(user_idx, image_name, origin_url, masterpiece_url, artist) values({user_idx}, '{image_name}', '{origin_url}', '{masterpiece_url}', '{artist}')"
+        sql = f"insert into gallary_list(user_idx, image_name, origin_url, masterpiece_url, artist) values({user_idx}, '{image_name}', '{origin_url}', '{masterpiece_url}', '{artist}');"
         return self.db.execute(sql)
     
-    def emotion_filter(self, artist_type, style_type):
-        sql = "select * from color_pallate"
+    def image_filter(self, opt_type, user_idx):
+        sql = '''select 
+                    a.*, 
+                    (select 
+                        count(*) like_btn 
+                    from 
+                        like_btn 
+                    where 
+                        gl_idx = a.gl_idx) as cnt'''
+
+        if user_idx != None: 
+            sql += f''', if(
+                        (select count(*) from like_btn where user_idx = {user_idx} AND gl_idx = a.gl_idx) > 0, 
+                        'T', 
+                        'F') as mylike'''
+
+        sql += ''' from 
+            gallary_list as a'''
+
         where = ""
-        if artist_type or style_type:
+        if opt_type :
             where += " where "
             where_value = ""
-            
-            if artist_type: 
-                if len(where_value) > 0 : where_value += " and "
-                where_value += "color in ("
-                for index, val in enumerate(artist_type.split(',')):
-                    if index == 0:
-                        where_value += "'"+val+"'"
-                    else:
-                        where_value += ", '"+val+"'"
-                where_value += ")"
-                
-            if style_type: 
-                if len(where_value) > 0 : where_value += " and "
-                where_value += "season in ("
-                for index, val in enumerate(style_type.split(',')):
-                    if index == 0:
-                        where_value += "'"+val+"'"
-                    else:
-                        where_value += ", '"+val+"'"
-                where_value += ")"
-                
+
+            if len(where_value) > 0 : where_value += " and "
+            where_value += "artist in ("
+            for index, val in enumerate(opt_type.split(',')):
+                if index == 0:
+                    if val == "cd": where_value += "''"
+                    else: where_value += "'"+val+"'"
+                else:
+                    if val == "cd": where_value += ", ''"
+                    else: where_value += ", '"+val+"'"
+            where_value += ")"
                 
             where = where + where_value
             
         sql = sql + where + " limit 100;"
-        print(sql)
+        
         return self.db.select(sql)
+
+    def get_user_like(self, gl_idx, user_idx):
+        return self.db.select(f"select * from like_btn where gl_idx = {gl_idx} and user_idx = {user_idx};")
+
+    def set_like(self, gl_idx, user_idx):
+        return self.db.execute(f"insert into like_btn(gl_idx, user_idx) values({gl_idx}, {user_idx});")
+
+    def drop_like(self, gl_idx, user_idx):
+        return self.db.execute(f"delete from like_btn where gl_idx = {gl_idx} and user_idx = {user_idx};")

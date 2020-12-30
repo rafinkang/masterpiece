@@ -43,10 +43,13 @@ urlpatterns = [
     path('pallate/cd_style/download_img2', pallate.download_img2, name='pallate/cd_style/download_img2'),
     
     # gallery
-    path('gallery/color_gallery', gallery.color_gallery, name='color_gallery'),
+    path('gallery/color_gallery', gallery.color_gallery, name='gallery/color_gallery'),
+    path('gallery/color_list', gallery.color_list, name='gallery/color_list'),
+    path('gallery/color_like', gallery.color_like, name='gallery/color_like'),
     path('gallery/color_gallery_detail', gallery.color_gallery_detail, name='color_gallery_detail'),
     path('gallery/image_list', gallery.image_list, name='gallery/image_list'),
     path('gallery/image_filter', gallery.image_filter, name='gallery/image_filter'),
+    path('gallery/image_like', gallery.image_like, name='gallery/image_like'),
 
     ######################################## example ########################################
 

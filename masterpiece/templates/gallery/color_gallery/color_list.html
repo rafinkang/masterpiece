@@ -16,7 +16,9 @@
             <span class="emotion-tag">#{{ data.value }}</span>
         </div>
         <div>
-            <button onclick="picktostorage({{ data }})">팔레트로 가져가기</button>
+            <span class="emotion-tag">{{ data.create_date|date:"Y-m-d" }}</span>
+            <span class="emotion-tag">{{ data.user_name }}</span>
+            <span class="emotion-tag" style="{% if data.mylike == "T"%} color:red; {% endif %}cursor: pointer;" onclick="set_like({{data.cl_idx}}, this)">❤ <span>{{ data.cnt }}</span></span>
         </div>
     </div>
 

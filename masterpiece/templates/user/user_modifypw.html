@@ -2,33 +2,16 @@
 
 
 <section id="user_modifypw">
-    <div class="container container_user_findpw">
-        <h3>비밀번호 변경</h3> <br>
+    <div class="container login-page">
 
-        <div class="main">
-            <div class="body">
-                <form action="" method="POST">
-
-
-
-                    <div class="text">
-                        새로운 비밀번호 입력
-                    </div>
-                    <div class="c_box">
-                        <input type="password" id="new_pw" name="new_pw"><br>
-                    </div>
-
-                    <div class="text">
-                        새로운 비밀번호 확인
-                    </div>
-                    <div class="c_box">
-                        <input type="password" id="new_pw_re" name="new_pw_re">
-                    </div>
+        <div class="login-page">
+            <div class="form">
+                <form action="#" method="POST" class="login-form">
+                    <h3>비밀번호 변경</h3> <br>
+                    <input type="password" class="inputstyle" id="new_pw" name="new_pw" placeholder="새로운 비밀번호 입력"><br>
+                    <input type="password" class="inputstyle" id="new_pw_re" name="new_pw_re" placeholder="새로운 비밀번호 확인">
                     <br>
-
-                    <input type="button" class="login_btn" value="비밀번호 변경" id="modify_pw">
-
-
+                    <input type="button" class="user_btn" value="비밀번호 변경" id="modify_pw">
                 </form>
             </div>
         </div>
@@ -42,13 +25,12 @@
         var new_pw = $("#new_pw").val();
         var new_pw_re = $("#new_pw_re").val();
         var password_re = /^[a-zA-z0-9]{4,12}$/;
-
-        //console.log("클릭 확인")
         if (new_pw != new_pw_re) {
-            alert("입력하신 비밀번호가 다릅니다."); // 파랑색으로 변경
+            alert("입력하신 비밀번호가 다릅니다.");
             return;
         } else if (new_pw_re == "") {
-            alert("비밀번호를 입력해주세요."); // 빨강색으로 변경 
+            alert("비밀번호를 입력해주세요.");
+
             return;
         } else if (!password_re.test(new_pw_re)) {
             alert("비밀번호는 영문 대소문자와 숫자 4~12로 입력 해야합니다.");
@@ -58,8 +40,6 @@
         var user_id = sessionStorage.getItem("user_id");
         var user_name = sessionStorage.getItem("user_name");
         var password = new_pw
-            //console.log(user_id);
-            //console.log(user_name);
 
         $.ajax({
             url: "{% url 'modifypw/modifypw_go' %}",
@@ -71,17 +51,13 @@
             },
             dataType: 'text',
             success: function(data) {
-                //    console.log('비밀번호 변경 성공', data);
                 alert("비밀번호가 변경 되었습니다.")
                 sessionStorage.clear();
                 location.href = "{% url 'login' %}"
-
             },
             error: function(data) {
                 console.log(data);
             }
-
-
         });
     });
 </script>

@@ -6,169 +6,27 @@
 <section id="hero">
     <div class="hero-container">
         <h3><strong>GRIM INA GRI JO</strong></h3>
-        <h1>너의 그림을 명화화 하고 싶은가?</h1>
-        <h2>그럼 해봐</h2>
+        <h1>나만의 색다른 그림과 사진을 찾고 있나요?</h1>
+        <h2>사진에 여러가지 색상을 입히고 유명한 화가들의 그림체를 더해보세요</h2>
     </div>
-    {% if request.session.user_id %}
     <div class="hero-container-btn">
         {% if request.session.user_id %}
-            <a href="{% url 'pallate' %}" class="scrollto main-btn-menu">기능</a>
+            <a href="{% url 'pallate' %}" class="scrollto main-btn-menu">이미지 바꾸기</a>
         {% endif %}
-        <a href="{% url 'color_gallery' %}" class="scrollto main-btn-menu">색상 갤러리</a>
-        <a href="{% url 'gallery/image_list' %}" class="scrollto main-btn-menu">이미지 리스트</a>
+        <a href="{% url 'gallery/color_gallery' %}" class="scrollto main-btn-menu">색상 갤러리</a>
+        <a href="{% url 'gallery/image_list' %}" class="scrollto main-btn-menu">이미지 갤러리</a>
     </div>
-    {% else %}
-    <div class="hero-container-btn">
-        <a href="{% url 'login' %}" class="scrollto main-btn-menu">기능</a>
-        <a href="{% url 'login' %}" class="scrollto main-btn-menu">색상 갤러리</a>
-        <a href="{% url 'login' %}" class="scrollto main-btn-menu">이미지 리스트</a>
-    </div>
-    {% endif %}
-
-    </section><!-- End Hero -->
-
-    <main id="main">
-
-    <!-- ======= Services Section ======= -->
-    {% comment %} <section id="services" class="services">
-        <div class="container">
-
-        <div class="section-title">
-            <h2>Services</h2>
-            <h3>We do offer awesome <span>Services</span></h3>
-            <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-            <div class="icon-box">
-                <div class="icon"><i class="bx bxl-dribbble"></i></div>
-                <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-                <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
-            </div>
-            </div>
-
-            <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-            <div class="icon-box">
-                <div class="icon"><i class="bx bx-file"></i></div>
-                <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-                <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-            </div>
-            </div>
-
-            <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-            <div class="icon-box">
-                <div class="icon"><i class="bx bx-tachometer"></i></div>
-                <h4 class="title"><a href="">Magni Dolores</a></h4>
-                <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
-            </div>
-            </div>
-
-            <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-            <div class="icon-box">
-                <div class="icon"><i class="bx bx-world"></i></div>
-                <h4 class="title"><a href="">Nemo Enim</a></h4>
-                <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
-            </div>
-            </div>
-
-        </div>
-
-        </div>
-    </section><!-- End Services Section -->
-
-    <!-- ======= Features Section ======= -->
-    <section id="features" class="features">
-        <div class="container">
-
-        <div class="row">
-            <div class="col-lg-3 col-md-4 col-6 col-6">
-            <div class="icon-box">
-                <i class="ri-store-line" style="color: #ffbb2c;"></i>
-                <h3><a href="">Lorem Ipsum</a></h3>
-            </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6">
-            <div class="icon-box">
-                <i class="ri-bar-chart-box-line" style="color: #5578ff;"></i>
-                <h3><a href="">Dolor Sitema</a></h3>
-            </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6 mt-4 mt-md-0">
-            <div class="icon-box">
-                <i class="ri-calendar-todo-line" style="color: #e80368;"></i>
-                <h3><a href="">Sed perspiciatis</a></h3>
-            </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6 mt-4 mt-lg-0">
-            <div class="icon-box">
-                <i class="ri-paint-brush-line" style="color: #e361ff;"></i>
-                <h3><a href="">Magni Dolores</a></h3>
-            </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6 mt-4">
-            <div class="icon-box">
-                <i class="ri-database-2-line" style="color: #47aeff;"></i>
-                <h3><a href="">Nemo Enim</a></h3>
-            </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6 mt-4">
-            <div class="icon-box">
-                <i class="ri-gradienter-line" style="color: #ffa76e;"></i>
-                <h3><a href="">Eiusmod Tempor</a></h3>
-            </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6 mt-4">
-            <div class="icon-box">
-                <i class="ri-file-list-3-line" style="color: #11dbcf;"></i>
-                <h3><a href="">Midela Teren</a></h3>
-            </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6 mt-4">
-            <div class="icon-box">
-                <i class="ri-price-tag-2-line" style="color: #4233ff;"></i>
-                <h3><a href="">Pira Neve</a></h3>
-            </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6 mt-4">
-            <div class="icon-box">
-                <i class="ri-anchor-line" style="color: #b2904f;"></i>
-                <h3><a href="">Dirada Pack</a></h3>
-            </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6 mt-4">
-            <div class="icon-box">
-                <i class="ri-disc-line" style="color: #b20969;"></i>
-                <h3><a href="">Moton Ideal</a></h3>
-            </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6 mt-4">
-            <div class="icon-box">
-                <i class="ri-base-station-line" style="color: #ff5828;"></i>
-                <h3><a href="">Verdo Park</a></h3>
-            </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6 mt-4">
-            <div class="icon-box">
-                <i class="ri-fingerprint-line" style="color: #29cc61;"></i>
-                <h3><a href="">Flavor Nivelanda</a></h3>
-            </div>
-            </div>
-        </div>
-
-        </div>
-    </section><!-- End Features Section --> {% endcomment %}
-
+</section><!-- End Hero -->
+<main id="main">
     <!-- ======= Portfolio Section ======= -->
     <section id="portfolio" class="portfolio">
         <div class="container">
 
         <div class="section-title">
-            <h2>Portfolio</h2>
-            <h3>당신의 그림을 <span>변화시켜 보세요!</span></h3>
+            <h2>masterpiece</h2>
+            <h3><span>유명 화가</span>가 그려주는 내 사진</h3>
             <p>
-                원하는 이미지에서 색상을 추출하고 변경하고 싶은 이미지에 입혀보세요.<br/>
-                원하는 이미지를 유명한 화가의 그림으로 바꿔보세요.
+                원하는 사진을 유명한 화가의 그림으로 바꿔보세요.
             </p>
         </div>
 
@@ -189,9 +47,6 @@
             <img src="{% static 'image/pattern/goh1.jpg' %}" class="img-fluid" alt="">
             <div class="portfolio-info">
                 <h4>반고흐</h4>
-                {% comment %} <p>App</p>
-                <a href="{% static 'assets/img/portfolio/portfolio-1.jpg' %}" data-gall="portfolioGallery" class="venobox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
-                <a href="{% url 'main' %}" class="details-link" title="More Details"><i class="bx bx-link"></i></a> {% endcomment %}
             </div>
             </div>
 
@@ -199,9 +54,6 @@
             <img src="{% static 'image/pattern/mon1.jpg' %}" class="img-fluid" alt="">
             <div class="portfolio-info">
                 <h4>모네</h4>
-                {% comment %} <p>Web</p>
-                <a href="{% static 'assets/img/portfolio/portfolio-2.jpg' %}" data-gall="portfolioGallery" class="venobox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
-                <a href="{% url 'main' %}" class="details-link" title="More Details"><i class="bx bx-link"></i></a> {% endcomment %}
             </div>
             </div>
 
@@ -209,9 +61,6 @@
             <img src="{% static 'image/pattern/goh2.jpg' %}" class="img-fluid" alt="">
             <div class="portfolio-info">
                 <h4>반고흐</h4>
-                {% comment %} <p>App</p>
-                <a href="{% static 'assets/img/portfolio/portfolio-3.jpg' %}" data-gall="portfolioGallery" class="venobox preview-link" title="App 2"><i class="bx bx-plus"></i></a>
-                <a href="{% url 'main' %}" class="details-link" title="More Details"><i class="bx bx-link"></i></a> {% endcomment %}
             </div>
             </div>
 
@@ -219,9 +68,6 @@
             <img src="{% static 'image/pattern/cez1.jpg' %}" class="img-fluid" alt="">
             <div class="portfolio-info">
                 <h4>세잔</h4>
-                {% comment %} <p>Card</p>
-                <a href="{% static 'assets/img/portfolio/portfolio-4.jpg' %}" data-gall="portfolioGallery" class="venobox preview-link" title="Card 2"><i class="bx bx-plus"></i></a>
-                <a href="{% url 'main' %}" class="details-link" title="More Details"><i class="bx bx-link"></i></a> {% endcomment %}
             </div>
             </div>
 
@@ -229,9 +75,6 @@
             <img src="{% static 'image/pattern/mon2.jpg' %}" class="img-fluid" alt="">
             <div class="portfolio-info">
                 <h4>모네</h4>
-                {% comment %} <p>Web</p>
-                <a href="{% static 'assets/img/portfolio/portfolio-5.jpg' %}" data-gall="portfolioGallery" class="venobox preview-link" title="Web 2"><i class="bx bx-plus"></i></a>
-                <a href="{% url 'main' %}" class="details-link" title="More Details"><i class="bx bx-link"></i></a> {% endcomment %}
             </div>
             </div>
 
@@ -239,9 +82,6 @@
             <img src="{% static 'image/pattern/goh3.jpg' %}" class="img-fluid" alt="">
             <div class="portfolio-info">
                 <h4>반고흐</h4>
-                {% comment %} <p>App</p>
-                <a href="{% static 'assets/img/portfolio/portfolio-6.jpg' %}" data-gall="portfolioGallery" class="venobox preview-link" title="App 3"><i class="bx bx-plus"></i></a>
-                <a href="{% url 'main' %}" class="details-link" title="More Details"><i class="bx bx-link"></i></a> {% endcomment %}
             </div>
             </div>
 
@@ -249,9 +89,6 @@
             <img src="{% static 'image/pattern/cez2.jpg' %}" class="img-fluid" alt="">
             <div class="portfolio-info">
                 <h4>세잔</h4>
-                {% comment %} <p>Card</p>
-                <a href="{% static 'assets/img/portfolio/portfolio-7.jpg' %}" data-gall="portfolioGallery" class="venobox preview-link" title="Card 1"><i class="bx bx-plus"></i></a>
-                <a href="{% url 'main' %}" class="details-link" title="More Details"><i class="bx bx-link"></i></a> {% endcomment %}
             </div>
             </div>
 
@@ -259,9 +96,6 @@
             <img src="{% static 'image/pattern/cez3.jpg' %}" class="img-fluid" alt="">
             <div class="portfolio-info">
                 <h4>세잔</h4>
-                {% comment %} <p>Card</p>
-                <a href="{% static 'assets/img/portfolio/portfolio-8.jpg' %}" data-gall="portfolioGallery" class="venobox preview-link" title="Card 3"><i class="bx bx-plus"></i></a>
-                <a href="{% url 'main' %}" class="details-link" title="More Details"><i class="bx bx-link"></i></a> {% endcomment %}
             </div>
             </div>
 
@@ -269,9 +103,6 @@
             <img src="{% static 'image/pattern/mon3.jpg' %}" class="img-fluid" alt="">
             <div class="portfolio-info">
                 <h4>모네</h4>
-                {% comment %} <p>Web</p>
-                <a href="{% static 'assets/img/portfolio/portfolio-9.jpg' %}" data-gall="portfolioGallery" class="venobox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a> {% endcomment %}
             </div>
             </div>
 
