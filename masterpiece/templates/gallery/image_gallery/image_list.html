@@ -1,0 +1,43 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<!-- ======= Hero Section ======= -->
+<section id="image-list">
+<div class="container">
+    <div class="row emotion">
+        <div class="db-filter">
+            <ul class="emotion-filter clearfix">
+                <li class="filter-row">
+                    <div class="title">
+                        <span>검색</span>
+                    </div>
+                    <div class="value">
+                        <label class="checkbox">
+                            <input type="checkbox" name="opt" value="cd">
+                            <span title="cd">색상입히기</span>
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" name="opt" value="goh">
+                            <span title="goh">고흐</span>
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" name="opt" value="mon">
+                            <span title="mon">모네</span>
+                        </label>
+                    </div>
+                </li>
+                <li class="filter-row">
+                    <button onclick="image_filter()">검색</button>
+                </li>
+            </ul>
+        </div>
+        <div class="content-list">
+            여기가 리스트 나올 영역
+        </div>
+    </div>
+</div>
+</section>
+
+<script src="/masterpiece/static/js/image-list.js"></script>
+
+{% endblock %}

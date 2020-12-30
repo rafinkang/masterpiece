@@ -127,8 +127,13 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+.vscode/settings.json
+*.stackdump
 
-# 테스트 폴더 제거
-test/
 
+# crawling images
+test/crawling/images/*
 
+masterpiece/static/upload_images/masterpiece_images/*.jpg
+masterpiece/static/upload_images/original_images/*.jpg
+masterpiece/static/upload_images/temp_images/*.jpg

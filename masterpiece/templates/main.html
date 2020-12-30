@@ -1,0 +1,211 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+<!-- ======= Hero Section ======= -->
+<section id="hero">
+    <div class="hero-container">
+        <h3><strong>GRIM INA GRI JO</strong></h3>
+        <h1>나만의 색다른 그림과 사진을 찾고 있나요?</h1>
+        <h2>사진에 여러가지 색상을 입히고 유명한 화가들의 그림체를 더해보세요</h2>
+    </div>
+    <div class="hero-container-btn">
+        {% if request.session.user_id %}
+            <a href="{% url 'pallate' %}" class="scrollto main-btn-menu">이미지 바꾸기</a>
+        {% endif %}
+        <a href="{% url 'gallery/color_gallery' %}" class="scrollto main-btn-menu">색상 갤러리</a>
+        <a href="{% url 'gallery/image_list' %}" class="scrollto main-btn-menu">이미지 갤러리</a>
+    </div>
+</section><!-- End Hero -->
+<main id="main">
+    <!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+
+        <div class="section-title">
+            <h2>masterpiece</h2>
+            <h3><span>유명 화가</span>가 그려주는 내 사진</h3>
+            <p>
+                원하는 사진을 유명한 화가의 그림으로 바꿔보세요.
+            </p>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 d-flex justify-content-center">
+            <ul id="portfolio-flters">
+                <li data-filter="*" class="filter-active">전체</li>
+                <li data-filter=".filter-app">반고흐</li>
+                <li data-filter=".filter-card">모네</li>
+                <li data-filter=".filter-web">세잔</li>
+            </ul>
+            </div>
+        </div>
+
+        <div class="row portfolio-container">
+
+            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <img src="{% static 'image/pattern/goh1.jpg' %}" class="img-fluid" alt="">
+            <div class="portfolio-info">
+                <h4>반고흐</h4>
+            </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <img src="{% static 'image/pattern/mon1.jpg' %}" class="img-fluid" alt="">
+            <div class="portfolio-info">
+                <h4>모네</h4>
+            </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <img src="{% static 'image/pattern/goh2.jpg' %}" class="img-fluid" alt="">
+            <div class="portfolio-info">
+                <h4>반고흐</h4>
+            </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <img src="{% static 'image/pattern/cez1.jpg' %}" class="img-fluid" alt="">
+            <div class="portfolio-info">
+                <h4>세잔</h4>
+            </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <img src="{% static 'image/pattern/mon2.jpg' %}" class="img-fluid" alt="">
+            <div class="portfolio-info">
+                <h4>모네</h4>
+            </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <img src="{% static 'image/pattern/goh3.jpg' %}" class="img-fluid" alt="">
+            <div class="portfolio-info">
+                <h4>반고흐</h4>
+            </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <img src="{% static 'image/pattern/cez2.jpg' %}" class="img-fluid" alt="">
+            <div class="portfolio-info">
+                <h4>세잔</h4>
+            </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <img src="{% static 'image/pattern/cez3.jpg' %}" class="img-fluid" alt="">
+            <div class="portfolio-info">
+                <h4>세잔</h4>
+            </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <img src="{% static 'image/pattern/mon3.jpg' %}" class="img-fluid" alt="">
+            <div class="portfolio-info">
+                <h4>모네</h4>
+            </div>
+            </div>
+
+        </div>
+
+        </div>
+    </section><!-- End Portfolio Section -->
+
+    <!-- ======= Team Section ======= -->
+    <section id="team" class="team">
+        <div class="container">
+
+        <div class="section-title">
+            <h2>Team</h2>
+            <h3>GRIM <span>INA</span> GRI <span>JO</span></h3>
+            <p>함께 만든 'GRIM INA GRI JO'의 팀원을 소개합니다.</p>
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member">
+                <div class="member-img">
+                <img src="{% static 'image/GRIM_CANDY.png' %}" class="img-fluid" alt="">
+                <div class="social">
+                    <a href=""><i class="icofont-twitter"></i></a>
+                    <a href=""><i class="icofont-facebook"></i></a>
+                    <a href=""><i class="icofont-instagram"></i></a>
+                    <a href=""><i class="icofont-linkedin"></i></a>
+                </div>
+                </div>
+                <div class="member-info">
+                <h4>KANG TAE UK</h4>
+                <span>GRIM</span>
+                <span>조장</span>
+                </div>
+            </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member">
+                <div class="member-img">
+                <img src="{% static 'image/INA_BREAD_H.png' %}" class="img-fluid" alt="">
+                <div class="social">
+                    <a href=""><i class="icofont-twitter"></i></a>
+                    <a href=""><i class="icofont-facebook"></i></a>
+                    <a href=""><i class="icofont-instagram"></i></a>
+                    <a href=""><i class="icofont-linkedin"></i></a>
+                </div>
+                </div>
+                <div class="member-info">
+                <h4>PARK JI YEON</h4>
+                <span>INA</span>
+                <span>팀원</span>
+                </div>
+            </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member">
+                <div class="member-img">
+                <img src="{% static 'image/GRI_B.png' %}" class="img-fluid" alt="">
+                <div class="social">
+                    <a href=""><i class="icofont-twitter"></i></a>
+                    <a href=""><i class="icofont-facebook"></i></a>
+                    <a href=""><i class="icofont-instagram"></i></a>
+                    <a href=""><i class="icofont-linkedin"></i></a>
+                </div>
+                </div>
+                <div class="member-info">
+                <h4>KIM MIN SU</h4>
+                <span>GRI</span>
+                <span>팀원</span>
+                </div>
+            </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member">
+                <div class="member-img">
+                <img src="{% static 'image/JO_SUL.png' %}" class="img-fluid" alt="">
+                <div class="social">
+                    <a href=""><i class="icofont-twitter"></i></a>
+                    <a href=""><i class="icofont-facebook"></i></a>
+                    <a href=""><i class="icofont-instagram"></i></a>
+                    <a href=""><i class="icofont-linkedin"></i></a>
+                </div>
+                </div>
+                <div class="member-info">
+                <h4>KIM YEONG DON</h4>
+                <span>JO</span>
+                <span>팀원</span>
+                </div>
+            </div>
+            </div>
+
+        </div>
+
+        </div>
+    </section><!-- End Team Section -->
+
+</main><!-- End #main -->
+
+<a href="#" class="back-to-top"><i class="ri-arrow-up-line"></i></a>
+
+{% endblock %}

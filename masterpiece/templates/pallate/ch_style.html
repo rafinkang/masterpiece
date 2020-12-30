@@ -1,0 +1,34 @@
+<div class="row ch-wrap">
+    <div class="col-md-6 ch-inout-box">
+          
+        <div class="ch-image-upload-wrap ch-image-wrap">
+            <input class="ch-file-upload-input" id="ch_input_image" type="file" onchange="readURL(this)" accept="image/*" />
+            <div class="ch-image-plus"> + </div>
+            <div class="ch-image-copy" onclick="imageCopy()"> 팔렛트<br/>복사 </div>
+        </div>
+
+        <div class="ch-file-upload-content container">
+            <div class="row ch-file-upload-box">
+                <img class="ch-file-upload-image ch-image rounded" src="#"/>
+            </div>
+            <div class="ch-image-title-wrap row">
+                <button type="button" class="btn btn-custom-5 col-md-3 ch-image-btn" onclick="removeUpload()">취소</button>
+                <button type="button" class="btn btn-custom-2 col-md-4 ch-image-btn" onclick="setImage('goh')">고흐가 그리기</button>
+                <button type="button" class="btn btn-custom-2 col-md-4 ch-image-btn" onclick="setImage('mon')">모네가 그리기</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-6 ch-inout-box">
+        <div class="ch-file-output-content container" id="ch_output_image_container">
+            <div class="row ch-file-image-icon-box">
+                <img src="masterpiece/static/image/image_icon.png" class="ch-image-icon">
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="/masterpiece/static/js/ch-style.js"></script>
+
+

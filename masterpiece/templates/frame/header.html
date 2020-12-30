@@ -1,0 +1,31 @@
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top ">
+    <div class="container d-flex align-items-center {% if request.path != '/' and request.path != '/main'%} header-scrolled {% endif %}">
+
+        <h1 class="logo mr-auto">
+            <a href="{% url 'main'  %}" {% if request.path != '/' and request.path != '/main'%}style="color: #493c3e;"{% endif %}>GIGJ</a>
+        </h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+        <nav class="nav-menu d-none d-lg-block">
+        <ul>
+
+            {% if request.path != '/' and request.path != '/main' and request.path != '/register' %}
+                {% if request.session.user_id %}
+                    <li {% if request.path == '/pallate'%} class="active" {% endif %}><a href="{% url 'pallate' %}">이미지 바꾸기</a></li>
+                {% endif %}
+                <li {% if request.path == '/gallery/color_gallery'%} class="active" {% endif %}><a href="{% url 'gallery/color_gallery' %}">색상 갤러리</a></li>
+                <li {% if request.path == '/gallery/image_list'%} class="active" {% endif %}><a href="{% url 'gallery/image_list' %}">이미지 갤러리</a></li>
+            {% endif %}
+            {% if request.session.user_id %}
+                <li><a href="{% url 'logout' %}" >로그아웃</a></li>
+            {% else %}
+                <li {% if request.path == '/register'%} class="active" {% endif %}><a href="{% url 'register' %}" >회원가입</a></li>
+                <li {% if request.path == '/login'%} class="active" {% endif %}><a href="{% url 'login' %}" >로그인</a></li>
+            {% endif %}
+
+        </ul>
+        </nav><!-- .nav-menu -->
+    </div>
+</header><!-- End Header -->

@@ -1,0 +1,55 @@
+<div class="row color-pick">
+    <div class="col-md-6">
+        <input type="file" class="origin-image-file" accept=".jpg,.jpeg,.png" onchange="origin_thumbnail(this)">
+        <button id="color_pick">색상 뽑기</button>
+        <button id="color_insert">색상 저장</button>
+        <p>색상을 추출하실 이미지 파일을 선택해 주세요.</p>
+        <img src="/masterpiece/static/image/starlight.jpeg" alt="썸네일" class="origin-thumbnail">
+    </div>
+    <div class="col-md-2 color-pick-outer-box">
+        <div class="color1 color-pick-box">
+            <span class="hex1"  onclick="copy(this)">#637fa0</span>
+        </div>
+        <div class="color2 color-pick-box">
+            <span class="hex2"  onclick="copy(this)">#394d77</span>
+        </div>
+        <div class="color3 color-pick-box">
+            <span class="hex3"  onclick="copy(this)">#20262b</span>
+        </div>
+        <div class="color4 color-pick-box">
+            <span class="hex4"  onclick="copy(this)">#a8b5a1</span>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <table class="color-pick-emotion">
+            <thead>
+                <tr>
+                    <td>분류</td>
+                    <td>결과값</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>색상</td>
+                    <td class="color_pred">azure</td>
+                </tr>
+                <tr>
+                    <td>계절</td>
+                    <td class="season_pred">winter</td>
+                </tr>
+                <tr>
+                    <td>톤</td>
+                    <td class="cw_pred">cool</td>
+                </tr>
+                <tr>
+                    <td>채도</td>
+                    <td class="cp_pred">pastel</td>
+                </tr>
+                <tr>
+                    <td>명암</td>
+                    <td class="value_pred">low</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

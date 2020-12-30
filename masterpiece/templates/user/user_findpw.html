@@ -1,0 +1,63 @@
+{% extends 'index.html' %} {% block content %}
+
+
+<section id="user_findpw">
+    <div class="container login-page">
+
+        <div class="login-page">
+            <div class="form">
+                <form action="#" method="POST" class="login-form">
+        <h3>회원가입 확인</h3> <br>
+            <div class="body">
+                <form action="" method="POST" class="login-form">
+
+
+                        <input type="text" class="inputstyle" id="search_id" name="search_id" placeholder="아이디를 입력하세요"><br>
+                        <input type="text" class="inputstyle" id="search_name" name="search_name" placeholder="이름을 입력하세요">
+
+                    <input type="button" class="user_btn" value="회원가입 확인" id="find_pw">
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    $("#find_pw").click(function() {
+        //console.log("클릭 확인")
+        var search_id = $("#search_id").val();
+        var search_name = $("#search_name").val();
+        $.ajax({
+            url: "{% url 'findpw/findpw_search' %}",
+            method: "post",
+            data: {
+                'user_id': search_id,
+                'user_name': search_name,
+            },
+            dataType: 'text',
+            success: function(data) {
+                if (data != 1) {
+                    alert("비밀번호 변경하세요");
+                    sessionStorage.setItem('user_id', search_id);
+                    sessionStorage.setItem('user_name', search_name);
+                    location.href = "{% url 'modifypw' %}"
+
+                } else {
+                    alert("아이디 또는 이름이 없습니다.");
+
+                };
+            },
+            error: function(data) {
+                console.log(data);
+            }
+        });
+
+    });
+</script>
+
+
+
+
+
+{% endblock %}
