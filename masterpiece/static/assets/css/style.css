@@ -213,6 +213,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .header-scrolled .nav-menu > ul > li > a, .header-inner-pages .nav-menu > ul > li > a {
   color: #493c3e;
+  font-weight: bold;
 }
 
 @media (max-width: 1366px) {
@@ -332,6 +333,29 @@ h1, h2, h3, h4, h5, h6 {
 
 .mobile-nav-active .mobile-nav-toggle i {
   color: #fff;
+}
+
+/*--------------------------------------------------------------
+# Main
+--------------------------------------------------------------*/
+
+.main-btn-menu {
+  display: inline-block;
+  height: 150px;
+  width: 100px;
+  padding: 65px 5px;
+  border-radius: 50px;
+  transition: 0.5s;
+  border: 2px solid #fff;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 13px;
+  margin: 0px 15px;
+}
+
+.main-btn-menu:hover {
+  border: 2px solid #ffd369;
 }
 
 /*--------------------------------------------------------------
@@ -457,7 +481,7 @@ h1, h2, h3, h4, h5, h6 {
 # Sections General
 --------------------------------------------------------------*/
 section {
-  padding: 60px 0;
+  padding: 110px 0 60px 0;
 }
 
 .section-bg {
@@ -490,7 +514,7 @@ section {
 }
 
 .section-title h3 span {
-  border-bottom: 6px double #ffd369;
+  border-bottom: 5px double #ffd369;
 }
 
 .section-title p {
@@ -743,7 +767,7 @@ section {
 }
 
 .portfolio #portfolio-flters li:hover, .portfolio #portfolio-flters li.filter-active {
-  color: #fff;
+  color: #ffd369;
   background: #393e46;
 }
 
@@ -777,7 +801,7 @@ section {
 
 .portfolio .portfolio-item .portfolio-info h4 {
   font-size: 18px;
-  color: #393e4;
+  color: #393e46;
   font-weight: 600;
 }
 

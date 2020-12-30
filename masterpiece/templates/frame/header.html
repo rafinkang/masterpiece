@@ -13,16 +13,16 @@
 
             {% if request.path != '/' and request.path != '/main' and request.path != '/register' %}
                 {% if request.session.user_id %}
-                    <li {% if request.path == '/pallate'%} class="active" {% endif %}><a href="{% url 'pallate' %}">기능</a></li>
+                    <li {% if request.path == '/pallate'%} class="active" {% endif %}><a href="{% url 'pallate' %}">이미지 바꾸기</a></li>
                 {% endif %}
-                <li><a href="{% url 'gallery/color_gallery' %}">색상 갤러리</a></li>
-                <li><a href="{% url 'gallery/image_list' %}">이미지 갤러리</a></li>
+                <li {% if request.path == '/gallery/color_gallery'%} class="active" {% endif %}><a href="{% url 'gallery/color_gallery' %}">색상 갤러리</a></li>
+                <li {% if request.path == '/gallery/image_list'%} class="active" {% endif %}><a href="{% url 'gallery/image_list' %}">이미지 갤러리</a></li>
             {% endif %}
             {% if request.session.user_id %}
                 <li><a href="{% url 'logout' %}" >로그아웃</a></li>
             {% else %}
-                <li><a href="{% url 'register' %}" >회원가입</a></li>
-                <li><a href="{% url 'login' %}" >로그인</a></li>
+                <li {% if request.path == '/register'%} class="active" {% endif %}><a href="{% url 'register' %}" >회원가입</a></li>
+                <li {% if request.path == '/login'%} class="active" {% endif %}><a href="{% url 'login' %}" >로그인</a></li>
             {% endif %}
 
         </ul>
