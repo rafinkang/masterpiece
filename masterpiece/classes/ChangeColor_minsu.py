@@ -61,10 +61,10 @@ class ChangeColor_minsu:
         """
         색상을 변경해 보자.
         """
-        print("hex1 = ", self.hex1)
-        print("hex2 = ", self.hex2)
-        print("hex3 = ", self.hex3)
-        print("hex4 = ", self.hex4)
+        # print("hex1 = ", self.hex1)
+        # print("hex2 = ", self.hex2)
+        # print("hex3 = ", self.hex3)
+        # print("hex4 = ", self.hex4)
         # color_img = Spuit(self.color_img_path, n_cluster)
         input_img = Spuit(image = self.image, n_clusters=n_cluster)
         # color_img_info = color_img.get_info()
@@ -141,7 +141,7 @@ class ChangeColor_minsu:
 
                 # s,v도 변화시켜보자
                 # output_img[i][j][0] = int((new_hsv[x][0] * self.styleType + output_img[i][j][0] * (10-self.styleType) )/10)
-                output_img[i][j][0] = int((new_hsv[x][0] * 9.99 + output_img[i][j][0] * (10-9.99) )/10)
+                output_img[i][j][0] = int((new_hsv[x][0] * 9.99             + output_img[i][j][0] * (10-9.99) )/10)
                 output_img[i][j][1] = int((new_hsv[x][1] * (self.styleType) + output_img[i][j][1] * (10-self.styleType))/10)
                 output_img[i][j][2] = int((new_hsv[x][2] * (self.styleType) + output_img[i][j][2] * (10-self.styleType))/10)
 
@@ -175,7 +175,7 @@ class ChangeColor_minsu:
         # 지연이 꺼에서 가져온 부분, 이미지를 저장하고 주소만 돌려주기
         save_img_name = 'masterpiece/static/upload_images/temp_images/' + 'color_dress_'+str(self.styleType)  + '.jpg'
         plt.savefig(save_img_name)
-        print("save_img_name :",save_img_name)
+        # print("save_img_name :",save_img_name)
         return save_img_name
 
 
