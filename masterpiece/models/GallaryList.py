@@ -32,6 +32,11 @@ class GallaryList():
     def insert_mp_info(self, user_idx, image_name, origin_url, masterpiece_url, artist):
         sql = f"insert into gallary_list(user_idx, image_name, origin_url, masterpiece_url, artist) values({user_idx}, '{image_name}', '{origin_url}', '{masterpiece_url}', '{artist}');"
         return self.db.execute(sql)
+
+    def insert_mp_info2(self, user_idx, image_name, origin_url, masterpiece_url, hex1,hex2,hex3,hex4):
+        sql = f"insert into gallary_list(user_idx, image_name, origin_url, masterpiece_url, hex1,hex2,hex3,hex4) values({user_idx}, '{image_name}', '{origin_url}', '{masterpiece_url}', '{hex1}', '{hex2}', '{hex3}', '{hex4}');"
+
+        return self.db.execute(sql)
     
     def image_filter(self, opt_type, user_idx):
         sql = '''select 
