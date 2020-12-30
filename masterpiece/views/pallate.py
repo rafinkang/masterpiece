@@ -218,8 +218,12 @@ def change_masterpiece2(request):
     style_type = request.POST.dict()['styleType']
     temp_img_full_path = 'masterpiece/static/upload_images/temp_images/' + img_name
 
-    clw = CycleganLoadWeight()
-    change_color = ChangeColor_minsu(input_img_path = temp_img_full_path)
+    # clw = CycleganLoadWeight()
+    hex1 = '#fcd7d6'
+    hex2 = '#f4d318'
+    hex3 = '#aa825a'
+    hex4 = '#404223'
+    change_color = ChangeColor_minsu(hex1=hex1, hex2=hex2, hex3=hex3, hex4=hex4, input_img_path = temp_img_full_path)
     output = change_color.change(n_cluster = 4, get_plt = False, ratio=6)
     # return HttpResponse(clw.change_style(style_type, temp_img_full_path, img_name))
     print("여기 실행되었나?")

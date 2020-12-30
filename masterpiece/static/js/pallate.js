@@ -295,7 +295,7 @@ $(document).ready(function(){
     });
 
     // 색상 입히기 버튼 클릭시, 민수 추가함
-    readURL = function(input) {
+    readURL2 = function(input) {
         if(!/\.(jpg|jpeg|png)$/i.test(input.files[0].name)){
 
             alert('이미지파일만 선택해 주세요.\n\n현재 파일 : ' + input.files[0].name);
@@ -309,23 +309,23 @@ $(document).ready(function(){
                 $(".cd-file-upload-content").show();
             };
       
-          reader.readAsDataURL(input.files[0]);
+            reader.readAsDataURL(input.files[0]);
       
         } else {
-            removeUpload();
+            removeUpload2();
         }
     }
 
     
-    imageCopy = function() {
-        var imgData = [{"imgURL" : sessionStorage.getItem("origin_image")}];
+    // imageCopy = function() {
+    //     var imgData = [{"imgURL" : sessionStorage.getItem("origin_image")}];
         
-        $('.cd-image-upload-wrap').hide();
-        $('.cd-file-upload-image').attr('src', imgData[0].imgURL);
-        $(".cd-file-upload-content").show();
-    }
+    //     $('.cd-image-upload-wrap').hide();
+    //     $('.cd-file-upload-image').attr('src', imgData[0].imgURL);
+    //     $(".cd-file-upload-content").show();
+    // }
       
-    removeUpload = function() {
+    removeUpload2 = function() {
         $('.cd-file-upload-input').val("")
         $(".cd-file-upload-content").hide();
         $('.cd-image-upload-wrap').show();
@@ -418,6 +418,37 @@ $(document).ready(function(){
             dataType: 'text',
             success: function(res) {
                 originToMasterpiece2(res);
+            },
+            error: function(error) {
+                console.log('error', error);
+            }
+        });
+    }
+
+    originToMasterpiece2 = function(img_name) {
+        $.ajax({
+            url: "pallate/cd_style/change_masterpiece2",
+            type: 'post',
+            data: {
+                'img_name': img_name,
+                'styleType' : style_type
+            },
+            dataType: 'text',
+            success: function(res) {
+                const ch_output_image_container = $("#ch_output_image_container");
+                let res_list = res.split('/');
+                const master_name = res_list[res_list.length - 1];
+
+                tg_str = '<div class="row ch-file-upload-box">' +
+                            '<img src="' + res + '" class="ch-file-output-image ch-image rounded">' +
+                        '</div>' +
+                        '<div class="ch-image-title-wrap row">' +
+                            '<a class="hidden-download" id="download_link" href="#" download="#"></a>' +
+                            '<button type="button" class="btn btn-custom-2 col-md-6 ch-image-btn" onclick="downloadImage(\'' + master_name + '\')">다운로드</button>' +
+                        '</div>';
+                
+                ch_output_image_container.empty();
+                ch_output_image_container.append(tg_str);
             },
             error: function(error) {
                 console.log('error', error);
