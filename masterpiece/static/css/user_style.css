@@ -2,7 +2,7 @@
     
     @import url(https://fonts.googleapis.com/css?family=Roboto:300);
     .login-page {
-        width: 360px;
+        width: 560px;
         padding: 8% 0 0;
         margin: auto;
     }
@@ -48,20 +48,17 @@
     .user_btn:hover,
     .user_btn:active,
     .user_btn:focus {
-        background: #eeeeee;
+        background-color: #ffd369;
+        color: #393e46;
     }
     
     .form .message {
         margin: 15px 0 0;
-        color: #b3b3b3;
+        color: #222831;
         font-size: 12px;
     }
     
     .form .message a {
         color: #393e46;
         text-decoration: none;
-    }
-    
-    .form .register-form {
-        display: none;
     }
