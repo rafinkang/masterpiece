@@ -1,7 +1,5 @@
 from django.shortcuts import render, redirect
 from masterpiece.models import *
-from masterpiece.example_class.forms import post_frm
-from masterpiece.example_class.DbConn import *
 from masterpiece.models.GallaryList import GallaryList
 from django.http import HttpResponse
 from masterpiece.models.ColorList import ColorList
