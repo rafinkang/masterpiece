@@ -41,14 +41,14 @@ def multi_hex_to_bgr(hex1,hex2,hex3,hex4):
 
 class ChangeColor_minsu:
     # def __init__(self, color_img_path, input_img_path):
-    def __init__(self, hex1 ='#fcd7d6',hex2='#f4d318',hex3='#aa825a',hex4='#404223', input_img_path=None,image=None, ratio = 9):
+    def __init__(self, hex1 ='#fcd7d6',hex2='#f4d318',hex3='#aa825a',hex4='#404223', input_img_path=None,image=None, styleType = 9):
         # self.color_img_path = color_img_path
         # self.input_img_path = input_img_path
         self.hex1 = hex1
         self.hex2 = hex2
         self.hex3 = hex3
         self.hex4 = hex4
-        self.ratio = ratio
+        self.styleType = int(styleType)
         # self.change()
 
         if input_img_path is not None:
@@ -57,12 +57,14 @@ class ChangeColor_minsu:
         else:
             self.image = image
 
-    def change(self, n_cluster=4, get_plt=False, ratio = 9):
+    def change(self, n_cluster=4, get_plt=False):
         """
         색상을 변경해 보자.
         """
-        self.ratio = ratio
-
+        print("hex1 = ", self.hex1)
+        print("hex2 = ", self.hex2)
+        print("hex3 = ", self.hex3)
+        print("hex4 = ", self.hex4)
         # color_img = Spuit(self.color_img_path, n_cluster)
         input_img = Spuit(image = self.image, n_clusters=n_cluster)
         # color_img_info = color_img.get_info()
@@ -82,10 +84,10 @@ class ChangeColor_minsu:
         # print(input_img_bgr[0][0])
         # print(output_img[0][0])
 
-        bgr1 = hex_to_bgr(hex1)
-        bgr2 = hex_to_bgr(hex2)
-        bgr3 = hex_to_bgr(hex3)
-        bgr4 = hex_to_bgr(hex4)
+        bgr1 = hex_to_bgr(self.hex1)
+        bgr2 = hex_to_bgr(self.hex2)
+        bgr3 = hex_to_bgr(self.hex3)
+        bgr4 = hex_to_bgr(self.hex4)
         # print(bgr1,bgr2,bgr3,bgr4)
         
         bgr1 = np.uint8([[bgr1]])
@@ -121,14 +123,14 @@ class ChangeColor_minsu:
 
         # print(convert_label2h)
         shape = output_img.shape
-
+        # print("shape = ",shape)
         # print(convert_label2h)
         # print(shape)
         # print(type(output_img), output_img)
         # print(input_img_labels[100])
         # shape_labels = np.zeros(shape, dtype="uint8")
         # print(input_img_labels.reshape(shape[0], shape[1]))
-
+        # print("output_img = ", output_img)
         tot = 0
         for i in range(shape[0]):
             for j in range(shape[1]):
@@ -138,9 +140,10 @@ class ChangeColor_minsu:
 
 
                 # s,v도 변화시켜보자
-                output_img[i][j][0] = int((new_hsv[x][0] * self.ratio + output_img[i][j][0] * (10-self.ratio) )/10)
-                output_img[i][j][1] = int((new_hsv[x][1] * (10-self.ratio) + output_img[i][j][1] * self.ratio)/10)
-                output_img[i][j][2] = int((new_hsv[x][2] * (10-self.ratio) + output_img[i][j][2] * self.ratio)/10)
+                # output_img[i][j][0] = int((new_hsv[x][0] * self.styleType + output_img[i][j][0] * (10-self.styleType) )/10)
+                output_img[i][j][0] = int((new_hsv[x][0] * 9.99 + output_img[i][j][0] * (10-9.99) )/10)
+                output_img[i][j][1] = int((new_hsv[x][1] * (self.styleType) + output_img[i][j][1] * (10-self.styleType))/10)
+                output_img[i][j][2] = int((new_hsv[x][2] * (self.styleType) + output_img[i][j][2] * (10-self.styleType))/10)
 
 
         # tot = 0
@@ -158,32 +161,38 @@ class ChangeColor_minsu:
         # print('mmmmmm',np.unique(cv2.cvtColor(output_img, cv2.COLOR_RGB2HSV)[:,:,0]))
 
         plt.figure()
-        # plt.axis("off")
-        plt.subplot(121)
+        plt.axis("off")
+        # plt.subplot(121)
         plt.imshow(output_img)
-        plt.subplot(122)
+        # plt.subplot(122)
         # plt.imshow(blur)
         # plt.subplot(133)
-        plt.imshow(cv2.cvtColor(input_img_bgr, cv2.COLOR_BGR2RGB))
-        plt.show()
+        # plt.imshow(cv2.cvtColor(input_img_bgr, cv2.COLOR_BGR2RGB))
+        # plt.show()
 
-        return output_img
+        # return output_img
+
+        # 지연이 꺼에서 가져온 부분, 이미지를 저장하고 주소만 돌려주기
+        save_img_name = 'masterpiece/static/upload_images/temp_images/' + 'color_dress_'+str(self.styleType)  + '.jpg'
+        plt.savefig(save_img_name)
+        print("save_img_name :",save_img_name)
+        return save_img_name
 
 
-if __name__ == "__main__":
-    colorimg = "./test/images/4color.png"
-    inputimg = "./test/images/jordy.jpg"
-    inputimg = "./test/images/su_flower.jpg"
+# if __name__ == "__main__":
+#     colorimg = "./test/images/4color.png"
+#     inputimg = "./test/images/jordy.jpg"
+#     inputimg = "./test/images/su_flower.jpg"
 
-    hex1 = '#fcd7d6'
-    hex2 = '#f4d318'
-    hex3 = '#aa825a'
-    hex4 = '#404223'
+#     hex1 = '#fcd7d6'
+#     hex2 = '#f4d318'
+#     hex3 = '#aa825a'
+#     hex4 = '#404223'
     
 
-    # change_color = ChangeColor_minsu(colorimg, inputimg)
-    change_color = ChangeColor_minsu(hex1, hex2, hex3, hex4, input_img_path = inputimg)
-    # output = change_color.change(n_cluster = 4, get_plt = False)
-    output = change_color.change(n_cluster = 4, get_plt = False, ratio=6)
+#     # change_color = ChangeColor_minsu(colorimg, inputimg)
+#     change_color = ChangeColor_minsu(hex1, hex2, hex3, hex4, input_img_path = inputimg)
+#     # output = change_color.change(n_cluster = 4, get_plt = False)
+#     output = change_color.change(n_cluster = 4, get_plt = False, styleType=9)
 
-    plt.imshow(output)
+#     plt.imshow(output)

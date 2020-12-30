@@ -210,23 +210,28 @@ def temp_img_upload2(request):
 
     with open(path, 'wb') as f:
         f.write(imgdata)
-
+    print(path,"에", filename,"을 생성하였음")
     return HttpResponse(filename)
 
 def change_masterpiece2(request):
     img_name = request.POST.dict()['img_name']
     style_type = request.POST.dict()['styleType']
+    hex1 = request.POST.dict()['hex1']
+    hex2 = request.POST.dict()['hex2']
+    hex3 = request.POST.dict()['hex3']
+    hex4 = request.POST.dict()['hex4']
     temp_img_full_path = 'masterpiece/static/upload_images/temp_images/' + img_name
 
     # clw = CycleganLoadWeight()
-    hex1 = '#fcd7d6'
-    hex2 = '#f4d318'
-    hex3 = '#aa825a'
-    hex4 = '#404223'
-    change_color = ChangeColor_minsu(hex1=hex1, hex2=hex2, hex3=hex3, hex4=hex4, input_img_path = temp_img_full_path)
-    output = change_color.change(n_cluster = 4, get_plt = False, ratio=6)
+    # hex1 = '#fcd7d6'
+    # hex2 = '#f4d318'
+    # hex3 = '#aa825a'
+    # hex4 = '#404223'
+    change_color = ChangeColor_minsu(hex1=hex1, hex2=hex2, hex3=hex3, hex4=hex4, input_img_path = temp_img_full_path , styleType=style_type)
+    output = change_color.change(n_cluster = 4, get_plt = False)
     # return HttpResponse(clw.change_style(style_type, temp_img_full_path, img_name))
-    print("여기 실행되었나?")
+    print("pallate.py의 change_masterpiece2를 실행시켰음")
+    print("그 안의 내용은 changeColor_minsu 함수 실행시키는것임, response 돌려주는 값은 색상입혀진 이미지")
     return HttpResponse(output)
 
 def download_img2(request):

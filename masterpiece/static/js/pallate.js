@@ -296,6 +296,16 @@ $(document).ready(function(){
 
     // 색상 입히기 버튼 클릭시, 민수 추가함
     readURL2 = function(input) {
+        console.log("이미지 입력되었음")
+
+        // hex1,2,3,4 를 변수로 지정하자
+        color_pick_data = sessionStorage.getItem('color_pick')
+        data = JSON.parse(color_pick_data)
+        hex1 = data['hex1']
+        hex2 = data['hex2']
+        hex3 = data['hex3']
+        hex4 = data['hex4']
+
         if(!/\.(jpg|jpeg|png)$/i.test(input.files[0].name)){
 
             alert('이미지파일만 선택해 주세요.\n\n현재 파일 : ' + input.files[0].name);
@@ -332,6 +342,7 @@ $(document).ready(function(){
     }
 
     setImage2 = function(type) {
+        console.log("색상 입히기 버튼 눌렸음")
         var file = $("#cd_input_image")[0].files[0];
         var dataURI;
         const cd_input_image_container = $("#cd_input_image_container");
@@ -384,7 +395,7 @@ $(document).ready(function(){
             
                     style_type = type
             
-                    tempImgUpload(dataURI);
+                    tempImgUpload2(dataURI);
                 };
             };
 
@@ -404,11 +415,12 @@ $(document).ready(function(){
     
             style_type = type
     
-            tempImgUpload(dataURI);
+            tempImgUpload2(dataURI);
         }
     }
 
-    tempImgUpload = function(dataURI) {
+    tempImgUpload2 = function(dataURI) {
+        console.log("팔렛트js의 tempImgUpload2 부분 실행되었음")
         $.ajax({
             url: "pallate/cd_style/temp_img_upload2",
             type: 'post',
@@ -431,24 +443,30 @@ $(document).ready(function(){
             type: 'post',
             data: {
                 'img_name': img_name,
-                'styleType' : style_type
+                'styleType' : style_type,
+                'hex1' : hex1,
+                'hex2' : hex2,
+                'hex3' : hex3,
+                'hex4' : hex4,
             },
             dataType: 'text',
             success: function(res) {
-                const ch_output_image_container = $("#ch_output_image_container");
+                console.log("res : ",res)
+
+                const cd_output_image_container = $("#cd_output_image_container");
                 let res_list = res.split('/');
                 const master_name = res_list[res_list.length - 1];
 
-                tg_str = '<div class="row ch-file-upload-box">' +
-                            '<img src="' + res + '" class="ch-file-output-image ch-image rounded">' +
+                tg_str = '<div class="row cd-file-upload-box">' +
+                            '<img src="' + res + '" class="cd-file-output-image cd-image rounded">' +
                         '</div>' +
-                        '<div class="ch-image-title-wrap row">' +
+                        '<div class="cd-image-title-wrap row">' +
                             '<a class="hidden-download" id="download_link" href="#" download="#"></a>' +
-                            '<button type="button" class="btn btn-custom-2 col-md-6 ch-image-btn" onclick="downloadImage(\'' + master_name + '\')">다운로드</button>' +
+                            '<button type="button" class="btn btn-custom-2 col-md-6 cd-image-btn" onclick="downloadImage(\'' + master_name + '\')">다운로드</button>' +
                         '</div>';
                 
-                ch_output_image_container.empty();
-                ch_output_image_container.append(tg_str);
+                cd_output_image_container.empty();
+                cd_output_image_container.append(tg_str);
             },
             error: function(error) {
                 console.log('error', error);
