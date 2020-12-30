@@ -43,8 +43,6 @@ $(document).ready(function(){
         var dataURI;
         const ch_input_image_container = $("#ch_input_image_container");
 
-        console.log("file", file);
-
         if (file) { // 이미지 파일을 선택한 경우
 
             original_name = file.name;
