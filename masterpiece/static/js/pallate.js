@@ -462,7 +462,7 @@ $(document).ready(function(){
                         '</div>' +
                         '<div class="cd-image-title-wrap row">' +
                             '<a class="hidden-download" id="download_link" href="#" download="#"></a>' +
-                            '<button type="button" class="btn btn-custom-2 col-md-6 cd-image-btn" onclick="downloadImage(\'' + master_name + '\')">다운로드</button>' +
+                            '<button type="button" class="btn btn-custom-2 col-md-6 cd-image-btn" onclick="downloadImage2(\'' + master_name + '\')">다운로드</button>' +
                         '</div>';
                 
                 cd_output_image_container.empty();
@@ -472,6 +472,39 @@ $(document).ready(function(){
                 console.log('error', error);
             }
         });
+    }
+
+    downloadImage2 = function(master_name) {
+        download_href = $('#download_link').attr('href');
+
+        if(download_href != "#") {
+            $('#download_link')[0].click();
+        } else {
+            $.ajax({
+                url: "pallate/cd_style/download_img2",
+                type: 'post',
+                data: {
+                    'styleType' : style_type,
+                    'masterpieceImageName' : master_name,
+                    'originalImageName' : original_name,
+                    'hex1' : hex1,
+                    'hex2' : hex2,
+                    'hex3' : hex3,
+                    'hex4' : hex4,
+                },
+                dataType: 'text',
+                success: function(res) {
+                    $('#download_link').prop('href', res); 
+                    $('#download_link').prop('download', 'GIGJ_masterpiece.jpg');
+                    $('#download_link')[0].click();
+                },
+                error: function(error) {
+                    console.log('error', error);
+                }
+            });
+        }
+
+        
     }
 
     $('#color_pick').click(color_pick);

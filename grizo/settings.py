@@ -29,8 +29,9 @@ SECRET_KEY = '48u1jd2t!=6mmn)osu705j%s-7i@w&-s8$%cc07iqld1zsed9p'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '54.180.155.10',
-    'ec2-54-180-155-10.ap-northeast-2.compute.amazonaws.com'
+    '127.0.0.1'
+    '13.209.19.188',
+    'ec2-13-209-19-188.ap-northeast-2.compute.amazonaws.com'
 ]
 
 
@@ -144,3 +145,4 @@ SESSION_COOKIE_AGE = 600
 
 #요청이 있을때마다 쿠키시간 갱신 
 SESSION_SAVE_EVERY_REQUEST = True
+

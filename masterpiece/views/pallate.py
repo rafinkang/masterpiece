@@ -202,7 +202,7 @@ def temp_img_upload2(request):
     dataURI = request.POST.dict()['dataURI']
     user_idx = request.session.get('user_idx')
     temp_img_path = 'masterpiece/static/upload_images/temp_images/'
-
+    
     filename = user_idx + '_idx_' + datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S') + '.jpg'
     path = temp_img_path + '/' + filename
 
@@ -210,7 +210,7 @@ def temp_img_upload2(request):
 
     with open(path, 'wb') as f:
         f.write(imgdata)
-    print(path,"에", filename,"을 생성하였음")
+    # print(path,"에", filename,"을 생성하였음")
     return HttpResponse(filename)
 
 def change_masterpiece2(request):
@@ -230,14 +230,18 @@ def change_masterpiece2(request):
     change_color = ChangeColor_minsu(hex1=hex1, hex2=hex2, hex3=hex3, hex4=hex4, input_img_path = temp_img_full_path , styleType=style_type)
     output = change_color.change(n_cluster = 4, get_plt = False)
     # return HttpResponse(clw.change_style(style_type, temp_img_full_path, img_name))
-    print("pallate.py의 change_masterpiece2를 실행시켰음")
-    print("그 안의 내용은 changeColor_minsu 함수 실행시키는것임, response 돌려주는 값은 색상입혀진 이미지")
+    # print("pallate.py의 change_masterpiece2를 실행시켰음")
+    # print("그 안의 내용은 changeColor_minsu 함수 실행시키는것임, response 돌려주는 값은 색상입혀진 이미지")
     return HttpResponse(output)
 
 def download_img2(request):
     # 임시 저장 이미지 중 찾을 이미지 2개
     user_idx = request.session.get('user_idx')
     style_type = request.POST.dict()['styleType']
+    hex1 = request.POST.dict()['hex1']
+    hex2 = request.POST.dict()['hex2']
+    hex3 = request.POST.dict()['hex3']
+    hex4 = request.POST.dict()['hex4']
     original_image_name = request.POST.dict()['originalImageName'] # 사용자가 입력한 원본 이미지 이름
     masterpiece_img_name = request.POST.dict()['masterpieceImageName'] # 명화화 한 임시 저장 이미지 이름
     img_name = masterpiece_img_name.replace('_masterpiece', '') # 명화화 하기 전 임시 저장 이미지 이름
@@ -260,10 +264,10 @@ def download_img2(request):
 
     # DB저장
     gl = GallaryList()
-    gl.insert_mp_info(user_idx, original_image_name, origin_url, masterpiece_url, style_type)
+    gl.insert_mp_info2(user_idx, original_image_name, origin_url, masterpiece_url, hex1,hex2,hex3,hex4)
 
     # 임시저장 이미지 삭제
     os.remove(temp_img_path + img_name)
-    os.remove(temp_img_path + masterpiece_img_name)
+    # os.remove(temp_img_path + masterpiece_img_name)
 
     return HttpResponse(masterpiece_url)
