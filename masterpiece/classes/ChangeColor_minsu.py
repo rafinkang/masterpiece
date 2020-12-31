@@ -109,22 +109,41 @@ class ChangeColor_minsu:
         # new_hsv.append(hsv4[0][0])
         # print('new_hsv', new_hsv)
         new_hsv = [0,0,0,0]
+        old_hsv = [0,0,0,0]
         for i in range(4):
             # print("input_img_info[i]['label'] : ", input_img_info[i]['label'])
+            # input_img_info[i]['label'] 는 클러스터링 끝나고 랜덤하게 라벨링된 숫자임, 그 숫자 순서에 맞게 hsv1234를 new_hsv에 넣어줘야함
             if i == 0:
                 new_hsv[input_img_info[i]['label']] = hsv1[0][0]
+                old_hsv[input_img_info[i]['label']] = input_img_info[i]['hsv_origin']
             elif i == 1:
                 new_hsv[input_img_info[i]['label']] = hsv2[0][0]
+                old_hsv[input_img_info[i]['label']] = input_img_info[i]['hsv_origin']
             elif i == 2:
                 new_hsv[input_img_info[i]['label']] = hsv3[0][0]
+                old_hsv[input_img_info[i]['label']] = input_img_info[i]['hsv_origin']
             elif i == 3:
                 new_hsv[input_img_info[i]['label']] = hsv4[0][0]
+                old_hsv[input_img_info[i]['label']] = input_img_info[i]['hsv_origin']
+
+
+        for i in range(4):
+            # h 보정 1 -> 179
+            old_hsv[i][0] = int(old_hsv[i][0]*179)
+            # s 보정 1 -> 255
+            old_hsv[i][1] = int(old_hsv[i][1]*255)
+            # v 보정 1 -> 255
+            old_hsv[i][2] = int(old_hsv[i][2]*255)
+
+
+
 
         # new_hsv.append(hsv1[0][0])
         # new_hsv.append(hsv2[0][0])
         # new_hsv.append(hsv3[0][0])
         # new_hsv.append(hsv4[0][0])
         # print('new_hsv', new_hsv)
+        # print('old_hsv', old_hsv)
 
 
         # H값 차이 계산
@@ -158,10 +177,52 @@ class ChangeColor_minsu:
 
                 # s,v도 변화시켜보자
                 # output_img[i][j][0] = int((new_hsv[x][0] * self.styleType + output_img[i][j][0] * (10-self.styleType) )/10)
-                output_img[i][j][0] = int((new_hsv[x][0] * 9.99             + output_img[i][j][0] * (10-9.99) )/10)
-                output_img[i][j][1] = int((new_hsv[x][1] * (self.styleType) + output_img[i][j][1] * (10-self.styleType))/10)
-                output_img[i][j][2] = int((new_hsv[x][2] * (self.styleType) + output_img[i][j][2] * (10-self.styleType))/10)
+                # output_img[i][j][0] = int((new_hsv[x][0] * 9.99             + output_img[i][j][0] * (10-9.99) )/10)
+                # output_img[i][j][1] = int((new_hsv[x][1] * (self.styleType) + output_img[i][j][1] * (10-self.styleType))/10)
+                # output_img[i][j][2] = int((new_hsv[x][2] * (self.styleType) + output_img[i][j][2] * (10-self.styleType))/10)
 
+                IH = output_img[i][j][0]
+                NH = new_hsv[x][0]
+                OH = old_hsv[x][0]
+
+                IS = output_img[i][j][1]
+                NS = new_hsv[x][1]
+                OS = old_hsv[x][1]
+
+                IV = output_img[i][j][2]
+                NV = new_hsv[x][2]
+                OV = old_hsv[x][2]
+                
+                # h 변환
+                # if IH > OH:
+                #     output_img[i][j][0] = (IH-OH)/(255-OH) * (255-NH) + NH
+                # else:
+                #     output_img[i][j][0] = NH - (OH-IH)/(OH) * NH
+                # h 변환
+                if IH > OH:
+                    output_img[i][j][0] = NH + 5* (IH - OH)/(179 - OH)
+                else:
+                    output_img[i][j][0] = NH - 5 * (OH - IH) / (OH)
+                if output_img[i][j][0] > 179:
+                    output_img[i][j][0] = 179
+                elif output_img[i][j][0] <0:
+                    output_img[i][j][0] = 0
+                
+                # s 변환
+                if IS > OS:
+                    output_img[i][j][1] = (IS-OS)/(255-OS) * (255-NS) + NS
+                else:
+                    output_img[i][j][1] = NS - (OS-IS)/(OS) * NS
+
+                # v 변환
+                if IV > OV:
+                    output_img[i][j][2] = (IV-OV)/(255-OV) * (255-NV) + NV
+                else:
+                    output_img[i][j][2] = NV - (OV-IV)/(OV) * NV
+
+                output_img[i][j][1] = int((output_img[i][j][1] * (self.styleType) + IS * (10-self.styleType))/10)
+                output_img[i][j][2] = int((output_img[i][j][2] * (self.styleType) + IV * (10-self.styleType))/10)
+                
 
         # tot = 0
         # for i in range(shape[0]):
@@ -208,8 +269,8 @@ class ChangeColor_minsu:
     
 
 #     # change_color = ChangeColor_minsu(colorimg, inputimg)
-#     change_color = ChangeColor_minsu(hex1, hex2, hex3, hex4, input_img_path = inputimg)
+#     change_color = ChangeColor_minsu(hex1, hex2, hex3, hex4, input_img_path = inputimg, styleType=9)
 #     # output = change_color.change(n_cluster = 4, get_plt = False)
-#     output = change_color.change(n_cluster = 4, get_plt = False, styleType=9)
+#     output = change_color.change(n_cluster = 4, get_plt = False)
 
 #     plt.imshow(output)
