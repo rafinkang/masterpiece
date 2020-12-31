@@ -327,13 +327,13 @@ $(document).ready(function(){
     }
 
     
-    // imageCopy = function() {
-    //     var imgData = [{"imgURL" : sessionStorage.getItem("origin_image")}];
+    imageCopy2 = function() {
+        var imgData = [{"imgURL" : sessionStorage.getItem("origin_image")}];
         
-    //     $('.cd-image-upload-wrap').hide();
-    //     $('.cd-file-upload-image').attr('src', imgData[0].imgURL);
-    //     $(".cd-file-upload-content").show();
-    // }
+        $('.cd-image-upload-wrap').hide();
+        $('.cd-file-upload-image').attr('src', imgData[0].imgURL);
+        $(".cd-file-upload-content").show();
+    }
       
     removeUpload2 = function() {
         $('.cd-file-upload-input').val("")
