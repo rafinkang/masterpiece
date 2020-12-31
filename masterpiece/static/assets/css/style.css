@@ -484,6 +484,14 @@ section {
   padding: 110px 0 60px 0;
 }
 
+#pallate,
+#color_gallery,
+#image-list,
+#user_register,
+#user_login {
+  min-height: calc(100vh - 70px);
+}
+
 .section-bg {
   background-color: white;
 }

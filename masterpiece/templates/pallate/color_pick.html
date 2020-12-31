@@ -1,12 +1,14 @@
 <div class="row color-pick">
-    <div class="col-md-6">
-        <input type="file" class="origin-image-file" accept=".jpg,.jpeg,.png" onchange="origin_thumbnail(this)">
-        <button id="color_pick">색상 뽑기</button>
-        <button id="color_insert">색상 저장</button>
+    <div class="col-md-6 polaroid">
         <p>색상을 추출하실 이미지 파일을 선택해 주세요.</p>
-        <img src="/masterpiece/static/image/starlight.jpeg" alt="썸네일" class="origin-thumbnail">
+        <img src="/masterpiece/static/image/starlight.jpeg" alt="썸네일" class="origin-thumbnail rounded">
+        <div class="upload-input-box">
+            <input type="file" class="origin-image-file" accept=".jpg,.jpeg,.png" onchange="origin_thumbnail(this)">
+            <button class="btn btn-outline-danger" id="color_pick">색상 뽑기</button>
+            <button class="btn btn-outline-danger" id="color_insert">색상 저장</button>
+        </div>
     </div>
-    <div class="col-md-2 color-pick-outer-box">
+    <div class="col-md-1 color-pick-outer-box">
         <div class="color1 color-pick-box">
             <span class="hex1"  onclick="copy(this)">#637fa0</span>
         </div>
@@ -20,33 +22,33 @@
             <span class="hex4"  onclick="copy(this)">#a8b5a1</span>
         </div>
     </div>
-    <div class="col-md-4">
-        <table class="color-pick-emotion">
+    <div class="col-md-4 color-pick-info">
+        <table class="color-pick-emotion table">
             <thead>
                 <tr>
-                    <td>분류</td>
-                    <td>결과값</td>
+                    {% comment %} <th scope="col"></th> {% endcomment %}
+                    <th scope="col" colspan="2">색상 감성분석</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>색상</td>
+                    <th scope="row">색상</th>
                     <td class="color_pred">azure</td>
                 </tr>
                 <tr>
-                    <td>계절</td>
+                    <th scope="row">계절</th>
                     <td class="season_pred">winter</td>
                 </tr>
                 <tr>
-                    <td>톤</td>
+                    <th scope="row">톤</th>
                     <td class="cw_pred">cool</td>
                 </tr>
                 <tr>
-                    <td>채도</td>
+                    <th scope="row">채도</th>
                     <td class="cp_pred">pastel</td>
                 </tr>
                 <tr>
-                    <td>명암</td>
+                    <th scope="row">명암</th>
                     <td class="value_pred">low</td>
                 </tr>
             </tbody>

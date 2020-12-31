@@ -19,15 +19,15 @@
 /* 상단 팔레트 영역 */
 
 .pallate {
-    border: 5px dashed #393e46;
     border-radius: 10px;
     margin-bottom: 15px;
-    padding: 5px;
-    ;
+    padding: 20px;
+    background-color: #eee;
+    box-shadow: 5px 5px 5px 5px #dbdbdb;
 }
 
 .pallate .origin-thumbnail {
-    height: 150px;
+    height: 160px;
     /* width: 150px; */
     margin: auto;
 }
@@ -43,17 +43,18 @@
 }
 
 .pallate .color-outer-box {
-    padding: 0 10%;
+    padding: 0 10% 0 5%;
+    top: -15px;
 }
 .pallate .color-outer-box .row{
     margin: 5px 0;
 }
-.pallate .color-outer-box .row.parallelogram{
+/* .pallate .color-outer-box .row.parallelogram{
     border: 2px solid #393e46;
-}
+} */
 
 .pallate .color-box {
-    height: 100px;
+    height: 65px;
 }
 
 .pallate .color-box.color1 {
@@ -78,11 +79,25 @@
 
 .pallate .color-hsv {
     text-align: center;
+    font-size: 14px;
+    color: #393e46;
 }
 
 .pallate .color-hex {
     text-align: center;
     text-transform: uppercase;
+    font-weight: bold;
+    color: #f8f8f8;
+}
+
+.pallate .color-hex span{
+    background-color: #222831;
+    border-radius: 15px;
+    padding: 1px 10px;
+}
+
+.clearfix {
+    margin-top: 50px;
 }
 
 
@@ -117,7 +132,8 @@
 
 .pallate-content .pallate-tab {
     display: none;
-    border: 3px solid #393e46;
+    background-color: #fff;
+    box-shadow: 1px 3px 7px 2px #dbdbdb;
 }
 
 .pallate-content .pallate-tab.active {
@@ -128,8 +144,39 @@
 .color-pick{
     padding: 10px;
 }
+.color-pick .polaroid {
+    margin: 20px;
+    padding-top: 10px;
+    text-align: center;
+    border: 1px solid #dedede;
+    box-shadow: 5px 6px 4px 3px #eee;
+}
+.color-pick .polaroid p {
+    border-bottom: 3px double #ffd369;
+    color: #393e46;
+}
+.color-pick .upload-input-box {
+    padding: 20px;
+}
 .color-pick .origin-thumbnail{
     width: 100%;
+}
+.color-pick .btn {
+    padding: 3px 7px;
+}
+
+.color-pick .color-pick-info {
+    margin: 20px 20px;
+    display: flex;
+}
+.color-pick .color-pick-info table {
+    margin: auto;
+    height: 90%;
+}
+.color-pick .color-pick-info table th,
+.color-pick .color-pick-info table td {
+    margin: auto;
+    vertical-align: middle;
 }
 
 
@@ -171,6 +218,7 @@
 
 .color-pick table.color-pick-emotion{
     width: 100%;
+    text-align: center;
 }
 
 .parallelogram {
