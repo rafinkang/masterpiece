@@ -141,3 +141,4 @@ SESSION_COOKIE_AGE = 600
 
 #요청이 있을때마다 쿠키시간 갱신 
 SESSION_SAVE_EVERY_REQUEST = True
+
