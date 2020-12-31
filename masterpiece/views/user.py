@@ -75,6 +75,7 @@ def login_go(request):
     #로그아웃 
 def logout(request):
     auth_logout(request)
+    request.session.flush()
     return HttpResponse("1");
 
 #비밀번호 찾기 비교 

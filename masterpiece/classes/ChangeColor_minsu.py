@@ -102,12 +102,29 @@ class ChangeColor_minsu:
         hsv4 = cv2.cvtColor(bgr4, cv2.COLOR_BGR2HSV)
         # print(hsv1)
 
-        new_hsv = []
-        new_hsv.append(hsv1[0][0])
-        new_hsv.append(hsv2[0][0])
-        new_hsv.append(hsv3[0][0])
-        new_hsv.append(hsv4[0][0])
-        # print(new_hsv[0])
+        # new_hsv = []
+        # new_hsv.append(hsv1[0][0])
+        # new_hsv.append(hsv2[0][0])
+        # new_hsv.append(hsv3[0][0])
+        # new_hsv.append(hsv4[0][0])
+        # print('new_hsv', new_hsv)
+        new_hsv = [0,0,0,0]
+        for i in range(4):
+            # print("input_img_info[i]['label'] : ", input_img_info[i]['label'])
+            if i == 0:
+                new_hsv[input_img_info[i]['label']] = hsv1[0][0]
+            elif i == 1:
+                new_hsv[input_img_info[i]['label']] = hsv2[0][0]
+            elif i == 2:
+                new_hsv[input_img_info[i]['label']] = hsv3[0][0]
+            elif i == 3:
+                new_hsv[input_img_info[i]['label']] = hsv4[0][0]
+
+        # new_hsv.append(hsv1[0][0])
+        # new_hsv.append(hsv2[0][0])
+        # new_hsv.append(hsv3[0][0])
+        # new_hsv.append(hsv4[0][0])
+        # print('new_hsv', new_hsv)
 
 
         # H값 차이 계산
