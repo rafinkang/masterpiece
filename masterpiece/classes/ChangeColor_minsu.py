@@ -221,11 +221,11 @@ class ChangeColor_minsu:
                 # v 변환
                 if IV > OV:
                     if OV == 255:
-                        OS = 254.9
+                        OV = 254.9
                     output_img[i][j][2] = (IV-OV)/(255-OV) * (255-NV) + NV
                 else:
                     if OV == 0:
-                        OS = 0.1
+                        OV = 0.1
                     output_img[i][j][2] = NV - (OV-IV)/(OV) * NV
 
                 output_img[i][j][1] = int((output_img[i][j][1] * (self.styleType) + IS * (10-self.styleType))/10)
