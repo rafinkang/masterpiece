@@ -29,7 +29,7 @@ SECRET_KEY = '48u1jd2t!=6mmn)osu705j%s-7i@w&-s8$%cc07iqld1zsed9p'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '127.0.0.1'
+    '127.0.0.1',
     '13.209.19.188',
     'ec2-13-209-19-188.ap-northeast-2.compute.amazonaws.com'
 ]
