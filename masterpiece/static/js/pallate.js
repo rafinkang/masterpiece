@@ -343,6 +343,7 @@ $(document).ready(function(){
 
     setImage2 = function(type) {
         console.log("색상 입히기 버튼 눌렸음")
+        
         var file = $("#cd_input_image")[0].files[0];
         var dataURI;
         const cd_input_image_container = $("#cd_input_image_container");
@@ -438,6 +439,14 @@ $(document).ready(function(){
     }
 
     originToMasterpiece2 = function(img_name) {
+
+        color_pick_data = sessionStorage.getItem('color_pick')
+        data = JSON.parse(color_pick_data)
+        hex1 = data['hex1']
+        hex2 = data['hex2']
+        hex3 = data['hex3']
+        hex4 = data['hex4']
+        
         $.ajax({
             url: "pallate/cd_style/change_masterpiece2",
             type: 'post',
