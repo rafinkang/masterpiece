@@ -37,6 +37,11 @@ urlpatterns = [
     path('pallate/ch_style/temp_img_upload', pallate.temp_img_upload, name='pallate/ch_style/temp_img_upload'),
     path('pallate/ch_style/download_img', pallate.download_img, name='pallate/ch_style/download_img'),
     
+    # cd_style(color_dress)
+    path('pallate/cd_style/change_masterpiece2', pallate.change_masterpiece2, name='pallate/cd_style/change_masterpiece2'),
+    path('pallate/cd_style/temp_img_upload2', pallate.temp_img_upload2, name='pallate/cd_style/temp_img_upload2'),
+    path('pallate/cd_style/download_img2', pallate.download_img2, name='pallate/cd_style/download_img2'),
+    
     # gallery
     path('gallery/color_gallery', gallery.color_gallery, name='gallery/color_gallery'),
     path('gallery/color_list', gallery.color_list, name='gallery/color_list'),
@@ -46,17 +51,4 @@ urlpatterns = [
     path('gallery/image_filter', gallery.image_filter, name='gallery/image_filter'),
     path('gallery/image_like', gallery.image_like, name='gallery/image_like'),
 
-    ######################################## example ########################################
-
-    path('example_index', main.example_index, name='example_index'),
-
-    path('normal_res', main.normal_res, name='normal_res'), # 단순 페이지 이동
-
-    path('get_res/<str:get_message1>/<str:get_message2>', main.get_res, name='get_res'), # url + parameter 페이지 이동
-    path('get_res', main.get_res, name='get_res'), # form action = 'GET'
-    path('post_res', main.post_res, name='post_res'), # form action = 'POST'
-
-    path('select_res', main.select_res, name='select_res'), # DB select
-    path('update_res', main.update_res, name='update_res'), # DB update
-    path('delete_res', main.delete_res, name='delete_res') # DB delete
 ]
