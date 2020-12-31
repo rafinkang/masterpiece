@@ -137,3 +137,7 @@ test/crawling/images/*
 masterpiece/static/upload_images/masterpiece_images/*.jpg
 masterpiece/static/upload_images/original_images/*.jpg
 masterpiece/static/upload_images/temp_images/*.jpg
+masterpiece/joblib/cezanne.h5
+masterpiece/joblib/monet.h5
+masterpiece/joblib/ukiyoe.h5
+masterpiece/joblib/vangogh.h5
