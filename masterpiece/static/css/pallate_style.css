@@ -373,6 +373,9 @@
     position: relative;
     display: block;
 }
+.emotion .palette.color-dress-img {
+    padding-bottom: calc(100% - 43px);
+}
 .emotion .place {
     position: absolute;
     width: 100%;
@@ -426,6 +429,10 @@
 
 .emotion span.under-line {
     border-bottom: 3px double #fc8e5b;
+}
+
+.emotion span.emotion-color {
+    width: 25px; height: 25px; margin: 5px;
 }
 
 #copied_tip{

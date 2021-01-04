@@ -146,11 +146,11 @@ function load_storage() {
         $('#pallate .color-pick .color-pick-box.color3').height(data['percent3']+'%');
         $('#pallate .color-pick .color-pick-box.color4').height(data['percent4']+'%');
         // 감성분석 결과
-        $('#pallate table.emotion td.color_pred').text(data['color']);
-        $('#pallate table.emotion td.season_pred').text(data['season']);
-        $('#pallate table.emotion td.cw_pred').text(data['cw']);
-        $('#pallate table.emotion td.cp_pred').text(data['cp']);
-        $('#pallate table.emotion td.value_pred').text(data['value']);
+        $('#pallate table.color-pick-emotion td.color_pred').text(data['color']);
+        $('#pallate table.color-pick-emotion td.season_pred').text(data['season']);
+        $('#pallate table.color-pick-emotion td.cw_pred').text(data['cw']);
+        $('#pallate table.color-pick-emotion td.cp_pred').text(data['cp']);
+        $('#pallate table.color-pick-emotion td.value_pred').text(data['value']);
     }
 }
 
