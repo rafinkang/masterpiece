@@ -1,18 +1,16 @@
 {% if res|length > 0 %}
     {% for data in res %}
-            <div class="content-item">
+        <div class="content-item">
+            <div class="emotion-info">
+                <span class="emotion-tag">{{ data.user_name }}</span>
+                <span class="emotion-tag" style="{% if data.mylike == "T"%} color: #ff0000; {% endif %}cursor: pointer;" onclick="set_like({{data.gl_idx}}, this)">❤<span>{{ data.cnt }}</span></span>
+            </div>
             <div class="palette">
                 <div class="place c4" style="padding-bottom:0;"><img class="rounded" src="/{{data.masterpiece_url}}" style="width: 100%;"/></div>
             </div>
             <div>
-                <div>
-                    <span class="emotion-tag under-line">#{{ data.image_name }}</span>
-                    <span class="emotion-tag under-line">#{% if data.artist == 'goh' %}고흐{% elif data.artist == 'mon' %}모네{% elif data.artist == 'cez' %}세잔{% else %}유키호{% endif %}</span>
-                </div>
-                <div>
-                    <span class="emotion-tag">{{ data.user_name }}</span>
-                    <span class="emotion-tag" style="{% if data.mylike == "T"%} color: #ff0000; {% endif %}cursor: pointer;" onclick="set_like({{data.gl_idx}}, this)">❤<span>{{ data.cnt }}</span></span>
-                </div>
+                <span class="emotion-tag under-line">#{{ data.image_name }}</span>
+                <span class="emotion-tag under-line">#{% if data.artist == 'goh' %}고흐{% elif data.artist == 'mon' %}모네{% elif data.artist == 'cez' %}세잔{% else %}유키호{% endif %}</span>
             </div>
         </div>
     {% endfor %}
