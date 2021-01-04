@@ -34,8 +34,8 @@ class GallaryList():
         return self.db.execute(sql)
 
     def insert_mp_info2(self, user_idx, image_name, origin_url, masterpiece_url, hex1,hex2,hex3,hex4):
-        sql = f"insert into gallary_list(user_idx, image_name, origin_url, masterpiece_url, hex1,hex2,hex3,hex4) values({user_idx}, '{image_name}', '{origin_url}', '{masterpiece_url}', '{hex1}', '{hex2}', '{hex3}', '{hex4}');"
-
+        sql = f"insert into gallary_list(user_idx, image_name, origin_url, masterpiece_url, hex1,hex2,hex3,hex4, artist) values({user_idx}, '{image_name}', '{origin_url}', '{masterpiece_url}', '{hex1}', '{hex2}', '{hex3}', '{hex4}', 'color');"
+        # 아티스트 부분은 color 로 입력
         return self.db.execute(sql)
     
     def image_filter(self, opt_type, user_idx):
@@ -66,10 +66,10 @@ class GallaryList():
             where_value += "artist in ("
             for index, val in enumerate(opt_type.split(',')):
                 if index == 0:
-                    if val == "cd": where_value += "''"
+                    if val == "cd": where_value += "'color'"
                     else: where_value += "'"+val+"'"
                 else:
-                    if val == "cd": where_value += ", ''"
+                    if val == "cd": where_value += ", 'color'"
                     else: where_value += ", '"+val+"'"
             where_value += ")"
                 
