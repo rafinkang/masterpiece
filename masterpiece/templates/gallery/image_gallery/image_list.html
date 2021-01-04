@@ -3,13 +3,13 @@
 {% block content %}
 <!-- ======= Hero Section ======= -->
 <section id="image-list">
-<div class="container">
-    <div class="row emotion">
+<div class="container gallery-container">
+    <div class="row emotion emotin-wrap">
         <div class="db-filter">
             <ul class="emotion-filter clearfix">
                 <li class="filter-row">
                     <div class="title">
-                        <span>검색</span>
+                        <span>이미지 종류</span>
                     </div>
                     <div class="value">
                         <label class="checkbox">
@@ -24,10 +24,18 @@
                             <input type="checkbox" name="opt" value="mon">
                             <span title="mon">모네</span>
                         </label>
+                        <label class="checkbox">
+                            <input type="checkbox" name="opt" value="cez">
+                            <span title="mon">세잔</span>
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" name="opt" value="uki">
+                            <span title="mon">유키호</span>
+                        </label>
                     </div>
                 </li>
-                <li class="filter-row">
-                    <button onclick="image_filter()">검색</button>
+                <li class="filter-row align-right filter-under-line">
+                    <button class="filter-btn" onclick="image_filter()">검색</button>
                 </li>
             </ul>
         </div>

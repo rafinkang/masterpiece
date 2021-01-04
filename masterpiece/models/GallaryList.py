@@ -52,7 +52,8 @@ class GallaryList():
             sql += f''', if(
                         (select count(*) from like_btn where user_idx = {user_idx} AND gl_idx = a.gl_idx) > 0, 
                         'T', 
-                        'F') as mylike'''
+                        'F') as mylike, 
+                        (SELECT user_name FROM user WHERE user_idx = a.user_idx) AS user_name'''
 
         sql += ''' from 
             gallary_list as a'''
@@ -75,7 +76,7 @@ class GallaryList():
                 
             where = where + where_value
             
-        sql = sql + where + " limit 100;"
+        sql = sql + where + " order by create_date desc limit 100;"
         
         return self.db.select(sql)
 
