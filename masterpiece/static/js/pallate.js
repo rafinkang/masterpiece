@@ -326,6 +326,104 @@ $(document).ready(function(){
         }
     }
 
+    // 매뉴얼하게 헥사코드 입력시
+    $('.hex1-input').keyup(function() {
+        hex_color = $('.hex1-input').val();
+        // console.log('hex1코드 변경되었음',hex_color);
+        
+        if (hex_color.length == 7 && hex_color.substr(0,1)== '#') {
+            temp = sessionStorage.getItem('color_pick');
+            // console.log(temp);
+            data = JSON.parse(temp)
+            // console.log(data);
+            data.hex1 = hex_color;
+            sessionStorage.setItem("color_pick", JSON.stringify(data));
+
+            load_storage();
+            // 색상입히기용, 민수 추가함
+            color_pick_data = sessionStorage.getItem('color_pick')
+            data = JSON.parse(color_pick_data)
+
+            $('.cd-wrap .droplet_1').css('fill', data['hex1']);
+            $('.cd-wrap .droplet_2').css('fill', data['hex2']);
+            $('.cd-wrap .droplet_3').css('fill', data['hex3']);
+            $('.cd-wrap .droplet_4').css('fill', data['hex4']);
+
+        };
+    })
+    
+    $('.hex2-input').keyup(function() {
+        hex_color = $('.hex2-input').val();
+        // console.log('hex1코드 변경되었음',hex_color);
+        
+        if (hex_color.length == 7 && hex_color.substr(0,1)== '#') {
+            temp = sessionStorage.getItem('color_pick');
+            // console.log(temp);
+            data = JSON.parse(temp)
+            // console.log(data);
+            data.hex2 = hex_color;
+            sessionStorage.setItem("color_pick", JSON.stringify(data));
+            
+            load_storage();
+            // 색상입히기용, 민수 추가함
+            color_pick_data = sessionStorage.getItem('color_pick')
+            data = JSON.parse(color_pick_data)
+
+            $('.cd-wrap .droplet_1').css('fill', data['hex1']);
+            $('.cd-wrap .droplet_2').css('fill', data['hex2']);
+            $('.cd-wrap .droplet_3').css('fill', data['hex3']);
+            $('.cd-wrap .droplet_4').css('fill', data['hex4']);
+        };
+    })
+    
+    $('.hex3-input').keyup(function() {
+        hex_color = $('.hex3-input').val();
+        // console.log('hex3코드 변경되었음',hex_color);
+        
+        if (hex_color.length == 7 && hex_color.substr(0,1)== '#') {
+            temp = sessionStorage.getItem('color_pick');
+            // console.log(temp);
+            data = JSON.parse(temp)
+            // console.log(data);
+            data.hex3 = hex_color;
+            sessionStorage.setItem("color_pick", JSON.stringify(data));
+            
+            load_storage();
+            // 색상입히기용, 민수 추가함
+            color_pick_data = sessionStorage.getItem('color_pick')
+            data = JSON.parse(color_pick_data)
+
+            $('.cd-wrap .droplet_1').css('fill', data['hex1']);
+            $('.cd-wrap .droplet_2').css('fill', data['hex2']);
+            $('.cd-wrap .droplet_3').css('fill', data['hex3']);
+            $('.cd-wrap .droplet_4').css('fill', data['hex4']);
+        };
+    })
+    
+    $('.hex4-input').keyup(function() {
+        hex_color = $('.hex4-input').val();
+        // console.log('hex4코드 변경되었음',hex_color);
+        
+        if (hex_color.length == 7 && hex_color.substr(0,1)== '#') {
+            temp = sessionStorage.getItem('color_pick');
+            // console.log(temp);
+            data = JSON.parse(temp)
+            // console.log(data);
+            data.hex4 = hex_color;
+            sessionStorage.setItem("color_pick", JSON.stringify(data));
+            
+            load_storage();
+            // 색상입히기용, 민수 추가함
+            color_pick_data = sessionStorage.getItem('color_pick')
+            data = JSON.parse(color_pick_data)
+
+            $('.cd-wrap .droplet_1').css('fill', data['hex1']);
+            $('.cd-wrap .droplet_2').css('fill', data['hex2']);
+            $('.cd-wrap .droplet_3').css('fill', data['hex3']);
+            $('.cd-wrap .droplet_4').css('fill', data['hex4']);
+        };
+    })
+    
     
     imageCopy2 = function() {
         var imgData = [{"imgURL" : sessionStorage.getItem("origin_image")}];
