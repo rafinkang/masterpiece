@@ -127,7 +127,7 @@ class ColorList():
                 
             where = where + where_value
             
-        sql = sql + where + f" limit {limit_start}, {limit_end};"
+        sql = sql + where + f" order by create_date desc limit {limit_start}, {limit_end};"
         
         return self.db.select(sql)
     
