@@ -52,10 +52,10 @@ class GallaryList():
             sql += f''', if(
                         (select count(*) from like_btn where user_idx = {user_idx} AND gl_idx = a.gl_idx) > 0, 
                         'T', 
-                        'F') as mylike, 
-                        (SELECT user_name FROM user WHERE user_idx = a.user_idx) AS user_name'''
+                        'F') as mylike 
+                        '''
 
-        sql += ''' from 
+        sql += ''' , (SELECT user_name FROM user WHERE user_idx = a.user_idx) AS user_name from 
             gallary_list as a'''
 
         where = ""
