@@ -70,6 +70,10 @@ class CycleganLoadWeight:
      # 기본 스타일 셋팅 : 고흐
     if style_type == "mon" : # 모네
       self.generator_g.load_weights("masterpiece/joblib/monet.h5")
+    if style_type == "cez" : # 세잔
+      self.generator_g.load_weights("masterpiece/joblib/cezanne.h5")
+    if style_type == "uki" : # 유코
+      self.generator_g.load_weights("masterpiece/joblib/ukiyoe.h5")
 
     return self.__generate_images(self.generator_g, chn_style_img)
     

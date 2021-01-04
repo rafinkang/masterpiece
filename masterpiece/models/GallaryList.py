@@ -66,10 +66,10 @@ class GallaryList():
             where_value += "artist in ("
             for index, val in enumerate(opt_type.split(',')):
                 if index == 0:
-                    if val == "cd": where_value += "''"
+                    if val == "cd": where_value += "'color'"
                     else: where_value += "'"+val+"'"
                 else:
-                    if val == "cd": where_value += ", ''"
+                    if val == "cd": where_value += ", 'color'"
                     else: where_value += ", '"+val+"'"
             where_value += ")"
                 
