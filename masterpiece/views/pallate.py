@@ -46,7 +46,8 @@ def change_masterpiece(request):
     img_name = request.POST.dict()['img_name']
     style_type = request.POST.dict()['styleType']
     temp_img_full_path = 'masterpiece/static/upload_images/temp_images/' + img_name
-
+    
+    print('img_name','명화화',img_name) # 민수가넣음
     clw = CycleganLoadWeight()
     return HttpResponse(clw.change_style(style_type, temp_img_full_path, img_name))
 
@@ -215,6 +216,7 @@ def temp_img_upload2(request):
 
 def change_masterpiece2(request):
     img_name = request.POST.dict()['img_name']
+    print('img_name','색상입히기',img_name) # 민수가넣음
     style_type = request.POST.dict()['styleType']
     hex1 = request.POST.dict()['hex1']
     hex2 = request.POST.dict()['hex2']
@@ -228,7 +230,7 @@ def change_masterpiece2(request):
     # hex3 = '#aa825a'
     # hex4 = '#404223'
     change_color = ChangeColor_minsu(hex1=hex1, hex2=hex2, hex3=hex3, hex4=hex4, input_img_path = temp_img_full_path , styleType=style_type)
-    output = change_color.change(n_cluster = 4, get_plt = False)
+    output = change_color.change(n_cluster = 4, get_plt = False, img_name = img_name)
     # return HttpResponse(clw.change_style(style_type, temp_img_full_path, img_name))
     # print("pallate.py의 change_masterpiece2를 실행시켰음")
     # print("그 안의 내용은 changeColor_minsu 함수 실행시키는것임, response 돌려주는 값은 색상입혀진 이미지")
