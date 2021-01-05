@@ -292,6 +292,11 @@ $(document).ready(function(){
         $('.cd-wrap .droplet_2').css('fill', data['hex2']);
         $('.cd-wrap .droplet_3').css('fill', data['hex3']);
         $('.cd-wrap .droplet_4').css('fill', data['hex4']);
+
+        $('.hex1-input').val(data['hex1']);
+        $('.hex2-input').val(data['hex2']);
+        $('.hex3-input').val(data['hex3']);
+        $('.hex4-input').val(data['hex4']);
     });
 
     // 색상 입히기 버튼 클릭시, 민수 추가함
@@ -326,12 +331,17 @@ $(document).ready(function(){
         }
     }
 
+    
     // 매뉴얼하게 헥사코드 입력시
     $('.hex1-input').keyup(function() {
         hex_color = $('.hex1-input').val();
         // console.log('hex1코드 변경되었음',hex_color);
         
-        if (hex_color.length == 7 && hex_color.substr(0,1)== '#') {
+        var hex_re = /^[#]*[0-9a-fA-F]{6}$/;
+
+        if (hex_color.length == 7 && !hex_re.test(hex_color)) {
+            alert("올바른 HEX 코드를 입력해주세요.");
+        } else if (hex_color.length == 7 && hex_color.substr(0,1)== '#') {
             temp = sessionStorage.getItem('color_pick');
             // console.log(temp);
             data = JSON.parse(temp)
@@ -348,15 +358,17 @@ $(document).ready(function(){
             $('.cd-wrap .droplet_2').css('fill', data['hex2']);
             $('.cd-wrap .droplet_3').css('fill', data['hex3']);
             $('.cd-wrap .droplet_4').css('fill', data['hex4']);
-
         };
     })
     
     $('.hex2-input').keyup(function() {
         hex_color = $('.hex2-input').val();
         // console.log('hex1코드 변경되었음',hex_color);
-        
-        if (hex_color.length == 7 && hex_color.substr(0,1)== '#') {
+        var hex_re = /^[#]*[0-9a-fA-F]{6}$/;
+
+        if (hex_color.length == 7 && !hex_re.test(hex_color)) {
+            alert("올바른 HEX 코드를 입력해주세요.");
+        } else if (hex_color.length == 7 && hex_color.substr(0,1)== '#') {
             temp = sessionStorage.getItem('color_pick');
             // console.log(temp);
             data = JSON.parse(temp)
@@ -380,7 +392,11 @@ $(document).ready(function(){
         hex_color = $('.hex3-input').val();
         // console.log('hex3코드 변경되었음',hex_color);
         
-        if (hex_color.length == 7 && hex_color.substr(0,1)== '#') {
+        var hex_re = /^[#]*[0-9a-fA-F]{6}$/;
+
+        if (hex_color.length == 7 && !hex_re.test(hex_color)) {
+            alert("올바른 HEX 코드를 입력해주세요.");
+        } else if (hex_color.length == 7 && hex_color.substr(0,1)== '#') {
             temp = sessionStorage.getItem('color_pick');
             // console.log(temp);
             data = JSON.parse(temp)
@@ -404,7 +420,11 @@ $(document).ready(function(){
         hex_color = $('.hex4-input').val();
         // console.log('hex4코드 변경되었음',hex_color);
         
-        if (hex_color.length == 7 && hex_color.substr(0,1)== '#') {
+        var hex_re = /^[#]*[0-9a-fA-F]{6}$/;
+
+        if (hex_color.length == 7 && !hex_re.test(hex_color)) {
+            alert("올바른 HEX 코드를 입력해주세요.");
+        } else if (hex_color.length == 7 && hex_color.substr(0,1)== '#') {
             temp = sessionStorage.getItem('color_pick');
             // console.log(temp);
             data = JSON.parse(temp)

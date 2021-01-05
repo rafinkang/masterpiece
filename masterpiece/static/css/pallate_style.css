@@ -773,6 +773,7 @@
     color:#f8f8f8; 
     font-weight:bold;
     border: 2px solid #eee;
+    text-transform : uppercase;
 }
 .cd-wrap .codebox{
     max-width: 12.333333%;
