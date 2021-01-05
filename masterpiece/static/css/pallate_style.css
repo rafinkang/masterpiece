@@ -726,8 +726,8 @@
 }
 .cd-wrap .lol_palette {
     float: left;
-    width: 225px;
-    height: 250px;
+    width: 100%;
+    height: 200px;
     text-align: center;
     margin: 0 0 4rem;
     -moz-transition: all .5s linear;
@@ -764,6 +764,28 @@
 
 .cd-wrap {
     height: 67vh;
+}
+
+.cd-wrap .hex-input{
+    width: 100%;
+    line-height: 2;
+    background-color: #222831;
+    color:#f8f8f8; 
+    font-weight:bold;
+    border: 2px solid #eee;
+    text-transform : uppercase;
+}
+.cd-wrap .codebox{
+    max-width: 12.333333%;
+    padding-left: 5px;
+    padding-right: 0px;
+}
+
+
+.cd-wrap .dropletbox{
+    padding-right: 0px;
+    padding-left: 0px;
+    max-width: 4.333333%;
 }
 
 .cd-wrap .cd-inout-box {

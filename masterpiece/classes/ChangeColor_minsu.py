@@ -57,7 +57,10 @@ class ChangeColor_minsu:
         else:
             self.image = image
 
-    def change(self, n_cluster=4, get_plt=False):
+    def change(self, n_cluster=4, get_plt=False, img_name='idx_date'):
+        # 지연이 꺼에서 가져온거
+        self.img_name = img_name.split('.')[0]
+
         """
         색상을 변경해 보자.
         """
@@ -259,7 +262,7 @@ class ChangeColor_minsu:
         # return output_img
 
         # 지연이 꺼에서 가져온 부분, 이미지를 저장하고 주소만 돌려주기
-        save_img_name = 'masterpiece/static/upload_images/temp_images/' + 'color_dress_'+str(self.styleType)  + '.jpg'
+        save_img_name = 'masterpiece/static/upload_images/temp_images/' + self.img_name + '_color_dress_'+str(self.styleType)  + '.jpg'
         plt.savefig(save_img_name)
         # print("save_img_name :",save_img_name)
         return save_img_name
