@@ -38,6 +38,18 @@ $(document).ready(function(){
         $('.ch-image-upload-wrap').show();
     }
 
+    playVideo = function() {
+        const ch_output_image_container = $("#ch_output_image_container");
+
+        tg_str = '<div class="row ch-file-upload-box">' +
+                    '<video src="masterpiece/static/video/mp_alter_video.mp4" style="width:100%;" autoplay></video>' +
+                '</div>';
+        
+        ch_output_image_container.empty();
+        ch_output_image_container.append(tg_str);
+
+    }
+
     setImage = function(type) {
         var file = $("#ch_input_image")[0].files[0];
         var dataURI;
